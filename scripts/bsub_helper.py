@@ -60,10 +60,10 @@ class bsub_help():
             )
         if self.queue == 'gpu':
             command_string = (
-                '{} [-R "select[ngpus>{}] rusage [ngpus_shared={}]"'
+                '{} -R "select[ngpus>{}] rusage [ngpus_shared={}]"'
                 .format(command_string, self.num_gpus, self.num_gpus_shared)
                 )
-        command_string = '{} {}'.format(command_string, self.command)
+        command_string = '{} {}'.format(command_string, ' '.join(self.command))
         return command_string
 
     def submit_command(self):
