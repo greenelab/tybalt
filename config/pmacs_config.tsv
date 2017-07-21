@@ -1,0 +1,5 @@
+variable	assign
+queue	gpu
+num_gpus	0
+num_gpus_shared	2
+walltime	2:30
