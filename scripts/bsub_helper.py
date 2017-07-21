@@ -1,11 +1,11 @@
 """
 Gregory Way 2017
 Variational Autoencoder - Pan Cancer
-scripts/bsub_helper
+scripts/bsub_helper.py
 
 Usage: Run in command line with required command argument:
 
-        python scripts/bjob_helper.py --command <command string>
+        python scripts/bsub_helper.py --command <command string>
 
 There are also optional arguments:
 
