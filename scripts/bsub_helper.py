@@ -56,5 +56,5 @@ class bsub_help():
 
     def submit_command(self):
         import subprocess
-        submit_command = self.make_command_list()
-        subprocess.call(submit_command)
+        submit_command = self.make_command_string()
+        subprocess.call(submit_command, shell=True)
