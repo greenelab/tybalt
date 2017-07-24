@@ -6,7 +6,9 @@ scripts/bsub_helper.py
 Usage: Import only
 from bsub_helper import bsub_help
 
+from bsub_helper import bsub_help
 b = bsub_help(command)
+
 b.make_command_list()
 b.make_command_string()
 b.submit_command()  # directly submit bsub job to pmacs
