@@ -43,8 +43,8 @@ param_folder = args.param_folder
 if not os.path.exists(param_folder):
     os.makedirs(param_folder)
 
-parameter_df = pd.read_csv(parameter_file, index_col=0)
-config_df = pd.read_csv(config_file, index_col=0)
+parameter_df = pd.read_table(parameter_file, index_col=0)
+config_df = pd.read_table(config_file, index_col=0)
 
 learning_rates = get_param('learning_rate')
 batch_sizes = get_param('batch_size')
@@ -58,7 +58,8 @@ walltime = config_df.loc['walltime']['assign']
 for lr in learning_rates:
     for bs in batch_sizes:
         for e in epochs:
-            f = os.path.join(param_folder, 'paramsweep_{}lr_{}bs_{}e.tsv')
+            f = 'paramsweep_{}lr_{}bs_{}e.tsv'.format(lr, bs, e)
+            f = os.path.join(param_folder, f)
             params = ['--learning_rate', lr,
                       '--batch_size', bs,
                       '--epochs', e,
