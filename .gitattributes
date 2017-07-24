@@ -7,3 +7,4 @@ models/full_naive_vae.hdf5 filter=lfs diff=lfs merge=lfs -text
 models/generator_naive_vae.hdf5 filter=lfs diff=lfs merge=lfs -text
 data/encoded_rnaseq_onehidden_warmup_batchnorm.tsv filter=lfs diff=lfs merge=lfs -text
 data/onehidden_warmup_batchnorm_tsne_out.tsv filter=lfs diff=lfs merge=lfs -text
+data/pancan_scaled_zeroone_rnaseq.tsv filter=lfs diff=lfs merge=lfs -text
