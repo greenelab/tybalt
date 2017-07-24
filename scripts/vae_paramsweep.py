@@ -49,6 +49,7 @@ config_df = pd.read_table(config_file, index_col=0)
 learning_rates = get_param('learning_rate')
 batch_sizes = get_param('batch_size')
 epochs = get_param('epochs')
+kappas = get_param('kappa')
 
 queue = config_df.loc['queue']['assign']
 num_gpus = config_df.loc['num_gpus']['assign']
@@ -58,17 +59,20 @@ walltime = config_df.loc['walltime']['assign']
 for lr in learning_rates:
     for bs in batch_sizes:
         for e in epochs:
-            f = 'paramsweep_{}lr_{}bs_{}e.tsv'.format(lr, bs, e)
-            f = os.path.join(param_folder, f)
-            params = ['--learning_rate', lr,
-                      '--batch_size', bs,
-                      '--epochs', e,
-                      '--output_filename', f]
-            final_command = [python_path, 'scripts/vae_pancancer.py'] + params
+            for k in kappas:
+                f = 'paramsweep_{}lr_{}bs_{}e_{}k.tsv'.format(lr, bs, e, k)
+                f = os.path.join(param_folder, f)
+                params = ['--learning_rate', lr,
+                          '--batch_size', bs,
+                          '--epochs', e,
+                          '--kappa', k,
+                          '--output_filename', f]
+                final_command = [python_path,
+                                 'scripts/vae_pancancer.py'] + params
 
-            b = bsub_help(command=final_command,
-                          queue=queue,
-                          num_gpus=num_gpus,
-                          num_gpus_shared=num_gpus_shared,
-                          walltime=walltime)
-            b.submit_command()
+                b = bsub_help(command=final_command,
+                              queue=queue,
+                              num_gpus=num_gpus,
+                              num_gpus_shared=num_gpus_shared,
+                              walltime=walltime)
+                b.submit_command()
