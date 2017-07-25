@@ -65,9 +65,10 @@ library with a TensorFlow backend for training.
 #### Parameter sweep
 
 In order to select the most optimal parameters for the model, we ran a
-parameter search over a small grid of parameters. See `parameter_sweep.md` for
-more details. Overall, we selected optimal `learning rate = 0.0005`,
-`batch size = 50`, `epochs = 100`. Training with optimal parameters was similar
-for training and a 10% test set across each epoch.
+parameter search over a small grid of parameters. See
+[parameter_sweep.md](parameter_sweep.md) for more details. Overall, we selected
+optimal `learning rate = 0.0005`, `batch size = 50`, `epochs = 100`. Training
+with optimal parameters was similar for training and a 10% test set across each
+epoch.
 
 ![Training Performance](figures/onehidden_vae_training.png?raw=true)
