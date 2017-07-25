@@ -1,4 +1,5 @@
 .ipynb_checkpoints/
+.Rhistory
 data/raw/
 data/mnist/
 

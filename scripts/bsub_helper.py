@@ -18,7 +18,7 @@ b.submit_command()  # directly submit bsub job to pmacs
 class bsub_help():
     def __init__(self, command, queue='gpu', num_gpus=2, num_gpus_shared=0,
                  walltime='0:10', error_file='std_err.txt',
-                 output_file='std_out'):
+                 output_file='std_out.txt'):
         try:
             self.command = command.split(' ')
         except:
