@@ -46,7 +46,7 @@ tumors.
 ### Training
 
 The current model training is explained in
-pancan_vae_keras_onehidden_warmup_batchnorm.ipynb.
+(this notebook)[pancan_vae_keras_onehidden_warmup_batchnorm.ipynb]
 
 #### Architecture
 
