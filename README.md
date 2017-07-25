@@ -60,7 +60,7 @@ and relu activation layers in the compression steps to prevent dead nodes and
 positive weights. We use a sigmoid activation in the decoder. We use the Keras
 library with a TensorFlow backend for training.
 
-![VAE Architecture](figures/onehidden_warmup_batchnorm.svg?raw=true)
+![VAE Architecture](figures/onehidden_warmup_batchnorm_vae.png?raw=true)
 
 #### Parameter sweep
 
@@ -70,4 +70,4 @@ more details. Overall, we selected optimal `learning rate = 0.0005`,
 `batch size = 50`, `epochs = 100`. Training with optimal parameters was similar
 for training and a 10% test set across each epoch.
 
-![Training Performance](figures/onehidden_warmup_batchnorm.png?raw=true)
+![Training Performance](figures/onehidden_warmup_batchnorm.svg?raw=true)
