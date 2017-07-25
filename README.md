@@ -72,3 +72,20 @@ with optimal parameters was similar for training and a 10% test set across each
 epoch.
 
 ![Training Performance](figures/onehidden_vae_training.png?raw=true)
+
+#### Model Evaluation
+
+After training with optimal hyper parameters, the unsupervised model can be
+interpreted. For instance, the distribution of activations across different
+nodes can be visualized. For example, the first 10 nodes (of 100) can be
+visualized by sample activation patterns.
+
+<p align="center">
+  <img src="https://github.com/greenelab/vae_pancancer/figures/node_activation_distribution.png?raw=true" alt="Node Activation"/>
+</p>
+
+![Node Activation](figures/node_activation_distribution.png?raw=true)
+
+In this scenario, each node activation pattern contributes uniquely to each
+tumor and may represent specific gene expression signatures of biological
+significance.
