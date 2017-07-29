@@ -18,7 +18,6 @@ vae_df <- vae_df %>% dplyr::rowwise() %>%
 combined_df <- dplyr::inner_join(vae_df, clinical_df,
                                  by = c("sample_base" = "sample_id"))
 combined_df <- combined_df[!duplicated(combined_df$sample_id), ]
-comb_out_file <- file.path("data", "vae_encoded_with_clinical.tsv")
 
 # Process improper drug names that cause parsing failures
 combined_df$drug <- tolower(combined_df$drug )
@@ -26,4 +25,5 @@ combined_df$drug <- gsub("\t", "", combined_df$drug)
 combined_df$drug <- gsub('"', "", combined_df$drug)
 combined_df$drug <- gsub("\\\\", "", combined_df$drug)
 
+comb_out_file <- file.path("data", "vae_encoded_with_clinical.tsv")
 write.table(combined_df, file = comb_out_file, sep = "\t", row.names = FALSE)
