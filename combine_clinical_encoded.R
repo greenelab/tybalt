@@ -6,10 +6,10 @@
 library(readr)
 library(dplyr)
 
-vae_file = file.path("data", "encoded_rnaseq_onehidden_warmup_batchnorm.tsv")
-clinical_file = file.path("data", "clinical_data.tsv")
+vae_file <- file.path("data", "encoded_rnaseq_onehidden_warmup_batchnorm.tsv")
+clinical_file <- file.path("data", "clinical_data.tsv")
 vae_df <- readr::read_tsv(vae_file)
-colnames(vae_df)[1] <- 'sample_id'
+colnames(vae_df)[1] <- "sample_id"
 clinical_df <- readr::read_tsv(clinical_file)
 
 vae_df <- vae_df %>% dplyr::rowwise() %>% 
@@ -18,7 +18,7 @@ vae_df <- vae_df %>% dplyr::rowwise() %>%
 combined_df <- dplyr::inner_join(vae_df, clinical_df,
                                  by = c("sample_base" = "sample_id"))
 combined_df <- combined_df[!duplicated(combined_df$sample_id), ]
-comb_out_file <- file.path('data', 'vae_encoded_with_clinical.tsv')
+comb_out_file <- file.path("data", "vae_encoded_with_clinical.tsv")
 
 # Process improper drug names that cause parsing failures
 combined_df$drug <- tolower(combined_df$drug )
@@ -26,4 +26,4 @@ combined_df$drug <- gsub("\t", "", combined_df$drug)
 combined_df$drug <- gsub('"', "", combined_df$drug)
 combined_df$drug <- gsub("\\\\", "", combined_df$drug)
 
-write.table(combined_df, file = comb_out_file, sep = '\t', row.names = FALSE)
+write.table(combined_df, file = comb_out_file, sep = "\t", row.names = FALSE)
