@@ -41,7 +41,7 @@ regularizes the model, but also provides the interpretable manifold.
 Below is a t-SNE visualization of the VAAE encoded features (p = 100) for all
 tumors.
 
-![VAE t-SNE](figures/vae_encoded_features_tsne.png?raw=true)
+![VAE t-SNE](figures/tsne_vae.png?raw=true)
 
 ### Training
 
