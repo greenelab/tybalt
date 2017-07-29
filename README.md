@@ -38,7 +38,7 @@ deterministic autoencoders because of the added constraint of normally
 distributed feature activations per sample. This constraint not only
 regularizes the model, but also provides the interpretable manifold.
 
-Below is a t-SNE visualization of the VAAE encoded features (p = 100) for all
+Below is a t-SNE visualization of the VAE encoded features (p = 100) for all
 tumors.
 
 ![VAE t-SNE](figures/tsne_vae.png?raw=true)
@@ -47,6 +47,14 @@ tumors.
 
 The current model training is explained in
 [this notebook](pancan_vae_keras_onehidden_warmup_batchnorm.ipynb)
+
+For a complete pipeline with reproducibility instructions, refer to
+[run_pipeline.sh](run_pipeline.sh). Note that scripts originally written in
+Jupyter notebooks ported to the scripts folder for pipeline purposes with:
+
+```sh
+jupyter nbconvert --to=script --FilesWriter.build_directory=scripts *.ipynb
+```
 
 #### Architecture
 
