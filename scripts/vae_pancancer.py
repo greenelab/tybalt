@@ -9,7 +9,7 @@ Usage: Run in command line with required command arguments:
                                          --config_file <configuration-filepath>
 
 Output:
-TBD
+Loss and validation loss for the specific model trained
 """
 
 import os
