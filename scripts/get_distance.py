@@ -1,9 +1,9 @@
 
 # coding: utf-8
 
-# # Determining the distance of COAD and GBM tumors in different spaces
+# # Determining the distance of BLCA and LUAD tumors in different spaces
 # 
-# The script will output distance matrices for pairwise comparisons of all colon cancer (COAD) and glioblastoma (GBM) tumors. The script will output distances for raw gene expression features and gene expression features encoded by a variational autoencoder. Additionally, distance matrices for the subtraction of cancer-type specific means is also output.
+# The script will output distance matrices for pairwise comparisons of all bladder cancer (BLCA) and lung adenocarcinoma (LUAD) tumors. The script will output distances for raw gene expression features and gene expression features encoded by a variational autoencoder. Additionally, distance matrices for the subtraction of cancer-type specific means is also output.
 
 # In[1]:
 
