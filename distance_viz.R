@@ -7,7 +7,7 @@ library(dplyr)
 library(ggplot2)
 library(ggjoy)
 
-get_density <- function(distance_df, label, gene='all') {
+get_density <- function(distance_df, label, gene = 'all') {
   # Take a distance matrix, subset data according to `gene` variable and add
   # label for plotting.
   #
