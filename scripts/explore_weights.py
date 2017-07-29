@@ -55,7 +55,7 @@ rnaseq_df = pd.read_table(rnaseq_file, index_col=0)
 print(rnaseq_df.shape)
 rnaseq_df.head(2)
 
-pd.DataFrame(rnaseq_df.columns).to_csv(os.path.join('results', 'background_genes.tsv'), sep='\t')
+pd.DataFrame(rnaseq_df.columns).to_csv(os.path.join('results', 'background_genes.txt'), sep='\t')
 
 
 # In[7]:
@@ -77,9 +77,14 @@ g = sns.jointplot(x='encoding 82', y='encoding 85', data=sex_node_plot,
                   edgecolor="w", stat_func=None);
 
 
-# By measuring expression of only a few genes, we can reliably predict the sex of the cancer patient, which is as expected
-
 # In[9]:
+
+sex_node_plot.head(17)
+
+
+# By measuring expression of only *17 genes*, we can reliably predict the sex of the cancer patient. These are genes most expressed by sex chromosomes including x inactivating genes _XIST_ and _TSIX_.
+
+# In[10]:
 
 # Save outputs
 sex_node_plot_file = os.path.join('figures', 'sex_node_gene_scatter.pdf')
@@ -88,7 +93,7 @@ g.savefig(sex_node_plot_file)
 sex_node_plot.to_csv(sex_node_gene_file, sep='\t')
 
 
-# In[10]:
+# In[11]:
 
 # We previously observed metastasis samples being robustly separated by two features
 # Visualize the feature scores here
@@ -100,7 +105,7 @@ g = sns.jointplot(x='encoding 53', y='encoding 66', data=met_node_plot,
                   color='green', edgecolor="w", stat_func=None);
 
 
-# In[11]:
+# In[12]:
 
 # Save outputs
 met_node_plot_file = os.path.join('figures', 'skcm_metastasis_node_gene_scatter.pdf')
@@ -111,7 +116,7 @@ met_node_plot.to_csv(met_node_gene_file, sep='\t')
 
 # Because the genes involved in these nodes are not as cut and dry as the sex specific nodes, perform a pathway analysis on the high weight genes explaining each tail of node 53 and 66
 
-# In[12]:
+# In[13]:
 
 encoding66 = (
     met_node_plot
@@ -126,7 +131,7 @@ high_weight_pos.to_csv(os.path.join('results', 'hightweightpos_genes_node66.tsv'
 high_weight_neg.to_csv(os.path.join('results', 'hightweightneg_genes_node66.tsv'), sep='\t')
 
 
-# In[13]:
+# In[14]:
 
 encoding53 = (
     met_node_plot
