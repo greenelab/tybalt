@@ -1,0 +1,35 @@
+Hex Colors	Study Abbreviation	Study Name
+#ED2891	BRCA	Breast invasive carcinoma
+#B2509E	GBM	Glioblastoma multiforme
+#D49DC7	LGG	Brain Lower Grade Glioma
+#C1A72F	ACC	Adrenocortical carcinoma
+#E8C51D	PCPG	Pheochromocytoma and Paraganglioma
+#F9ED32	THCA	Thyroid carcinoma
+#104A7F	CHOL	Cholangiocarcinoma
+#9EDDF9	COAD	Colon adenocarcinoma
+#007EB5	ESCA	Esophageal carcinoma
+#CACCDB	LIHC	Liver hepatocellular carcinoma
+#6E7BA2	PAAD	Pancreatic adenocarcinoma
+#DAF1FC	READ	Rectum adenocarcinoma
+#00AEEF	STAD	Stomach adenocarcinoma
+#F6B667	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+#D97D25	OV	Ovarian serous cystadenocarcinoma
+#FBE3C7	UCEC	Uterine Corpus Endometrial Carcinoma
+#F89420	UCS	Uterine Carcinosarcoma
+#97D1A9	HNSC	Head and Neck squamous cell carcinoma
+#009444	UVM	Uveal Melanoma
+#754C29	LAML	Acute Myeloid Leukemia
+#CEAC8F	THYM	Thymoma
+#3953A4	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+#BBD642	SKCM	Skin Cutaneous Melanoma
+#00A99D	SARC	Sarcoma
+#D3C3E0	LUAD	Lung adenocarcinoma
+#A084BD	LUSC	Lung squamous cell carcinoma
+#542C88	MESO	Mesothelioma
+#FAD2D9	BLCA	Bladder Urothelial Carcinoma
+#ED1C24	KICH	Kidney Chromophobe
+#F8AFB3	KIRC	Kidney renal clear cell carcinoma
+#EA7075	KIRP	Kidney renal papillary cell carcinoma
+#7E1918	PRAD	Prostate adenocarcinoma
+#BE1E2D	TGCT	Testicular Germ Cell Tumors
+#000000	NA	NA
