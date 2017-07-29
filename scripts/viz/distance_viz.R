@@ -1,7 +1,7 @@
 # Pan-Cancer Variational Autoencoder
 # Gregory Way 2017
 #
-# visualizing transformed space distances between cancer-types
+# Visualizing transformed space distances between cancer-types
 
 library(dplyr)
 library(ggplot2)
