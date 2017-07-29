@@ -7,7 +7,7 @@ library(readr)
 library(ggplot2)
 library(dplyr)
 
-param_sweep_file <- "parameter_sweep_full_results.tsv"
+param_sweep_file <- file.path("results", "parameter_sweep_full_results.tsv")
 param_df <- readr::read_tsv(param_sweep_file,
                             col_types = cols(train_epoch = col_integer(),
                                              loss = col_double(),
