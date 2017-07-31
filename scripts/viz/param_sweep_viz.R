@@ -34,7 +34,7 @@ for (k in unique(param_melt_df$kappa)) {
   subset_param <- param_melt_df %>% dplyr::filter(kappa == k)
   
   p <- ggplot(subset_param, aes(x = train_epoch, y = loss)) +
-    geom_line(aes(color = learning_rate, linetype = loss_type), size = 0.25) + 
+    geom_line(aes(color = learning_rate, linetype = loss_type), size = 0.5) + 
     facet_grid(batch_size ~ epochs, scales = "free") + theme_bw() + 
     ggtitle(paste("kappa =", k))
   
@@ -49,7 +49,7 @@ for (e in unique(param_melt_df$epochs)) {
   subset_param <- param_melt_df %>% dplyr::filter(epochs == e)
   
   p <- ggplot(subset_param, aes(x = train_epoch, y = loss)) +
-    geom_line(aes(color = learning_rate, linetype = loss_type), size = 0.25) + 
+    geom_line(aes(color = learning_rate, linetype = loss_type), size = 0.5) + 
     facet_grid(batch_size ~ kappa, scales = "free") + theme_bw() + 
     ggtitle(paste("epochs =", e))
   
@@ -65,8 +65,10 @@ final_select_df <- final_select_df %>%
   summarize(min_loss = min(loss))
 
 ggplot(final_select_df, aes(x = learning_rate, y = min_loss)) +
-  geom_point(aes(color = batch_size, shape = epochs)) + theme_bw() +
-  ylab("Validation Loss") + xlab("Learning Rate")
+  geom_point(aes(color = batch_size, shape = epochs), size = 2) + theme_bw() +
+  ylab("Validation Loss") + xlab("Learning Rate") +
+  theme(axis.text = element_text(size = rel(1.2)),
+        legend.text = element_text(size = rel(1.1)))
 
 output_sweep <- file.path("figures", "param_sweep", "final_param_val_loss.png")
 ggsave(output_sweep, height = 5, width = 6)
