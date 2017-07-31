@@ -182,8 +182,6 @@ ggplot(full_df, aes(x = distance, y = comparison, fill = comparison)) +
   theme(legend.position = "none")
 ggsave(distance_plot_file, height = 5, width = 6)
  
-
-
 blca_luad_vaesub_mut <- p53_encoded_sub_data_list[[1]] %>%
   dplyr::filter(comparison == "BLCA_LUAD") %>% dplyr::select(distance)
 blca_luad_vaesub_wtmut <- wt_mut_enc_sub_data_list[[1]] %>%
@@ -195,6 +193,6 @@ blca_luad_rawsub_wtmut <- wt_mut_raw_sub_data_list[[1]] %>%
   dplyr::filter(comparison == "BLCA_LUAD") %>% dplyr::select(distance)
   
 
-t.test(blca_luad_vaesub_mut, blca_luad_vaesub_wtmut)
-t.test(blca_luad_rawsub_mut, blca_luad_rawsub_wtmut)
+t.test(blca_luad_vaesub_wtmut, blca_luad_vaesub_mut)
+t.test(blca_luad_rawsub_wtmut, blca_luad_rawsub_mut)
 
