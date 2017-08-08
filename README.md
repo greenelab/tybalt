@@ -1,4 +1,6 @@
-# Tybalt - *A Variational Autoencoder trained on Pan-Cancer gene Expression*
+# Tybalt 
+
+### *A Variational Autoencoder trained on Pan-Cancer gene Expression*
 
 **Gregory Way and Casey Greene 2017**
 
