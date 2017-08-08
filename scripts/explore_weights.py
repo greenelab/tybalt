@@ -2,9 +2,9 @@
 # coding: utf-8
 
 # # Exploring model weights
-#
+# 
 # The weights the model learns indicates patterns of gene expression activations present across tumors. In an unsupervised model, these weights learned can point to known biology, unknown biology, or unrelated noise. One of the benefits of a variational autoencoder, is that the weights learned that represent each encoding are independent and nonlinear. Therefore, they can extract out signal representative of noise while still retaining relevant known and unknown biology.
-#
+# 
 # Here we explore specific signals that should be present in the data - signals representing the sex of the patient, and metastatic tumor activation patterns.
 
 # In[1]:
@@ -20,7 +20,7 @@ import seaborn as sns
 # In[2]:
 
 sns.set(style="white", color_codes=True)
-sns.set_context("paper", rc={"font.size":8,"axes.titlesize":10,"axes.labelsize":15})
+sns.set_context("paper", rc={"font.size":8,"axes.titlesize":10,"axes.labelsize":15})   
 
 
 # In[3]:
@@ -144,3 +144,4 @@ high_weight_neg = encoding53[encoding53 < -encoding53.std() * 2.5]
 
 high_weight_pos.to_csv(os.path.join('results', 'hightweightpos_genes_node53.tsv'), sep='\t')
 high_weight_neg.to_csv(os.path.join('results', 'hightweightneg_genes_node53.tsv'), sep='\t')
+

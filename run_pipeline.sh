@@ -16,7 +16,7 @@ Rscript scripts/viz/param_sweep_viz.R
 
 # 2) Run optimized model and combine results with clinical data
 
-python scripts/pancan_vae_keras_onehidden_warmup_batchnorm.py
+python scripts/tybalt_vae.py
 Rscript scripts/combine_clinical_encoded.R
 
 # 3) Evaluate the model for sample activations
@@ -30,9 +30,6 @@ Rscript scripts/viz/tsne_viz.R
 python scripts/explore_weights.py
 Rscript scripts/viz/feature_activation_plots.R
 
-# 5) Evaluate VAE manifold manipulations
-
-python scripts/subtraction.py
-python scripts/get_distance.py
-Rscript scripts/viz/distance_viz.R
+# 5) Evaluate Tybalt manifold manipulations for HGSC subtypes
+python scripts/hgsc_subtypes_vae.py
 

@@ -2,18 +2,18 @@
 # coding: utf-8
 
 # # Variational Autoencoder for pan-cancer gene expression
-#
+# 
 # **Gregory Way 2017**
-#
+# 
 # This script trains and outputs results for a [variational autoencoder (VAE)](https://arxiv.org/abs/1312.6114)
 # applied to gene expression data across 33 different cancer-types from The Cancer Genome Atlas (TCGA).
-#
+# 
 # A VAE aproximates the data generating function for the cancer data and learns the lower dimensional manifold a tumor occupies in gene expression space. By compressing the gene expression space into lower dimensional space, the VAE would, ideally, learn biological principles, such as cancer hallmark pathway activations, that help explain how tumors are similar and different. The VAE is also a generative model with a latent space that can be interpolated to observe transitions between cancer states.
-#
-# The particular model trained in this notebook consists of gene expression input (5000 most variably expressed genes by median absolute deviation) compressed down into two length 100 vectors (mean and variance encoded spaces) which are made deterministic through the reparameterization trick of sampling an epsilon vector from the uniform distribution. The encoded layer is then decoded back to original 5000 dimensions through a single reconstruction layer. I included a layer of batch normalization in the encoding step to prevent dead nodes. The encoding scheme also uses relu activation while the decoder uses a sigmoid activation to enforce positive activations. All weights are glorot uniform initialized.
-#
+# 
+# The particular model trained in this notebook consists of gene expression input (5000 most variably expressed genes by median absolute deviation) compressed down into two length 100 vectors (mean and variance encoded spaces) which are made deterministic through the reparameterization trick of sampling an epsilon vector from the uniform distribution. The encoded layer is then decoded back to original 5000 dimensions through a single reconstruction layer. I included a layer of batch normalization in the encoding step to prevent dead nodes. The encoding scheme also uses relu activation while the decoder uses a sigmoid activation to enforce positive activations. All weights are glorot uniform initialized. 
+# 
 # Another trick used here to encourage manifold learning is _warm start_ as discussed in [Sonderby et al. 2016](https://arxiv.org/abs/1602.02282). With warm starts, we add a parameter _beta_, which controls the contribution of the KL divergence loss in the total VAE loss (reconstruction + (beta * KL)). In this setting, the model begins training deterministically as a vanilla autoencoder (_beta_ = 0) and slowly ramps up after each epoch linearly until _beta_ = 1. After a parameter sweep, we observed that kappa has little influence in training, therefore, we set  _kappa_ = 1, which is a full VAE.
-#
+# 
 # Much of this script is inspired by the [keras variational_autoencoder.py example](https://github.com/fchollet/keras/blob/master/examples/variational_autoencoder.py)
 
 # In[1]:
@@ -46,14 +46,14 @@ tf.__version__
 
 
 # ## Load Functions and Classes
-#
+# 
 # This will facilitate connections between layers and also custom hyperparameters
 
 # In[3]:
 
 # Function for reparameterization trick to make model differentiable
 def sampling(args):
-
+    
     import tensorflow as tf
     # Function with args required for Keras Lambda function
     z_mean, z_log_var = args
@@ -61,7 +61,7 @@ def sampling(args):
     # Draw epsilon of the same shape from a standard normal distribution
     epsilon = K.random_normal(shape=tf.shape(z_mean), mean=0.,
                               stddev=epsilon_std)
-
+    
     # The latent vector is non-deterministic and differentiable
     # in respect to z_mean and z_log_var
     z = z_mean + K.exp(z_log_var / 2) * epsilon
@@ -80,7 +80,7 @@ class CustomVariationalLayer(Layer):
 
     def vae_loss(self, x_input, x_decoded):
         reconstruction_loss = original_dim * metrics.binary_crossentropy(x_input, x_decoded)
-        kl_loss = - 0.5 * K.sum(1 + z_log_var_encoded - K.square(z_mean_encoded) -
+        kl_loss = - 0.5 * K.sum(1 + z_log_var_encoded - K.square(z_mean_encoded) - 
                                 K.exp(z_log_var_encoded), axis=-1)
         return K.mean(reconstruction_loss + (K.get_value(beta) * kl_loss))
 
@@ -94,7 +94,7 @@ class CustomVariationalLayer(Layer):
 
 
 # ### Implementing Warm-up as described in Sonderby et al. LVAE
-#
+# 
 # This is modified code from https://github.com/fchollet/keras/issues/2595
 
 # In[4]:
@@ -189,9 +189,9 @@ rnaseq_reconstruct = decoder_to_reconstruct(z)
 
 
 # ## Connect the encoder and decoder to make the VAE
-#
+# 
 # The `CustomVariationalLayer()` includes the VAE loss function (reconstruction + (beta * KL)), which is what will drive our model to learn an interpretable representation of gene expression space.
-#
+# 
 # The VAE is compiled with an Adam optimizer and built-in custom loss function. The `loss_weights` parameter ensures beta is updated at each epoch end callback
 
 # In[12]:
@@ -214,7 +214,7 @@ SVG(model_to_dot(vae).create(prog='dot', format='svg'))
 
 
 # ## Train the model
-#
+# 
 # The training data is shuffled after every epoch and 10% of the data is heldout for calculating validation loss.
 
 # In[14]:
@@ -235,9 +235,9 @@ fig.savefig(hist_plot_file)
 
 
 # ## Compile and output trained models
-#
+# 
 # We are interested in:
-#
+# 
 # 1. The model to encode/compress the input gene expression data
 #   * Can be possibly used to compress other tumors
 # 2. The model to decode/decompress the latent space back into gene expression space
@@ -317,3 +317,4 @@ decoder_model_file = os.path.join('models', 'decoder_onehidden_vae.hdf5')
 
 encoder.save(encoder_model_file)
 decoder.save(decoder_model_file)
+
