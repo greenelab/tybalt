@@ -69,10 +69,29 @@ ggsave(gender_encodings, width = 6, height = 5)
 plot_vae(x = 82, y = 85, covariate = "gender", legend_show = TRUE)
 ggsave(gender_encodings_legend, width = 6, height = 5)
 
-plot_vae(x = 53, y = 66, covariate = "sample_type", legend_show = FALSE)
+# Change the legend to also capture melanoma vs. non-melanoma
+met_df <- combined_df %>%
+  dplyr::select("53", "66", "sample_type", "acronym") %>%
+  dplyr::mutate(label = paste0(sample_type, acronym))
+
+met_df$label[(met_df$acronym == 'SKCM') &
+               (met_df$sample_type != 'Metastatic')] <- 'Non-metastatic SKCM'
+met_df$label[(met_df$acronym != 'SKCM') &
+               (met_df$sample_type != 'Metastatic')] <- 'Non-metastatic Other'
+met_df$label[(met_df$acronym != 'SKCM') &
+               (met_df$sample_type == 'Metastatic')] <- 'Metastatic Other'
+met_df$label[(met_df$label == 'MetastaticSKCM')] <- 'Metastatic SKCM'
+
+p <- ggplot(met_df, aes(x = met_df$`53`, y = met_df$`66`, color = label)) + 
+  geom_point() +
+  xlab(paste("encoding 53")) +
+  ylab(paste("encoding 66")) +
+  theme_bw() +
+  theme(text = element_text(size = 20))
+p + theme(legend.position = 'none')
 ggsave(sample_type_file, width = 6, height = 5)
 
-plot_vae(x = 53, y = 66, covariate = "sample_type", legend_show = TRUE)
+p
 ggsave(sample_legend_file, width = 6, height = 5)
 
 # 2) Full heatmap
