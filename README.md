@@ -1,6 +1,6 @@
 # Tybalt 
 
-### *A Variational Autoencoder trained on Pan-Cancer gene Expression*
+### *A Variational Autoencoder trained on Pan-Cancer Gene Expression*
 
 **Gregory Way and Casey Greene 2017**
 
@@ -13,7 +13,7 @@ Genome Atlas (TCGA).
 The specific VAE model is named [*Tybalt*](https://en.wikipedia.org/wiki/Tybalt)
 after an instigative, cat-like character in Shakespeare's "Romeo and Juliet". Just
 as the character Tybalt sets off the series of events in the play, the model Tybalt
-represents the introduction of VAE manifold learning in transcriptomics.
+begins the foray of VAE manifold learning in transcriptomics.
 [Also, deep unsupervised learning likes cats](https://arxiv.org/abs/1112.6209).
 
 ## The Data
