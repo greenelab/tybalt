@@ -1,4 +1,4 @@
-# Tybalt 
+# Tybalt :smirk_cat:
 
 ### *A Variational Autoencoder trained on Pan-Cancer Gene Expression*
 
