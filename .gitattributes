@@ -1,0 +1,11 @@
+data/clinical_data.tsv filter=lfs diff=lfs merge=lfs -text
+data/encoded_rnaseq_onehidden_warmup_batchnorm.tsv filter=lfs diff=lfs merge=lfs -text
+data/onehidden_warmup_batchnorm_tsne_out.tsv filter=lfs diff=lfs merge=lfs -text
+data/pancan_scaled_zeroone_rnaseq.tsv filter=lfs diff=lfs merge=lfs -text
+models/decoder_onehidden_vae.hdf5 filter=lfs diff=lfs merge=lfs -text
+models/encoder_onehidden_vae.hdf5 filter=lfs diff=lfs merge=lfs -text
+results/parameter_sweep_full_results.tsv filter=lfs diff=lfs merge=lfs -text
+data/vae_encoded_with_clinical.tsv filter=lfs diff=lfs merge=lfs -text
+results/rnaseq_tsne_out.tsv filter=lfs diff=lfs merge=lfs -text
+results/vae_subtracted_tsne_out.tsv filter=lfs diff=lfs merge=lfs -text
+results/vae_tsne_out.tsv filter=lfs diff=lfs merge=lfs -text
