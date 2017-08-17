@@ -56,7 +56,7 @@ tumors.
 ### Training
 
 The current model training is explained in
-[this notebook](pancan_vae_keras_onehidden_warmup_batchnorm.ipynb)
+[this notebook](tybalt_vae.ipynb)
 
 For a complete pipeline with reproducibility instructions, refer to
 [run_pipeline.sh](run_pipeline.sh). Note that scripts originally written in
