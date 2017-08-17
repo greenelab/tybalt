@@ -60,7 +60,7 @@ The current model training is explained in
 
 For a complete pipeline with reproducibility instructions, refer to
 [run_pipeline.sh](run_pipeline.sh). Note that scripts originally written in
-Jupyter notebooks ported to the scripts folder for pipeline purposes with:
+Jupyter notebooks were ported to the scripts folder for pipeline purposes with:
 
 ```sh
 jupyter nbconvert --to=script --FilesWriter.build_directory=scripts *.ipynb
@@ -84,22 +84,25 @@ library with a TensorFlow backend for training.
 
 In order to select the most optimal parameters for the model, we ran a
 parameter search over a small grid of parameters. See
-[parameter_sweep.md](parameter_sweep.md) for more details. Overall, we selected
-optimal `learning rate = 0.0005`, `batch size = 50`, `epochs = 100`. Training
-with optimal parameters was similar for training and a 10% test set across each
-epoch.
+[parameter_sweep.md](parameter_sweep.md) for more details.
+
+Overall, we selected optimal `learning rate = 0.0005`, `batch size = 50`, and
+`epochs = 100`. Because training did not improve much between 50 and 100 epochs,
+we used a 50 epoch model. Training and validation loss across 50 training epochs
+for the optimal model is shown below.
 
 ![Training Performance](figures/onehidden_vae_training.png?raw=true)
 
 #### Model Evaluation
 
 After training with optimal hyper parameters, the unsupervised model can be
-interpreted. For instance, the distribution of activations across different
-nodes can be visualized. For example, the first 10 nodes (of 100) can be
-visualized by sample activation patterns.
+interpreted. For example, we can observe the distribution of activation
+patterns for all tumors across specific nodes. The first 10 nodes (of 100) are
+visualized below.
 
 ![Node Activation](figures/node_activation_distribution.png?raw=true)
 
 In this scenario, each node activation pattern contributes uniquely to each
 tumor and may represent specific gene expression signatures of biological
-significance.
+significance. The distribution is heavily right skewed, with some nodes
+capturing slightly bimodal attributes.
