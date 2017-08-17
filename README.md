@@ -7,13 +7,13 @@
 [![DOI](https://zenodo.org/badge/97131241.svg)](https://zenodo.org/badge/latestdoi/97131241)
 
 The repository stores scripts to train, evaluate, and extract knowledge from
-a variational autoencoder (VAE) trained on 33 different cancer-types from The Cancer
-Genome Atlas (TCGA).
+a variational autoencoder (VAE) trained on 33 different cancer-types from The
+Cancer Genome Atlas (TCGA).
 
 The specific VAE model is named [*Tybalt*](https://en.wikipedia.org/wiki/Tybalt)
-after an instigative, cat-like character in Shakespeare's "Romeo and Juliet". Just
-as the character Tybalt sets off the series of events in the play, the model Tybalt
-begins the foray of VAE manifold learning in transcriptomics.
+after an instigative, cat-like character in Shakespeare's "Romeo and Juliet".
+Just as the character Tybalt sets off the series of events in the play, the
+model Tybalt begins the foray of VAE manifold learning in transcriptomics.
 [Also, deep unsupervised learning likes cats](https://arxiv.org/abs/1112.6209).
 
 ## The Data
