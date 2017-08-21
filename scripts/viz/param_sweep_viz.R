@@ -3,19 +3,17 @@
 #
 # Visualizing results of parameter sweep
 
-library(readr)
 library(ggplot2)
-library(dplyr)
+
+`%>%` <- dplyr::`%>%`
 
 param_sweep_file <- file.path("results", "parameter_sweep_full_results.tsv")
 param_df <- readr::read_tsv(param_sweep_file,
-                            col_types = cols(train_epoch = col_integer(),
-                                             loss = col_double(),
-                                             val_loss = col_double(),
-                                             learning_rate = col_character(),
-                                             batch_size = col_character(),
-                                             epochs = col_character(),
-                                             kappa = col_character()))
+                            col_types = readr::cols(
+                              .default = readr::col_character(),
+                              train_epoch = readr::col_integer(),
+                              loss = readr::col_double(),
+                              val_loss = readr::col_double()))
 
 param_melt_df <- reshape2::melt(param_df,
                                 id.vars = c("learning_rate", "batch_size",
