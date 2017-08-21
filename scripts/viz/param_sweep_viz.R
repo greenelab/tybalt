@@ -22,10 +22,25 @@ param_melt_df <- reshape2::melt(param_df,
                                 variable.name = "loss_type",
                                 value.name = "loss")
 
+# Order and recode batch size variables
 param_melt_df$batch_size <- factor(param_melt_df$batch_size,
                                    levels = c(50, 100, 128, 200))
+param_melt_df$batch_size <- 
+  dplyr::recode_factor(param_melt_df$batch_size, 
+                       `50` = "batch: 50", 
+                       `100` = "batch: 100",
+                       `128` = "batch: 128",
+                       `200` = "batch: 200") 
+
+# Order and recode Epoch variables
 param_melt_df$epochs <- factor(param_melt_df$epochs,
                                levels = c(10, 25, 50, 100))
+param_melt_df$epochs <- 
+  dplyr::recode_factor(param_melt_df$epochs, 
+                       `10` = "epochs: 50", 
+                       `25` = "epochs: 100",
+                       `50` = "epochs: 128",
+                       `100` = "epochs: 200") 
 
 # Sweep over measurements of kappa with batch_size and epochs as facets
 for (k in unique(param_melt_df$kappa)) {
