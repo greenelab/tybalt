@@ -56,7 +56,7 @@ param_melt_df$kappa <-
 for (k in unique(param_melt_df$kappa)) {
   subset_param <- param_melt_df %>% dplyr::filter(kappa == k)
   
-  # Remove label in `e` for plotting and filename
+  # Remove label in `k` for plotting and filename
   k <- gsub("kappa: ", "", k)
   
   p <- ggplot(subset_param, aes(x = train_epoch, y = loss)) +
@@ -73,7 +73,7 @@ for (k in unique(param_melt_df$kappa)) {
 for (e in unique(param_melt_df$epochs)) {
   subset_param <- param_melt_df %>% dplyr::filter(epochs == e)
   
-  # Remove label in `k` for plotting and filename
+  # Remove label in `e` for plotting and filename
   e <- gsub("epochs: ", "", e)
 
   p <- ggplot(subset_param, aes(x = train_epoch, y = loss)) +
