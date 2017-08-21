@@ -32,19 +32,32 @@ param_melt_df$batch_size <-
                        `128` = "batch: 128",
                        `200` = "batch: 200") 
 
-# Order and recode Epoch variables
+# Order and recode epoch variables
 param_melt_df$epochs <- factor(param_melt_df$epochs,
                                levels = c(10, 25, 50, 100))
 param_melt_df$epochs <- 
   dplyr::recode_factor(param_melt_df$epochs, 
-                       `10` = "epochs: 50", 
-                       `25` = "epochs: 100",
-                       `50` = "epochs: 128",
-                       `100` = "epochs: 200") 
+                       `10` = "epochs: 10", 
+                       `25` = "epochs: 25",
+                       `50` = "epochs: 50",
+                       `100` = "epochs: 100") 
+
+# Order and recode kappa variables
+param_melt_df$kappa <- factor(param_melt_df$kappa,
+                               levels = c("0.01", "0.05", "0.1", "1.0"))
+param_melt_df$kappa <- 
+  dplyr::recode_factor(param_melt_df$kappa, 
+                       `0.01` = "kappa: 0.01", 
+                       `0.05` = "kappa: 0.05",
+                       `0.1` = "kappa: 0.1",
+                       `1.0` = "kappa: 1.0") 
 
 # Sweep over measurements of kappa with batch_size and epochs as facets
 for (k in unique(param_melt_df$kappa)) {
   subset_param <- param_melt_df %>% dplyr::filter(kappa == k)
+  
+  # Remove label in `e` for plotting and filename
+  k <- gsub("kappa: ", "", k)
   
   p <- ggplot(subset_param, aes(x = train_epoch, y = loss)) +
     geom_line(aes(color = learning_rate, linetype = loss_type), size = 0.5) + 
@@ -60,6 +73,9 @@ for (k in unique(param_melt_df$kappa)) {
 for (e in unique(param_melt_df$epochs)) {
   subset_param <- param_melt_df %>% dplyr::filter(epochs == e)
   
+  # Remove label in `e` for plotting and filename
+  e <- gsub("epochs: ", "", e)
+
   p <- ggplot(subset_param, aes(x = train_epoch, y = loss)) +
     geom_line(aes(color = learning_rate, linetype = loss_type), size = 0.5) + 
     facet_grid(batch_size ~ kappa, scales = "free") + theme_bw() + 
