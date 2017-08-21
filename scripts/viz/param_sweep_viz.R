@@ -53,8 +53,7 @@ for (k in unique(param_melt_df$kappa)) {
   
   output_fig <- file.path("figures", "param_sweep", "full_param_")
   output_fig <- paste0(output_fig, k, "_kappa.png")
-  print(p)
-  ggsave(output_fig, height = 5, width = 6)
+  ggsave(output_fig, plot = p, height = 5, width = 6)
 }
 
 # Sweep over epochs with batch_size and kappa as facets
@@ -68,8 +67,7 @@ for (e in unique(param_melt_df$epochs)) {
   
   output_fig <- file.path("figures", "param_sweep", "full_param_")
   output_fig <- paste0(output_fig, e, "_epochs.png")
-  print(p)
-  ggsave(output_fig, height = 5, width = 6)
+  ggsave(output_fig, plot = p, height = 5, width = 6)
 }
 
 final_select_df <- param_melt_df %>% filter(loss_type == "val_loss")
@@ -77,11 +75,11 @@ final_select_df <- final_select_df %>%
   group_by(learning_rate, batch_size, epochs) %>%
   summarize(min_loss = min(loss))
 
-ggplot(final_select_df, aes(x = learning_rate, y = min_loss)) +
+p <- ggplot(final_select_df, aes(x = learning_rate, y = min_loss)) +
   geom_point(aes(color = batch_size, shape = epochs), size = 2) + theme_bw() +
   ylab("Validation Loss") + xlab("Learning Rate") +
   theme(axis.text = element_text(size = rel(1.2)),
         legend.text = element_text(size = rel(1.1)))
 
 output_sweep <- file.path("figures", "param_sweep", "final_param_val_loss.png")
-ggsave(output_sweep, height = 5, width = 6)
+ggsave(output_sweep, plot = p, height = 5, width = 6)
