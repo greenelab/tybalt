@@ -89,11 +89,11 @@ for (e in unique(param_melt_df$epochs)) {
 final_select_df <- param_melt_df %>% dplyr::filter(loss_type == "val_loss")
 final_select_df <- final_select_df %>%
   dplyr::group_by(learning_rate, batch_size, epochs) %>%
-  dplyr::summarize(min_loss = min(loss))
+  dplyr::summarize(end_loss = tail(loss, 1))
 
-p <- ggplot(final_select_df, aes(x = learning_rate, y = min_loss)) +
+p <- ggplot(final_select_df, aes(x = learning_rate, y = end_loss)) +
   geom_point(aes(color = batch_size, shape = epochs), size = 2) + theme_bw() +
-  ylab("Validation Loss") + xlab("Learning Rate") +
+  ylab("Validation Loss at Training End") + xlab("Learning Rate") +
   theme(axis.text = element_text(size = rel(1.2)),
         legend.text = element_text(size = rel(1.1)))
 
