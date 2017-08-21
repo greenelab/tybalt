@@ -70,10 +70,10 @@ for (e in unique(param_melt_df$epochs)) {
   ggsave(output_fig, plot = p, height = 5, width = 6)
 }
 
-final_select_df <- param_melt_df %>% filter(loss_type == "val_loss")
+final_select_df <- param_melt_df %>% dplyr::filter(loss_type == "val_loss")
 final_select_df <- final_select_df %>%
-  group_by(learning_rate, batch_size, epochs) %>%
-  summarize(min_loss = min(loss))
+  dplyr::group_by(learning_rate, batch_size, epochs) %>%
+  dplyr::summarize(min_loss = min(loss))
 
 p <- ggplot(final_select_df, aes(x = learning_rate, y = min_loss)) +
   geom_point(aes(color = batch_size, shape = epochs), size = 2) + theme_bw() +
