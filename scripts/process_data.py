@@ -2,6 +2,8 @@
 # coding: utf-8
 
 # # Processing all datasets to be used in downstream analyses
+# 
+# RNAseq, mutation, and copy number data were accessed from the UCSC Xena Data Browser. Clinical data was downloaded from the TCGA Snaptron curation effort. See `data_download.sh` for more details.
 
 # In[1]:
 
@@ -55,12 +57,14 @@ known_status_file = os.path.join('data', 'status_matrix.tsv')
 rnaseq_df = pd.read_table(rna_file, index_col=0)
 mutation_df = pd.read_table(mut_file)
 copy_df = pd.read_table(copy_file, index_col=0)
-clinical_df = pd.read_table(clinical_file, index_col=0, low_memory=False)
+clinical_df = pd.read_table(clinical_file, index_col=0)
 
 
 # ## Begin processing different data types
 # 
 # ### RNAseq
+# 
+# The RNAseq data was accessed through the UCSC Xena database.
 
 # In[5]:
 
@@ -98,6 +102,8 @@ rnaseq_scaled_zeroone_df.to_csv(rna_out_zeroone_file, sep='\t')
 
 
 # ### Mutation
+# 
+# Mutation data are stored in a long format. First, subset the data to only deleterious mutations listed below. Next, pivot the dataframe to have samples as the index, genes as the columns, and either a 1 or 0 to indicate a deleterious mutation or wild-type sample by gene.
 
 # In[7]:
 
@@ -134,10 +140,11 @@ mut_pivot.to_csv(mut_out_file, sep='\t')
 
 
 # ### Copy Number
+# 
+# Copy number data contains thresholded GISTIC2.0 calls where 0 equals wild-type copy number, 1 and -1 mean slight gain and slight loss, respectively, and 2 and -2 mean high gain and high loss, respectively.
 
 # In[9]:
 
-copy_df = copy_df.fillna(0)
 copy_df = copy_df.astype(int)
 copy_df = copy_df.T
 copy_df.columns.name = 'gene'
@@ -146,16 +153,20 @@ copy_df.index.name = 'Sample'
 
 # In[10]:
 
+# For our purposes, a copy loss status event (1 vs. 0) is conservatively defined only as a deep loss.
 copy_loss_df = copy_df.replace(to_replace=[1, 2, -1], value=0)
 copy_loss_df.replace(to_replace=-2, value=1, inplace=True)
 copy_loss_df.to_csv(copy_loss_out_file, sep='\t')
 
+# A copy gain status event (1 vs. 0) is defined only as a high gain.
 copy_gain_df = copy_df.replace(to_replace=[-1, -2, 1], value=0)
 copy_gain_df.replace(to_replace=2, value=1, inplace=True)
 copy_gain_df.to_csv(copy_gain_out_file, sep='\t')
 
 
 # ### Clinical Data
+# 
+# The clinical data consists of hundreds of parameters collected for the TCGA samples. Some columns are redundant, while others contain high amounts of missing data. Select and rename only a couple columns of interest.
 
 # In[11]:
 
@@ -176,7 +187,7 @@ clinical_columns_dict = {
     'cgc_slide_percent_tumor_nuclei': 'percent_tumor_nuclei',
     'cgc_drug_therapy_drug_name': 'drug',
     'xml_year_of_initial_pathologic_diagnosis': 'year_of_diagnosis',
-    'xml_stage_event_pathologic_stage': 'stage', 
+    'xml_stage_event_pathologic_stage': 'stage' 
 }
 
 
@@ -191,6 +202,8 @@ clinical_sub_df.to_csv(clinical_processed_out_file, sep='\t')
 
 
 # ### OncoKB Gene-Types
+# 
+# Here, we use the [OncoKB API](http://oncokb.org/#/dataAccess) of [Chakravarty et al. 2017](http://ascopubs.org/doi/abs/10.1200/JCO.2016.34.15_suppl.11583) to download all oncogenes and tumor suppressor genes. These help to subset the copy number gain and copy loss data frames to identify a full status matrix.
 
 # In[13]:
 
@@ -200,6 +213,13 @@ oncokb_df.to_csv(oncokb_out_file, sep='\t')
 
 
 # ### Full Status Matrix
+# 
+# **We create the full status matrix with:** 
+# 
+# - Deleterious mutations = 1
+# - High copy gains of oncogenes = 1
+# - Deep copy losses of tumor suppressor genes = 1
+# - All other gene by sample relationships = 0
 
 # In[14]:
 
