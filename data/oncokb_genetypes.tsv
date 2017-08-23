@@ -1,0 +1,477 @@
+	curatedIsoform	curatedRefSeq	entrezGeneId	geneAliases	hugoSymbol	name	oncogene	tsg
+0	ENST00000412916	NM_022845.2	865	['PEBP2B']	CBFB	core-binding factor, beta subunit	False	False
+1	ENST00000406277	NM_152274.4	92002	['STAR']	FAM58A	family with sequence similarity 58 member A	False	False
+2	ENST00000380036	NM_000459.3	7010	['TIE-2', 'CD202B', 'TIE2', 'VMCM', 'VMCM1']	TEK	TEK receptor tyrosine kinase	False	False
+3	ENST00000264033	NM_005188.3	867	['NSLL', 'RNF55', 'C-CBL', 'FRA11B', 'CBL2']	CBL	Cbl proto-oncogene	False	True
+4	ENST00000369452	NM_007373.3	8036	['SIAA0862', 'SOC2', 'SUR8']	SHOC2	SHOC2, leucine rich repeat scaffold protein	False	False
+5	ENST00000310581	NM_198253.2	7015	['TP2', 'TRT', 'CMM9', 'PFBMFT1', 'TCS1', 'DKCA2', 'EST2', 'hEST2', 'hTRT', 'DKCB4']	TERT	telomerase reverse transcriptase	True	False
+6	ENST00000343455	NM_030621.3	23405	['DCR1', 'RMSE2', 'K12H4.8-LIKE', 'Dicer', 'Dicer1e', 'HERNA', 'MNG1']	DICER1	dicer 1, ribonuclease III	False	False
+7	ENST00000261584	NM_024675.3	79728	['FANCN', 'PNCA3']	PALB2	partner and localizer of BRCA2	False	False
+8	ENST00000373198	NM_133170.3	11122	['RPTPrho']	PTPRT	protein tyrosine phosphatase, receptor type T	False	False
+9	ENST00000316626	NM_002093.3	2932	[]	GSK3B	glycogen synthase kinase 3 beta	False	False
+10	ENST00000262187	NM_005614.3	6009	['RHEB2']	RHEB	Ras homolog enriched in brain	True	False
+11	ENST00000325599	NM_018130.2	55164	['Shq1p', 'GRIM-1']	SHQ1	SHQ1, H/ACA ribonucleoprotein assembly factor	False	True
+12	ENST00000261254	NM_001759.3	894	['MPPH3', 'KIAK0002']	CCND2	cyclin D2	True	False
+13	ENST00000265335	NM_005732.3	10111	['hRad50', 'RAD502', 'NBSLD']	RAD50	RAD50 double strand break repair protein	False	True
+14	ENST00000372991	NM_001760.3	896	[]	CCND3	cyclin D3	True	False
+15	ENST00000368323	NM_006912.5	6016	['RIBB', 'NS8', 'RIT', 'ROC1']	RIT1	Ras like without CAAX 1	True	False
+16	ENST00000262643	NM_001238.2	898	['pCCNE1', 'CCNE']	CCNE1	cyclin E1	True	False
+17	ENST00000477973	NM_012234.5	23429	['APAP-1', 'DEDAF', 'YEAF1', 'AAP1']	RYBP	RING1 and YY1 binding protein	False	True
+18	ENST00000374994	NM_004612.2	7046	['TGFR-1', 'LDS1A', 'LDS2A', 'LDS1', 'ALK5', 'ACVRLK4', 'ESS1', 'MSSE', 'SKR4', 'tbetaR-I', 'AAT5', 'ALK-5']	TGFBR1	transforming growth factor beta receptor 1	False	True
+19	ENST00000359013	NM_001024847.2	7048	['AAT3', 'LDS1B', 'LDS2', 'LDS2B', 'TGFR-2', 'RIIC', 'MFS2', 'TAAD2', 'FAA3', 'TGFbeta-RII']	TGFBR2	transforming growth factor beta receptor 2	False	True
+20	ENST00000234420	NM_000179.2	2956	['GTMBP', 'HNPCC5', 'p160', 'GTBP', 'HSAP']	MSH6	mutS homolog 6	False	True
+21	ENST00000301067	NM_003482.3	8085	['KMS', 'AAD10', 'KABUK1', 'MLL2', 'TNRC21', 'ALR', 'CAGL114']	KMT2D	lysine methyltransferase 2D	False	True
+22	ENST00000292782	NM_020640.2	54165	['DCUN1L1', 'SCCRO', 'Tes3', 'DCNL1', 'RP42', 'SCRO']	DCUN1D1	defective in cullin neddylation 1 domain containing 1	False	False
+23	ENST00000253339	NM_004690.3	9113	['wts', 'WARTS']	LATS1	large tumor suppressor kinase 1	False	False
+24	ENST00000394830	NM_018313.4	55193	['BAF180', 'PB1']	PBRM1	polybromo 1	False	True
+25	ENST00000335508	NM_012433.2	23451	['PRP10', 'SAP155', 'Hsh155', 'PRPF10', 'SF3b155', 'MDS']	SF3B1	splicing factor 3b subunit 1	True	False
+26	ENST00000382592	NM_014572.2	26524	['KPM']	LATS2	large tumor suppressor kinase 2	False	False
+27	ENST00000275493	NM_005228.3	1956	['PIG61', 'ERBB1', 'mENA', 'ERBB', 'HER1', 'NISBD2']	EGFR	epidermal growth factor receptor	True	False
+28	ENST00000335790	NM_002315.2	4004	['RBTN1', 'RHOM1', 'TTG1']	LMO1	LIM domain only 1	False	False
+29	ENST00000354822	NM_001079668.2	7080	['NKX2A', 'BCH', 'NK-2', 'TEBP', 'TITF1', 'NKX2.1', 'BHC', 'NMTC1', 'TTF-1', 'TTF1', 'T/EBP']	NKX2-1	NK2 homeobox 1	False	False
+30	ENST00000379607	NM_001412.3	1964	['EIF1AP1', 'eIF-4C', 'eIF-1A', 'EIF1A', 'EIF4C']	EIF1AX	eukaryotic translation initiation factor 1A, X-linked	False	False
+31	ENST00000334344	NM_152641.2	196528	['p200', 'BAF200']	ARID2	AT-rich interaction domain 2	False	True
+32	ENST00000263377	NM_058243.2	23476	['HUNKI', 'MCAP', 'CAP', 'HUNK1']	BRD4	bromodomain containing 4	True	False
+33	ENST00000323963	NM_001967.3	1974	['EIF4A', 'eIF4A-II', 'DDX2B', 'EIF4F', 'eIF-4A-II', 'BM-010']	EIF4A2	eukaryotic translation initiation factor 4A2	False	False
+34	ENST00000280892	NM_001130678.1	1977	['CBP', 'eIF-4E', 'EIF4EL1', 'EIF4F', 'AUTS19', 'EIF4E1']	EIF4E	eukaryotic translation initiation factor 4E	False	False
+35	ENST00000343677	NM_005319.3	3006	['H1s-1', 'H1F2', 'H1C', 'H1.2']	HIST1H1C	histone cluster 1, H1c	False	False
+36	ENST00000377482	NM_018948.3	54206	['RALT', 'MIG-6', 'GENE-33', 'MIG6']	ERRFI1	ERBB receptor feedback inhibitor 1	False	True
+37	ENST00000328354	NM_007194.3	11200	['CDS1', 'HuCds1', 'RAD53', 'CHK2', 'PP1425', 'LFS2', 'hCds1']	CHEK2	checkpoint kinase 2	True	False
+38	ENST00000356341	NM_002576.4	5058	['PAKalpha']	PAK1	p21 (RAC1) activated kinase 1	False	False
+39	ENST00000289316	NM_021063.3	3017	['HIRIP2', 'H2B/b', 'H2BFB', 'dJ221C16.6', 'H2B.1B']	HIST1H2BD	histone cluster 1, H2bd	False	False
+40	ENST00000398585	NM_001135099.1	7113	['PP9284', 'PRSS10']	TMPRSS2	transmembrane protease, serine 2	True	False
+41	ENST00000366813	NM_002107.4	3020	['H3F3', 'H3.3A']	H3F3A	H3 histone, family 3A	False	False
+42	ENST00000221972	NM_001783.3	973	['IGA', 'MB-1']	CD79A	CD79a molecule	False	False
+43	ENST00000254810	NM_005324.3	3021	['H3.3B']	H3F3B	H3 histone, family 3B (H3.3B)	False	False
+44	ENST00000392795	NM_001039933.1	974	['AGM6', 'IGB', 'B29']	CD79B	CD79b molecule	False	False
+45	ENST00000359651	NM_004433.4	1999	['ERT', 'ESE-1', 'EPR-1', 'ESX']	ELF3	E74 like ETS transcription factor 3	False	False
+46	ENST00000366898	NM_004562.2	5071	['PRKN', 'PDJ', 'LPRS2', 'AR-JP']	PARK2	parkin RBR E3 ubiquitin protein ligase	False	False
+47	ENST00000299084	NM_152594.2	161742	['spred-1', 'NFLS', 'hSpred1', 'PPP1R147']	SPRED1	sprouty related EVH1 domain containing 1	False	False
+48	ENST00000368508	NM_002944.2	6098	['MCF3', 'ROS', 'c-ros-1']	ROS1	ROS proto-oncogene 1, receptor tyrosine kinase	True	False
+49	ENST00000435504	NM_018263.4	55252	['ASXH2']	ASXL2	additional sex combs like 2, transcriptional regulator	False	True
+50	ENST00000358127	NM_016734.2	5079	['ALL3', 'BSAP']	PAX5	paired box 5	False	False
+51	ENST00000265026	NM_004721.4	9175	['LZK', 'MLK', 'MEKK13']	MAP3K13	mitogen-activated protein kinase kinase kinase 13	False	False
+52	ENST00000237289	NM_006290.3	7128	['TNFA1P2', 'AISBL', 'OTUD7C', 'A20']	TNFAIP3	TNF alpha induced protein 3	False	False
+53	ENST00000322652	NM_015355.2	23512	['CHET9', 'JJAZ1']	SUZ12	SUZ12 polycomb repressive complex 2 subunit	False	False
+54	ENST00000300177	NM_013372.6	26585	['PIG2', 'CRCS4', 'DAND2', 'GREMLIN', 'HMPS', 'CKTSF1B1', 'IHG-2', 'DUP15q', 'C15DUPq', 'HMPS1', 'CRAC1', 'MPSH', 'DRM']	GREM1	gremlin 1, DAN family BMP antagonist	False	False
+55	ENST00000308874	NM_201446.2	51162	['VE-STATIN', 'ZNEU1', 'NEU1']	EGFL7	EGF like domain multiple 7	False	False
+56	ENST00000373129	NM_032017.1	83931	['SHIK', 'SgK495']	STK40	serine/threonine kinase 40	False	False
+57	ENST00000519728	NM_002350.3	4067	['p53Lyn', 'p56Lyn', 'JTK8']	LYN	LYN proto-oncogene, Src family tyrosine kinase	False	False
+58	ENST00000371139	NM_002351.4	4068	['XLPD', 'LYP', 'XLPD1', 'SAP', 'DSHP', 'IMD5', 'SAP/SH2D1A', 'MTCP1', 'EBVS', 'XLP']	SH2D1A	SH2 domain containing 1A	False	False
+59	ENST00000344548	NM_001791.3	998	['G25K', 'CDC42Hs', 'TKS']	CDC42	cell division cycle 42	False	False
+60	ENST00000261769	NM_004360.3	999	['LCAM', 'CDHE', 'ECAD', 'CD324', 'Arc-1', 'UVO']	CDH1	cadherin 1	False	True
+61	ENST00000263735	NM_002354.2	4072	['HNPCC8', 'EGP314', 'M4S1', 'MK-1', 'EGP40', 'KS1/4', 'TACSTD1', 'MIC18', 'ESA', 'TROP1', 'KSA', 'EGP-2', 'DIAR5']	EPCAM	epithelial cell adhesion molecule	False	False
+62	ENST00000361337	NM_003286.2	7150	['TOPI']	TOP1	topoisomerase (DNA) I	False	True
+63	ENST00000263253	NM_001429.3	2033	['p300', 'KAT3B', 'RSTS2']	EP300	E1A binding protein p300	False	True
+64	ENST00000263734	NM_001430.4	2034	['MOP2', 'HLF', 'PASD2', 'ECYT4', 'HIF2A', 'bHLHe73']	EPAS1	endothelial PAS domain protein 1	False	False
+65	ENST00000369158	NM_021059.2	126961	['H3FN', 'H3FM', 'H3F2', 'H3/M', 'H3', 'H3.2']	HIST2H3C	histone cluster 2, H3c	False	False
+66	ENST00000269305	NM_000546.5	7157	['TRP53', 'BCC7', 'LFS1', 'P53']	TP53	tumor protein p53	False	True
+67	ENST00000382044	NM_001141980.1	7158	['TDRD30', 'p53BP1', '53BP1', 'p202', 'TP53']	TP53BP1	tumor protein p53 binding protein 1	False	True
+68	ENST00000262160	NM_001003652.3	4087	['hSMAD2', 'JV18', 'MADH2', 'MADR2', 'JV18-1', 'hMAD-2']	SMAD2	SMAD family member 2	False	True
+69	ENST00000327367	NM_005902.3	4088	['MADH3', 'LDS1C', 'HSPC193', 'LDS3', 'HsT17436', 'JV15-2']	SMAD3	SMAD family member 3	False	True
+70	ENST00000342988	NM_005359.5	4089	['JIP', 'MADH4', 'MYHRS', 'DPC4']	SMAD4	SMAD family member 4	False	True
+71	ENST00000336596	NM_005233.5	2042	['ETK1', 'HEK4', 'TYRO4', 'ETK', 'EK4', 'HEK']	EPHA3	EPH receptor A3	False	False
+72	ENST00000257904	NM_000075.3	1019	['PSK-J3', 'CMM3']	CDK4	cyclin dependent kinase 4	True	False
+73	ENST00000273854	NM_004439.5	2044	['EK7', 'CEK7', 'EHK-1', 'HEK7', 'EHK1', 'TYRO4']	EPHA5	EPH receptor A5	False	False
+74	ENST00000585124	NM_004217.3	9212	['PPP1R48', 'AIK2', 'AIM1', 'STK12', 'ARK2', 'aurkb-sv2', 'aurkb-sv1', 'AurB', 'STK5', 'IPL1', 'AIM-1']	AURKB	aurora kinase B	True	False
+75	ENST00000265734	NM_001145306.1	1021	['PLSTIRE', 'MCPH12']	CDK6	cyclin dependent kinase 6	True	False
+76	ENST00000369303	NM_004440.3	2045	['EHK-3', 'EK11', 'HEK11', 'EHK3']	EPHA7	EPH receptor A7	False	False
+77	ENST00000281708	NM_033632.3	55294	['FBX30', 'hAgo', 'FBXW6', 'SEL-10', 'hCdc4', 'AGO', 'FBW6', 'SEL10', 'FBW7', 'CDC4', 'FBXO30']	FBXW7	F-box and WD repeat domain containing 7	False	True
+78	ENST00000398015	NM_004441.4	2047	['ELK', 'EPHT2', 'Hek6', 'NET']	EPHB1	EPH receptor B1	False	False
+79	ENST00000381527	NM_001260.1	1024	['K35']	CDK8	cyclin dependent kinase 8	False	False
+80	ENST00000244741	NM_078467.2	1026	['CIP1', 'p21CIP1', 'CDKN1', 'WAF1', 'CAP20', 'P21', 'MDA-6', 'SDI1']	CDKN1A	cyclin dependent kinase inhibitor 1A	False	True
+81	ENST00000228872	NM_004064.3	1027	['CDKN4', 'MEN1B', 'MEN4', 'P27KIP1', 'KIP1']	CDKN1B	cyclin dependent kinase inhibitor 1B	False	True
+82	ENST00000304494	NM_000077.4	1029	['P16INK4A', 'MTS1', 'TP16', 'P16INK4', 'INK4', 'P14ARF', 'P19ARF', 'CDK4I', 'MLM', 'CMM2', 'P14', 'MTS-1', 'P16', 'ARF', 'P19', 'INK4A', 'P16-INK4A', 'CDKN2']	CDKN2A	cyclin dependent kinase inhibitor 2A	False	True
+83	ENST00000276925	NM_004936.3	1030	['MTS2', 'P15', 'TP15', 'INK4B', 'CDK4I', 'p15INK4b']	CDKN2B	cyclin dependent kinase inhibitor 2B	False	True
+84	ENST00000262662	NM_078626.2	1031	['p18-INK4C', 'p18', 'INK4C']	CDKN2C	cyclin dependent kinase inhibitor 2C	False	True
+85	ENST00000222390	NM_000601.4	3082	['F-TCF', 'SF', 'DFNB39', 'HPTA', 'HGFB']	HGF	hepatocyte growth factor	True	False
+86	ENST00000371998	NM_181659.2	8202	['TNRC14', 'AIB-1', 'AIB1', 'SRC3', 'pCIP', 'CTG26', 'CAGH16', 'bHLHe42', 'KAT13B', 'TRAM-1', 'TNRC16', 'RAC3', 'SRC-3', 'ACTR']	NCOA3	nuclear receptor coactivator 3	False	False
+87	ENST00000334409	NM_005018.2	5133	['hPD-l', 'SLEB2', 'CD279', 'PD1', 'PD-1', 'hSLE1', 'hPD-1']	PDCD1	programmed cell death 1	False	False
+88	ENST00000375687	NM_015338.5	171023	['MDS', 'BOPS']	ASXL1	additional sex combs like 1, transcriptional regulator	False	True
+89	ENST00000269571	NM_004448.2	2064	['CD340', 'MLN 19', 'TKR1', 'NGL', 'HER-2/neu', 'HER2', 'HER-2', 'NEU']	ERBB2	erb-b2 receptor tyrosine kinase 2	True	False
+90	ENST00000267101	NM_001982.3	2065	['ErbB-3', 'p180-ErbB3', 'p45-sErbB3', 'LCCS2', 'c-erbB-3', 'c-erbB3', 'p85-sErbB3', 'MDA-BF-1', 'erbB3-S', 'HER3']	ERBB3	erb-b2 receptor tyrosine kinase 3	True	False
+91	ENST00000342788	NM_005235.2	2066	['ALS19', 'p180erbB4', 'HER4']	ERBB4	erb-b2 receptor tyrosine kinase 4	True	False
+92	ENST00000247668	NM_021138.3	7186	['TRAP3', 'MGC:45012', 'TRAP']	TRAF2	TNF receptor associated factor 2	False	False
+93	ENST00000391945	NM_000400.3	2068	['EM9', 'TTD', 'TFIIH', 'TTD1', 'COFS2', 'XPD']	ERCC2	ERCC excision repair 2, TFIIH core complex helicase subunit	False	True
+94	ENST00000259008	NM_032043.2	83990	['FANCJ', 'OF', 'BACH1']	BRIP1	BRCA1 interacting protein C-terminal helicase 1	False	False
+95	ENST00000285398	NM_000122.1	2071	['GTF2H', 'BTF2', 'TFIIH', 'TTD2', 'RAD25', 'XPB']	ERCC3	ERCC excision repair 3, TFIIH core complex helicase subunit	False	True
+96	ENST00000330258	NM_152424.3	139285	['FAM123B', 'OSCS', 'WTX']	AMER1	APC membrane recruitment protein 1	False	True
+97	ENST00000311895	NM_005236.2	2072	['XFEPS', 'FANCQ', 'RAD1', 'ERCC11', 'XPF']	ERCC4	ERCC excision repair 4, endonuclease catalytic subunit	False	True
+98	ENST00000318560	NM_005157.4	25	['v-abl', 'bcr/abl', 'JTK7', 'c-ABL1', 'c-ABL', 'ABL', 'p150']	ABL1	ABL proto-oncogene 1, non-receptor tyrosine kinase	True	False
+99	ENST00000355739	NM_000123.3	2073	['ERCC5-201', 'UVDR', 'ERCM2', 'XPGC', 'XPG', 'COFS3']	ERCC5	ERCC excision repair 5, endonuclease	False	False
+100	ENST00000498907	NM_004364.3	1050	['C/EBP-alpha', 'CEBP']	CEBPA	CCAAT/enhancer binding protein alpha	False	True
+101	ENST00000222329	NM_006494.2	2077	['PE2', 'CRS4', 'PE-2']	ERF	ETS2 repressor factor	False	True
+102	ENST00000288319	NM_182918.3	2078	['p55', 'erg-3']	ERG	ERG, ETS transcription factor	True	False
+103	ENST00000376809	NM_001242758.1	3105	['HLAA', 'HLA-A11', 'HLA-A33', 'Aw-33', 'Aw-74', 'HLA-DRB1', 'HLA-DQB1']	HLA-A	major histocompatibility complex, class I, A	False	True
+104	ENST00000335756	NM_001809.3	1058	['CenH3', 'CENP-A']	CENPA	centromere protein A	False	False
+105	ENST00000412585	NM_005514.6	3106	['HEL-S-83', 'SPDA1', 'HLA-B39', 'B-4901', 'Bw-47', 'HLAB', 'HLA-B55', 'HLA-B-3905', 'Bw-50', 'HLA-B*45ZJ', 'HLA-B-3506', 'HLA-B15', 'HLA-B59', 'HLA-B-5502', 'HLA-B49', 'HLA-B-5602', 'HLA-Cw', 'AS', 'B-5001', 'HLA-B50', 'HLA-B61', 'HLA-DRB1']	HLA-B	major histocompatibility complex, class I, B	False	True
+106	ENST00000257290	NM_006206.4	5156	['PDGFR2', 'RHEPDGFRA', 'GAS9', 'PDGFR-2', 'CD140A']	PDGFRA	platelet derived growth factor receptor alpha	True	False
+107	ENST00000261799	NM_002609.3	5159	['PDGFR1', 'KOGS', 'PDGFR-1', 'JTK12', 'PDGFR', 'IBGC4', 'IMF1', 'PENTT', 'CD140B']	PDGFRB	platelet derived growth factor receptor beta	True	False
+108	ENST00000307771	NM_005089.3	8233	['URP', 'ZC3H22', 'U2AF1-RS2', 'U2AF1RS2', 'U2AF1L2']	ZRSR2	zinc finger CCCH-type, RNA binding motif and serine/arginine rich 2	False	False
+109	ENST00000329236	NM_001204468.1	8241	['GPATCH9', 'S1-1', 'TARPS', 'DXS8237E', 'GPATC9', 'ZRANB5']	RBM10	RNA binding motif protein 10	False	True
+110	ENST00000342085	NM_002613.4	5170	['PRO0461', 'PDPK2', 'PDPK2P', 'PDK1']	PDPK1	3-phosphoinositide dependent protein kinase 1	False	False
+111	ENST00000375401	NM_004187.3	8242	['MRXJ', 'JARID1C', 'MRX13', 'MRXSCJ', 'MRXSJ', 'SMCX', 'DXS1272E', 'XE169']	KDM5C	lysine demethylase 5C	False	True
+112	ENST00000206249	NM_001122740.1	2099	['ESR', 'ESTRR', 'Era', 'ER', 'ESRA', 'NR3A1']	ESR1	estrogen receptor 1	True	False
+113	ENST00000358664	NM_002382.4	4149	['bHLHd4']	MAX	MYC associated factor X	False	False
+114	ENST00000312629	NM_003952.2	6199	['P70-beta-1', 'P70-beta', 'P70-beta-2', 'STK14B', 'KLS', 'p70(S6K)-beta', 'S6K-beta2', 'S6K2', 'p70S6Kb', 'SRK']	RPS6KB2	ribosomal protein S6 kinase B2	False	False
+115	ENST00000405192	NM_001163147.1	2115	['ER81']	ETV1	ETS variant 1	True	False
+116			2118	['E1AF', 'PEA3', 'PEAS3', 'E1A-F']	ETV4	ETS variant 4	False	False
+117	ENST00000396373	NM_001987.4	2120	['THC5', 'TEL/ABL', 'TEL']	ETV6	ETS variant 6	True	False
+118	ENST00000369026	NM_021960.4	4170	['Mcl-1', 'bcl2-L-3', 'MCL1S', 'EAT', 'TM', 'mcl1/EAT', 'MCL1-ES', 'BCL2L3', 'MCL1L']	MCL1	BCL2 family apoptosis regulator	False	False
+119	ENST00000298552	NM_000368.4	7248	['TSC', 'LAM']	TSC1	tuberous sclerosis 1	False	True
+120	ENST00000331340	ENST00000331340	10320	['CVID13', 'IKAROS', 'PRO0758', 'LyF-1', 'LYF1', 'Hs.54452', 'ZNFN1A1', 'IK1', 'PPP1R92']	IKZF1	IKAROS family zinc finger 1	False	False
+121	ENST00000219476	NM_000548.3	7249	['PPP1R160', 'TSC4', 'LAM']	TSC2	tuberous sclerosis 2	False	True
+122			2130	['EWS', 'EWS-FLI1', 'bK984G1.4']	EWSR1	EWS RNA binding protein 1	True	False
+123	ENST00000298171	NM_000369.2	7253	['CHNG1', 'LGR3', 'hTSHR-I']	TSHR	thyroid stimulating hormone receptor	False	False
+124	ENST00000428830	NM_001274.5	1111	['CHK1']	CHEK1	checkpoint kinase 1	False	False
+125	ENST00000263640	NM_001111067.2	90	['SKR1', 'TSRI', 'FOP', 'ACVRLK2', 'ACTRI', 'ALK2', 'ACVR1A']	ACVR1	activin A receptor type 1	True	False
+126	ENST00000246792	NM_006270.3	6237	[]	RRAS	related RAS viral (r-ras) oncogene homolog	False	False
+127	ENST00000428826	NM_001991.3	2145	['KMT6B']	EZH1	enhancer of zeste 1 polycomb repressive complex 2 subunit	False	False
+128	ENST00000250448	NM_004496.3	3169	['HNF3A', 'TCF3A']	FOXA1	forkhead box A1	True	False
+129	ENST00000462284	NM_002392.5	4193	['hdm2', 'HDMX', 'ACTFS']	MDM2	MDM2 proto-oncogene	True	False
+130	ENST00000324856	NM_006015.4	8289	['MRD14', 'hOSA1', 'BAF250a', 'C1orf4', 'hELD', 'SMARCF1', 'BM029', 'CSS2', 'OSA1', 'BAF250', 'B120', 'ELD', 'P270']	ARID1A	AT-rich interaction domain 1A	False	True
+131	ENST00000320356	NM_004456.4	2146	['ENX-1', 'ENX1', 'EZH2b', 'WVS', 'WVS2', 'KMT6', 'KMT6A', 'EZH1']	EZH2	enhancer of zeste 2 polycomb repressive complex 2 subunit	True	False
+132	ENST00000367182	NM_002393.4	4194	['MRP1', 'HDMX', 'MDMX']	MDM4	MDM4, p53 regulator	True	False
+133	ENST00000366696	NM_003493.2	8290	['H3.4', 'H3/g', 'H3FT', 'H3t']	HIST3H3	histone cluster 3, H3	False	False
+134	ENST00000374672	NM_004235.4	9314	['EZF', 'GKLF']	KLF4	Kruppel like factor 4	False	False
+135			4207	['LOC729991-MEF2B', 'MEF2B', 'MEF2BNB-MEF2B']	BORCS8-MEF2B	BORCS8-MEF2B readthrough	False	False
+136			333932	['H3/o', 'H3/n']	HIST2H3A	histone cluster 2, H3a	False	False
+137	ENST00000481739	NM_002957.4	6256	['NR2B1']	RXRA	retinoid X receptor alpha	False	False
+138	ENST00000399503	NM_005921.1	4214	['MEKK1', 'MAPKKK1', 'MEKK', 'MEKK 1', 'SRXY6']	MAP3K1	mitogen-activated protein kinase kinase kinase 1	False	True
+139	ENST00000262320	NM_003502.3	8312	['AXIN', 'PPP1R49']	AXIN1	axin 1	False	True
+140	ENST00000325455	NM_000926.4	5241	['PR', 'NR3C3']	PGR	progesterone receptor	False	False
+141	ENST00000307078	NM_004655.3	8313	['AXIL', 'ODCRCS']	AXIN2	axin 2	False	True
+142	ENST00000460680	NM_004656.3	8314	['HUCEP-13', 'hucep-6', 'UCHL2']	BAP1	BRCA1 associated protein 1	False	True
+143	ENST00000337652	NM_000244.3	4221	['MEAI', 'SCG2']	MEN1	menin 1	False	True
+144	ENST00000389301	NM_000135.2	2175	['FANCH', 'FA-H', 'FA1', 'FAA', 'FACA', 'FA', 'FAH']	FANCA	Fanconi anemia complementation group A	False	True
+145	ENST00000289081	NM_000136.2	2176	['FA3', 'FAC', 'FACC']	FANCC	Fanconi anemia complementation group C	False	True
+146	ENST00000397752	NM_000245.2	4233	['RCCP2', 'HGFR', 'c-Met', 'DFNB97', 'AUTS9']	MET	MET proto-oncogene, receptor tyrosine kinase	True	False
+147	ENST00000291552	NM_006758.2	7307	['FP793', 'U2AFBP', 'RN', 'RNU2AF1', 'U2AF35']	U2AF1	U2 small nuclear RNA auxiliary factor 1	True	False
+148	ENST00000262189	NM_170606.2	58508	['MLL3', 'HALR']	KMT2C	lysine methyltransferase 2C	False	True
+149	ENST00000366794	NM_001618.3	142	['pADPRT-1', 'PPOL', 'ARTD1', 'PARP', 'ADPRT', 'ADPRT 1', 'ADPRT1', 'PARP-1']	PARP1	poly(ADP-ribose) polymerase 1	False	True
+150	ENST00000441802	NM_005245.3	2195	['CDHF7', 'FAT', 'hFat1', 'ME5', 'CDHR8']	FAT1	FAT atypical cadherin 1	False	True
+151	ENST00000346085	NM_020732.3	57492	['OSA2', 'CSS1', 'MRD12', 'BAF250B', '6A3-5', 'DAN15', 'ELD/OSA1', 'P250R', 'BRIGHT']	ARID1B	AT-rich interaction domain 1B	False	True
+152	ENST00000357647	NM_003529.2	8350	['H3FA', 'H3/A']	HIST1H3A	histone cluster 1, H3a	False	False
+153	ENST00000356476	NM_003530.4	8351	['H3FB', 'H3/b']	HIST1H3D	histone cluster 1, H3d	False	False
+154	ENST00000540144	NM_003531.2	8352	['H3FC', 'H3/c', 'H3.1']	HIST1H3C	histone cluster 1, H3c	False	False
+155	ENST00000360408	NM_003532.2	8353	['H3/d', 'H3FD', 'H3.1']	HIST1H3E	histone cluster 1, H3e	False	False
+156	ENST00000328488	NM_003533.2	8354	['H3.f', 'H3/f', 'H3FF']	HIST1H3I	histone cluster 1, H3i	False	False
+157	ENST00000305910	NM_003534.2	8355	['H3/h', 'H3FH']	HIST1H3G	histone cluster 1, H3g	False	False
+158	ENST00000359303	NM_003535.2	8356	['H3/j', 'H3FJ']	HIST1H3J	histone cluster 1, H3j	False	False
+159	ENST00000369163	NM_003536.2	8357	['H3FK', 'H3/k', 'H3F1K']	HIST1H3H	histone cluster 1, H3h	False	False
+160	ENST00000244661	NM_003537.3	8358	['H3FL', 'H3/l']	HIST1H3B	histone cluster 1, H3b	False	False
+161	ENST00000266497	NM_004570.4	5288	['PI3K-C2GAMMA', 'PI3K-C2-gamma']	PIK3C2G	phosphatidylinositol-4-phosphate 3-kinase catalytic subunit type 2 gamma	False	False
+162	ENST00000262039	NM_002647.2	5289	['Vps34', 'hVps34', 'VPS34']	PIK3C3	phosphatidylinositol 3-kinase catalytic subunit type 3	True	False
+163	ENST00000263967	NM_006218.2	5290	['MCAP', 'p110-alpha', 'PI3K', 'CLOVE', 'MCM', 'PI3K-alpha', 'CWS5', 'MCMTC']	PIK3CA	phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit alpha	True	False
+164	ENST00000289153	NM_006219.2	5291	['P110BETA', 'PI3K', 'PIK3C1', 'PI3KBETA']	PIK3CB	phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit beta	True	False
+165	ENST00000357731	NM_173808.2	257194	['Ntra', 'DMML2433', 'IGLON4', 'KILON']	NEGR1	neuronal growth regulator 1	False	False
+166	ENST00000373509	NM_002648.3	5292	['PIM']	PIM1	Pim-1 proto-oncogene, serine/threonine kinase	False	False
+167	ENST00000377346	NM_005026.3	5293	['APDS', 'PI3K', 'p110D', 'IMD14', 'P110DELTA']	PIK3CD	phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit delta	True	False
+168	ENST00000282441	NM_001130145.2	10413	['YAP2', 'YAP65', 'COB1', 'YKI', 'YAP']	YAP1	Yes associated protein 1	True	False
+169	ENST00000321945	NM_139076.2	84142	['ABRA1', 'CCDC98']	FAM175A	family with sequence similarity 175 member A	False	False
+170	ENST00000359195	NM_002649.2	5294	['PI3K', 'PIK3', 'p120-PI3K', 'PI3CG', 'p110gamma', 'PI3Kgamma']	PIK3CG	phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit gamma	True	False
+171	ENST00000274335	NM_181523.2	5295	['p85-ALPHA', 'GRB1', 'IMD36', 'p85', 'AGM7']	PIK3R1	phosphoinositide-3-kinase regulatory subunit 1	False	True
+172	ENST00000222254	NM_005027.3	5296	['P85B', 'MPPH1', 'p85-BETA', 'p85', 'MPPH']	PIK3R2	phosphoinositide-3-kinase regulatory subunit 2	False	False
+173	ENST00000306801	NM_020761.2	57521	['Mip1', 'KOG1']	RPTOR	regulatory associated protein of MTOR complex 1	True	False
+174	ENST00000428558	ENST00000428558	9401	['RECQ4']	RECQL4	RecQ like helicase 4	False	False
+175	ENST00000352241	NM_198159.2	4286	['bHLHe32', 'WS2A', 'WS2', 'CMM8', 'MI']	MITF	melanogenesis associated transcription factor	False	False
+176	ENST00000279873	NM_032199.2	84159	['MRF-2', 'MRF2', 'DESRT']	ARID5B	AT-rich interaction domain 5B	False	True
+177	ENST00000311189	NM_001130442.1	3265	['C-H-RAS', 'HAMSV', 'p21ras', 'C-BAS/HAS', 'HRAS1', 'CTLO', 'H-RASIDX', 'C-HA-RAS1', 'RASH1']	HRAS	HRas proto-oncogene, GTPase	True	False
+178	ENST00000231790	NM_000249.3	4292	['HNPCC', 'HNPCC2', 'FCC2', 'COCA2', 'hMLH1']	MLH1	mutL homolog 1	False	True
+179	ENST00000334134	NM_005247.2	2248	['INT2', 'HBGF-3']	FGF3	fibroblast growth factor 3	True	False
+180	ENST00000168712	NM_002007.2	2249	['HBGF-4', 'HST-1', 'K-FGF', 'HST', 'HSTF1', 'KFGF']	FGF4	fibroblast growth factor 4	True	False
+181	ENST00000534358	NM_001197104.1	4297	['MLL-AF9', 'MLL1', 'TRX1', 'HTRX1', 'TET1-MLL', 'ALL-1', 'MLL/GAS7', 'MLL', 'MLL1A', 'CXXC7', 'HRX', 'WDSTS']	KMT2A	lysine methyltransferase 2A	False	True
+182	ENST00000349310	NM_001014431.1	207	['PRKBA', 'RAC', 'PKB', 'CWS6', 'AKT', 'RAC-ALPHA', 'PKB-ALPHA']	AKT1	AKT serine/threonine kinase 1	True	False
+183	ENST00000392038	NM_001626.4	208	['HIHGHH', 'PRKBB', 'PKBBETA', 'RAC-BETA', 'PKBB']	AKT2	AKT serine/threonine kinase 2	True	False
+184	ENST00000425967	NM_001174067.1	2260	['FLG', 'N-SAM', 'FLT2', 'ECCL', 'CEK', 'HBGFR', 'HRTFDS', 'BFGFR', 'FGFR-1', 'FLT-2', 'OGD', 'FGFBR', 'HH2', 'bFGF-R-1', 'CD331', 'KAL2']	FGFR1	fibroblast growth factor receptor 1	True	False
+185	ENST00000260795	NM_000142.4	2261	['JTK4', 'HSFGFR3EX', 'ACH', 'CEK2', 'CD333']	FGFR3	fibroblast growth factor receptor 3	True	False
+186	ENST00000347630	NM_001007228.1	8405	['TEF2', 'BTBD32']	SPOP	speckle type BTB/POZ protein	False	True
+187	ENST00000358487	NM_000141.4	2263	['BBDS', 'BFR-1', 'CEK3', 'JWS', 'BEK', 'K-SAM', 'KGFR', 'ECT1', 'TK14', 'TK25', 'CD332', 'CFD1']	FGFR2	fibroblast growth factor receptor 2	True	False
+188	ENST00000292408	NM_213647.1	2264	['JTK2', 'CD334', 'TKF']	FGFR4	fibroblast growth factor receptor 4	True	False
+189	ENST00000359376	NM_002661.3	5336	['PLC-IV', 'PLC-gamma-2', 'APLAID', 'FCAS3']	PLCG2	phospholipase C gamma 2	False	False
+190	ENST00000366560	NM_000143.3	2271	['HLRCC', 'LRCC', 'MCL', 'MCUL1', 'FMRD']	FH	fumarate hydratase	False	False
+191	ENST00000377967	NM_021140.2	7403	['UTX', 'bA386N14.2', 'KABUK2']	KDM6A	lysine demethylase 6A	False	True
+192	ENST00000389048	NM_004304.4	238	['NBLST3', 'CD246']	ALK	anaplastic lymphoma receptor tyrosine kinase	True	False
+193	ENST00000290295	NM_006361.5	10481	['PSGD']	HOXB13	homeobox B13	False	False
+194	ENST00000319144	NM_001139.2	242	['ARCI2', '12R-LOX']	ALOX12B	arachidonate 12-lipoxygenase, 12R type	True	False
+195	ENST00000388985	NM_001167740.1	64754	['KMT3E', 'bA74P14.1', 'ZNFN3A1', 'ZMYND1']	SMYD3	SET and MYND domain containing 3	False	False
+196	ENST00000264932	NM_004168.2	6389	['PGL5', 'CMD1GG', 'SDHF', 'FP', 'SDH1', 'SDH2']	SDHA	succinate dehydrogenase complex flavoprotein subunit A	False	False
+197	ENST00000316660	NM_021127.2	5366	['APR', 'NOXA']	PMAIP1	phorbol-12-myristate-13-acetate-induced protein 1	False	False
+198	ENST00000375499	NM_003000.2	6390	['SDH', 'IP', 'PGL4', 'CWS2', 'SDH1', 'SDH2', 'SDHIP']	SDHB	succinate dehydrogenase complex iron sulfur subunit B	False	False
+199	ENST00000371975	NM_001142548.1	8438	['hRAD54', 'HR54', 'hHR54', 'RAD54A']	RAD54L	RAD54-like (S. cerevisiae)	False	False
+200	ENST00000367975	NM_003001.3	6391	['CYB560', 'SDH3', 'PGL3', 'QPS1', 'CYBL']	SDHC	succinate dehydrogenase complex subunit C	False	False
+201	ENST00000375549	NM_003002.3	6392	['CBT1', 'PGL', 'CII-4', 'PGL1', 'QPs3', 'cybS', 'CWS3', 'SDH4']	SDHD	succinate dehydrogenase complex subunit D	False	False
+202	ENST00000523873	NM_001171623.1	7422	['MVCD1', 'VEGF', 'VPF']	VEGFA	vascular endothelial growth factor A	False	False
+203	ENST00000372470	NM_005373.2	4352	['CD110', 'THCYT2', 'TPOR', 'MPLV', 'C-MPL']	MPL	MPL proto-oncogene, thrombopoietin receptor	False	False
+204	ENST00000441310	NM_000534.4	5378	['PMSL1', 'HNPCC3', 'hPMS1', 'MLH2']	PMS1	PMS1 homolog 1, mismatch repair system component	False	False
+205	ENST00000327064	NM_199141.1	10498	['PRMT4']	CARM1	coactivator associated arginine methyltransferase 1	False	False
+206	ENST00000379561	NM_002015.3	2308	['FOXO1A', 'FKH1', 'FKHR']	FOXO1	forkhead box O1	False	False
+207	ENST00000256474	NM_000551.3	7428	['HRCA1', 'RCA1', 'pVHL', 'VHL1']	VHL	von Hippel-Lindau tumor suppressor	False	True
+208	ENST00000264414	NM_003590.4	8452	['PHA2E', 'CUL-3']	CUL3	cullin 3	False	False
+209	ENST00000265960	NM_001006617.1	79109	['MIP1', 'SIN1b', 'JC310', 'SIN1g', 'SIN1']	MAPKAP1	mitogen-activated protein kinase associated protein 1	False	False
+210	ENST00000326181	NM_032271.2	84231	['RFWD1', 'RNF119']	TRAF7	TNF receptor associated factor 7	False	False
+211	ENST00000254322	NM_006145.1	3337	['Hdj1', 'Sis1', 'HSPF1', 'Hsp40', 'RSPH16B']	DNAJB1	DnaJ heat shock protein family (Hsp40) member B1	False	False
+212	ENST00000323929	NM_005591.3	4361	['MRE11', 'HNGS1', 'ATLD', 'MRE11B']	MRE11A	MRE11 homolog A, double strand break repair nuclease	False	False
+213	ENST00000353533	NM_003010.3	6416	['MKK4', 'SAPKK1', 'SERK1', 'MEK4', 'JNKK', 'MAPKK4', 'PRKMK4', 'SKK1', 'JNKK1', 'SAPKK-1', 'SEK1']	MAP2K4	mitogen-activated protein kinase kinase 4	False	True
+214	ENST00000256196	NM_012250.5	22800	['TC21']	RRAS2	related RAS viral (r-ras) oncogene homolog 2	True	False
+215	ENST00000282397	NM_002019.4	2321	['VEGFR1', 'VEGFR-1', 'FLT-1', 'FLT']	FLT1	fms related tyrosine kinase 1	True	False
+216	ENST00000241453	NM_004119.2	2322	['STK1', 'FLK-2', 'CD135', 'FLK2']	FLT3	fms related tyrosine kinase 3	True	False
+217	ENST00000265849	NM_000535.5	5395	['PMS2CL', 'HNPCC4', 'PMSL2', 'MLH4']	PMS2	PMS1 homolog 2, mismatch repair system component	False	False
+218	ENST00000261937	NM_182925.4	2324	['VEGFR3', 'FLT41', 'VEGFR-3', 'PCL', 'FLT-4', 'LMPH1A']	FLT4	fms related tyrosine kinase 4	True	False
+219	ENST00000359995	NM_003016.4	6427	['SFRS2A', 'PR264', 'SC35', 'SFRS2', 'SRp30b', 'SC-35']	SRSF2	serine and arginine rich splicing factor 2	False	False
+220	ENST00000331491	NM_001123375.2	653604	[]	HIST2H3D	histone cluster 2, H3d	False	False
+221	ENST00000382891	NM_001042424.2	7468	['MMSET', 'WHS', 'NSD2', 'TRX5', 'REIIBP']	WHSC1	Wolf-Hirschhorn syndrome candidate 1	False	False
+222	ENST00000305921	NM_003620.3	8493	['PP2C-DELTA', 'WIP1']	PPM1D	protein phosphatase, Mg2+/Mn2+ dependent 1D	True	False
+223	ENST00000440232	NM_002691.3	5424	['POLD', 'MDPL', 'CRCS10', 'CDC2']	POLD1	polymerase (DNA) delta 1, catalytic subunit	False	True
+224	ENST00000320574	NM_006231.2	5426	['POLE1', 'CRCS12', 'FILS']	POLE	polymerase (DNA) epsilon, catalytic subunit	False	True
+225	ENST00000249776	NM_033286.3	90417	['SKAP', 'HSD11', 'TRAF4AF1', 'C15orf23']	KNSTRN	kinetochore localized astrin/SPAG5 binding protein	False	False
+226	ENST00000262741	NM_003629.3	8503	['p55-GAMMA', 'p55PIK', 'p55']	PIK3R3	phosphoinositide-3-kinase regulatory subunit 3	False	True
+227	ENST00000332351	NM_024426.4	7490	['EWS-WT1', 'WT33', 'GUD', 'NPHS4', 'WIT-2', 'AWT1', 'WAGR']	WT1	Wilms tumor 1	False	False
+228	ENST00000257430	NM_000038.5	324	['BTPS2', 'DP3', 'PPP1R46', 'DP2', 'GS', 'DP2.5']	APC	APC, WNT signaling pathway regulator	False	True
+229	ENST00000374561	NM_002167.4	3399	['HEIR-1', 'bHLHb25']	ID3	inhibitor of DNA binding 3, HLH protein	False	False
+230	ENST00000536441	NM_144665.3	143686	['SEST3']	SESN3	sestrin 3	False	False
+231	ENST00000357387	NM_152756.3	253260	['AVO3', 'PIA', 'hAVO3']	RICTOR	RPTOR independent companion of MTOR complex 2	True	False
+232	ENST00000263464	NM_182962.2	330	['MIHC', 'HAIP1', 'API2', 'AIP1', 'RNF49', 'c-IAP2', 'HIAP1', 'MALT2', 'CIAP2']	BIRC3	baculoviral IAP repeat containing 3	False	False
+233	ENST00000355640	NM_001167.3	331	['MIHA', 'ILP1', 'API3', 'BIRC4', 'hIAP3', 'IAP-3', 'hIAP-3', 'XLP2']	XIAP	X-linked inhibitor of apoptosis	False	False
+234	ENST00000360632	NM_001168280.1	25937	['TAZ']	WWTR1	WW domain containing transcription regulator 1	False	False
+235	ENST00000233146	NM_000251.2	4436	['LCFS2', 'HNPCC', 'COCA1', 'HNPCC1', 'FCC1']	MSH2	mutS homolog 2	False	True
+236	ENST00000265081	NM_002439.4	4437	['MRP1', 'DUP']	MSH3	mutS homolog 3	False	False
+237	ENST00000257552	NM_002442.3	4440	[]	MSI1	musashi RNA binding protein 1	False	False
+238	ENST00000345146	NM_005896.2	3417	['IDP', 'HEL-216', 'IDH', 'IDPC', 'IDCD', 'HEL-S-26', 'PICD']	IDH1	isocitrate dehydrogenase (NADP(+)) 1, cytosolic	True	False
+239	ENST00000330062	NM_002168.2	3418	['IDHM', 'IDP', 'D2HGA2', 'mNADP-IDH', 'IDPM', 'IDH', 'ICD-M']	IDH2	isocitrate dehydrogenase (NADP(+)) 2, mitochondrial	True	False
+240	ENST00000401558	NM_003400.3	7514	['emb', 'exp1', 'CRM1']	XPO1	exportin 1	False	False
+241	ENST00000287820	NM_015869.4	5468	['PPARG1', 'PPARG2', 'CIMT1', 'GLM1', 'PPARgamma', 'NR1C3']	PPARG	peroxisome proliferator activated receptor gamma	False	False
+242	ENST00000359321	NM_005431.1	7516	['FANCU']	XRCC2	X-ray repair cross complementing 2	False	True
+243	ENST00000314574	NM_005433.3	7525	['HsT441', 'c-yes', 'P61-YES', 'Yes']	YES1	YES proto-oncogene 1, Src family tyrosine kinase	False	False
+244	ENST00000258439	NM_001193304.2	55654	[]	TMEM127	transmembrane protein 127	False	False
+245	ENST00000262367	NM_004380.2	1387	['CBP', 'KAT3A', 'RSTS']	CREBBP	CREB binding protein	False	True
+246	ENST00000377767	NM_014953.3	22894	['KIAA1008', 'EXOSC11', '2810028N01Rik', 'dis3p', 'RRP44']	DIS3	DIS3 homolog, exosome endoribonuclease and 3'-5' exoribonuclease	False	False
+247	ENST00000374690	NM_000044.3	367	['NR3C4', 'DHTR', 'HYSP1', 'SBMA', 'SMAX1', 'AR8', 'KD', 'TFM', 'AIS', 'HUMARA']	AR	androgen receptor	True	False
+248	ENST00000377045	NM_001654.4	369	['ARAF1', 'A-RAF', 'RAFA1', 'PKS2']	ARAF	A-Raf proto-oncogene, serine/threonine kinase	True	False
+249	ENST00000288368	NM_024870.2	80243	['PPP1R129', 'DEP.2', 'P-REX2', 'DEPDC2']	PREX2	phosphatidylinositol-3,4,5-trisphosphate dependent Rac exchange factor 2	False	False
+250	ENST00000354336	NM_005207.3	1399	[]	CRKL	CRK like proto-oncogene, adaptor protein	True	False
+251	ENST00000418115	NM_001664.2	387	['ARH12', 'ARHA', 'RHOH12', 'RHO12']	RHOA	ras homolog family member A	True	False
+252	ENST00000367739	NM_000416.2	3459	['IMD27A', 'IMD27B', 'CD119', 'IFNGR']	IFNGR1	interferon gamma receptor 1	False	False
+253	ENST00000449682	NM_020998.3	4485	['NF15S2', 'HGFL', 'D3F15S2', 'MSP', 'DNF15S2']	MST1	macrophage stimulating 1	False	False
+254	ENST00000296474	NM_002447.2	4486	['RON', 'PTK8', 'CDw136', 'CD136']	MST1R	macrophage stimulating 1 receptor	False	False
+255	ENST00000268712	NM_006311.3	9611	['TRAC1', 'PPP1R109', 'N-CoR', 'hN-CoR', 'N-CoR1']	NCOR1	nuclear receptor corepressor 1	False	True
+256	ENST00000322088	NM_014225.5	5518	['MRD36', 'PP2AAALPHA', 'PP2A-Aalpha', 'PR65A']	PPP2R1A	protein phosphatase 2 scaffold subunit Aalpha	False	False
+257	ENST00000409792	NM_014159.6	29072	['HIF-1', 'HYPB', 'LLS', 'p231HBP', 'KMT3A', 'SET2', 'HIP-1', 'HSPC069', 'HBP231']	SETD2	SET domain containing 2	False	True
+258	ENST00000307046	NM_001111285.1	3479	['IGF-I', 'IGFI', 'MGF']	IGF1	insulin like growth factor 1	True	False
+259	ENST00000268035	NM_000875.3	3480	['IGFIR', 'IGFR', 'JTK13', 'CD221']	IGF1R	insulin like growth factor 1 receptor	True	False
+260	ENST00000434045	NM_001127598.1	3481	['C11orf43', 'PP9974', 'GRDF', 'IGF-II']	IGF2	insulin like growth factor 2	True	False
+261	ENST00000286301	NM_005211.3	1436	['HDLS', 'CSFR', 'C-FMS', 'FIM2', 'CD115', 'M-CSF-R', 'FMS', 'CSF-1R']	CSF1R	colony stimulating factor 1 receptor	False	False
+262	ENST00000359435	NM_001033549.1	29086	['NBA1', 'C19orf62', 'MERIT40', 'HSPC142']	BABAM1	BRISC and BRCA1 A complex member 1	False	False
+263	ENST00000361632	NM_000760.3	1441	['GCSFR', 'CD114']	CSF3R	colony stimulating factor 3 receptor	False	False
+264	ENST00000373547	NM_002721.4	5537	['PP6', 'PP6C']	PPP6C	protein phosphatase 6 catalytic subunit	True	False
+265	ENST00000264010	NM_006565.3	10664	['MRD21']	CTCF	CCCTC-binding factor	False	True
+266	ENST00000367120	NM_014002.3	9641	['IKK-i', 'IKKI', 'IKK-E', 'IKKE']	IKBKE	inhibitor of kappa light polypeptide gene enhancer in B-cells, kinase epsilon	False	False
+267	ENST00000361445	NM_004958.3	2475	['FRAP1', 'RAFT1', 'FRAP2', 'FRAP', 'SKS', 'RAPT1']	MTOR	mechanistic target of rapamycin	True	False
+268	ENST00000344624	NM_013235.4	29102	['RNASEN', 'RANSE3L', 'ETOHI2', 'HSA242976', 'RNASE3L', 'RN3']	DROSHA	drosha ribonuclease III	False	False
+269	ENST00000356692	NM_174907.2	151987	['PP4R2']	PPP4R2	protein phosphatase 4 regulatory subunit 2	False	False
+270	ENST00000264731	NM_003722.4	8626	['OFC8', 'AIS', 'SHFM4', 'p63', 'B(p51B)', 'p40', 'p51', 'B(p51A)', 'p73H', 'EEC3', 'TP53CP', 'TP73L', 'LMS', 'p73L', 'TP53L', 'p53CP', 'KET', 'RHS', 'NBP']	TP63	tumor protein p63	False	False
+271	ENST00000373644	NM_030625.2	80312	['LCX', 'TET1-MLL', 'MLL-TET1', 'CXXC6', 'bA119F7.1']	TET1	tet methylcytosine dioxygenase 1	False	False
+272	ENST00000376406	NM_014641.2	9656	['NFBD1']	MDC1	mediator of DNA damage checkpoint 1	False	False
+273	ENST00000301030	NM_013275.5	29123	['ANCO1', 'LZ16', 'T13', 'ANCO-1']	ANKRD11	ankyrin repeat domain 11	False	False
+274	ENST00000358598	NM_212471.2	5573	['ADOHR', 'CAR', 'CNC1', 'CNC', 'TSE1', 'PRKAR1', 'ACRDYS1', 'PKR1', 'PPNAD1']	PRKAR1A	protein kinase cAMP-dependent type I regulatory subunit alpha	False	False
+275	ENST00000344626	NM_003072.3	6597	['SNF2LB', 'SNF2', 'SNF2L4', 'BAF190', 'BRG1', 'BAF190A', 'MRD16', 'RTPS2', 'SWI2', 'hSNF2b', 'CSS4']	SMARCA4	SWI/SNF related, matrix associated, actin dependent regulator of chromatin, subfamily a, member 4	False	True
+276	ENST00000263121	NM_003073.3	6598	['MRD15', 'SNF5L1', 'RDT', 'RTPS1', 'BAF47', 'PPP1R144', 'SNF5', 'CSS3', 'INI1', 'hSNFS', 'Sfh1p', 'SWNTS1', 'Snr1']	SMARCB1	SWI/SNF related, matrix associated, actin dependent regulator of chromatin, subfamily b, member 1	False	True
+277	ENST00000381577	NM_014143.3	29126	['B7H1', 'PD-L1', 'PDCD1L1', 'PDCD1LG1', 'PDL1', 'B7-H']	CD274	CD274 molecule	False	False
+278	ENST00000394963	NM_003076.4	6602	['BAF60A', 'Rsc6p', 'CRACD1']	SMARCD1	SWI/SNF related, matrix associated, actin dependent regulator of chromatin, subfamily d, member 1	False	False
+279	ENST00000285071	NM_144997.5	201163	['BHD', 'FLCL']	FLCN	folliculin	False	False
+280	ENST00000332029	NM_003745.1	8651	['CISH1', 'SSI-1', 'JAB', 'CIS1', 'SOCS-1', 'SSI1', 'TIP3']	SOCS1	suppressor of cytokine signaling 1	False	False
+281	ENST00000318789	NM_001244814.1	27086	['HSPC215', '12CC4', 'hFKH1B', 'QRF1', 'MFH']	FOXP1	forkhead box P1	False	False
+282	ENST00000268489	NM_006885.3	463	['ATBF1', 'ZNF927', 'ATBT']	ZFHX3	zinc finger homeobox 3	False	False
+283	ENST00000295797	NM_002740.5	5584	['DXS1179E', 'PKCI', 'nPKC-iota']	PRKCI	protein kinase C iota	True	False
+284	ENST00000249373	NM_005631.4	6608	['Gx', 'FZD11', 'SMOH']	SMO	smoothened, frizzled class receptor	True	False
+285	ENST00000396946	NM_032415.4	84433	['CARMA1', 'IMD11', 'BENTA', 'BIMP3', 'PPBL']	CARD11	caspase recruitment domain family member 11	False	False
+286	ENST00000331968	NM_002742.2	5587	['PKCM', 'PKD', 'PKC-MU', 'PRKCM']	PRKD1	protein kinase D1	False	False
+287	ENST00000162023	NM_001145785.1	100271849	['RSRFR2']	MEF2B	myocyte enhancer factor 2B	True	False
+288	ENST00000375856	NM_003749.2	8660	['IRS-2']	IRS2	insulin receptor substrate 2	True	False
+289	ENST00000302823	NM_005214.4	1493	['ALPS5', 'CD', 'CD152', 'CELIAC3', 'IDDM12', 'GSE', 'CTLA-4', 'GRD4']	CTLA4	cytotoxic T-lymphocyte associated protein 4	True	False
+290	ENST00000278616	NM_000051.3	472	['ATC', 'ATD', 'TEL1', 'ATE', 'ATDC', 'TELO1', 'AT1', 'ATA']	ATM	ATM serine/threonine kinase	False	True
+291	ENST00000308159	NM_014669.4	9688	['NIC96', 'NPHS12']	NUP93	nucleoporin 93	False	False
+292	ENST00000215832	NM_002745.4	5594	['PRKM1', 'PRKM2', 'p41mapk', 'ERT1', 'p41', 'p40', 'P42MAPK', 'ERK-2', 'ERK2', 'p38', 'p42-MAPK', 'MAPK2', 'ERK']	MAPK1	mitogen-activated protein kinase 1	True	False
+293	ENST00000349496	NM_001904.3	1499	['MRD19', 'CTNNB', 'armadillo']	CTNNB1	catenin beta 1	True	False
+294	ENST00000263025	NM_002746.2	5595	['ERK-1', 'P44MAPK', 'PRKM3', 'ERK1', 'HUMKER1A', 'HS44KDAP', 'P44ERK1', 'ERT2', 'p44-MAPK', 'p44-ERK1']	MAPK3	mitogen-activated protein kinase 3	False	False
+295	ENST00000398665	NM_032482.2	84444	['KMT4', 'DOT1']	DOT1L	DOT1 like histone lysine methyltransferase	False	False
+296	ENST00000307102	NM_002755.3	5604	['MKK1', 'PRKMK1', 'MEK1', 'MAPKK1', 'CFC3']	MAP2K1	mitogen-activated protein kinase kinase 1	True	False
+297	ENST00000369902	NM_016169.3	51684	['SUFUXL', 'PRO1280', 'SUFUH']	SUFU	SUFU negative regulator of hedgehog signaling	False	False
+298	ENST00000262948	NM_030662.3	5605	['MKK2', 'PRKMK2', 'MAPKK2', 'CFC4', 'MEK2']	MAP2K2	mitogen-activated protein kinase kinase 2	False	False
+299	ENST00000375759	NM_015001.2	23013	['HIAA0929', 'RBM15C', 'MINT', 'SHARP']	SPEN	spen family transcriptional repressor	False	True
+300	ENST00000368678	NM_153047.3	2534	['p59-FYN', 'SLK', 'SYN']	FYN	FYN proto-oncogene, Src family tyrosine kinase	False	False
+301	ENST00000449228	NM_001127240.2	27113	['JFY-1', 'JFY1', 'PUMA']	BBC3	BCL2 binding component 3	False	False
+302	ENST00000276594	NM_024504.3	63978	['PFM11']	PRDM14	PR domain 14	False	False
+303	ENST00000218089	NM_001042749.1	10735	['SCC3B', 'bA517O1.1', 'SA-2', 'SA2']	STAG2	stromal antigen 2	False	True
+304	ENST00000294008	NM_032444.2	84464	['MUS312', 'FANCP', 'BTBD12']	SLX4	SLX4 structure-specific endonuclease subunit	False	False
+305	ENST00000372115	NM_001048171.1	4595	['MYH']	MUTYH	mutY DNA glycosylase	False	False
+306	ENST00000303115	NM_002185.3	3575	['ILRA', 'IL-7R-alpha', 'CD127', 'CDW127', 'IL7RA']	IL7R	interleukin 7 receptor	False	False
+307	ENST00000397747	NM_025239.3	80380	['CD273', 'bA574F11.2', 'PD-L2', 'PDCD1L2', 'B7DC', 'Btdc', 'PDL2']	PDCD1LG2	programmed cell death 1 ligand 2	False	False
+308	ENST00000402219	NM_005633.3	6654	['GINGF', 'GF1', 'HGF', 'GGF1', 'NS4']	SOS1	SOS Ras/Rac guanine nucleotide exchange factor 1	False	False
+309	ENST00000318443	NM_001024736.1	80381	['B7RP-2', 'B7-H3', '4Ig-B7-H3', 'B7H3']	CD276	CD276 molecule	False	False
+310	ENST00000377970	NM_002467.4	4609	['c-Myc', 'MYCC', 'MRTL', 'bHLHe39']	MYC	v-myc avian myelocytomatosis viral oncogene homolog	True	False
+311	ENST00000325404	NM_003106.3	6657	['ANOP3', 'MCOPS3']	SOX2	SRY-box 2	False	False
+312	ENST00000423557	NM_000572.2	3586	['CSIF', 'TGIF', 'GVHDS', 'IL10A', 'IL-10']	IL10	interleukin 10	False	False
+313	ENST00000397332	NM_001033082.2	4610	['L-Myc', 'LMYC', 'bHLHe38', 'MYCL1']	MYCL	v-myc avian myelocytomatosis viral oncogene lung carcinoma derived homolog	False	False
+314	ENST00000398568	NM_001042355.1	1540	['CYLDI', 'MFT1', 'SBS', 'EAC', 'CDMT', 'CYLD1', 'MFT', 'USPL2', 'TEM', 'BRSS']	CYLD	CYLD lysine 63 deubiquitinase	False	False
+315	ENST00000281043	NM_005378.4	4613	['ODED', 'MODED', 'bHLHe37', 'N-myc', 'NMYC']	MYCN	v-myc avian myelocytomatosis viral oncogene neuroblastoma derived homolog	True	False
+316	ENST00000245479	NM_000346.3	6662	['SRXY10', 'CMPD1', 'CMD1', 'SRA1', 'SRXX2']	SOX9	SRY-box 9	False	False
+317	ENST00000380013	NM_001127208.2	54790	['KIAA1546', 'MDS']	TET2	tet methylcytosine dioxygenase 2	False	True
+318	ENST00000396334	NM_002468.4	4615	['MYD88D']	MYD88	myeloid differentiation primary response 88	True	False
+319			5644	['TRY1', 'TRP1', 'TRYP1', 'TRY4']	PRSS1	protease, serine 1	False	False
+320	ENST00000274289	NM_006622.3	10769	['SNK', 'hPlk2', 'hSNK']	PLK2	polo like kinase 2	False	False
+321	ENST00000263360	NM_003797.3	8726	['WAIT1', 'HEED']	EED	embryonic ectoderm development	False	False
+322	ENST00000220592	NM_012154.3	27161	['Q10', 'EIF2C2']	AGO2	argonaute 2, RISC catalytic component	False	False
+323	ENST00000222270	NM_014727.1	9757	['MLL4', 'HRX2', 'WBP-7', 'CXXC10', 'WBP7', 'MLL1B', 'TRX2']	KMT2B	lysine methyltransferase 2B	False	True
+324	ENST00000350721	NM_001184.3	545	['SCKL1', 'MEC1', 'SCKL', 'FRP1', 'FCTCS']	ATR	ATR serine/threonine kinase	False	True
+325	ENST00000373344	NM_000489.3	546	['JMS', 'MRXHF1', 'SFM1', 'MRX52', 'XH2', 'ZNF-HX', 'RAD54', 'RAD54L', 'XNP', 'ATR2', 'SHS']	ATRX	ATRX, chromatin remodeler	False	True
+326	ENST00000508582	NM_032957.4	51750	['NHL', 'DKCA4', 'DKCB5', 'C20orf41', 'PFBMFT3', 'RTEL']	RTEL1	regulator of telomere elongation helicase 1	False	False
+327	ENST00000243786	NM_002191.3	3623	[]	INHA	inhibin alpha subunit	False	False
+328	ENST00000242208	NM_002192.2	3624	['FRP', 'EDF']	INHBA	inhibin beta A subunit	False	False
+329	ENST00000447079	NM_016507.2	51755	['CRK7', 'CRKR', 'CRKRS']	CDK12	cyclin dependent kinase 12	False	True
+330	ENST00000301178	NM_021913.4	558	['ARK', 'JTK11', 'Tyro7', 'UFO']	AXL	AXL receptor tyrosine kinase	True	False
+331	ENST00000250003	NM_002478.4	4654	['MYOD', 'bHLHc1', 'PUM', 'MYF3']	MYOD1	myogenic differentiation 1	False	False
+332	ENST00000074304	NM_001134224.1	3631	['INPP4', 'TVAS1']	INPP4A	inositol polyphosphate-4-phosphatase type I A	False	False
+333	ENST00000298229	NM_001567.3	3636	['SHIP2', 'OPSMD']	INPPL1	inositol polyphosphate phosphatase like 1	False	False
+334	ENST00000558401	NM_004048.2	567	['IMD43']	B2M	beta-2-microglobulin	False	True
+335	ENST00000358208	NM_198291.2	6714	['THC6', 'c-SRC', 'ASV', 'p60-Src', 'SRC1']	SRC	SRC proto-oncogene, non-receptor tyrosine kinase	True	False
+336	ENST00000302850	NM_000208.2	3643	['CD220', 'HHF5']	INSR	insulin receptor	False	False
+337	ENST00000355716	NM_003820.2	8764	['HVEM', 'CD270', 'TR2', 'HVEA', 'ATAR', 'LIGHTR']	TNFRSF14	tumor necrosis factor receptor superfamily member 14	False	False
+338	ENST00000376670	NM_002049.3	2623	['NFE1', 'GF-1', 'GF1', 'XLANP', 'ERYF1', 'XLTDA', 'GATA-1', 'NF-E1', 'XLTT']	GATA1	GATA binding protein 1	False	False
+339	ENST00000341105	NM_032638.4	2624	['DCML', 'MONOMAC', 'NFE1B', 'IMD21']	GATA2	GATA binding protein 2	False	False
+340	ENST00000346208	NM_002051.2	2625	['HDR', 'HDRS']	GATA3	GATA binding protein 3	False	False
+341	ENST00000260947	NM_000465.2	580	[]	BARD1	BRCA1 associated RING domain 1	False	True
+342	ENST00000369448	NM_017709.3	54855	[]	FAM46C	family with sequence similarity 46 member C	False	False
+343	ENST00000265433	NM_002485.4	4683	['ATV', 'NBS1', 'AT-V2', 'P95', 'NBS', 'AT-V1']	NBN	nibrin	False	False
+344	ENST00000380956	NM_002460.3	3662	['NF-EM5', 'LSIRF', 'MUM1', 'SHEP8']	IRF4	interferon regulatory factor 4	False	False
+345	ENST00000374542	NM_001141970.1	1616	['BING2', 'DAP6', 'EAP1']	DAXX	death-domain associated protein	False	False
+346	ENST00000227507	NM_053056.2	595	['PRAD1', 'D11S287E', 'BCL1', 'U21B31']	CCND1	cyclin D1	True	False
+347	ENST00000305123	NM_005544.2	3667	['HIRS-1']	IRS1	insulin receptor substrate 1	False	False
+348	ENST00000271452	NM_031423.3	83540	['CT106', 'CDCA1', 'NUF2R']	NUF2	NUF2, NDC80 kinetochore complex component	False	False
+349	ENST00000333681	NM_000633.2	596	['Bcl-2', 'PPP1R50']	BCL2	BCL2, apoptosis regulator	True	False
+350	ENST00000307677	NM_138578.1	598	['BCLX', 'BCL2L', 'Bcl-X', 'BCL-XL/S', 'PPP1R52']	BCL2L1	BCL2 like 1	False	False
+351	ENST00000171111	NM_203500.1	9817	['INrf2', 'KLHL19']	KEAP1	kelch like ECH associated protein 1	False	True
+352	ENST00000232014	NM_001706.4	604	['BCL5', 'ZBTB27', 'ZNF51', 'BCL6A', 'LAZ3']	BCL6	B-cell CLL/lymphoma 6	True	False
+353			440926	['p13']	H3F3AP4	H3 histone, family 3A, pseudogene 4	False	False
+354	ENST00000331920	NM_000264.3	5727	['NBCCS', 'PTC1', 'BCNS', 'HPE7', 'PTCH11', 'PTCH', 'PTC']	PTCH1	patched 1	False	True
+355	ENST00000371953	NM_000314.4	5728	['DEC', 'MHAM', 'TEP1', '10q23del', 'BZS', 'PTEN1', 'GLM2', 'CWS1', 'MMAC1']	PTEN	phosphatase and tensin homolog	False	True
+356	ENST00000378444	NM_001123385.1	54880	['MAA2', 'ANOP2', 'MCOPS2']	BCOR	BCL6 corepressor	False	True
+357	ENST00000436639	NM_014454.2	27244	['PA26', 'SEST1']	SESN1	sestrin 1	False	False
+358	ENST00000381566	NM_022148.2	64109	['TSLPR', 'CRL2', 'CRLF2Y']	CRLF2	cytokine receptor-like factor 2	False	False
+359	ENST00000407977	NM_017763.4	54894	['RNF124', 'URCC']	RNF43	ring finger protein 43	False	True
+360	ENST00000575354	NM_015125.3	23152	[]	CIC	capicua transcriptional repressor	False	True
+361	ENST00000262992	NM_001101669.1	8821	[]	INPP4B	inositol polyphosphate-4-phosphatase type II B	False	True
+362	ENST00000264657	NM_139276.2	6774	['ADMIO', 'APRF', 'HIES']	STAT3	signal transducer and activator of transcription 3	True	False
+363	ENST00000345506	NM_003152.3	6776	['STAT5', 'MGF']	STAT5A	signal transducer and activator of transcription 5A	False	False
+364	ENST00000317025	NM_023034.1	54904	['NSD3', 'WHISTLE', 'pp14328']	WHSC1L1	Wolf-Hirschhorn syndrome candidate 1-like 1	False	False
+365	ENST00000293328	NM_012448.3	6777	['STAT5']	STAT5B	signal transducer and activator of transcription 5B	False	False
+366	ENST00000373001	NM_022157.3	64121	['TIB929', 'GTR2', 'RAGC']	RRAGC	Ras related GTP binding C	False	False
+367	ENST00000370651	NM_003463.4	7803	['PRL1', 'PRL-1', 'HH72', 'PTPCAAX1', 'PTP(CAAX1)']	PTP4A1	protein tyrosine phosphatase type IVA, member 1	False	False
+368	ENST00000284073	NM_138962.2	124540	['MSI2H']	MSI2	musashi RNA binding protein 2	False	False
+369	ENST00000369096	NM_001198.3	639	['PRDI-BF1', 'BLIMP1']	PRDM1	PR domain 1	False	False
+370	ENST00000355112	NM_000057.2	641	['BS', 'RECQL3', 'RECQ2', 'RECQL2']	BLM	Bloom syndrome RecQ like helicase	False	False
+371	ENST00000342505	NM_002227.2	3716	['JTK3', 'JAK1B', 'JAK1A']	JAK1	Janus kinase 1	False	False
+372	ENST00000438362	NM_001242891.1	7812	['D1S155E', 'UNR']	CSDE1	cold shock domain containing E1	False	False
+373	ENST00000381652	NM_004972.3	3717	['THCYT3', 'JTK10']	JAK2	Janus kinase 2	True	False
+374	ENST00000458235	NM_000215.3	3718	['JAK3_HUMAN', 'L-JAK', 'JAKL', 'JAK-3', 'LJAK']	JAK3	Janus kinase 3	False	False
+375	ENST00000312783	NM_003600.2	6790	['PPP1R47', 'AIK', 'BTAK', 'STK15', 'ARK1', 'STK6', 'STK7', 'AURA']	AURKA	aurora kinase A	True	False
+376			256646	['FAM22H', 'NUT', 'C15orf55']	NUTM1	NUT midline carcinoma family member 1	False	False
+377	ENST00000326873	NM_000455.4	6794	['PJS', 'hLKB1', 'LKB1']	STK11	serine/threonine kinase 11	False	True
+378	ENST00000348428	NM_006785.3	10892	['MLT', 'PCASP1', 'MLT1', 'IMD12']	MALT1	MALT1 paracaspase	False	False
+379	ENST00000371222	NM_002228.3	3725	['c-Jun', 'AP1', 'AP-1']	JUN	Jun proto-oncogene, AP-1 transcription factor subunit	True	False
+380	ENST00000372037	NM_004329.2	657	['CD292', '10q23del', 'ACVRLK3', 'ALK3', 'SKR5']	BMPR1A	bone morphogenetic protein receptor type 1A	False	False
+381	ENST00000351677	NM_002834.3	5781	['JMML', 'CFC', 'SHP2', 'PTP2C', 'PTP-1D', 'NS1', 'BPTP3', 'METCDS', 'SH-PTP3', 'SH-PTP2']	PTPN11	protein tyrosine phosphatase, non-receptor type 11	True	False
+382	ENST00000358273	NM_001042492.2	4763	['WSS', 'NFNS', 'VRNF']	NF1	neurofibromin 1	False	True
+383	ENST00000375331	NM_004197.1	8859	['RP1', 'D6S60', 'D6S60E', 'G11', 'HLA-RP1']	STK19	serine/threonine kinase 19	False	False
+384	ENST00000330315	NM_023067.3	668	['BPES1', 'BPES', 'PINTO', 'POF3', 'PFRK']	FOXL2	forkhead box L2	False	False
+385	ENST00000356435	NM_002839.3	5789	['HPTP', 'RPTPDELTA', 'HPTPD', 'PTPD', 'HPTPDELTA']	PTPRD	protein tyrosine phosphatase, receptor type D	False	False
+386	ENST00000357654	NM_007294.3	672	['RNF53', 'IRIS', 'BRCAI', 'PNCA4', 'PSCP', 'BROVCA1', 'BRCC1', 'FANCS', 'PPP1R53']	BRCA1	BRCA1, DNA repair associated	False	True
+387	ENST00000288602	NM_004333.4	673	['NS7', 'B-raf', 'BRAF1', 'RAFB1', 'B-RAF1']	BRAF	B-Raf proto-oncogene, serine/threonine kinase	True	False
+388	ENST00000380152	NM_000059.3	675	['FANCD1', 'BROVCA2', 'XRCC11', 'FAD', 'FAD1', 'BRCC2', 'GLM3', 'FACD', 'FANCD', 'PNCA2']	BRCA2	BRCA2, DNA repair associated	False	True
+389	ENST00000338641	NM_000268.3	4771	['BANF', 'SCH', 'ACN']	NF2	neurofibromin 2 (merlin)	False	True
+390	ENST00000301761	NM_017841.2	54949	['PGL2', 'SDH5', 'C11orf79']	SDHAF2	succinate dehydrogenase complex assembly factor 2	False	False
+391			7849	[]	PAX8	paired box 8	True	False
+392	ENST00000357368	NM_002850.3	5802	['R-PTP-S', 'PTPSIGMA', 'R-PTP-sigma']	PTPRS	protein tyrosine phosphatase, receptor type S	False	False
+393	ENST00000397062	NM_006164.4	4780	['HEBP1', 'NRF2']	NFE2L2	nuclear factor, erythroid 2 like 2	True	False
+394	ENST00000241393	NM_003467.2	7852	['NPYRL', 'CD184', 'NPY3R', 'HM89', 'NPYY3R', 'LAP-3', 'HSY3RR', 'D2S201E', 'LCR1', 'WHIMS', 'LESTR', 'LAP3', 'FB22', 'WHIM', 'NPYR']	CXCR4	C-X-C motif chemokine receptor 4	False	False
+395	ENST00000228682	NM_005269.2	2735	['GLI']	GLI1	GLI family zinc finger 1	True	False
+396	ENST00000370768	NM_003902.3	8880	['FBP', 'hDH V', 'FUBP']	FUBP1	far upstream element binding protein 1	False	True
+397	ENST00000308731	NM_000061.2	695	['AT', 'IMD1', 'AGMX1', 'ATK', 'BPK', 'XLA', 'PSCTK1']	BTK	Bruton tyrosine kinase	True	False
+398	ENST00000216797	NM_020529.2	4792	['IKBA', 'NFKBI', 'MAD-3']	NFKBIA	NFKB inhibitor alpha	True	False
+399	ENST00000375746	NM_003177.5	6850	['p72-Syk']	SYK	spleen associated tyrosine kinase	False	False
+400	ENST00000336032	NM_006813.2	10957	['PNAS-145', 'PRR2', 'B4-2', 'PROL2']	PNRC1	proline rich nuclear receptor coactivator 1	False	False
+401	ENST00000078429	NM_002067.2	2767	['GNA-11', 'FBH2', 'HYPOC2', 'FHH2', 'FBH', 'HHC2']	GNA11	G protein subunit alpha 11	True	False
+402	ENST00000263923	NM_002253.2	3791	['VEGFR2', 'CD309', 'VEGFR', 'FLK1']	KDR	kinase insert domain receptor	True	False
+403	ENST00000370580	NM_003921.4	8915	['c-E10', 'CIPER', 'mE10', 'CLAP', 'IMD37', 'CARMEN']	BCL10	B-cell CLL/lymphoma 10	False	True
+404	ENST00000253063	NM_031459.4	83667	['SES2', 'HI95', 'SEST2']	SESN2	sestrin 2	False	False
+405	ENST00000286548	NM_002072.3	2776	['G-ALPHA-q', 'GAQ', 'CMC1', 'SWS']	GNAQ	G protein subunit alpha q	True	False
+406	ENST00000380871	NM_006167.3	4824	['NKX3A', 'NKX3.1', 'BAPX2', 'NKX3']	NKX3-1	NK3 homeobox 1	False	False
+407	ENST00000371085	NM_000516.4	2778	['NESP', 'SgVI', 'C20orf45', 'GNAS1', 'GSA', 'GSP', 'GPSA', 'AHO', 'POH', 'SCG6']	GNAS	GNAS complex locus	True	False
+408	ENST00000367435	NM_024529.4	79577	['HYX', 'HRPT2', 'HPTJT', 'C1orf28', 'FIHP', 'HRPT1']	CDC73	cell division cycle 73	False	False
+409	ENST00000226382	NM_003924.3	8929	['PMX2B', 'NBLST2', 'NBPhox']	PHOX2B	paired like homeobox 2b	False	False
+410	ENST00000219905	NM_001164273.1	23269	['MAD5', 'MXD5']	MGA	MGA, MAX dimerization protein	False	True
+411	ENST00000288135	NM_000222.2	3815	['PBT', 'C-Kit', 'CD117', 'SCFR']	KIT	KIT proto-oncogene receptor tyrosine kinase	True	False
+412	ENST00000354258	NM_000593.5	6890	['ABCB2', 'TAP1*0102N', 'RING4', 'APT1', 'D6S114E', 'PSF-1', 'ABC17', 'PSF1', 'TAP1N']	TAP1	transporter 1, ATP binding cassette subfamily B member	False	False
+413	ENST00000374899	NM_018833.2	6891	['ABCB3', 'APT2', 'PSF-2', 'RING11', 'D6S217E', 'PSF2', 'ABC18']	TAP2	transporter 2, ATP binding cassette subfamily B member	False	False
+414	ENST00000294312	NM_005117.2	9965	[]	FGF19	fibroblast growth factor 19	True	False
+415	ENST00000374080	NM_005120.2	9968	['ARC240', 'TNRC11', 'TRAP230', 'OPA1', 'OKS', 'MED12S', 'HOPA', 'CAGH45', 'FGS1', 'OHDOX']	MED12	mediator complex subunit 12	True	False
+416	ENST00000277541	NM_017617.3	4851	['TAN1', 'hN1', 'AOVD1', 'AOS5']	NOTCH1	notch 1	True	True
+417	ENST00000256646	NM_024408.3	4853	['HJCYS', 'AGS2', 'hN2']	NOTCH2	notch 2	True	True
+418	ENST00000263388	NM_000435.2	4854	['CADASIL', 'IMF2', 'LMNS', 'CASIL', 'CADASIL1']	NOTCH3	notch 3	False	False
+419	ENST00000375023	NM_004557.3	4855	['INT3']	NOTCH4	notch 4	False	False
+420	ENST00000356142	NM_018890.3	5879	['p21-Rac1', 'Rac-1', 'MIG5', 'TC-25']	RAC1	ras-related C3 botulinum toxin substrate 1 (rho family, small GTP binding protein Rac1)	True	False
+421	ENST00000249071	NM_002872.4	5880	['Gx', 'EN-7', 'p21-Rac2', 'HSPC022']	RAC2	ras-related C3 botulinum toxin substrate 2 (rho family, small GTP binding protein Rac2)	False	False
+422	ENST00000340748	NM_001379.2	1786	['CXXC9', 'DNMT', 'ADCADN', 'AIM', 'MCMT', 'HSN1E', 'm.HsaI']	DNMT1	DNA (cytosine-5-)-methyltransferase 1	False	False
+423	ENST00000264709	NM_022552.4	1788	['DNMT3A2', 'TBRS', 'M.HsaIIIA']	DNMT3A	DNA methyltransferase 3 alpha	False	True
+424	ENST00000328111	NM_006892.3	1789	['ICF1', 'M.HsaIIIB', 'ICF']	DNMT3B	DNA methyltransferase 3 beta	False	False
+425	ENST00000297338	NM_006265.2	5885	['HRAD21', 'MCD1', 'HR21', 'SCC1', 'hHR21', 'CDLS4', 'NXP1']	RAD21	RAD21 cohesin complex component	False	True
+426	ENST00000267868	NM_002875.4	5888	['RAD51A', 'HRAD51', 'MRMV2', 'RECA', 'HsRad51', 'FANCR', 'HsT16930', 'BRCC5']	RAD51	RAD51 recombinase	False	True
+427	ENST00000337432	NM_058216.2	5889	['BROVCA3', 'R51H3', 'FANCO', 'RAD51L2']	RAD51C	RAD51 paralog C	False	True
+428	ENST00000487270	NM_133509.3	5890	['R51H2', 'REC2', 'RAD51L1']	RAD51B	RAD51 paralog B	False	False
+429	ENST00000335858	NM_133629.2	5892	['BROVCA4', 'R51H3', 'TRAD', 'RAD51L3']	RAD51D	RAD51 paralog D	False	True
+430	ENST00000256078	NM_033360.2	3845	['KI-RAS', 'RALD', 'NS', 'RASK2', 'CFC2', 'K-RAS2B', 'K-RAS2A', 'K-RAS4B', 'NS3', 'K-RAS4A', 'C-K-RAS', 'KRAS2', 'KRAS1']	KRAS	KRAS proto-oncogene, GTPase	True	False
+431	ENST00000296930	NM_002520.6	4869	['B23', 'NPM']	NPM1	nucleophosmin (nucleolar phosphoprotein B23, numatrin)	False	True
+432	ENST00000358495	NM_134424.2	5893	[]	RAD52	RAD52 homolog, DNA repair protein	False	False
+433	ENST00000251849	NM_002880.3	5894	['NS5', 'c-Raf', 'CMD1NN', 'Raf-1', 'CRAF']	RAF1	Raf-1 proto-oncogene, serine/threonine kinase	True	False
+434	ENST00000446824	NM_021018.2	8968	['H3/i', 'H3FI']	HIST1H3F	histone cluster 1, H3f	False	False
+435	ENST00000284811	NM_005648.3	6921	['SIII', 'eloC']	TCEB1	transcription elongation factor B subunit 1	False	False
+436	ENST00000407780	NM_015259.4	23308	['CD275', 'B7H2', 'GL50', 'B7RP1', 'B7-H2', 'B7RP-1', 'ICOS-L', 'ICOSL', 'LICOS']	ICOSLG	inducible T-cell costimulator ligand	False	False
+437	ENST00000229340	NM_006861.6	11021	['RAB1C', 'H-ray', 'RAY']	RAB35	RAB35, member RAS oncogene family	False	False
+438	ENST00000257566	NM_016569.3	6926	['UMS', 'TBX3-ISO', 'XHL']	TBX3	T-box 3	False	False
+439	ENST00000257555	NM_000545.5	6927	['HNF1', 'IDDM20', 'TCF-1', 'HNF-1A', 'LFB1', 'TCF1', 'MODY3']	HNF1A	HNF1 homeobox A	False	True
+440	ENST00000263826	NM_005465.4	10000	['RAC-gamma', 'PRKBG', 'RAC-PK-gamma', 'MPPH2', 'PKBG', 'PKB-GAMMA', 'STK-2', 'MPPH']	AKT3	AKT serine/threonine kinase 3	True	False
+441	ENST00000344749	NM_001136139.2	6929	['TCF-3', 'ITF1', 'E2A', 'E47', 'AGM8', 'VDIR', 'bHLHb21']	TCF3	transcription factor 3	False	False
+442	ENST00000282018	NM_020377.2	57105	['HG57', 'CYSLT2R', 'HPN321', 'GPCR21', 'KPG_011', 'hGPCR21', 'CYSLT2', 'PSEC0146']	CYSLTR2	cysteinyl leukotriene receptor 2	False	False
+443	ENST00000543371	NM_001146274.1	6934	['TCF-4', 'TCF4']	TCF7L2	transcription factor 7 like 2	False	True
+444	ENST00000254066	NM_000964.3	5914	['RAR', 'NR1B1']	RARA	retinoic acid receptor alpha	False	False
+445	ENST00000334205	NM_003942.2	8986	['RSK-B', 'S6K-alpha-4', 'MSK2']	RPS6KA4	ribosomal protein S6 kinase A4	False	False
+446	ENST00000340398	NM_001013699.2	440093	['H3.5']	H3F3C	H3 histone, family 3C	False	False
+447	ENST00000369535	NM_002524.4	4893	['CMNS', 'NS6', 'ALPS4', 'N-ras', 'NRAS1', 'NCMS']	NRAS	neuroblastoma RAS viral oncogene homolog	True	False
+448	ENST00000274376	NM_002890.2	5921	['CM-AVM', 'PKWS', 'GAP', 'p120GAP', 'p120RASGAP', 'CMAVM', 'RASGAP', 'RASA', 'p120']	RASA1	RAS p21 protein activator 1	False	True
+449	ENST00000393256	NM_138621.4	10018	['BOD', 'BIM', 'BAM']	BCL2L11	BCL2 like 11	False	True
+450	ENST00000341259	NM_005475.2	10019	['IDDM20', 'LNK']	SH2B3	SH2B adaptor protein 3	False	False
+451	ENST00000267163	NM_000321.2	5925	['OSRC', 'RB', 'PPP1R130', 'pRb', 'p105-Rb', 'pp110']	RB1	RB transcriptional corepressor 1	False	True
+452	ENST00000399788	NM_001042603.1	5927	['RBP2', 'RBBP2', 'RBBP-2']	KDM5A	lysine demethylase 5A	False	False
+453	ENST00000316448	NM_004343.3	811	['SSA', 'cC1qR', 'CRT', 'HEL-S-99n', 'RO']	CALR	calreticulin	False	False
+454	ENST00000219066	NM_002528.5	4913	['OCTS3', 'hNTH1', 'NTH1', 'FAP3']	NTHL1	nth-like DNA glycosylase 1	False	False
+455	ENST00000524377	NM_002529.3	4914	['TRK1', 'TRKA', 'Trk-A', 'TRK', 'p140-TrkA', 'MTC']	NTRK1	neurotrophic receptor tyrosine kinase 1	True	False
+456	ENST00000330479	NM_020382.3	387893	['SET8', 'PR-Set7', 'SETD8', 'SET07']	KMT5A	lysine methyltransferase 5A	False	False
+457	ENST00000277120	NM_006180.3	4915	['TRKB', 'GP145-TrkB', 'trk-B']	NTRK2	neurotrophic receptor tyrosine kinase 2	True	False
+458	ENST00000360948	NM_001012338.2	4916	['TRKC', 'GP145-TrkC', 'gp145(trkC)']	NTRK3	neurotrophic receptor tyrosine kinase 3	True	False
+459	ENST00000240100	NM_001394.6	1846	['MKP2', 'MKP-2', 'HVH2', 'TYP']	DUSP4	dual specificity phosphatase 4	False	False
+460	ENST00000353224	NM_177990.2	57144	['PAK7']	PAK5	p21 (RAC1) activated kinase 5	False	False
+461	ENST00000367921	NM_006182.2	4921	['NTRKR3', 'MIG20a', 'TYRO10', 'TKT']	DDR2	discoidin domain receptor tyrosine kinase 2	True	False
+462	ENST00000380728	NM_004489.4	2874	['AMF-1']	GPS2	G protein pathway suppressor 2	False	False
+463	ENST00000344686	NM_003954.3	9020	['NIK', 'HSNIK', 'HS', 'FTDCR1B']	MAP3K14	mitogen-activated protein kinase kinase kinase 14	False	False
+464	ENST00000369458	NM_024626.3	79679	['VCTN1', 'B7X', 'B7h.5', 'PRO1291', 'B7S1', 'B7-H4', 'B7H4']	VTCN1	V-set domain containing T cell activation inhibitor 1	False	False
+465	ENST00000297316	NM_022454.3	64321	['VUR3']	SOX17	SRY-box 17	False	True
+466	ENST00000439151	NM_022455.4	64324	['KMT3B', 'SOTOS1', 'SOTOS', 'ARA267', 'STO']	NSD1	nuclear receptor binding SET domain protein 1	False	False
+467	ENST00000367669	NM_022457.5	64326	['RNF200', 'COP1']	RFWD2	ring finger and WD repeat domain 2	False	False
+468	ENST00000358485	NM_001080125.1	841	['ALPS2B', 'Casp-8', 'MCH5', 'MACH', 'FLICE', 'CAP4']	CASP8	caspase 8	False	True
+469	ENST00000421138	NM_032941.2	5965	['RecQ1', 'RECQL1']	RECQL	RecQ like helicase	False	False
+470	ENST00000295025	NM_002908.2	5966	['C-Rel']	REL	REL proto-oncogene, NF-kB subunit	False	False
+471	ENST00000346618	NM_001949.4	1871	['E2F-3']	E2F3	E2F transcription factor 3	True	False
+472	ENST00000330684	NM_001134407.1	2903	['FESD', 'EPND', 'LKS', 'NR2A', 'GluN2A', 'NMDAR2A']	GRIN2A	glutamate ionotropic receptor NMDA type subunit 2A	False	False
+473	ENST00000262803	NM_002911.3	5976	['HUPF1', 'pNORF1', 'smg-2', 'NORF1', 'RENT1']	UPF1	UPF1, RNA helicase and ATPase	False	False
+474	ENST00000355710	NM_020975.4	5979	['MTC1', 'CDHF12', 'CDHR16', 'MEN2A', 'RET51', 'HSCR1', 'MEN2B', 'PTC', 'RET-ELE1']	RET	ret proto-oncogene	True	False
+475	ENST00000300305	NM_001754.4	861	['AML1-EVI-1', 'CBF2alpha', 'CBFA2', 'EVI-1', 'PEBP2aB', 'AMLCR1', 'PEBP2alpha', 'AML1']	RUNX1	runt related transcription factor 1	False	True
