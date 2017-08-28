@@ -61,9 +61,6 @@ sparsity = float(args.sparsity)
 noise = float(args.noise)
 output_filename = args.output_filename
 
-original_dim = 5000
-latent_dim = 100
-
 # Random seed
 seed = int(np.random.randint(low=0, high=10000, size=1))
 np.random.seed(seed)
@@ -71,6 +68,9 @@ np.random.seed(seed)
 # Load Data
 rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv')
 rnaseq_df = pd.read_table(rnaseq_file, index_col=0)
+
+original_dim = rnaseq_df.shape[1]
+latent_dim = 100
 
 # Split 10% test set randomly
 test_set_percent = 0.1
@@ -82,7 +82,7 @@ input_rnaseq = Input(shape=(original_dim, ))
 encoded_rnaseq = GaussianDropout(noise)(input_rnaseq)
 encoded_rnaseq_2 = Dense(latent_dim, activation='relu',
                          activity_regularizer=l1(sparsity))(encoded_rnaseq)
-decoded_rnaseq = Dense(original_dim, activation='relu')(encoded_rnaseq_2)
+decoded_rnaseq = Dense(original_dim, activation='sigmoid')(encoded_rnaseq_2)
 
 autoencoder = Model(input_rnaseq, decoded_rnaseq)
 
@@ -96,12 +96,13 @@ hist = autoencoder.fit(np.array(rnaseq_train_df), np.array(rnaseq_train_df),
                        validation_data=(np.array(rnaseq_test_df),
                                         np.array(rnaseq_test_df)))
 
-# Build encoder and encode RNAseq data
-encoder = Model(input_rnaseq, encoded_rnaseq_2)
-encoded_samples = encoder.predict(np.array(rnaseq_df))
+# Build encode RNAseq data into latent features
+weight_matrix = pd.DataFrame(autoencoder.get_weights()[0],
+                             index=rnaseq_df.columns)
+encoded_samples = rnaseq_df.dot(weight_matrix)
 
 # Determine how many zero nodes there are
-zero_nodes = (pd.DataFrame(encoded_samples).sum() == 0).sum()
+zero_nodes = (encoded_samples.sum() == 0).sum()
 
 # Save training performance
 history_df = pd.DataFrame(hist.history)
