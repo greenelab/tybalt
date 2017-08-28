@@ -1,7 +1,7 @@
 # Pan-Cancer Variational Autoencoder
 # Gregory Way 2017
 #
-# Visualizing results of parameter sweep
+# Visualizing results of variational autoencoder parameter sweep
 
 library(ggplot2)
 
