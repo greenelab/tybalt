@@ -89,19 +89,18 @@ for (n in unique(param_melt_df$noise)) {
     output_fig <- file.path("figures", "param_sweep", "adage", "full_param_")
     output_fig <- paste0(output_fig, n, "_noise_", s, "_sparsity.png")
     ggsave(output_fig, plot = p, height = 5, width = 6)
-    print(p)
   }
 }
 
 # Plot the final loss at training end
-final_select_df <- param_melt_df %>% dplyr::filter(loss_type == "val_loss")
-final_select_df <- final_select_df %>%
+final_df <- param_melt_df %>% dplyr::filter(loss_type == "val_loss")
+final_df <- final_df %>%
   dplyr::group_by(learning_rate, batch_size, epochs, noise, sparsity,
                   zero_nodes) %>%
   dplyr::summarize(end_loss = tail(loss, 1))
-final_select_df <- final_select_df[order(as.numeric(final_select_df$zero_nodes)), ]
+final_df <- final_df[order(as.numeric(final_df$zero_nodes)), ]
 
-p <- ggplot(final_select_df, aes(x = learning_rate, y = end_loss)) +
+p <- ggplot(final_df, aes(x = learning_rate, y = end_loss)) +
   geom_point(aes(color = sparsity, shape = epochs), size = 1) +
   facet_grid(batch_size ~ noise, scales = "free") +
   theme_bw() +
@@ -115,7 +114,7 @@ output_sweep <- file.path("figures", "param_sweep", "adage",
 ggsave(output_sweep, plot = p, height = 7, width = 8)
 
 # Incorporate the number of non-zero nodes into selection
-p <- ggplot(final_select_df, aes(x = end_loss, y = as.numeric(zero_nodes))) +
+p <- ggplot(final_df, aes(x = end_loss, y = as.numeric(zero_nodes))) +
   facet_grid(batch_size~sparsity) + 
   xlab("Validation Loss") +
   ylab("Number of Zero Nodes") + 
@@ -128,7 +127,7 @@ ggsave(output_sweep, plot = p, height = 7, width = 8)
 
 # What about number of non-zero nodes for all models with < 0.025 val loss?
 # Replot this condensed figure
-good_models <- final_select_df %>% dplyr::filter(end_loss < 0.025)
+good_models <- final_df %>% dplyr::filter(end_loss < 0.025)
 good_models <- good_models[order(good_models$zero_nodes), ]
 
 p <- ggplot(good_models, aes(x = end_loss, y = as.numeric(zero_nodes))) +
