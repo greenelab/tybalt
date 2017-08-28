@@ -35,6 +35,7 @@ def get_param(param):
         sweep = parameter_df.loc[param, 'sweep']
     except:
         sweep = ''
+        print("Warning! No parameter detected of name: {}".format(param))
     return sweep.split(',')
 
 parser = argparse.ArgumentParser()
