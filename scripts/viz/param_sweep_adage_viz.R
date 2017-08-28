@@ -79,7 +79,7 @@ for (n in unique(param_melt_df$noise)) {
     subset_subset_param <- subset_param %>% dplyr::filter(sparsity == s)
     # Remove label in `n` for plotting and filename
     n <- gsub("noise: ", "", n)
-    s <- gsub("sparsity:", "", s)
+    s <- gsub("sparsity: ", "", s)
     
     p <- ggplot(subset_subset_param, aes(x = train_epoch, y = loss)) +
       geom_line(aes(color = learning_rate, linetype = loss_type), size = 0.5) + 
