@@ -32,8 +32,7 @@ import argparse
 import numpy as np
 import pandas as pd
 
-from keras.layers import Input, Dense
-from keras.layers.noise import GaussianDropout
+from keras.layers import Input, Dense, Dropout, Activation
 from keras.models import Model
 from keras import optimizers
 from keras.regularizers import l1
@@ -79,15 +78,16 @@ rnaseq_train_df = rnaseq_df.drop(rnaseq_test_df.index)
 
 # Input place holder for RNAseq data with specific input size
 input_rnaseq = Input(shape=(original_dim, ))
-encoded_rnaseq = GaussianDropout(noise)(input_rnaseq)
-encoded_rnaseq_2 = Dense(latent_dim, activation='relu',
+encoded_rnaseq = Dropout(noise)(input_rnaseq)
+encoded_rnaseq_2 = Dense(latent_dim,
                          activity_regularizer=l1(sparsity))(encoded_rnaseq)
-decoded_rnaseq = Dense(original_dim, activation='sigmoid')(encoded_rnaseq_2)
+activation = Activation('relu')(encoded_rnaseq_2)
+decoded_rnaseq = Dense(original_dim, activation='sigmoid')(activation)
 
 autoencoder = Model(input_rnaseq, decoded_rnaseq)
 
-adam = optimizers.Adam(lr=learning_rate)
-autoencoder.compile(optimizer=adam, loss='mse')
+adadelta = optimizers.Adadelta(lr=learning_rate)
+autoencoder.compile(optimizer=adadelta, loss='mse')
 
 hist = autoencoder.fit(np.array(rnaseq_train_df), np.array(rnaseq_train_df),
                        shuffle=True,
@@ -96,14 +96,6 @@ hist = autoencoder.fit(np.array(rnaseq_train_df), np.array(rnaseq_train_df),
                        validation_data=(np.array(rnaseq_test_df),
                                         np.array(rnaseq_test_df)))
 
-# Build encode RNAseq data into latent features
-weight_matrix = pd.DataFrame(autoencoder.get_weights()[0],
-                             index=rnaseq_df.columns)
-encoded_samples = rnaseq_df.dot(weight_matrix)
-
-# Determine how many zero nodes there are
-zero_nodes = (encoded_samples.sum() == 0).sum()
-
 # Save training performance
 history_df = pd.DataFrame(hist.history)
 history_df = history_df.assign(learning_rate=learning_rate)
@@ -111,6 +103,5 @@ history_df = history_df.assign(batch_size=batch_size)
 history_df = history_df.assign(epochs=epochs)
 history_df = history_df.assign(sparsity=sparsity)
 history_df = history_df.assign(noise=noise)
-history_df = history_df.assign(zero_nodes=zero_nodes)
 history_df = history_df.assign(seed=seed)
 history_df.to_csv(output_filename, sep='\t')
