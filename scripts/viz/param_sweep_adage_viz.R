@@ -99,7 +99,7 @@ final_df <- final_df %>%
 
 # High sparsity did not train at all, remove this parameter combination
 final_df <- final_df %>%
-  dplyr::filter(sparsity != 'sparsity: 0.001')
+  dplyr::filter(sparsity != "sparsity: 0.001")
 
 # For plotting purposes, recode the epochs variable again
 final_df$epochs <- 
