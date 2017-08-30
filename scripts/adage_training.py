@@ -7,9 +7,9 @@
 # 
 # This script trains a denoising autoencoder for cancer gene expression data using Keras. It modifies the framework presented by the ADAGE (Analysis using denoising autoencoders of gene expression) model published by [Tan _et al_ 2015](https://doi.org/10.1128/mSystems.00025-15).
 # 
-# An ADAGE model learns a non-linear, reduced dimensional representation of gene expression data by bottlenecking features into a smaller set and training on minimizing reconstructing input.
+# An ADAGE model learns a non-linear, reduced dimensional representation of gene expression data by bottlenecking raw features into a smaller set. The model is then trained by minimizing the information lost between input and reconstructed input.
 # 
-# The specific model trained in this notebook consists of gene expression input (5000 most variably expressed genes by median absolute deviation) compressed down into one length 100 vector. The hidden layer is then decoded back to the original 5000 dimensions. The encoding (compression) layer has a `relu` activation and the decoding layer has a `sigmoid` activation. The weights of each layer are glorot uniform initialized. We include an l1 regularization term (see [`keras.regularizers.l1`](https://keras.io/regularizers/) for more details) to induce sparsity in the model, as well as a term controlling the probability of input feature dropout. This is only active during training and is he denoising aspect of the model. See [`keras.layers.noise.Dropout`](https://keras.io/layers/core/) for more details.
+# The specific model trained in this notebook consists of gene expression input (5000 most variably expressed genes by median absolute deviation) compressed down into one length 100 vector. The hidden layer is then decoded back to the original 5000 dimensions. The encoding (compression) layer has a `relu` activation and the decoding layer has a `sigmoid` activation. The weights of each layer are glorot uniform initialized. We include an l1 regularization term (see [`keras.regularizers.l1`](https://keras.io/regularizers/) for more details) to induce sparsity in the model, as well as a term controlling the probability of input feature dropout. This is only active during training and is the denoising aspect of the model. See [`keras.layers.noise.Dropout`](https://keras.io/layers/core/) for more details.
 # 
 # We train the autoencoder with the Adadelta optimizer and MSE reconstruction loss.
 # 
@@ -91,7 +91,7 @@ rnaseq_train_df = rnaseq_df.drop(rnaseq_test_df.index)
 
 # In[8]:
 
-num_features = 5000
+num_features = rnaseq_df.shape[1]
 encoding_dim = 100
 sparsity = 0
 noise = 0.05
