@@ -12,7 +12,8 @@ vae_df <- readr::read_tsv(vae_file)
 colnames(vae_df)[1] <- "sample_id"
 clinical_df <- readr::read_tsv(clinical_file)
 
-vae_df <- vae_df %>% dplyr::rowwise() %>% 
+vae_df <- vae_df %>%
+  dplyr::rowwise() %>%
   dplyr::mutate(sample_base = substring(sample_id, 1, 12))
 
 combined_df <- dplyr::inner_join(vae_df, clinical_df,
