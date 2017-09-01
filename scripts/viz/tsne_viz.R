@@ -54,7 +54,7 @@ ggsave(vae_tsne_pdf_out_file, plot = p, width = 6, height = 4.5)
 ggsave(vae_tsne_png_out_file, plot = p, width = 4, height = 3)  # PNG for repo
 
 # Plot and save RNAseq tsne
-vae_tsne_out_file <- file.path("figures", "tsne_rnaseq.pdf")
+rnaseq_tsne_out_file <- file.path("figures", "tsne_rnaseq.pdf")
 
 p <- ggplot(tsne_rnaseq_df, aes(x = `1`, y = `2`, color = acronym)) +
   geom_point(size = 0.001) +
@@ -69,4 +69,4 @@ p <- ggplot(tsne_rnaseq_df, aes(x = `1`, y = `2`, color = acronym)) +
   guides(colour = guide_legend(override.aes = list(size = 0.1),
                                title = 'Cancer-Type'))
 
-ggsave(vae_tsne_out_file, plot = p, width = 6, height = 4.5)
+ggsave(rnaseq_tsne_out_file, plot = p, width = 6, height = 4.5)
