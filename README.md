@@ -16,6 +16,12 @@ Just as the character Tybalt sets off the series of events in the play, the
 model Tybalt begins the foray of VAE manifold learning in transcriptomics.
 [Also, deep unsupervised learning likes cats](https://arxiv.org/abs/1112.6209).
 
+We discuss the training and evaluation of Tybalt in our bioRxiv preprint:
+
+Way and Greene.
+[_Extracting a Biologically Relevant Latent Space from Cancer Transcriptomes with Variational Autoencoders_](http://www.biorxiv.org/content/early/2017/08/11/174474).
+2017
+
 ## The Data
 
 TCGA has collected numerous different genomic measurements from over 10,000
