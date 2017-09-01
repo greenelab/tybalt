@@ -18,9 +18,8 @@ model Tybalt begins the foray of VAE manifold learning in transcriptomics.
 
 We discuss the training and evaluation of Tybalt in our bioRxiv preprint:
 
-Way and Greene.
 [_Extracting a Biologically Relevant Latent Space from Cancer Transcriptomes with Variational Autoencoders_](http://www.biorxiv.org/content/early/2017/08/11/174474).
-2017
+
 
 ## The Data
 
