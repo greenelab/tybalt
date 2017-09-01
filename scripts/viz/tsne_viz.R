@@ -7,7 +7,7 @@ library(dplyr)
 library(ggplot2)
 
 # Load encodings file with matched clinical data to subset
-clinical_file <- file.path("data", "vae_encoded_with_clinical.tsv")
+clinical_file <- file.path("data", "tybalt_features_with_clinical.tsv")
 clinical_df <- readr::read_tsv(clinical_file)
 clinical_df <- clinical_df %>% dplyr::select(sample_id, acronym)
 
