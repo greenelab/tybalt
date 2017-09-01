@@ -19,4 +19,3 @@ ggplot(encoding_melt[encoding_melt$node %in% 1:10, ],
 
 node_dist_fig <- file.path("figures", "node_activation_distribution.png")
 ggsave(node_dist_fig, height = 3, width = 2)
-
