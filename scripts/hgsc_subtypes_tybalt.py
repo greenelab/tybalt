@@ -207,7 +207,7 @@ plt.savefig(node79_file)
 
 # In[21]:
 
-def get_high_weight(weight_matrix, node, high_std=2, direction='positive'):
+def get_high_weight(weight_matrix, node, high_std=2.5, direction='positive'):
     """
     Determine high weight genes given a gene weight matrix and feature
     Output tab separated file

@@ -142,7 +142,7 @@ g.savefig(met_node_plot_file)
 
 # In[12]:
 
-def output_high_weight_genes(weight_df, encoding, filename, thresh=2):
+def output_high_weight_genes(weight_df, encoding, filename, thresh=2.5):
     """
     Function to process and output high weight genes given specific feature encodings
     """
