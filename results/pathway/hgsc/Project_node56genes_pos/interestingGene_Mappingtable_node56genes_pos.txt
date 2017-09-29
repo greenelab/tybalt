@@ -1,0 +1,54 @@
+userid	genesymbol	genename	entrezgene
+CSAG2	CSAG2	CSAG family member 2	102723547
+UBD	UBD	ubiquitin D	10537
+CXCL13	CXCL13	C-X-C motif chemokine ligand 13	10563
+SLCO1B1	SLCO1B1	solute carrier organic anion transporter family member 1B1	10599
+CXCR6	CXCR6	C-X-C motif chemokine receptor 6	10663
+GBP5	GBP5	guanylate binding protein 5	115362
+CRP	CRP	C-reactive protein	1401
+JAKMIP1	JAKMIP1	janus kinase and microtubule interacting protein 1	152789
+CYP2C9	CYP2C9	cytochrome P450 family 2 subfamily C member 9	1559
+CYP2C18	CYP2C18	cytochrome P450 family 2 subfamily C member 18	1562
+TIGIT	TIGIT	T-cell immunoreceptor with Ig and ITIM domains	201633
+FGB	FGB	fibrinogen beta chain	2244
+KLRK1	KLRK1	killer cell lectin like receptor K1	22914
+ZNF683	ZNF683	zinc finger protein 683	257101
+GC	GC	GC, vitamin D binding protein	2638
+SLCO1B3	SLCO1B3	solute carrier organic anion transporter family member 1B3	28234
+RUFY4	RUFY4	RUN and FYVE domain containing 4	285180
+CD274	CD274	CD274 molecule	29126
+GZMH	GZMH	granzyme H	2999
+GZMA	GZMA	granzyme A	3001
+GZMB	GZMB	granzyme B	3002
+APCS	APCS	amyloid P component, serum	325
+HRG	HRG	histidine rich glycoprotein	3273
+APOC3	APOC3	apolipoprotein C3	345
+IFNG	IFNG	interferon gamma	3458
+FASLG	FASLG	Fas ligand	356
+CXCR2P1	CXCR2P1	C-X-C motif chemokine receptor 2 pseudogene 1	3580
+IDO1	IDO1	indoleamine 2,3-dioxygenase 1	3620
+CXCL10	CXCL10	C-X-C motif chemokine ligand 10	3627
+KCNJ10	KCNJ10	potassium voltage-gated channel subfamily J member 10	3766
+KLRC2	KLRC2	killer cell lectin like receptor C2	3822
+KLRC3	KLRC3	killer cell lectin like receptor C3	3823
+KLRD1	KLRD1	killer cell lectin like receptor D1	3824
+CSAG3	CSAG3	CSAG family member 3	389903
+LAG3	LAG3	lymphocyte activating 3	3902
+MAT1A	MAT1A	methionine adenosyltransferase 1A	4143
+CXCL9	CXCL9	C-X-C motif chemokine ligand 9	4283
+DUSP13	DUSP13	dual specificity phosphatase 13	51207
+PDCD1	PDCD1	programmed cell death 1	5133
+ETV7	ETV7	ETS variant 7	51513
+SIRPG	SIRPG	signal regulatory protein gamma	55423
+PRF1	PRF1	perforin 1	5551
+CRTAM	CRTAM	cytotoxic and regulatory T-cell molecule	56253
+SAA2	SAA2	serum amyloid A2	6289
+SAA4	SAA4	serum amyloid A4, constitutive	6291
+CCL8	CCL8	C-C motif chemokine ligand 8	6355
+CXCL11	CXCL11	C-X-C motif chemokine ligand 11	6373
+TNIP3	TNIP3	TNFAIP3 interacting protein 3	79931
+ZBP1	ZBP1	Z-DNA binding protein 1	81030
+SLA2	SLA2	Src like adaptor 2	84174
+CD5L	CD5L	CD5 molecule like	922
+CD8A	CD8A	CD8a molecule	925
+AIM2	AIM2	absent in melanoma 2	9447

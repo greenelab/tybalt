@@ -1,0 +1,79 @@
+userid	genesymbol	genename	entrezgene
+HOTAIR	HOTAIR	HOX transcript antisense RNA	100124700
+UPK1A	UPK1A	uroplakin 1A	11045
+CELF3	CELF3	CUGBP Elav-like family member 3	11189
+WIF1	WIF1	WNT inhibitory factor 1	11197
+POU6F2	POU6F2	POU class 6 homeobox 2	11281
+DACH2	DACH2	dachshund family transcription factor 2	117154
+SEZ6	SEZ6	seizure related 6 homolog	124925
+COL2A1	COL2A1	collagen type II alpha 1 chain	1280
+KCNH8	KCNH8	potassium voltage-gated channel subfamily H member 8	131096
+SYNPR	SYNPR	synaptoporin	132204
+ABHD12B	ABHD12B	abhydrolase domain containing 12B	145447
+ZNF560	ZNF560	zinc finger protein 560	147741
+C1orf64	C1orf64	chromosome 1 open reading frame 64	149563
+TMEM213	TMEM213	transmembrane protein 213	155006
+ADAMTS19	ADAMTS19	ADAM metallopeptidase with thrombospondin type 1 motif 19	171019
+DRD2	DRD2	dopamine receptor D2	1813
+DSC1	DSC1	desmocollin 1	1823
+ELAVL3	ELAVL3	ELAV like RNA binding protein 3	1995
+ELF5	ELF5	E74 like ETS transcription factor 5	2001
+KHDRBS2	KHDRBS2	KH RNA binding domain containing, signal transduction associated 2	202559
+FCER1A	FCER1A	Fc fragment of IgE receptor Ia	2205
+HS3ST5	HS3ST5	heparan sulfate-glucosamine 3-sulfotransferase 5	222537
+SORCS3	SORCS3	sortilin related VPS10 domain containing receptor 3	22986
+VSIG2	VSIG2	V-set and immunoglobulin domain containing 2	23584
+PRND	PRND	prion protein 2 (dublet)	23627
+HEPACAM2	HEPACAM2	HEPACAM family member 2	253012
+GABRR1	GABRR1	gamma-aminobutyric acid type A receptor rho1 subunit	2569
+SOSTDC1	SOSTDC1	sclerostin domain containing 1	25928
+TCL6	TCL6	T-cell leukemia/lymphoma 6 (non-protein coding)	27004
+GPR12	GPR12	G protein-coupled receptor 12	2835
+GRIA4	GRIA4	glutamate ionotropic receptor AMPA type subunit 4	2893
+TRHDE	TRHDE	thyrotropin releasing hormone degrading enzyme	29953
+NXPH1	NXPH1	neurexophilin 1	30010
+HOXC10	HOXC10	homeobox C10	3226
+HOXC11	HOXC11	homeobox C11	3227
+CYP27C1	CYP27C1	cytochrome P450 family 27 subfamily C member 1	339761
+SLC35D3	SLC35D3	solute carrier family 35 member D3	340146
+AQP2	AQP2	aquaporin 2	359
+AQP5	AQP5	aquaporin 5	362
+GJB7	GJB7	gap junction protein beta 7	375519
+LHFPL3	LHFPL3	lipoma HMGIC fusion partner-like 3	375612
+SLC9A4	SLC9A4	solute carrier family 9 member A4	389015
+C11orf87	C11orf87	chromosome 11 open reading frame 87	399947
+MMP8	MMP8	matrix metallopeptidase 8	4317
+MOG	MOG	myelin oligodendrocyte glycoprotein	4340
+KLK14	KLK14	kallikrein related peptidase 14	43847
+KLK12	KLK12	kallikrein related peptidase 12	43849
+NELL1	NELL1	neural EGFL like 1	4745
+ATP6V0A4	ATP6V0A4	ATPase H+ transporting V0 subunit a4	50617
+IRX4	IRX4	iroquois homeobox 4	50805
+SHANK1	SHANK1	SH3 and multiple ankyrin repeat domains 1	50944
+ACTL6B	ACTL6B	actin like 6B	51412
+CALML5	CALML5	calmodulin like 5	51806
+POU3F2	POU3F2	POU class 3 homeobox 2	5454
+FEV	FEV	FEV, ETS transcription factor	54738
+LRRC36	LRRC36	leucine rich repeat containing 36	55282
+TDRD1	TDRD1	tudor domain containing 1	56165
+PRMT8	PRMT8	protein arginine methyltransferase 8	56341
+KIAA1210	KIAA1210	KIAA1210	57481
+RGS7	RGS7	regulator of G-protein signaling 7	6000
+ROBO2	ROBO2	roundabout guidance receptor 2	6092
+PIRT	PIRT	phosphoinositide interacting regulator of transient receptor potential channels	644139
+SLC4A1	SLC4A1	solute carrier family 4 member 1 (Diego blood group)	6521
+BMP5	BMP5	bone morphogenetic protein 5	653
+SLC6A4	SLC6A4	solute carrier family 6 member 4	6532
+FER1L6	FER1L6	fer-1 like family member 6	654463
+TRH	TRH	thyrotropin releasing hormone	7200
+TMEM229A	TMEM229A	transmembrane protein 229A	730130
+UPK1B	UPK1B	uroplakin 1B	7348
+SCGB1A1	SCGB1A1	secretoglobin family 1A member 1	7356
+CWH43	CWH43	cell wall biogenesis 43 C-terminal homolog	80157
+SRRM4	SRRM4	serine/arginine repetitive matrix 4	84530
+UMODL1	UMODL1	uromodulin like 1	89766
+CLDN6	CLDN6	claudin 6	9074
+ANKRD30A	ANKRD30A	ankyrin repeat domain 30A	91074
+TMEM132C	TMEM132C	transmembrane protein 132C	92293
+STXBP5L	STXBP5L	syntaxin binding protein 5 like	9515
+ZNF536	ZNF536	zinc finger protein 536	9745

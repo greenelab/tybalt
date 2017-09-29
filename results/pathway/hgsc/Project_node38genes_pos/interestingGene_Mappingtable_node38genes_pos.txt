@@ -1,0 +1,13 @@
+userid	genesymbol	genename	entrezgene
+SLC34A2	SLC34A2	solute carrier family 34 member 2	10568
+UGT2B11	UGT2B11	UDP glucuronosyltransferase family 2 member B11	10720
+XKR4	XKR4	XK related 4	114786
+ACMSD	ACMSD	aminocarboxymuconate semialdehyde decarboxylase	130013
+LRRN4	LRRN4	leucine rich repeat neuronal 4	164312
+TMPRSS6	TMPRSS6	transmembrane protease, serine 6	164656
+GPR12	GPR12	G protein-coupled receptor 12	2835
+MYBPH	MYBPH	myosin binding protein H	4608
+WT1	WT1	Wilms tumor 1	7490
+XIST	XIST	X inactive specific transcript (non-protein coding)	7503
+VTCN1	VTCN1	V-set domain containing T-cell activation inhibitor 1	79679
+ST6GALNAC5	ST6GALNAC5	ST6 N-acetylgalactosaminide alpha-2,6-sialyltransferase 5	81849

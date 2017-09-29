@@ -1,0 +1,1378 @@
+<html>
+<head>
+<title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery-ui.js"></script>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42098540-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/changeColor.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/tableExport.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.base64.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/html2canvas.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jspdf/libs/sprintf.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jspdf.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jspdf/libs/base64.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/search.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/d3/d3.v3.min.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.tipsy.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.contextMenu.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.floatThead.min.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/dagre/dagre.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/Minimap.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/MinimapZoom.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/DirectedAcyclicGraph.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/List.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/Selectable_svv.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/Graph.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/History.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/Tooltip.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/FileSaver.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/download.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/ContextMenu.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/searchView.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/canvg/rgbcolor.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/canvg/StackBlur.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/canvg/canvg.js"></script>
+<script type="text/javascript" src="js/xtrace_utils.js"></script>
+<script type="text/javascript" src="js/xtrace_graph.js"></script>
+<script type="text/javascript" src="js/plotDAG.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/tooltipster.bundle.min.js"></script>
+<script>$(document).ready(function(){$('.tooltip-container').tooltipster({functionInit: function (instance, helper) {var content = $(helper.origin).find('.tooltip_content').detach();instance.content(content);}});});</script>
+<link href="http://www.webgestalt.org//css/jquery-ui.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/xtrace.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/tipsy.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/jquery.contextMenu.css" rel="stylesheet" type="text/css">
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/graph.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/report.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/zebra.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/search.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/tooltipster.bundle.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<p align="center">
+<iframe src="http://www.webgestalt.org//html/head.html" style="border:0px;height:180px;width:100%"></iframe>
+<div id ="tabs"> <ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#interestGene">User ID Mapping Table</a></li>
+<li><a href="#referenceGene">GOSlim Summary</a></li>
+<li><a href="#result">Enrichment Results</a></li>
+</ul>
+<div id="summary">
+<h3>Summary&nbsp&nbsp&nbsp(<a href="Project_node79genes_neg.tar.gz" target="_blank" style="color:red"><u>Result Download</u></a>)</h3>
+<b>Enrich method:</b> ORA<br/>
+<b>Organism:</b>hsapiens<br/>
+<b>Enrichment Categories: </b>geneontology_Biological_Process<br/>
+<b>Interesting gene list: </b> a R object. <b> ID type: </b>genesymbol<br/>
+The interesting gene list contains <b>38</b> user IDs in which <b>35</b> user IDs are unambiguously mapped to the unique Entrez Gene IDs and <b>3</b> user IDs are mapped to multiple Entrez Gene IDs or could not be mapped to any Entrez Gene ID. The GO Slim summary are based upon the <b>35</b> unique Entrez Gene IDs.<br/>
+Among the <b>35</b> unique Entrez Gene IDs, <b>28</b> IDs are annotated to the selected functional categories and also in the reference gene list, which are used for the enrichment analysis.<br/>
+<b>Reference gene list: </b>data/background_genes.txt <b>ID type: </b>genesymbol<br/>
+The reference gene list contains <b>5000</b> IDs in which <b>4627</b> IDs are unambiguously mapped to the unique Entrez Gene IDs and <b>373</b> IDs are mapped to multiple Entrez Gene IDs or could not be mapped to any Entrez Gene ID.<br/>
+Among the <b>4627</b> unique Entrez Gene IDs, <b>4020</b> IDs are annotated to the selected functional categories, which are used as the reference for the enrichment analysis.<br/>
+<b>Parameters for the enrichment analysis:</b>
+<ul><li><b>Minimum number of Entrez Gene IDs in the category:</b>4</li>
+<li><b>Maximum number of Entrez Gene IDs in the category:</b>500</li>
+<li><b>FDR Method:</b>BH</li>
+<li><b>Significance Level:</b> FDR<0.05</li>
+</ul>
+Based on the above parameters, <b>23</b> categories are identified as enriched categories, in which <b>20</b> most significant categories are shown in this report. All significant categories can be downloaded from the 'Result Download' link.<br/>
+</div>
+<div id="interestGene">
+<div id="mappedGene">
+<h4>Mapped User IDs</h4>
+<table class="zebra"><thead><tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>CYP4F8</td>
+<td>CYP4F8</td>
+<td>cytochrome P450 family 4 subfamily F member 8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=11283">11283</a></td>
+</tr>
+<tr>
+<td>FCRL1</td>
+<td>FCRL1</td>
+<td>Fc receptor like 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=115350">115350</a></td>
+</tr>
+<tr>
+<td>RPTN</td>
+<td>RPTN</td>
+<td>repetin</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=126638">126638</a></td>
+</tr>
+<tr>
+<td>ADH4</td>
+<td>ADH4</td>
+<td>alcohol dehydrogenase 4 (class II), pi polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=127">127</a></td>
+</tr>
+<tr>
+<td>ADH7</td>
+<td>ADH7</td>
+<td>alcohol dehydrogenase 7 (class IV), mu or sigma polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=131">131</a></td>
+</tr>
+<tr>
+<td>CPB1</td>
+<td>CPB1</td>
+<td>carboxypeptidase B1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=1360">1360</a></td>
+</tr>
+<tr>
+<td>TNFRSF13B</td>
+<td>TNFRSF13B</td>
+<td>TNF receptor superfamily member 13B</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=23495">23495</a></td>
+</tr>
+<tr>
+<td>C11orf86</td>
+<td>C11orf86</td>
+<td>chromosome 11 open reading frame 86</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=254439">254439</a></td>
+</tr>
+<tr>
+<td>STAP1</td>
+<td>STAP1</td>
+<td>signal transducing adaptor family member 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=26228">26228</a></td>
+</tr>
+<tr>
+<td>AMPD1</td>
+<td>AMPD1</td>
+<td>adenosine monophosphate deaminase 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=270">270</a></td>
+</tr>
+<tr>
+<td>C6orf15</td>
+<td>C6orf15</td>
+<td>chromosome 6 open reading frame 15</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=29113">29113</a></td>
+</tr>
+<tr>
+<td>AQP2</td>
+<td>AQP2</td>
+<td>aquaporin 2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=359">359</a></td>
+</tr>
+<tr>
+<td>IGFL1</td>
+<td>IGFL1</td>
+<td>IGF like family member 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=374918">374918</a></td>
+</tr>
+<tr>
+<td>C5orf46</td>
+<td>C5orf46</td>
+<td>chromosome 5 open reading frame 46</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=389336">389336</a></td>
+</tr>
+<tr>
+<td>FAM177B</td>
+<td>FAM177B</td>
+<td>family with sequence similarity 177 member B</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=400823">400823</a></td>
+</tr>
+<tr>
+<td>AMTN</td>
+<td>AMTN</td>
+<td>amelotin</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=401138">401138</a></td>
+</tr>
+<tr>
+<td>AKR1B15</td>
+<td>AKR1B15</td>
+<td>aldo-keto reductase family 1 member B15</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=441282">441282</a></td>
+</tr>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+<tr>
+<td>ODAM</td>
+<td>ODAM</td>
+<td>odontogenic, ameloblast asssociated</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54959">54959</a></td>
+</tr>
+<tr>
+<td>PSG4</td>
+<td>PSG4</td>
+<td>pregnancy specific beta-1-glycoprotein 4</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=5672">5672</a></td>
+</tr>
+<tr>
+<td>SLURP1</td>
+<td>SLURP1</td>
+<td>secreted LY6/PLAUR domain containing 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=57152">57152</a></td>
+</tr>
+<tr>
+<td>TNFRSF17</td>
+<td>TNFRSF17</td>
+<td>TNF receptor superfamily member 17</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=608">608</a></td>
+</tr>
+<tr>
+<td>SAA2</td>
+<td>SAA2</td>
+<td>serum amyloid A2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=6289">6289</a></td>
+</tr>
+<tr>
+<td>SAA4</td>
+<td>SAA4</td>
+<td>serum amyloid A4, constitutive</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=6291">6291</a></td>
+</tr>
+<tr>
+<td>FAM25A</td>
+<td>FAM25A</td>
+<td>family with sequence similarity 25 member A</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=643161">643161</a></td>
+</tr>
+<tr>
+<td>FCRL2</td>
+<td>FCRL2</td>
+<td>Fc receptor like 2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=79368">79368</a></td>
+</tr>
+<tr>
+<td>TUBAL3</td>
+<td>TUBAL3</td>
+<td>tubulin alpha like 3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=79861">79861</a></td>
+</tr>
+<tr>
+<td>FCRL5</td>
+<td>FCRL5</td>
+<td>Fc receptor like 5</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=83416">83416</a></td>
+</tr>
+<tr>
+<td>LCE3D</td>
+<td>LCE3D</td>
+<td>late cornified envelope 3D</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=84648">84648</a></td>
+</tr>
+<tr>
+<td>TGM5</td>
+<td>TGM5</td>
+<td>transglutaminase 5</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=9333">9333</a></td>
+</tr>
+</tbody></table>
+</div>
+<div id="empty">&nbsp&nbsp&nbsp&nbsp</div>
+<div id="unmappedGene">
+<h4>User IDs mapped to multiple Entrtez IDs or not mapped</h4>
+<table class="zebra"><thead><tr>
+<th>userid</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>C4orf7</td>
+</tr>
+<tr>
+<td>KIAA0125</td>
+</tr>
+<tr>
+<td>TRY6</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div id="referenceGene">
+<h4>GOSlim summary for the user list genes</h4>
+Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.<br/>
+The height of the bar represents the number of user list genes observed in the category.
+<img src="goslim_summary_node79genes_neg.png" width="100%" height="100%"/></div>
+<div id="result">
+<div id="dag">
+<div id = "graphDAG" style="height:100%;width:100%"></div>
+</div>
+<div id="empty1">&nbsp&nbsp&nbsp&nbsp</div>
+<div id="genelist_wrap">
+<div id="genelist_des">
+<h4>Detailed information of the enriched categories</h4>
+<div class="tooltip_templates">The statistics
+<a class="tooltip-container"><img src="http://www.webgestalt.org/images/info.png" width="13" height="13"/>
+<span class="tooltip_content"><strong><ul><li>C: the number of reference genes in the category</li><li>O: the number of genes in the user gene list and also in the category</li><li>E: The expected number in the category</li><li>R: ratio of enrichment</li><li>PValue: p value from hyergeometric test</li><li>FDR: FDR from BH</li></ul></strong></span></a>
+ for the enriched categories and the genes in the user gene list and also in the category are listed in the table. <br/></div>
+<div class="search"><input id="tags" type="text" name="q" placeholder="ID Search"><ul id="searchData"><li><a id="aid0" href="#GO:0052697">GO:0052697 xenobiotic glucuronidation</a></li><li><a id="aid1" href="#GO:0051552">GO:0051552 flavone metabolic process</a></li><li><a id="aid2" href="#GO:0006063">GO:0006063 uronic acid metabolic process</a></li><li><a id="aid3" href="#GO:0019585">GO:0019585 glucuronate metabolic process</a></li><li><a id="aid4" href="#GO:0052695">GO:0052695 cellular glucuronidation</a></li><li><a id="aid5" href="#GO:0052696">GO:0052696 flavonoid glucuronidation</a></li><li><a id="aid6" href="#GO:0042573">GO:0042573 retinoic acid metabolic process</a></li><li><a id="aid7" href="#GO:0009812">GO:0009812 flavonoid metabolic process</a></li><li><a id="aid8" href="#GO:0034754">GO:0034754 cellular hormone metabolic process</a></li><li><a id="aid9" href="#GO:0001523">GO:0001523 retinoid metabolic process</a></li><li><a id="aid10" href="#GO:0016101">GO:0016101 diterpenoid metabolic process</a></li><li><a id="aid11" href="#GO:0006721">GO:0006721 terpenoid metabolic process</a></li><li><a id="aid12" href="#GO:0042440">GO:0042440 pigment metabolic process</a></li><li><a id="aid13" href="#GO:0006720">GO:0006720 isoprenoid metabolic process</a></li><li><a id="aid14" href="#GO:0042445">GO:0042445 hormone metabolic process</a></li><li><a id="aid15" href="#GO:0009813">GO:0009813 flavonoid biosynthetic process</a></li><li><a id="aid16" href="#GO:0006805">GO:0006805 xenobiotic metabolic process</a></li><li><a id="aid17" href="#GO:0071466">GO:0071466 cellular response to xenobiotic stimulus</a></li><li><a id="aid18" href="#GO:0009410">GO:0009410 response to xenobiotic stimulus</a></li><li><a id="aid19" href="#GO:0005996">GO:0005996 monosaccharide metabolic process</a></li></ul></div>
+</div>
+<br/>
+<div id="genelist">
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table1').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table1" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0052697"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0052697" target="_blank"><b>ID:GO:0052697&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:xenobiotic glucuronidation</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=7; O=6; E=0.05; R=127.62; PValue=3.53e-13; FDR=2.06e-09</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table2').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table2" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0051552"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0051552" target="_blank"><b>ID:GO:0051552&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:flavone metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=6; O=5; E=0.04; R=124.07; PValue=5.52e-11; FDR=1.61e-07</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table3').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table3" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0006063"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0006063" target="_blank"><b>ID:GO:0006063&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:uronic acid metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=16; O=6; E=0.11; R=55.83; PValue=3.88e-10; FDR=3.77e-07</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table4').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table4" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0019585"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0019585" target="_blank"><b>ID:GO:0019585&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:glucuronate metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=16; O=6; E=0.11; R=55.83; PValue=3.88e-10; FDR=3.77e-07</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table5').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table5" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0052695"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0052695" target="_blank"><b>ID:GO:0052695&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:cellular glucuronidation</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=16; O=6; E=0.11; R=55.83; PValue=3.88e-10; FDR=3.77e-07</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table6').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table6" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0052696"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0052696" target="_blank"><b>ID:GO:0052696&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:flavonoid glucuronidation</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=16; O=6; E=0.11; R=55.83; PValue=3.88e-10; FDR=3.77e-07</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table7').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table7" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0042573"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0042573" target="_blank"><b>ID:GO:0042573&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:retinoic acid metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=18; O=6; E=0.12; R=49.63; PValue=8.92e-10; FDR=7.43e-07</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ADH7</td>
+<td>ADH7</td>
+<td>alcohol dehydrogenase 7 (class IV), mu or sigma polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=131">131</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table8').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table8" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0009812"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0009812" target="_blank"><b>ID:GO:0009812&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:flavonoid metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=19; O=6; E=0.13; R=47.02; PValue=1.3e-09; FDR=9.46e-07</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table9').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table9" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0034754"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0034754" target="_blank"><b>ID:GO:0034754&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:cellular hormone metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=56; O=8; E=0.38; R=21.27; PValue=1.53e-09; FDR=9.93e-07</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ADH4</td>
+<td>ADH4</td>
+<td>alcohol dehydrogenase 4 (class II), pi polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=127">127</a></td>
+</tr>
+<tr>
+<td>ADH7</td>
+<td>ADH7</td>
+<td>alcohol dehydrogenase 7 (class IV), mu or sigma polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=131">131</a></td>
+</tr>
+<tr>
+<td>AKR1B15</td>
+<td>AKR1B15</td>
+<td>aldo-keto reductase family 1 member B15</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=441282">441282</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table10').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table10" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0001523"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0001523" target="_blank"><b>ID:GO:0001523&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:retinoid metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=51; O=7; E=0.34; R=20.44; PValue=2.53e-08; FDR=1.48e-05</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ADH4</td>
+<td>ADH4</td>
+<td>alcohol dehydrogenase 4 (class II), pi polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=127">127</a></td>
+</tr>
+<tr>
+<td>ADH7</td>
+<td>ADH7</td>
+<td>alcohol dehydrogenase 7 (class IV), mu or sigma polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=131">131</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table11').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table11" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0016101"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0016101" target="_blank"><b>ID:GO:0016101&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:diterpenoid metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=54; O=7; E=0.36; R=19.3; PValue=3.82e-08; FDR=2.03e-05</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ADH4</td>
+<td>ADH4</td>
+<td>alcohol dehydrogenase 4 (class II), pi polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=127">127</a></td>
+</tr>
+<tr>
+<td>ADH7</td>
+<td>ADH7</td>
+<td>alcohol dehydrogenase 7 (class IV), mu or sigma polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=131">131</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table12').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table12" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0006721"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0006721" target="_blank"><b>ID:GO:0006721&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:terpenoid metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=60; O=7; E=0.4; R=17.37; PValue=8.12e-08; FDR=3.95e-05</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ADH4</td>
+<td>ADH4</td>
+<td>alcohol dehydrogenase 4 (class II), pi polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=127">127</a></td>
+</tr>
+<tr>
+<td>ADH7</td>
+<td>ADH7</td>
+<td>alcohol dehydrogenase 7 (class IV), mu or sigma polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=131">131</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table13').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table13" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0042440"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0042440" target="_blank"><b>ID:GO:0042440&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:pigment metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=19; O=5; E=0.13; R=39.18; PValue=1.01e-07; FDR=4.27e-05</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table14').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table14" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0006720"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0006720" target="_blank"><b>ID:GO:0006720&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:isoprenoid metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=62; O=7; E=0.42; R=16.81; PValue=1.02e-07; FDR=4.27e-05</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ADH4</td>
+<td>ADH4</td>
+<td>alcohol dehydrogenase 4 (class II), pi polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=127">127</a></td>
+</tr>
+<tr>
+<td>ADH7</td>
+<td>ADH7</td>
+<td>alcohol dehydrogenase 7 (class IV), mu or sigma polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=131">131</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table15').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table15" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0042445"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0042445" target="_blank"><b>ID:GO:0042445&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:hormone metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=101; O=8; E=0.68; R=11.79; PValue=1.8e-07; FDR=7e-05</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ADH4</td>
+<td>ADH4</td>
+<td>alcohol dehydrogenase 4 (class II), pi polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=127">127</a></td>
+</tr>
+<tr>
+<td>ADH7</td>
+<td>ADH7</td>
+<td>alcohol dehydrogenase 7 (class IV), mu or sigma polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=131">131</a></td>
+</tr>
+<tr>
+<td>AKR1B15</td>
+<td>AKR1B15</td>
+<td>aldo-keto reductase family 1 member B15</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=441282">441282</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table16').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table16" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0009813"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0009813" target="_blank"><b>ID:GO:0009813&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:flavonoid biosynthetic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=14; O=4; E=0.09; R=42.54; PValue=1.54e-06; FDR=5.63e-04</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table17').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table17" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0006805"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0006805" target="_blank"><b>ID:GO:0006805&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:xenobiotic metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=62; O=6; E=0.42; R=14.41; PValue=2.42e-06; FDR=7.85e-04</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table18').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table18" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0071466"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0071466" target="_blank"><b>ID:GO:0071466&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:cellular response to xenobiotic stimulus</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=62; O=6; E=0.42; R=14.41; PValue=2.42e-06; FDR=7.85e-04</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table19').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table19" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0009410"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0009410" target="_blank"><b>ID:GO:0009410&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:response to xenobiotic stimulus</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=64; O=6; E=0.43; R=13.96; PValue=2.93e-06; FDR=8.98e-04</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table20').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table20" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0005996"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0005996" target="_blank"><b>ID:GO:0005996&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:monosaccharide metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=76; O=6; E=0.51; R=11.75; PValue=8.08e-06; FDR=2.36e-03</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UGT1A10</td>
+<td>UGT1A10</td>
+<td>UDP glucuronosyltransferase family 1 member A10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54575">54575</a></td>
+</tr>
+<tr>
+<td>UGT1A8</td>
+<td>UGT1A8</td>
+<td>UDP glucuronosyltransferase family 1 member A8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54576">54576</a></td>
+</tr>
+<tr>
+<td>UGT1A7</td>
+<td>UGT1A7</td>
+<td>UDP glucuronosyltransferase family 1 member A7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54577">54577</a></td>
+</tr>
+<tr>
+<td>UGT1A9</td>
+<td>UGT1A9</td>
+<td>UDP glucuronosyltransferase family 1 member A9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54600">54600</a></td>
+</tr>
+<tr>
+<td>UGT1A1</td>
+<td>UGT1A1</td>
+<td>UDP glucuronosyltransferase family 1 member A1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54658">54658</a></td>
+</tr>
+<tr>
+<td>UGT1A3</td>
+<td>UGT1A3</td>
+<td>UDP glucuronosyltransferase family 1 member A3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54659">54659</a></td>
+</tr>
+</tbody></table><br/><br/>
+</div>
+</div>
+</div>
+</div>
+<script>plotDAG('Project_node79genes_neg_.json','[{"id":"Project_node79genes_neg_.json","reports":[{"gID":["GO:0052697"],"Edge":["GO:0006805","GO:0052695"],"Name":["xenobiotic glucuronidation"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0052697"],"gNum":["6"],"FDR":["2.06e-09"]},{"gID":["GO:0051552"],"Edge":["GO:0009812","GO:0042440"],"Name":["flavone metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0051552"],"gNum":["5"],"FDR":["1.61e-07"]},{"gID":["GO:0006063"],"Edge":["GO:0005996","GO:0032787"],"Name":["uronic acid metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0006063"],"gNum":["6"],"FDR":["3.77e-07"]},{"gID":["GO:0019585"],"Edge":["GO:0006063"],"Name":["glucuronate metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0019585"],"gNum":["6"],"FDR":["3.77e-07"]},{"gID":["GO:0052695"],"Edge":["GO:0019585"],"Name":["cellular glucuronidation"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0052695"],"gNum":["6"],"FDR":["3.77e-07"]},{"gID":["GO:0052696"],"Edge":["GO:0009812","GO:0052695"],"Name":["flavonoid glucuronidation"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0052696"],"gNum":["6"],"FDR":["3.77e-07"]},{"gID":["GO:0042573"],"Edge":["GO:0001523","GO:0032787","GO:0034754"],"Name":["retinoic acid metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0042573"],"gNum":["6"],"FDR":["7.43e-07"]},{"gID":["GO:0009812"],"Edge":["GO:0071704"],"Name":["flavonoid metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0009812"],"gNum":["6"],"FDR":["9.46e-07"]},{"gID":["GO:0034754"],"Edge":["GO:0042445","GO:0044237"],"Name":["cellular hormone metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0034754"],"gNum":["8"],"FDR":["9.93e-07"]},{"gID":["GO:0001523"],"Edge":["GO:0016101"],"Name":["retinoid metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0001523"],"gNum":["7"],"FDR":["1.48e-05"]},{"gID":["GO:0016101"],"Edge":["GO:0006721"],"Name":["diterpenoid metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0016101"],"gNum":["7"],"FDR":["2.03e-05"]},{"gID":["GO:0006721"],"Edge":["GO:0006720"],"Name":["terpenoid metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0006721"],"gNum":["7"],"FDR":["3.95e-05"]},{"gID":["GO:0042440"],"Edge":["GO:0044710"],"Name":["pigment metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0042440"],"gNum":["5"],"FDR":["4.27e-05"]},{"gID":["GO:0006720"],"Edge":["GO:0044255"],"Name":["isoprenoid metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0006720"],"gNum":["7"],"FDR":["4.27e-05"]},{"gID":["GO:0042445"],"Edge":["GO:0008152","GO:0010817"],"Name":["hormone metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0042445"],"gNum":["8"],"FDR":["7e-05"]},{"gID":["GO:0009813"],"Edge":["GO:0009812","GO:1901576"],"Name":["flavonoid biosynthetic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0009813"],"gNum":["4"],"FDR":["5.63e-04"]},{"gID":["GO:0006805"],"Edge":["GO:0044237","GO:0071466"],"Name":["xenobiotic metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0006805"],"gNum":["6"],"FDR":["7.85e-04"]},{"gID":["GO:0071466"],"Edge":["GO:0009410","GO:0070887"],"Name":["cellular response to xenobiotic stimulus"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0071466"],"gNum":["6"],"FDR":["7.85e-04"]},{"gID":["GO:0009410"],"Edge":["GO:0042221"],"Name":["response to xenobiotic stimulus"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0009410"],"gNum":["6"],"FDR":["8.98e-04"]},{"gID":["GO:0005996"],"Edge":["GO:0044281","GO:0044723"],"Name":["monosaccharide metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0005996"],"gNum":["6"],"FDR":["2.36e-03"]},{"gID":["GO:0032787"],"Edge":["GO:0019752"],"Name":["monocarboxylic acid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006063"],"Edge":["GO:0005996","GO:0032787"],"Name":["uronic acid metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0006063"],"gNum":["6"],"FDR":["3.77e-07"]},{"gID":["GO:0019585"],"Edge":["GO:0006063"],"Name":["glucuronate metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0019585"],"gNum":["6"],"FDR":["3.77e-07"]},{"gID":["GO:0052695"],"Edge":["GO:0019585"],"Name":["cellular glucuronidation"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0052695"],"gNum":["6"],"FDR":["3.77e-07"]},{"gID":["GO:0071704"],"Edge":["GO:0008152"],"Name":["organic substance metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044237"],"Edge":["GO:0008152","GO:0009987"],"Name":["cellular metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044710"],"Edge":["GO:0008152","GO:0044699"],"Name":["single-organism metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044255"],"Edge":["GO:0006629","GO:0044237","GO:0044763"],"Name":["cellular lipid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008152"],"Edge":["GO:0008150"],"Name":["metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0010817"],"Edge":["GO:0065008"],"Name":["regulation of hormone levels"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0009812"],"Edge":["GO:0071704"],"Name":["flavonoid metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0009812"],"gNum":["6"],"FDR":["9.46e-07"]},{"gID":["GO:1901576"],"Edge":["GO:0009058","GO:0071704"],"Name":["organic substance biosynthetic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0070887"],"Edge":["GO:0042221","GO:0051716"],"Name":["cellular response to chemical stimulus"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0042221"],"Edge":["GO:0050896"],"Name":["response to chemical"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044281"],"Edge":["GO:0044710"],"Name":["small molecule metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044723"],"Edge":["GO:0005975","GO:0044710"],"Name":["single-organism carbohydrate metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0019752"],"Edge":["GO:0043436"],"Name":["carboxylic acid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0005996"],"Edge":["GO:0044281","GO:0044723"],"Name":["monosaccharide metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0005996"],"gNum":["6"],"FDR":["2.36e-03"]},{"gID":["GO:0032787"],"Edge":["GO:0019752"],"Name":["monocarboxylic acid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006063"],"Edge":["GO:0005996","GO:0032787"],"Name":["uronic acid metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0006063"],"gNum":["6"],"FDR":["3.77e-07"]},{"gID":["GO:0019585"],"Edge":["GO:0006063"],"Name":["glucuronate metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0019585"],"gNum":["6"],"FDR":["3.77e-07"]},{"gID":["GO:0009987"],"Edge":["GO:0008150"],"Name":["cellular process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044699"],"Edge":["GO:0008150"],"Name":["single-organism process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006629"],"Edge":["GO:0044238","GO:0044710","GO:0071704"],"Name":["lipid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044237"],"Edge":["GO:0008152","GO:0009987"],"Name":["cellular metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044763"],"Edge":["GO:0009987","GO:0044699"],"Name":["single-organism cellular process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008150"],"Edge":["NA",""],"Name":["biological_process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0065008"],"Edge":["GO:0065007"],"Name":["regulation of biological quality"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0071704"],"Edge":["GO:0008152"],"Name":["organic substance metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0009058"],"Edge":["GO:0008152"],"Name":["biosynthetic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0051716"],"Edge":["GO:0009987","GO:0050896"],"Name":["cellular response to stimulus"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0050896"],"Edge":["GO:0008150"],"Name":["response to stimulus"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044710"],"Edge":["GO:0008152","GO:0044699"],"Name":["single-organism metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0005975"],"Edge":["GO:0044238","GO:0071704"],"Name":["carbohydrate metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0043436"],"Edge":["GO:0006082"],"Name":["oxoacid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044281"],"Edge":["GO:0044710"],"Name":["small molecule metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044723"],"Edge":["GO:0005975","GO:0044710"],"Name":["single-organism carbohydrate metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0019752"],"Edge":["GO:0043436"],"Name":["carboxylic acid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0005996"],"Edge":["GO:0044281","GO:0044723"],"Name":["monosaccharide metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0005996"],"gNum":["6"],"FDR":["2.36e-03"]},{"gID":["GO:0032787"],"Edge":["GO:0019752"],"Name":["monocarboxylic acid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006063"],"Edge":["GO:0005996","GO:0032787"],"Name":["uronic acid metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0006063"],"gNum":["6"],"FDR":["3.77e-07"]},{"gID":["GO:0044238"],"Edge":["GO:0008152"],"Name":["primary metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008152"],"Edge":["GO:0008150"],"Name":["metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0009987"],"Edge":["GO:0008150"],"Name":["cellular process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044699"],"Edge":["GO:0008150"],"Name":["single-organism process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0065007"],"Edge":["GO:0008150"],"Name":["biological regulation"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008150"],"Edge":["NA",""],"Name":["biological_process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0071704"],"Edge":["GO:0008152"],"Name":["organic substance metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006082"],"Edge":["GO:0044237","GO:0044281","GO:0044763","GO:0071704"],"Name":["organic acid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044710"],"Edge":["GO:0008152","GO:0044699"],"Name":["single-organism metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0005975"],"Edge":["GO:0044238","GO:0071704"],"Name":["carbohydrate metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0043436"],"Edge":["GO:0006082"],"Name":["oxoacid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044281"],"Edge":["GO:0044710"],"Name":["small molecule metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044723"],"Edge":["GO:0005975","GO:0044710"],"Name":["single-organism carbohydrate metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0019752"],"Edge":["GO:0043436"],"Name":["carboxylic acid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0005996"],"Edge":["GO:0044281","GO:0044723"],"Name":["monosaccharide metabolic process"],"Sig":["red"],"Link":["results/pathway/hgsc/Project_node79genes_neg/Report_node79genes_neg.html#GO:0005996"],"gNum":["6"],"FDR":["2.36e-03"]},{"gID":["GO:0032787"],"Edge":["GO:0019752"],"Name":["monocarboxylic acid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008152"],"Edge":["GO:0008150"],"Name":["metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044237"],"Edge":["GO:0008152","GO:0009987"],"Name":["cellular metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044763"],"Edge":["GO:0009987","GO:0044699"],"Name":["single-organism cellular process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0071704"],"Edge":["GO:0008152"],"Name":["organic substance metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044699"],"Edge":["GO:0008150"],"Name":["single-organism process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044238"],"Edge":["GO:0008152"],"Name":["primary metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006082"],"Edge":["GO:0044237","GO:0044281","GO:0044763","GO:0071704"],"Name":["organic acid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044710"],"Edge":["GO:0008152","GO:0044699"],"Name":["single-organism metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0005975"],"Edge":["GO:0044238","GO:0071704"],"Name":["carbohydrate metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0043436"],"Edge":["GO:0006082"],"Name":["oxoacid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044281"],"Edge":["GO:0044710"],"Name":["small molecule metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044723"],"Edge":["GO:0005975","GO:0044710"],"Name":["single-organism carbohydrate metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0019752"],"Edge":["GO:0043436"],"Name":["carboxylic acid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008150"],"Edge":["NA",""],"Name":["biological_process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008152"],"Edge":["GO:0008150"],"Name":["metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0009987"],"Edge":["GO:0008150"],"Name":["cellular process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044237"],"Edge":["GO:0008152","GO:0009987"],"Name":["cellular metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044763"],"Edge":["GO:0009987","GO:0044699"],"Name":["single-organism cellular process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0071704"],"Edge":["GO:0008152"],"Name":["organic substance metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044699"],"Edge":["GO:0008150"],"Name":["single-organism process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044238"],"Edge":["GO:0008152"],"Name":["primary metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006082"],"Edge":["GO:0044237","GO:0044281","GO:0044763","GO:0071704"],"Name":["organic acid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044710"],"Edge":["GO:0008152","GO:0044699"],"Name":["single-organism metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0005975"],"Edge":["GO:0044238","GO:0071704"],"Name":["carbohydrate metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0043436"],"Edge":["GO:0006082"],"Name":["oxoacid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008150"],"Edge":["NA",""],"Name":["biological_process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008152"],"Edge":["GO:0008150"],"Name":["metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0009987"],"Edge":["GO:0008150"],"Name":["cellular process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044237"],"Edge":["GO:0008152","GO:0009987"],"Name":["cellular metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044281"],"Edge":["GO:0044710"],"Name":["small molecule metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044763"],"Edge":["GO:0009987","GO:0044699"],"Name":["single-organism cellular process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0071704"],"Edge":["GO:0008152"],"Name":["organic substance metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044699"],"Edge":["GO:0008150"],"Name":["single-organism process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044238"],"Edge":["GO:0008152"],"Name":["primary metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006082"],"Edge":["GO:0044237","GO:0044281","GO:0044763","GO:0071704"],"Name":["organic acid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008150"],"Edge":["NA",""],"Name":["biological_process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008152"],"Edge":["GO:0008150"],"Name":["metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0009987"],"Edge":["GO:0008150"],"Name":["cellular process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044710"],"Edge":["GO:0008152","GO:0044699"],"Name":["single-organism metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044237"],"Edge":["GO:0008152","GO:0009987"],"Name":["cellular metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044281"],"Edge":["GO:0044710"],"Name":["small molecule metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044763"],"Edge":["GO:0009987","GO:0044699"],"Name":["single-organism cellular process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0071704"],"Edge":["GO:0008152"],"Name":["organic substance metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008150"],"Edge":["NA",""],"Name":["biological_process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008152"],"Edge":["GO:0008150"],"Name":["metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044699"],"Edge":["GO:0008150"],"Name":["single-organism process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0009987"],"Edge":["GO:0008150"],"Name":["cellular process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044710"],"Edge":["GO:0008152","GO:0044699"],"Name":["single-organism metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008150"],"Edge":["NA",""],"Name":["biological_process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008152"],"Edge":["GO:0008150"],"Name":["metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044699"],"Edge":["GO:0008150"],"Name":["single-organism process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008150"],"Edge":["NA",""],"Name":["biological_process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]}]}]','WJ.graph, .list { cursor: default; }WJ.graph.animate .node { opacity: 0; transition: fill 0.5s, stroke 0.5s, opacity 1s; }WJ.graph.animate .node.visible { opacity: 1; transition: fill 0.5s, stroke 0.5s, opacity 0.5s; }WJ.graph.animate .node.visible.entering { transition: fill 0.5s, stroke 0.5s, opacity 1.5s; }WJ.hovering .graph .node.visible { opacity: 0.2; }WJ.hovering .graph.animate .node.visible { transition: fill 0.5s, stroke 0.5s, opacity 0.4s; }WJ.hovering .graph .node.visible.hovered, .hovering .graph .node.visible.selected { opacity: 1; }WJ.hovering .graph .node.hovered.immediate rect { stroke: rgb(164, 1, 27); fill: rgb(255, 224, 229); }WJ.graph .node rect { fill: rgb(255, 242, 204); stroke-width: 2px; stroke: rgb(161, 109, 0); }WJ.graph.animate .node rect { transition: fill 0.5s, stroke 0.5s, stroke-width 0.5s; }WJ.graph .node text { font-family: Verdana; }WJ.graph .node.selected rect, .hovering .graph .node.selected rect, .hovering .graph .node.selected.hovered.immediate rect { stroke: rgb(15, 75, 255); fill: rgb(179, 236, 255); }WJ.graph .node.preview rect, .hovering .graph .node.preview rect { fill: rgb(234, 218, 236); stroke: rgb(154, 56, 162); }WJ.graph .edge { fill: none; stroke-width: 2.5px; stroke: rgb(209, 157, 0); opacity: 0; }WJ.graph.animate .edge { transition: fill 0.1s, stroke 0.1s, stroke-width 0.1s, opacity 0.3s; }WJ.graph .edge.visible.preview { stroke-width: 4px; stroke: rgb(154, 56, 162); }WJ.graph .edge.visible.selected, .hovering .graph .edge.hovered.immediate.selected { stroke-width: 6px; stroke: rgb(56, 106, 255); }WJ.graph .edge.visible.preview, .hovering .graph .edge.hovered.immediate.preview { stroke: rgb(154, 56, 162); }WJ.graph .edge.visible { opacity: 1; }WJ.graph.animate .edge.visible { transition: fill 0.5s, stroke 0.5s, stroke-width 0.5s, opacity 0.5s; }WJ.graph.animate .edge.visible.entering { transition: fill 0.5s, stroke 0.5s, stroke-width 0.5s, opacity 1.5s; }WJ.hovering .graph .edge.visible { opacity: 0.1; }WJ.hovering .graph.animate .edge.visible { transition: fill 0.5s, stroke 0.5s, stroke-width 0.5s, opacity 0.4s; }WJ.hovering .graph .edge.visible.hovered, .hovering .graph .edge.selected { opacity: 1; }WJ.hovering .graph .edge.hovered.immediate { stroke: rgb(164, 1, 27); stroke-width: 4px; }WJ.minimap .edge { stroke-width: 2px; stroke: black; fill-opacity: 0; }WJ.minimap .node rect { fill: rgb(221, 221, 221); stroke-width: 2px; stroke: black; }WJ.list .item rect { stroke: rgb(15, 75, 255); fill: rgb(179, 236, 255); fill-opacity: 0.5; stroke-width: 1; transition: fill 0.5s, stroke 0.5s; }WJ.list .item:hover rect { fill: rgb(255, 242, 204); stroke: rgb(161, 109, 0); }WJ.list .item text { x: 50%; text-anchor: middle; dominant-baseline: central; }WJ.xtrace-tooltip { text-align: left; }WJ.xtrace-tooltip .key { display: inline-block; float: left; width: 90px; font-weight: bold; }WJ.xtrace-tooltip .value { display: inline-block; float: left; word-wrap: break-word; max-width: 410px; }WJ.xtrace-tooltip .clear { clear: both; }WJ.context-menu .highlight { color: rgb(127, 35, 137); }WJ.context-menu a:hover .highlight { color: rgb(202, 120, 210); }WJtext, tspan, .tipsy { user-select: none; }WJ');</script><script>$( "#tabs" ).tabs();</script><iframe src="http://www.webgestalt.org//html/foot.html" style="border:0px;height:130px;width:100%"></iframe>
+</body></html>

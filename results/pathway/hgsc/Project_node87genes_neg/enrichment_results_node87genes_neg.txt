@@ -1,0 +1,2 @@
+geneset	description	link	C	O	E	R	PValue	FDR	overlapGene	OverlapGene_UserID
+GO:0046415	urate metabolic process	http://amigo.geneontology.org/amigo/term/GO:0046415	8	4	0.115422885572139	34.6551724137931	2.61766927189822e-06	0.0152714825322542	6568;10786;55867;116085	SLC17A3;SLC22A12;SLC22A11;SLC17A1

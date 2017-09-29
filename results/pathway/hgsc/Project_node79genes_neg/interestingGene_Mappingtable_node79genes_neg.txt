@@ -1,0 +1,36 @@
+userid	genesymbol	genename	entrezgene
+CYP4F8	CYP4F8	cytochrome P450 family 4 subfamily F member 8	11283
+FCRL1	FCRL1	Fc receptor like 1	115350
+RPTN	RPTN	repetin	126638
+ADH4	ADH4	alcohol dehydrogenase 4 (class II), pi polypeptide	127
+ADH7	ADH7	alcohol dehydrogenase 7 (class IV), mu or sigma polypeptide	131
+CPB1	CPB1	carboxypeptidase B1	1360
+TNFRSF13B	TNFRSF13B	TNF receptor superfamily member 13B	23495
+C11orf86	C11orf86	chromosome 11 open reading frame 86	254439
+STAP1	STAP1	signal transducing adaptor family member 1	26228
+AMPD1	AMPD1	adenosine monophosphate deaminase 1	270
+C6orf15	C6orf15	chromosome 6 open reading frame 15	29113
+AQP2	AQP2	aquaporin 2	359
+IGFL1	IGFL1	IGF like family member 1	374918
+C5orf46	C5orf46	chromosome 5 open reading frame 46	389336
+FAM177B	FAM177B	family with sequence similarity 177 member B	400823
+AMTN	AMTN	amelotin	401138
+AKR1B15	AKR1B15	aldo-keto reductase family 1 member B15	441282
+UGT1A10	UGT1A10	UDP glucuronosyltransferase family 1 member A10	54575
+UGT1A8	UGT1A8	UDP glucuronosyltransferase family 1 member A8	54576
+UGT1A7	UGT1A7	UDP glucuronosyltransferase family 1 member A7	54577
+UGT1A9	UGT1A9	UDP glucuronosyltransferase family 1 member A9	54600
+UGT1A1	UGT1A1	UDP glucuronosyltransferase family 1 member A1	54658
+UGT1A3	UGT1A3	UDP glucuronosyltransferase family 1 member A3	54659
+ODAM	ODAM	odontogenic, ameloblast asssociated	54959
+PSG4	PSG4	pregnancy specific beta-1-glycoprotein 4	5672
+SLURP1	SLURP1	secreted LY6/PLAUR domain containing 1	57152
+TNFRSF17	TNFRSF17	TNF receptor superfamily member 17	608
+SAA2	SAA2	serum amyloid A2	6289
+SAA4	SAA4	serum amyloid A4, constitutive	6291
+FAM25A	FAM25A	family with sequence similarity 25 member A	643161
+FCRL2	FCRL2	Fc receptor like 2	79368
+TUBAL3	TUBAL3	tubulin alpha like 3	79861
+FCRL5	FCRL5	Fc receptor like 5	83416
+LCE3D	LCE3D	late cornified envelope 3D	84648
+TGM5	TGM5	transglutaminase 5	9333

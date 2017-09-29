@@ -1,0 +1,130 @@
+userid	genesymbol	genename	entrezgene
+SLC17A2	SLC17A2	solute carrier family 17 member 2	10246
+WIF1	WIF1	WNT inhibitory factor 1	11197
+KLK8	KLK8	kallikrein related peptidase 8	11202
+KIF12	KIF12	kinesin family member 12	113220
+MAL2	MAL2	mal, T-cell differentiation protein 2 (gene/pseudogene)	114569
+MUCL1	MUCL1	mucin like 1	118430
+PRAP1	PRAP1	proline rich acidic protein 1	118471
+PLA2G4E	PLA2G4E	phospholipase A2 group IVE	123745
+ADH1A	ADH1A	alcohol dehydrogenase 1A (class I), alpha polypeptide	124
+ADH1C	ADH1C	alcohol dehydrogenase 1C (class I), gamma polypeptide	126
+C20orf85	C20orf85	chromosome 20 open reading frame 85	128602
+AADAC	AADAC	arylacetamide deacetylase	13
+ADH6	ADH6	alcohol dehydrogenase 6 (class V)	130
+LYPD6B	LYPD6B	LY6/PLAUR domain containing 6B	130576
+UGT3A1	UGT3A1	UDP glycosyltransferase family 3 member A1	133688
+C6orf141	C6orf141	chromosome 6 open reading frame 141	135398
+C2CD4A	C2CD4A	C2 calcium dependent domain containing 4A	145741
+CCBE1	CCBE1	collagen and calcium binding EGF domains 1	147372
+ZNF385B	ZNF385B	zinc finger protein 385B	151126
+SH3RF2	SH3RF2	SH3 domain containing ring finger 2	153769
+CYP3A7	CYP3A7	cytochrome P450 family 3 subfamily A member 7	1551
+CYP2B6	CYP2B6	cytochrome P450 family 2 subfamily B member 6	1555
+CYP2C19	CYP2C19	cytochrome P450 family 2 subfamily C member 19	1557
+CYP2C9	CYP2C9	cytochrome P450 family 2 subfamily C member 9	1559
+CYP2C18	CYP2C18	cytochrome P450 family 2 subfamily C member 18	1562
+CYP4A11	CYP4A11	cytochrome P450 family 4 subfamily A member 11	1579
+SLC5A8	SLC5A8	solute carrier family 5 member 8	160728
+DDC	DDC	dopa decarboxylase	1644
+UGT3A2	UGT3A2	UDP glycosyltransferase family 3 member A2	167127
+CYP4Z1	CYP4Z1	cytochrome P450 family 4 subfamily Z member 1	199974
+EMX1	EMX1	empty spiracles homeobox 1	2016
+NRK	NRK	Nik related kinase	203447
+FABP6	FABP6	fatty acid binding protein 6	2172
+MS4A15	MS4A15	membrane spanning 4-domains A15	219995
+RBM24	RBM24	RNA binding motif protein 24	221662
+FGA	FGA	fibrinogen alpha chain	2243
+FGG	FGG	fibrinogen gamma chain	2266
+CBLC	CBLC	Cbl proto-oncogene C	23624
+SMPX	SMPX	small muscle protein, X-linked	23676
+ANKS4B	ANKS4B	ankyrin repeat and sterile alpha motif domain containing 4B	257629
+ANKRD1	ANKRD1	ankyrin repeat domain 1	27063
+TINAG	TINAG	tubulointerstitial nephritis antigen	27283
+SLCO1B3	SLCO1B3	solute carrier organic anion transporter family member 1B3	28234
+PLA2G4D	PLA2G4D	phospholipase A2 group IVD	283748
+GSTA1	GSTA1	glutathione S-transferase alpha 1	2938
+GSTA2	GSTA2	glutathione S-transferase alpha 2	2939
+TRHDE	TRHDE	thyrotropin releasing hormone degrading enzyme	29953
+HABP2	HABP2	hyaluronan binding protein 2	3026
+HNF4A	HNF4A	hepatocyte nuclear factor 4 alpha	3172
+APCS	APCS	amyloid P component, serum	325
+HSD17B2	HSD17B2	hydroxysteroid 17-beta dehydrogenase 2	3294
+SLC6A19	SLC6A19	solute carrier family 6 member 19	340024
+C11orf53	C11orf53	chromosome 11 open reading frame 53	341032
+ACSM2B	ACSM2B	acyl-CoA synthetase medium-chain family member 2B	348158
+ASPG	ASPG	asparaginase	374569
+IGFL1	IGFL1	IGF like family member 1	374918
+KRT9	KRT9	keratin 9	3857
+KRT31	KRT31	keratin 31	3881
+LDLRAD1	LDLRAD1	low density lipoprotein receptor class A domain containing 1	388633
+C6orf222	C6orf222	chromosome 6 open reading frame 222	389384
+AMTN	AMTN	amelotin	401138
+LPA	LPA	lipoprotein(a)	4018
+SCGB2A2	SCGB2A2	secretoglobin family 2A member 2	4250
+NPHS1	NPHS1	NPHS1, nephrin	4868
+NTF3	NTF3	neurotrophin 3	4908
+OPRK1	OPRK1	opioid receptor kappa 1	4986
+IL20	IL20	interleukin 20	50604
+SERPINA10	SERPINA10	serpin family A member 10	51156
+SERPINA4	SERPINA4	serpin family A member 4	5267
+SERPINB5	SERPINB5	serpin family B member 5	5268
+PITX1	PITX1	paired like homeodomain 1	5307
+UNC93A	UNC93A	unc-93 homolog A (C. elegans)	54346
+KRT20	KRT20	keratin 20	54474
+RNF186	RNF186	ring finger protein 186	54546
+UGT1A6	UGT1A6	UDP glucuronosyltransferase family 1 member A6	54578
+UGT1A9	UGT1A9	UDP glucuronosyltransferase family 1 member A9	54600
+UGT1A1	UGT1A1	UDP glucuronosyltransferase family 1 member A1	54658
+UGT1A3	UGT1A3	UDP glucuronosyltransferase family 1 member A3	54659
+CDHR2	CDHR2	cadherin related family member 2	54825
+EPN3	EPN3	epsin 3	55040
+TMEM40	TMEM40	transmembrane protein 40	55287
+AKR1B10	AKR1B10	aldo-keto reductase family 1 member B10	57016
+NGB	NGB	neuroglobin	58157
+PVALB	PVALB	parvalbumin	5816
+PRODH2	PRODH2	proline dehydrogenase 2	58510
+SLC5A7	SLC5A7	solute carrier family 5 member 7	60482
+SAA4	SAA4	serum amyloid A4, constitutive	6291
+CCL11	CCL11	C-C motif chemokine ligand 11	6356
+ABCG8	ABCG8	ATP binding cassette subfamily G member 8	64241
+FAM25A	FAM25A	family with sequence similarity 25 member A	643161
+PHGR1	PHGR1	proline, histidine and glycine rich 1	644844
+SIM1	SIM1	single-minded family bHLH transcription factor 1	6492
+SIX3	SIX3	SIX homeobox 3	6496
+BMP3	BMP3	bone morphogenetic protein 3	651
+BMP5	BMP5	bone morphogenetic protein 5	653
+SLC6A2	SLC6A2	solute carrier family 6 member 2	6530
+SLC18A2	SLC18A2	solute carrier family 18 member A2	6571
+SPRR1A	SPRR1A	small proline rich protein 1A	6698
+SPRR2F	SPRR2F	small proline rich protein 2F	6705
+SPRR2G	SPRR2G	small proline rich protein 2G	6706
+SULT1E1	SULT1E1	sulfotransferase family 1E member 1	6783
+SULT2A1	SULT2A1	sulfotransferase family 2A member 1	6822
+TAC1	TAC1	tachykinin precursor 1	6863
+TAC3	TAC3	tachykinin 3	6866
+TCF21	TCF21	transcription factor 21	6943
+TFF1	TFF1	trefoil factor 1	7031
+TH	TH	tyrosine hydroxylase	7054
+TNNT2	TNNT2	troponin T2, cardiac type	7139
+TYRP1	TYRP1	tyrosinase related protein 1	7306
+SCGB1A1	SCGB1A1	secretoglobin family 1A member 1	7356
+UGT2B4	UGT2B4	UDP glucuronosyltransferase family 2 member B4	7363
+VSNL1	VSNL1	visinin like 1	7447
+PSAPL1	PSAPL1	prosaposin-like 1 (gene/pseudogene)	768239
+C2orf54	C2orf54	chromosome 2 open reading frame 54	79919
+FRMD1	FRMD1	FERM domain containing 1	79981
+CALML3	CALML3	calmodulin like 3	810
+CREB3L3	CREB3L3	cAMP responsive element binding protein 3 like 3	84699
+LY6D	LY6D	lymphocyte antigen 6 family member D	8581
+SERPINA6	SERPINA6	serpin family A member 6	866
+SERPINB7	SERPINB7	serpin family B member 7	8710
+DLK1	DLK1	delta like non-canonical Notch ligand 1	8788
+TRIM15	TRIM15	tripartite motif containing 15	89870
+HSPB3	HSPB3	heat shock protein family B (small) member 3	8988
+TM4SF5	TM4SF5	transmembrane 4 L six family member 5	9032
+SLC13A2	SLC13A2	solute carrier family 13 member 2	9058
+ANKRD30A	ANKRD30A	ankyrin repeat domain 30A	91074
+KCNB2	KCNB2	potassium voltage-gated channel subfamily B member 2	9312
+GDA	GDA	guanine deaminase	9615
+FGF19	FGF19	fibroblast growth factor 19	9965

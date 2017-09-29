@@ -1,0 +1,797 @@
+<html>
+<head>
+<title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery-ui.js"></script>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42098540-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/changeColor.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/tableExport.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.base64.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/html2canvas.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jspdf/libs/sprintf.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jspdf.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jspdf/libs/base64.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/search.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/d3/d3.v3.min.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.tipsy.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.contextMenu.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.floatThead.min.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/dagre/dagre.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/Minimap.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/MinimapZoom.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/DirectedAcyclicGraph.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/List.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/Selectable_svv.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/Graph.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/History.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/Tooltip.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/FileSaver.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/download.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/ContextMenu.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/searchView.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/canvg/rgbcolor.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/canvg/StackBlur.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/canvg/canvg.js"></script>
+<script type="text/javascript" src="js/xtrace_utils.js"></script>
+<script type="text/javascript" src="js/xtrace_graph.js"></script>
+<script type="text/javascript" src="js/plotDAG.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/tooltipster.bundle.min.js"></script>
+<script>$(document).ready(function(){$('.tooltip-container').tooltipster({functionInit: function (instance, helper) {var content = $(helper.origin).find('.tooltip_content').detach();instance.content(content);}});});</script>
+<link href="http://www.webgestalt.org//css/jquery-ui.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/xtrace.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/tipsy.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/jquery.contextMenu.css" rel="stylesheet" type="text/css">
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/graph.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/report.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/zebra.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/search.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/tooltipster.bundle.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<p align="center">
+<iframe src="http://www.webgestalt.org//html/head.html" style="border:0px;height:180px;width:100%"></iframe>
+<div id ="tabs"> <ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#interestGene">User ID Mapping Table</a></li>
+<li><a href="#referenceGene">GOSlim Summary</a></li>
+<li><a href="#result">Enrichment Results</a></li>
+</ul>
+<div id="summary">
+<h3>Summary&nbsp&nbsp&nbsp(<a href="Project_node66_pos.tar.gz" target="_blank" style="color:red"><u>Result Download</u></a>)</h3>
+<b>Enrich method:</b> ORA<br/>
+<b>Organism:</b>hsapiens<br/>
+<b>Enrichment Categories: </b>geneontology_Biological_Process<br/>
+<b>Interesting gene list: </b> a R object. <b> ID type: </b>genesymbol<br/>
+The interesting gene list contains <b>52</b> user IDs in which <b>50</b> user IDs are unambiguously mapped to the unique Entrez Gene IDs and <b>2</b> user IDs are mapped to multiple Entrez Gene IDs or could not be mapped to any Entrez Gene ID. The GO Slim summary are based upon the <b>50</b> unique Entrez Gene IDs.<br/>
+Among the <b>50</b> unique Entrez Gene IDs, <b>44</b> IDs are annotated to the selected functional categories and also in the reference gene list, which are used for the enrichment analysis.<br/>
+<b>Reference gene list: </b>data/background_genes.txt <b>ID type: </b>genesymbol<br/>
+The reference gene list contains <b>5000</b> IDs in which <b>4627</b> IDs are unambiguously mapped to the unique Entrez Gene IDs and <b>373</b> IDs are mapped to multiple Entrez Gene IDs or could not be mapped to any Entrez Gene ID.<br/>
+Among the <b>4627</b> unique Entrez Gene IDs, <b>4020</b> IDs are annotated to the selected functional categories, which are used as the reference for the enrichment analysis.<br/>
+<b>Parameters for the enrichment analysis:</b>
+<ul><li><b>Minimum number of Entrez Gene IDs in the category:</b>4</li>
+<li><b>Maximum number of Entrez Gene IDs in the category:</b>500</li>
+<li><b>FDR Method:</b>BH</li>
+<li><b>Significance Level:</b> FDR<0.05</li>
+</ul>
+Based on the above parameters, <b>10</b> categories are identified as enriched categories and all are shown in this report.<br/>
+</div>
+<div id="interestGene">
+<div id="mappedGene">
+<h4>Mapped User IDs</h4>
+<table class="zebra"><thead><tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>GLYAT</td>
+<td>GLYAT</td>
+<td>glycine-N-acyltransferase</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=10249">10249</a></td>
+</tr>
+<tr>
+<td>CIDEA</td>
+<td>CIDEA</td>
+<td>cell death-inducing DFFA-like effector a</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=1149">1149</a></td>
+</tr>
+<tr>
+<td>C10orf90</td>
+<td>C10orf90</td>
+<td>chromosome 10 open reading frame 90</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=118611">118611</a></td>
+</tr>
+<tr>
+<td>ADH1A</td>
+<td>ADH1A</td>
+<td>alcohol dehydrogenase 1A (class I), alpha polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=124">124</a></td>
+</tr>
+<tr>
+<td>ADH1B</td>
+<td>ADH1B</td>
+<td>alcohol dehydrogenase 1B (class I), beta polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=125">125</a></td>
+</tr>
+<tr>
+<td>ADH4</td>
+<td>ADH4</td>
+<td>alcohol dehydrogenase 4 (class II), pi polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=127">127</a></td>
+</tr>
+<tr>
+<td>AADAC</td>
+<td>AADAC</td>
+<td>arylacetamide deacetylase</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=13">13</a></td>
+</tr>
+<tr>
+<td>CPN1</td>
+<td>CPN1</td>
+<td>carboxypeptidase N subunit 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=1369">1369</a></td>
+</tr>
+<tr>
+<td>CPN2</td>
+<td>CPN2</td>
+<td>carboxypeptidase N subunit 2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=1370">1370</a></td>
+</tr>
+<tr>
+<td>NBPF4</td>
+<td>NBPF4</td>
+<td>neuroblastoma breakpoint family member 4</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=148545">148545</a></td>
+</tr>
+<tr>
+<td>ROPN1B</td>
+<td>ROPN1B</td>
+<td>rhophilin associated tail protein 1B</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=152015">152015</a></td>
+</tr>
+<tr>
+<td>CYP2A6</td>
+<td>CYP2A6</td>
+<td>cytochrome P450 family 2 subfamily A member 6</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=1548">1548</a></td>
+</tr>
+<tr>
+<td>DSG1</td>
+<td>DSG1</td>
+<td>desmoglein 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=1828">1828</a></td>
+</tr>
+<tr>
+<td>HEPACAM</td>
+<td>HEPACAM</td>
+<td>hepatic and glial cell adhesion molecule</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=220296">220296</a></td>
+</tr>
+<tr>
+<td>SERPINA11</td>
+<td>SERPINA11</td>
+<td>serpin family A member 11</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=256394">256394</a></td>
+</tr>
+<tr>
+<td>FETUB</td>
+<td>FETUB</td>
+<td>fetuin B</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=26998">26998</a></td>
+</tr>
+<tr>
+<td>GJB1</td>
+<td>GJB1</td>
+<td>gap junction protein beta 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=2705">2705</a></td>
+</tr>
+<tr>
+<td>GPR12</td>
+<td>GPR12</td>
+<td>G protein-coupled receptor 12</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=2835">2835</a></td>
+</tr>
+<tr>
+<td>CDH19</td>
+<td>CDH19</td>
+<td>cadherin 19</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=28513">28513</a></td>
+</tr>
+<tr>
+<td>TUSC5</td>
+<td>TUSC5</td>
+<td>tumor suppressor candidate 5</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=286753">286753</a></td>
+</tr>
+<tr>
+<td>GRIA2</td>
+<td>GRIA2</td>
+<td>glutamate ionotropic receptor AMPA type subunit 2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=2891">2891</a></td>
+</tr>
+<tr>
+<td>TLX1</td>
+<td>TLX1</td>
+<td>T-cell leukemia homeobox 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3195">3195</a></td>
+</tr>
+<tr>
+<td>APOA2</td>
+<td>APOA2</td>
+<td>apolipoprotein A2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=336">336</a></td>
+</tr>
+<tr>
+<td>HCN1</td>
+<td>HCN1</td>
+<td>hyperpolarization activated cyclic nucleotide gated potassium channel 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=348980">348980</a></td>
+</tr>
+<tr>
+<td>KCNC2</td>
+<td>KCNC2</td>
+<td>potassium voltage-gated channel subfamily C member 2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3747">3747</a></td>
+</tr>
+<tr>
+<td>AQP7P1</td>
+<td>AQP7P1</td>
+<td>aquaporin 7 pseudogene 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=375719">375719</a></td>
+</tr>
+<tr>
+<td>LEP</td>
+<td>LEP</td>
+<td>leptin</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3952">3952</a></td>
+</tr>
+<tr>
+<td>C14orf180</td>
+<td>C14orf180</td>
+<td>chromosome 14 open reading frame 180</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=400258">400258</a></td>
+</tr>
+<tr>
+<td>SCGB2A2</td>
+<td>SCGB2A2</td>
+<td>secretoglobin family 2A member 2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=4250">4250</a></td>
+</tr>
+<tr>
+<td>MMP8</td>
+<td>MMP8</td>
+<td>matrix metallopeptidase 8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=4317">4317</a></td>
+</tr>
+<tr>
+<td>NPY5R</td>
+<td>NPY5R</td>
+<td>neuropeptide Y receptor Y5</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=4889">4889</a></td>
+</tr>
+<tr>
+<td>SERPINA5</td>
+<td>SERPINA5</td>
+<td>serpin family A member 5</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=5104">5104</a></td>
+</tr>
+<tr>
+<td>SERPINA10</td>
+<td>SERPINA10</td>
+<td>serpin family A member 10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=51156">51156</a></td>
+</tr>
+<tr>
+<td>PLIN1</td>
+<td>PLIN1</td>
+<td>perilipin 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=5346">5346</a></td>
+</tr>
+<tr>
+<td>ROPN1</td>
+<td>ROPN1</td>
+<td>rhophilin associated tail protein 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54763">54763</a></td>
+</tr>
+<tr>
+<td>SAA4</td>
+<td>SAA4</td>
+<td>serum amyloid A4, constitutive</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=6291">6291</a></td>
+</tr>
+<tr>
+<td>CIDEC</td>
+<td>CIDEC</td>
+<td>cell death inducing DFFA like effector c</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=63924">63924</a></td>
+</tr>
+<tr>
+<td>HEPN1</td>
+<td>HEPN1</td>
+<td>hepatocellular carcinoma, down-regulated 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=641654">641654</a></td>
+</tr>
+<tr>
+<td>ABCG8</td>
+<td>ABCG8</td>
+<td>ATP binding cassette subfamily G member 8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=64241">64241</a></td>
+</tr>
+<tr>
+<td>SOX5</td>
+<td>SOX5</td>
+<td>SRY-box 5</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=6660">6660</a></td>
+</tr>
+<tr>
+<td>SOX10</td>
+<td>SOX10</td>
+<td>SRY-box 10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=6663">6663</a></td>
+</tr>
+<tr>
+<td>SULT2A1</td>
+<td>SULT2A1</td>
+<td>sulfotransferase family 2A member 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=6822">6822</a></td>
+</tr>
+<tr>
+<td>TF</td>
+<td>TF</td>
+<td>transferrin</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=7018">7018</a></td>
+</tr>
+<tr>
+<td>TFAP2B</td>
+<td>TFAP2B</td>
+<td>transcription factor AP-2 beta</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=7021">7021</a></td>
+</tr>
+<tr>
+<td>THRSP</td>
+<td>THRSP</td>
+<td>thyroid hormone responsive</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=7069">7069</a></td>
+</tr>
+<tr>
+<td>C6</td>
+<td>C6</td>
+<td>complement C6</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=729">729</a></td>
+</tr>
+<tr>
+<td>MIA</td>
+<td>MIA</td>
+<td>melanoma inhibitory activity</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=8190">8190</a></td>
+</tr>
+<tr>
+<td>SERPINA6</td>
+<td>SERPINA6</td>
+<td>serpin family A member 6</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=866">866</a></td>
+</tr>
+<tr>
+<td>ADIPOQ</td>
+<td>ADIPOQ</td>
+<td>adiponectin, C1Q and collagen domain containing</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=9370">9370</a></td>
+</tr>
+<tr>
+<td>HAND2</td>
+<td>HAND2</td>
+<td>heart and neural crest derivatives expressed 2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=9464">9464</a></td>
+</tr>
+</tbody></table>
+</div>
+<div id="empty">&nbsp&nbsp&nbsp&nbsp</div>
+<div id="unmappedGene">
+<h4>User IDs mapped to multiple Entrtez IDs or not mapped</h4>
+<table class="zebra"><thead><tr>
+<th>userid</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ITIH5L</td>
+</tr>
+<tr>
+<td>NBLA00301</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div id="referenceGene">
+<h4>GOSlim summary for the user list genes</h4>
+Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.<br/>
+The height of the bar represents the number of user list genes observed in the category.
+<img src="goslim_summary_node66_pos.png" width="100%" height="100%"/></div>
+<div id="result">
+<div id="dag">
+<div id = "graphDAG" style="height:100%;width:100%"></div>
+</div>
+<div id="empty1">&nbsp&nbsp&nbsp&nbsp</div>
+<div id="genelist_wrap">
+<div id="genelist_des">
+<h4>Detailed information of the enriched categories</h4>
+<div class="tooltip_templates">The statistics
+<a class="tooltip-container"><img src="http://www.webgestalt.org/images/info.png" width="13" height="13"/>
+<span class="tooltip_content"><strong><ul><li>C: the number of reference genes in the category</li><li>O: the number of genes in the user gene list and also in the category</li><li>E: The expected number in the category</li><li>R: ratio of enrichment</li><li>PValue: p value from hyergeometric test</li><li>FDR: FDR from BH</li></ul></strong></span></a>
+ for the enriched categories and the genes in the user gene list and also in the category are listed in the table. <br/></div>
+<div class="search"><input id="tags" type="text" name="q" placeholder="ID Search"><ul id="searchData"><li><a id="aid0" href="#GO:0030300">GO:0030300 regulation of intestinal cholesterol absorption</a></li><li><a id="aid1" href="#GO:1904729">GO:1904729 regulation of intestinal lipid absorption</a></li><li><a id="aid2" href="#GO:0006069">GO:0006069 ethanol oxidation</a></li><li><a id="aid3" href="#GO:1904478">GO:1904478 regulation of intestinal absorption</a></li><li><a id="aid4" href="#GO:0032371">GO:0032371 regulation of sterol transport</a></li><li><a id="aid5" href="#GO:0032374">GO:0032374 regulation of cholesterol transport</a></li><li><a id="aid6" href="#GO:0016042">GO:0016042 lipid catabolic process</a></li><li><a id="aid7" href="#GO:0006067">GO:0006067 ethanol metabolic process</a></li><li><a id="aid8" href="#GO:0030299">GO:0030299 intestinal cholesterol absorption</a></li><li><a id="aid9" href="#GO:0098856">GO:0098856 intestinal lipid absorption</a></li></ul></div>
+</div>
+<br/>
+<div id="genelist">
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table1').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table1" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0030300"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0030300" target="_blank"><b>ID:GO:0030300&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:regulation of intestinal cholesterol absorption</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=5; O=3; E=0.05; R=57.43; PValue=1.05e-05; FDR=3.05e-02</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>APOA2</td>
+<td>APOA2</td>
+<td>apolipoprotein A2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=336">336</a></td>
+</tr>
+<tr>
+<td>LEP</td>
+<td>LEP</td>
+<td>leptin</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3952">3952</a></td>
+</tr>
+<tr>
+<td>ABCG8</td>
+<td>ABCG8</td>
+<td>ATP binding cassette subfamily G member 8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=64241">64241</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table2').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table2" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:1904729"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:1904729" target="_blank"><b>ID:GO:1904729&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:regulation of intestinal lipid absorption</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=5; O=3; E=0.05; R=57.43; PValue=1.05e-05; FDR=3.05e-02</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>APOA2</td>
+<td>APOA2</td>
+<td>apolipoprotein A2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=336">336</a></td>
+</tr>
+<tr>
+<td>LEP</td>
+<td>LEP</td>
+<td>leptin</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3952">3952</a></td>
+</tr>
+<tr>
+<td>ABCG8</td>
+<td>ABCG8</td>
+<td>ATP binding cassette subfamily G member 8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=64241">64241</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table3').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table3" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0006069"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0006069" target="_blank"><b>ID:GO:0006069&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:ethanol oxidation</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=7; O=3; E=0.07; R=41.02; PValue=3.61e-05; FDR=4.04e-02</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ADH1A</td>
+<td>ADH1A</td>
+<td>alcohol dehydrogenase 1A (class I), alpha polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=124">124</a></td>
+</tr>
+<tr>
+<td>ADH1B</td>
+<td>ADH1B</td>
+<td>alcohol dehydrogenase 1B (class I), beta polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=125">125</a></td>
+</tr>
+<tr>
+<td>ADH4</td>
+<td>ADH4</td>
+<td>alcohol dehydrogenase 4 (class II), pi polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=127">127</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table4').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table4" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:1904478"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:1904478" target="_blank"><b>ID:GO:1904478&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:regulation of intestinal absorption</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=7; O=3; E=0.07; R=41.02; PValue=3.61e-05; FDR=4.04e-02</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>APOA2</td>
+<td>APOA2</td>
+<td>apolipoprotein A2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=336">336</a></td>
+</tr>
+<tr>
+<td>LEP</td>
+<td>LEP</td>
+<td>leptin</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3952">3952</a></td>
+</tr>
+<tr>
+<td>ABCG8</td>
+<td>ABCG8</td>
+<td>ATP binding cassette subfamily G member 8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=64241">64241</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table5').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table5" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0032371"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0032371" target="_blank"><b>ID:GO:0032371&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:regulation of sterol transport</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=20; O=4; E=0.21; R=19.14; PValue=4.42e-05; FDR=4.04e-02</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>APOA2</td>
+<td>APOA2</td>
+<td>apolipoprotein A2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=336">336</a></td>
+</tr>
+<tr>
+<td>LEP</td>
+<td>LEP</td>
+<td>leptin</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3952">3952</a></td>
+</tr>
+<tr>
+<td>ABCG8</td>
+<td>ABCG8</td>
+<td>ATP binding cassette subfamily G member 8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=64241">64241</a></td>
+</tr>
+<tr>
+<td>ADIPOQ</td>
+<td>ADIPOQ</td>
+<td>adiponectin, C1Q and collagen domain containing</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=9370">9370</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table6').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table6" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0032374"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0032374" target="_blank"><b>ID:GO:0032374&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:regulation of cholesterol transport</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=20; O=4; E=0.21; R=19.14; PValue=4.42e-05; FDR=4.04e-02</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>APOA2</td>
+<td>APOA2</td>
+<td>apolipoprotein A2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=336">336</a></td>
+</tr>
+<tr>
+<td>LEP</td>
+<td>LEP</td>
+<td>leptin</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3952">3952</a></td>
+</tr>
+<tr>
+<td>ABCG8</td>
+<td>ABCG8</td>
+<td>ATP binding cassette subfamily G member 8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=64241">64241</a></td>
+</tr>
+<tr>
+<td>ADIPOQ</td>
+<td>ADIPOQ</td>
+<td>adiponectin, C1Q and collagen domain containing</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=9370">9370</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table7').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table7" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0016042"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0016042" target="_blank"><b>ID:GO:0016042&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:lipid catabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=96; O=7; E=1; R=6.98; PValue=4.84e-05; FDR=4.04e-02</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>CIDEA</td>
+<td>CIDEA</td>
+<td>cell death-inducing DFFA-like effector a</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=1149">1149</a></td>
+</tr>
+<tr>
+<td>AADAC</td>
+<td>AADAC</td>
+<td>arylacetamide deacetylase</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=13">13</a></td>
+</tr>
+<tr>
+<td>APOA2</td>
+<td>APOA2</td>
+<td>apolipoprotein A2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=336">336</a></td>
+</tr>
+<tr>
+<td>LEP</td>
+<td>LEP</td>
+<td>leptin</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3952">3952</a></td>
+</tr>
+<tr>
+<td>PLIN1</td>
+<td>PLIN1</td>
+<td>perilipin 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=5346">5346</a></td>
+</tr>
+<tr>
+<td>SULT2A1</td>
+<td>SULT2A1</td>
+<td>sulfotransferase family 2A member 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=6822">6822</a></td>
+</tr>
+<tr>
+<td>ADIPOQ</td>
+<td>ADIPOQ</td>
+<td>adiponectin, C1Q and collagen domain containing</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=9370">9370</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table8').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table8" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0006067"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0006067" target="_blank"><b>ID:GO:0006067&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:ethanol metabolic process</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=8; O=3; E=0.08; R=35.89; PValue=5.73e-05; FDR=4.18e-02</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ADH1A</td>
+<td>ADH1A</td>
+<td>alcohol dehydrogenase 1A (class I), alpha polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=124">124</a></td>
+</tr>
+<tr>
+<td>ADH1B</td>
+<td>ADH1B</td>
+<td>alcohol dehydrogenase 1B (class I), beta polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=125">125</a></td>
+</tr>
+<tr>
+<td>ADH4</td>
+<td>ADH4</td>
+<td>alcohol dehydrogenase 4 (class II), pi polypeptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=127">127</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table9').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table9" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0030299"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0030299" target="_blank"><b>ID:GO:0030299&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:intestinal cholesterol absorption</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=9; O=3; E=0.09; R=31.9; PValue=8.53e-05; FDR=4.98e-02</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>APOA2</td>
+<td>APOA2</td>
+<td>apolipoprotein A2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=336">336</a></td>
+</tr>
+<tr>
+<td>LEP</td>
+<td>LEP</td>
+<td>leptin</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3952">3952</a></td>
+</tr>
+<tr>
+<td>ABCG8</td>
+<td>ABCG8</td>
+<td>ATP binding cassette subfamily G member 8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=64241">64241</a></td>
+</tr>
+</tbody></table><br/><br/>
+<div><nav class="cl-effect-1"><a style="cursor:pointer;color:red;" onclick="$('#Table10').tableExport({type:'csv',escape:'false'});">Download Table</a></nav></div><table id="Table10" class="zebra"><thead><tr>
+<th colspan="4">
+<a name="GO:0098856"><font color="black"><a href ="http://amigo.geneontology.org/amigo/term/GO:0098856" target="_blank"><b>ID:GO:0098856&nbsp&nbsp&nbsp&nbsp&nbsp&nbspName:intestinal lipid absorption</b></a></font></a>
+</th></tr>
+<tr><th colspan="4">
+C=9; O=3; E=0.09; R=31.9; PValue=8.53e-05; FDR=4.98e-02</th></tr>
+<tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>APOA2</td>
+<td>APOA2</td>
+<td>apolipoprotein A2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=336">336</a></td>
+</tr>
+<tr>
+<td>LEP</td>
+<td>LEP</td>
+<td>leptin</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3952">3952</a></td>
+</tr>
+<tr>
+<td>ABCG8</td>
+<td>ABCG8</td>
+<td>ATP binding cassette subfamily G member 8</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=64241">64241</a></td>
+</tr>
+</tbody></table><br/><br/>
+</div>
+</div>
+</div>
+</div>
+<script>plotDAG('Project_node66_pos_.json','[{"id":"Project_node66_pos_.json","reports":[{"gID":["GO:0030300"],"Edge":["GO:0030299","GO:0032374","GO:1904729"],"Name":["regulation of intestinal cholesterol absorption"],"Sig":["red"],"Link":["results/pathway/skcm/Project_node66_pos/Report_node66_pos.html#GO:0030300"],"gNum":["3"],"FDR":["3.05e-02"]},{"gID":["GO:1904729"],"Edge":["GO:0032368","GO:0098856","GO:1904478"],"Name":["regulation of intestinal lipid absorption"],"Sig":["red"],"Link":["results/pathway/skcm/Project_node66_pos/Report_node66_pos.html#GO:1904729"],"gNum":["3"],"FDR":["3.05e-02"]},{"gID":["GO:0006069"],"Edge":["GO:0006067","GO:0055114"],"Name":["ethanol oxidation"],"Sig":["red"],"Link":["results/pathway/skcm/Project_node66_pos/Report_node66_pos.html#GO:0006069"],"gNum":["3"],"FDR":["4.04e-02"]},{"gID":["GO:1904478"],"Edge":["GO:0044058","GO:0050892","GO:0051049"],"Name":["regulation of intestinal absorption"],"Sig":["red"],"Link":["results/pathway/skcm/Project_node66_pos/Report_node66_pos.html#GO:1904478"],"gNum":["3"],"FDR":["4.04e-02"]},{"gID":["GO:0032371"],"Edge":["GO:0015918","GO:0032368"],"Name":["regulation of sterol transport"],"Sig":["red"],"Link":["results/pathway/skcm/Project_node66_pos/Report_node66_pos.html#GO:0032371"],"gNum":["4"],"FDR":["4.04e-02"]},{"gID":["GO:0032374"],"Edge":["GO:0030301","GO:0032371"],"Name":["regulation of cholesterol transport"],"Sig":["red"],"Link":["results/pathway/skcm/Project_node66_pos/Report_node66_pos.html#GO:0032374"],"gNum":["4"],"FDR":["4.04e-02"]},{"gID":["GO:0016042"],"Edge":["GO:0006629","GO:0044712","GO:1901575"],"Name":["lipid catabolic process"],"Sig":["red"],"Link":["results/pathway/skcm/Project_node66_pos/Report_node66_pos.html#GO:0016042"],"gNum":["7"],"FDR":["4.04e-02"]},{"gID":["GO:0006067"],"Edge":["GO:0034308"],"Name":["ethanol metabolic process"],"Sig":["red"],"Link":["results/pathway/skcm/Project_node66_pos/Report_node66_pos.html#GO:0006067"],"gNum":["3"],"FDR":["4.18e-02"]},{"gID":["GO:0030299"],"Edge":["GO:0030301","GO:0044241","GO:0098856"],"Name":["intestinal cholesterol absorption"],"Sig":["red"],"Link":["results/pathway/skcm/Project_node66_pos/Report_node66_pos.html#GO:0030299"],"gNum":["3"],"FDR":["4.98e-02"]},{"gID":["GO:0098856"],"Edge":["GO:0006869","GO:0044707","GO:0050892"],"Name":["intestinal lipid absorption"],"Sig":["red"],"Link":["results/pathway/skcm/Project_node66_pos/Report_node66_pos.html#GO:0098856"],"gNum":["3"],"FDR":["4.98e-02"]},{"gID":["GO:0032368"],"Edge":["GO:0006869","GO:0051049"],"Name":["regulation of lipid transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0055114"],"Edge":["GO:0044710"],"Name":["oxidation-reduction process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044058"],"Edge":["GO:0022600","GO:0044057"],"Name":["regulation of digestive system process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0050892"],"Edge":["GO:0006810","GO:0007586","GO:0022600"],"Name":["intestinal absorption"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0051049"],"Edge":["GO:0006810","GO:0032879"],"Name":["regulation of transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0015918"],"Edge":["GO:0006869","GO:0015850"],"Name":["sterol transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0030301"],"Edge":["GO:0015918"],"Name":["cholesterol transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0032371"],"Edge":["GO:0015918","GO:0032368"],"Name":["regulation of sterol transport"],"Sig":["red"],"Link":["results/pathway/skcm/Project_node66_pos/Report_node66_pos.html#GO:0032371"],"gNum":["4"],"FDR":["4.04e-02"]},{"gID":["GO:0006629"],"Edge":["GO:0044238","GO:0044710","GO:0071704"],"Name":["lipid metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044712"],"Edge":["GO:0009056","GO:0044710"],"Name":["single-organism catabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:1901575"],"Edge":["GO:0009056","GO:0071704"],"Name":["organic substance catabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0034308"],"Edge":["GO:0006066"],"Name":["primary alcohol metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044241"],"Edge":["GO:0007586"],"Name":["lipid digestion"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006869"],"Edge":["GO:0010876","GO:0044765","GO:0071702"],"Name":["lipid transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044707"],"Edge":["GO:0032501","GO:0044699"],"Name":["single-multicellular organism process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044710"],"Edge":["GO:0008152","GO:0044699"],"Name":["single-organism metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0022600"],"Edge":["GO:0003008","GO:0007586"],"Name":["digestive system process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044057"],"Edge":["GO:0003008","GO:0051239"],"Name":["regulation of system process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006810"],"Edge":["GO:0051234"],"Name":["transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0007586"],"Edge":["GO:0044707"],"Name":["digestion"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0032879"],"Edge":["GO:0050789","GO:0051179"],"Name":["regulation of localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0015850"],"Edge":["GO:0044765","GO:0071702"],"Name":["organic hydroxy compound transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0015918"],"Edge":["GO:0006869","GO:0015850"],"Name":["sterol transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0032368"],"Edge":["GO:0006869","GO:0051049"],"Name":["regulation of lipid transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044238"],"Edge":["GO:0008152"],"Name":["primary metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0071704"],"Edge":["GO:0008152"],"Name":["organic substance metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0009056"],"Edge":["GO:0008152"],"Name":["catabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006066"],"Edge":["GO:0044281","GO:1901615"],"Name":["alcohol metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0010876"],"Edge":["GO:0033036"],"Name":["lipid localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044765"],"Edge":["GO:0006810","GO:1902578"],"Name":["single-organism transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0071702"],"Edge":["GO:0006810"],"Name":["organic substance transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0032501"],"Edge":["GO:0008150"],"Name":["multicellular organismal process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044699"],"Edge":["GO:0008150"],"Name":["single-organism process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008152"],"Edge":["GO:0008150"],"Name":["metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0003008"],"Edge":["GO:0032501"],"Name":["system process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0051239"],"Edge":["GO:0032501","GO:0050789"],"Name":["regulation of multicellular organismal process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0051234"],"Edge":["GO:0051179"],"Name":["establishment of localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044707"],"Edge":["GO:0032501","GO:0044699"],"Name":["single-multicellular organism process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0050789"],"Edge":["GO:0008150","GO:0065007"],"Name":["regulation of biological process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0051179"],"Edge":["GO:0008150"],"Name":["localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006869"],"Edge":["GO:0010876","GO:0044765","GO:0071702"],"Name":["lipid transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0015850"],"Edge":["GO:0044765","GO:0071702"],"Name":["organic hydroxy compound transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0051049"],"Edge":["GO:0006810","GO:0032879"],"Name":["regulation of transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044281"],"Edge":["GO:0044710"],"Name":["small molecule metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:1901615"],"Edge":["GO:0071704"],"Name":["organic hydroxy compound metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0033036"],"Edge":["GO:0051179"],"Name":["macromolecule localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006810"],"Edge":["GO:0051234"],"Name":["transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:1902578"],"Edge":["GO:0044699","GO:0051179"],"Name":["single-organism localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008150"],"Edge":["NA",""],"Name":["biological_process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0032501"],"Edge":["GO:0008150"],"Name":["multicellular organismal process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044699"],"Edge":["GO:0008150"],"Name":["single-organism process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0065007"],"Edge":["GO:0008150"],"Name":["biological regulation"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0010876"],"Edge":["GO:0033036"],"Name":["lipid localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044765"],"Edge":["GO:0006810","GO:1902578"],"Name":["single-organism transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0071702"],"Edge":["GO:0006810"],"Name":["organic substance transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0032879"],"Edge":["GO:0050789","GO:0051179"],"Name":["regulation of localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044710"],"Edge":["GO:0008152","GO:0044699"],"Name":["single-organism metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0071704"],"Edge":["GO:0008152"],"Name":["organic substance metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0051179"],"Edge":["GO:0008150"],"Name":["localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0051234"],"Edge":["GO:0051179"],"Name":["establishment of localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008150"],"Edge":["NA",""],"Name":["biological_process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0033036"],"Edge":["GO:0051179"],"Name":["macromolecule localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0006810"],"Edge":["GO:0051234"],"Name":["transport"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:1902578"],"Edge":["GO:0044699","GO:0051179"],"Name":["single-organism localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0050789"],"Edge":["GO:0008150","GO:0065007"],"Name":["regulation of biological process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008152"],"Edge":["GO:0008150"],"Name":["metabolic process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0044699"],"Edge":["GO:0008150"],"Name":["single-organism process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0051179"],"Edge":["GO:0008150"],"Name":["localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0051234"],"Edge":["GO:0051179"],"Name":["establishment of localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008150"],"Edge":["NA",""],"Name":["biological_process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0065007"],"Edge":["GO:0008150"],"Name":["biological regulation"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0051179"],"Edge":["GO:0008150"],"Name":["localization"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]},{"gID":["GO:0008150"],"Edge":["NA",""],"Name":["biological_process"],"Sig":["white"],"Link":[""],"gNum":[""],"FDR":[""]}]}]','WJ.graph, .list { cursor: default; }WJ.graph.animate .node { opacity: 0; transition: fill 0.5s, stroke 0.5s, opacity 1s; }WJ.graph.animate .node.visible { opacity: 1; transition: fill 0.5s, stroke 0.5s, opacity 0.5s; }WJ.graph.animate .node.visible.entering { transition: fill 0.5s, stroke 0.5s, opacity 1.5s; }WJ.hovering .graph .node.visible { opacity: 0.2; }WJ.hovering .graph.animate .node.visible { transition: fill 0.5s, stroke 0.5s, opacity 0.4s; }WJ.hovering .graph .node.visible.hovered, .hovering .graph .node.visible.selected { opacity: 1; }WJ.hovering .graph .node.hovered.immediate rect { stroke: rgb(164, 1, 27); fill: rgb(255, 224, 229); }WJ.graph .node rect { fill: rgb(255, 242, 204); stroke-width: 2px; stroke: rgb(161, 109, 0); }WJ.graph.animate .node rect { transition: fill 0.5s, stroke 0.5s, stroke-width 0.5s; }WJ.graph .node text { font-family: Verdana; }WJ.graph .node.selected rect, .hovering .graph .node.selected rect, .hovering .graph .node.selected.hovered.immediate rect { stroke: rgb(15, 75, 255); fill: rgb(179, 236, 255); }WJ.graph .node.preview rect, .hovering .graph .node.preview rect { fill: rgb(234, 218, 236); stroke: rgb(154, 56, 162); }WJ.graph .edge { fill: none; stroke-width: 2.5px; stroke: rgb(209, 157, 0); opacity: 0; }WJ.graph.animate .edge { transition: fill 0.1s, stroke 0.1s, stroke-width 0.1s, opacity 0.3s; }WJ.graph .edge.visible.preview { stroke-width: 4px; stroke: rgb(154, 56, 162); }WJ.graph .edge.visible.selected, .hovering .graph .edge.hovered.immediate.selected { stroke-width: 6px; stroke: rgb(56, 106, 255); }WJ.graph .edge.visible.preview, .hovering .graph .edge.hovered.immediate.preview { stroke: rgb(154, 56, 162); }WJ.graph .edge.visible { opacity: 1; }WJ.graph.animate .edge.visible { transition: fill 0.5s, stroke 0.5s, stroke-width 0.5s, opacity 0.5s; }WJ.graph.animate .edge.visible.entering { transition: fill 0.5s, stroke 0.5s, stroke-width 0.5s, opacity 1.5s; }WJ.hovering .graph .edge.visible { opacity: 0.1; }WJ.hovering .graph.animate .edge.visible { transition: fill 0.5s, stroke 0.5s, stroke-width 0.5s, opacity 0.4s; }WJ.hovering .graph .edge.visible.hovered, .hovering .graph .edge.selected { opacity: 1; }WJ.hovering .graph .edge.hovered.immediate { stroke: rgb(164, 1, 27); stroke-width: 4px; }WJ.minimap .edge { stroke-width: 2px; stroke: black; fill-opacity: 0; }WJ.minimap .node rect { fill: rgb(221, 221, 221); stroke-width: 2px; stroke: black; }WJ.list .item rect { stroke: rgb(15, 75, 255); fill: rgb(179, 236, 255); fill-opacity: 0.5; stroke-width: 1; transition: fill 0.5s, stroke 0.5s; }WJ.list .item:hover rect { fill: rgb(255, 242, 204); stroke: rgb(161, 109, 0); }WJ.list .item text { x: 50%; text-anchor: middle; dominant-baseline: central; }WJ.xtrace-tooltip { text-align: left; }WJ.xtrace-tooltip .key { display: inline-block; float: left; width: 90px; font-weight: bold; }WJ.xtrace-tooltip .value { display: inline-block; float: left; word-wrap: break-word; max-width: 410px; }WJ.xtrace-tooltip .clear { clear: both; }WJ.context-menu .highlight { color: rgb(127, 35, 137); }WJ.context-menu a:hover .highlight { color: rgb(202, 120, 210); }WJtext, tspan, .tipsy { user-select: none; }WJ');</script><script>$( "#tabs" ).tabs();</script><iframe src="http://www.webgestalt.org//html/foot.html" style="border:0px;height:130px;width:100%"></iframe>
+</body></html>

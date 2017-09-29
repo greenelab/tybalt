@@ -1,0 +1,91 @@
+userid	genesymbol	genename	entrezgene
+LOC100130238	LOC100130238	uncharacterized LOC100130238	100130238
+CDH10	CDH10	cadherin 10	1008
+USH1C	USH1C	USH1 protein network component harmonin	10083
+CDH16	CDH16	cadherin 16	1014
+SOX21	SOX21	SRY-box 21	11166
+CELF3	CELF3	CUGBP Elav-like family member 3	11189
+POU6F2	POU6F2	POU class 6 homeobox 2	11281
+C12orf56	C12orf56	chromosome 12 open reading frame 56	115749
+CNGA3	CNGA3	cyclic nucleotide gated channel alpha 3	1261
+RPTN	RPTN	repetin	126638
+C20orf85	C20orf85	chromosome 20 open reading frame 85	128602
+CNTNAP5	CNTNAP5	contactin associated protein like 5	129684
+DPCR1	DPCR1	diffuse panbronchiolitis critical region 1	135656
+MUC17	MUC17	mucin 17, cell surface associated	140453
+ASB5	ASB5	ankyrin repeat and SOCS box containing 5	140458
+BEST3	BEST3	bestrophin 3	144453
+CCDC60	CCDC60	coiled-coil domain containing 60	160777
+LIX1	LIX1	limb and CNS expressed 1	167410
+ARX	ARX	aristaless related homeobox	170302
+B3GNT6	B3GNT6	UDP-GlcNAc:betaGal beta-1,3-N-acetylglucosaminyltransferase 6	192134
+KHDRBS2	KHDRBS2	KH RNA binding domain containing, signal transduction associated 2	202559
+SP8	SP8	Sp8 transcription factor	221833
+FOXG1	FOXG1	forkhead box G1	2290
+P2RX2	P2RX2	purinergic receptor P2X 2	22953
+TMEFF2	TMEFF2	transmembrane protein with EGF like and two follistatin like domains 2	23671
+ALPP	ALPP	alkaline phosphatase, placental	250
+SFTA3	SFTA3	surfactant associated 3	253970
+MORN5	MORN5	MORN repeat containing 5	254956
+PLA2G4F	PLA2G4F	phospholipase A2 group IVF	255189
+KCNV1	KCNV1	potassium voltage-gated channel modifier subfamily V member 1	27012
+SALL3	SALL3	spalt like transcription factor 3	27164
+CLEC18C	CLEC18C	C-type lectin domain family 18 member C	283971
+TRPM5	TRPM5	transient receptor potential cation channel subfamily M member 5	29850
+PADI1	PADI1	peptidyl arginine deiminase 1	29943
+HMX1	HMX1	H6 family homeobox 1	3166
+IFNE	IFNE	interferon epsilon	338376
+TMPRSS11A	TMPRSS11A	transmembrane protease, serine 11A	339967
+SLC6A19	SLC6A19	solute carrier family 6 member 19	340024
+VWC2	VWC2	von Willebrand factor C domain containing 2	375567
+KCTD8	KCTD8	potassium channel tetramerization domain containing 8	386617
+ILDR2	ILDR2	immunoglobulin like domain containing receptor 2	387597
+BTBD17	BTBD17	BTB domain containing 17	388419
+SLC9A4	SLC9A4	solute carrier family 9 member A4	389015
+SFTA2	SFTA2	surfactant associated 2	389376
+C6orf222	C6orf222	chromosome 6 open reading frame 222	389384
+FEZF1	FEZF1	FEZ family zinc finger 1	389549
+FAM150A	FAM150A	ALK and LTK ligand 1	389658
+MUC21	MUC21	mucin 21, cell surface associated	394263
+AMTN	AMTN	amelotin	401138
+LOC440173	LOC440173	uncharacterized LOC440173	440173
+MUC2	MUC2	mucin 2, oligomeric mucus/gel-forming	4583
+NKX2-2	NKX2-2	NK2 homeobox 2	4821
+GALNT9	GALNT9	polypeptide N-acetylgalactosaminyltransferase 9	50614
+PCA3	PCA3	prostate cancer associated 3 (non-protein coding)	50652
+PAX7	PAX7	paired box 7	5081
+PCP4	PCP4	Purkinje cell protein 4	5121
+PGC	PGC	progastricsin	5225
+FXYD4	FXYD4	FXYD domain containing ion transport regulator 4	53828
+KRT20	KRT20	keratin 20	54474
+UGT1A10	UGT1A10	UDP glucuronosyltransferase family 1 member A10	54575
+PRKCG	PRKCG	protein kinase C gamma	5582
+PRSS1	PRSS1	protease, serine 1	5644
+RPRM	RPRM	reprimo, TP53 dependent G2 arrest mediator candidate	56475
+CPA6	CPA6	carboxypeptidase A6	57094
+PVALB	PVALB	parvalbumin	5816
+CACNG7	CACNG7	calcium voltage-gated channel auxiliary subunit gamma 7	59284
+REG1A	REG1A	regenerating family member 1 alpha	5967
+RFX4	RFX4	regulatory factor X4	5992
+LINGO3	LINGO3	leucine rich repeat and Ig domain containing 3	645191
+GGT8P	GGT8P	gamma-glutamyltransferase 8 pseudogene	645367
+SI	SI	sucrase-isomaltase	6476
+SLC6A3	SLC6A3	solute carrier family 6 member 3	6531
+SFTPA1	SFTPA1	surfactant protein A1	653509
+SLC18A3	SLC18A3	solute carrier family 18 member A3	6572
+SLIT1	SLIT1	slit guidance ligand 1	6585
+SPINK2	SPINK2	serine peptidase inhibitor, Kazal type 2	6691
+SPRR2C	SPRR2C	small proline rich protein 2C (pseudogene)	6702
+SSTR5	SSTR5	somatostatin receptor 5	6755
+HNF1B	HNF1B	HNF1 homeobox B	6928
+NKX2-1	NKX2-1	NK2 homeobox 1	7080
+FA2H	FA2H	fatty acid 2-hydroxylase	79152
+KCNH6	KCNH6	potassium voltage-gated channel subfamily H member 6	81033
+CASR	CASR	calcium sensing receptor	846
+MAEL	MAEL	maelstrom spermatogenic transposon silencer	84944
+ATCAY	ATCAY	ATCAY, caytaxin	85300
+CCK	CCK	cholecystokinin	885
+GAL3ST3	GAL3ST3	galactose-3-O-sulfotransferase 3	89792
+HSPB3	HSPB3	heat shock protein family B (small) member 3	8988
+SLC22A6	SLC22A6	solute carrier family 22 member 6	9356
+CPNE6	CPNE6	copine 6	9362

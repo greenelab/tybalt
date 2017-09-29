@@ -1,0 +1,12 @@
+userid	genesymbol	genename	entrezgene
+CMTM5	CMTM5	CKLF like MARVEL transmembrane domain containing 5	116173
+C10orf90	C10orf90	chromosome 10 open reading frame 90	118611
+STK32A	STK32A	serine/threonine kinase 32A	202374
+MGAT4C	MGAT4C	MGAT4 family member C	25834
+HCG22	HCG22	HLA complex group 22	285834
+MAG	MAG	myelin associated glycoprotein	4099
+MOG	MOG	myelin oligodendrocyte glycoprotein	4340
+PLP1	PLP1	proteolipid protein 1	5354
+PMP2	PMP2	peripheral myelin protein 2	5375
+RXRG	RXRG	retinoid X receptor gamma	6258
+FAM181A	FAM181A	family with sequence similarity 181 member A	90050
