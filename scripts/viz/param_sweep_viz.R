@@ -160,56 +160,75 @@ plotFinalParams <- function(df, base_file, twohidden = FALSE) {
   ggsave(output_fig, plot = p, height = height, width = width)
 }
 
+getBestModel <- function(param_obj) {
+  # Function to output training across epochs of the most optimal model
+  # based on validation loss at training end
+  #
+  # Arguments:
+  # param_obj - a list object output from `recodeParameters` stores parameter
+  #             sweep results and final validation loss for all hyper params
+  #
+  # Output:
+  # Dataframe of training and validation loss at the end of each training epoch
+  # for the optimal model
+
+  best_model <- param_obj[[2]] %>% dplyr::top_n(1, -end_loss)
+
+  # Subset best model training
+  best_model_training <- param_obj[[1]] %>%
+    dplyr::filter(epochs == best_model$epochs,
+                  batch_size == best_model$batch_size,
+                  learning_rate == best_model$learning_rate,
+                  kappa == best_model$kappa)
+  
+  return(best_model_training)
+}
+
 # Set File names
 param_sweep_file <- file.path("results", "parameter_sweep_full_results.tsv")
 param_sweep_two_file <- file.path("results",
                                   "parameter_sweep_twohidden_full_results.tsv")
+param_two300_file <- file.path("results",
+                               "parameter_sweep_twohidden300_full_results.tsv")
 out_fig <- file.path("figures", "param_sweep", "full_param_")
 out_two_fig <- file.path("figures", "param_sweep", "twohidden", "full_param_")
+out_two300_fig <- file.path("figures", "param_sweep", "twohidden300",
+                            "full_param_")
 
-# Process files and plot data
-tybalt_df <- recodeParameters(param_sweep_file, depth = 1)
-tybalt_twohidden_df <- recodeParameters(param_sweep_two_file, depth = 2)
+# Process files
+tybalt <- recodeParameters(param_sweep_file, depth = 1)
+tybalt_twohidden <- recodeParameters(param_sweep_two_file, depth = 2)
+tybalt_twohidden300 <- recodeParameters(param_two300_file, depth = "2 (300)")
 
-plotSweep(tybalt_df[[1]], "kappa", out_fig)
-plotSweep(tybalt_twohidden_df[[1]], "kappa", out_two_fig)
+# Plot parameter sweep results
+plotSweep(tybalt[[1]], "kappa", out_fig)
+plotSweep(tybalt_twohidden[[1]], "kappa", out_two_fig)
+plotSweep(tybalt_twohidden300[[1]], "kappa", out_two300_fig)
 
-plotSweep(tybalt_df[[1]], "epochs", out_fig)
-plotSweep(tybalt_twohidden_df[[1]], "epochs", out_two_fig)
+plotSweep(tybalt[[1]], "epochs", out_fig)
+plotSweep(tybalt_twohidden[[1]], "epochs", out_two_fig)
+plotSweep(tybalt_twohidden300[[1]], "epochs", out_two300_fig)
 
-plotFinalParams(tybalt_df[[2]], out_fig)
-plotFinalParams(tybalt_twohidden_df[[2]], twohidden = TRUE, out_two_fig)
+plotFinalParams(tybalt[[2]], out_fig)
+plotFinalParams(tybalt_twohidden[[2]], twohidden = TRUE, out_two_fig)
+plotFinalParams(tybalt_twohidden300[[2]], twohidden = TRUE, out_two300_fig)
 
-# Identify the best models and compare two hidden with one hidden layer
-# We are restricting kappa = 1.0
-best_one_layer <- tybalt_df[[2]] %>%
-  dplyr::filter(kappa == "kappa: 1.0") %>%
-  dplyr::top_n(1, -end_loss)
+# Identify the best models and compare
+best_one_layer <- getBestModel(tybalt)
+best_two_layer <- getBestModel(tybalt_twohidden)
+best_two300_layer <- getBestModel(tybalt_twohidden300)
 
-best_two_layer <- tybalt_twohidden_df[[2]] %>%
-  dplyr::filter(kappa == "kappa: 1.0") %>%
-  dplyr::top_n(1, -end_loss)
+combined_param_df <- dplyr::bind_rows(best_one_layer, best_two_layer,
+                                      best_two300_layer)
 
-# Subset best model training
-best_one_layer <- tybalt_df[[1]] %>%
-  dplyr::filter(epochs == best_one_layer$epochs,
-                batch_size == best_one_layer$batch_size,
-                learning_rate == best_one_layer$learning_rate,
-                kappa == best_one_layer$kappa)
-
-best_two_layer <- tybalt_twohidden_df[[1]] %>%
-  dplyr::filter(epochs == best_two_layer$epochs,
-                batch_size == best_two_layer$batch_size,
-                learning_rate == best_two_layer$learning_rate,
-                kappa == best_two_layer$kappa)
-
-combined_param_df <- dplyr::bind_rows(best_one_layer, best_two_layer)
-
+# Plot best models across training epochs
 p <- ggplot(combined_param_df, aes(x = train_epoch, y = loss)) +
   geom_line(aes(color = depth, linetype = loss_type), size = 0.5) +
   theme_bw() + xlab("Training Epoch") + ylab("Loss") +
-  scale_color_manual(name = "Depth", values = c("goldenrod", "darkgreen"),
-                     labels = c("1", "2")) +
+  scale_color_manual(name = "Depth",
+                     values = c("goldenrod", "darkgreen", "red"),
+                     labels = c("1 (100)", "2 (100 -> 100)",
+                                "2 (300 -> 100)")) +
   scale_linetype_manual(name = "Loss Type", values = c("solid", "dotted"),
                         labels = c("Train", "Validation")) +
   theme(axis.text = element_text(size = rel(1.4)),

@@ -4,12 +4,14 @@
 
 ## Parameter Sweep
 
-We performed a parameter sweep for two distinct architectures:
+We performed a parameter sweep for three distinct architectures:
 
 1. Compression with one hidden layer into 100 features
   - 5000 -> 100 -> 5000
 2. Compression with two hidden layers into 100 hidden units and 100 features
   - 5000 -> 100 -> 100 -> 100 -> 5000
+3. Compression with two hidden layers into 300 hidden units and 100 features
+  - 5000 -> 300 -> 100 -> 300 -> 500
 
 ### One Hidden Layer
 
@@ -49,10 +51,15 @@ Again, training was relatively stable with comparable performance over a large g
 With two layers, `kappa` made a larger difference. The burn in `kappa` period actually
 penalized model performance, with `kappa` < 1 having consistently worse performance.
 
+We also trained a model with an alternative two layer architecture with 300 hidden features.
+
 ### Comparison
 
-Two hidden layers does not improve performance as much as initially thought. Observed
-below are the two optimal models described above.
+Two hidden layers does not improve performance as much as initially thought. There is also
+not much benefit in 2 compression layers. Observed below are the three optimal models
+described above.
 
 ![compare](figures/param_sweep/best_model_comparisons.png?raw=true)
+
+We have yet to perform comparisons in regards to the biology learned by each model.
 
