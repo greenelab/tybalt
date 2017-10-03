@@ -4,7 +4,16 @@
 
 ## Parameter Sweep
 
-![parameter sweep](figures/param_sweep/final_param_val_loss.png?raw=true)
+We performed a parameter sweep for two distinct architectures:
+
+1. Compression with one hidden layer into 100 features
+  - 5000 -> 100 -> 5000
+2. Compression with two hidden layers into 100 hidden units and 100 features
+  - 5000 -> 100 -> 100 -> 100 -> 5000
+
+### One Hidden Layer
+
+![parameter sweep](figures/param_sweep/full_param_final_param_val_loss.png?raw=true)
 
 Based on optimal validation loss, we chose optimal hyperparameters to be
 `learning rate` = 0.0005, `batch size` = 50, and `epochs` = 100.
@@ -24,16 +33,26 @@ indicating training the VAE on this data with this architecture is relatively
 robust across parameter settings. This is particularly true for different
 settings of `kappa`. 
 
-![sweep kappa 0.01](figures/param_sweep/full_param_0.01_kappa.png?raw=true)
-
-![sweep kappa 0.05](figures/param_sweep/full_param_0.05_kappa.png?raw=true)
-
-![sweep kappa 0.1](figures/param_sweep/full_param_0.1_kappa.png?raw=true)
-
-![sweep kappa 1](figures/param_sweep/full_param_1.0_kappa.png?raw=true)
-
 `kappa` controls the warmup period from transitioning from a deterministic
 autoencoder to a variational model. `kappa` linearly increases the KL divergence
 loss penalty until weighted evenly with reconstruction cost. We do not observe
 this parameter influencing training time or optimal loss.
+
+### Two Hidden Layers
+
+![param sweep two](figures/param_sweep/twohidden/full_param_final_param_val_loss.png?raw=true)
+
+Based on optimal validation loss, the two hidden layer model has optimal
+hyperparameters at `learning_rate` = 0.001, `batch size` = 100, and `epochs` = 100.
+
+Again, training was relatively stable with comparable performance over a large grid.
+With two layers, `kappa` made a larger difference. The burn in `kappa` period actually
+penalized model performance, with `kappa` < 1 having consistently worse performance.
+
+### Comparison
+
+Two hidden layers does not improve performance as much as initially thought. Observed
+below are the two optimal models described above.
+
+![compare](figures/param_sweep/best_model_comparisons.png?raw=true)
 
