@@ -68,7 +68,7 @@ For a complete pipeline with reproducibility instructions, refer to
 Jupyter notebooks were ported to the scripts folder for pipeline purposes with:
 
 ```sh
-jupyter nbconvert --to=script --FilesWriter.build_directory=scripts *.ipynb
+jupyter nbconvert --to=script --FilesWriter.build_directory=scripts/nbconverted *.ipynb
 ```
 
 #### Architecture

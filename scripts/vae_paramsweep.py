@@ -77,6 +77,8 @@ epochs = get_param('epochs')
 kappas = get_param('kappa')
 sparsities = get_param('sparsity')
 noises = get_param('noise')
+depth = get_param('depth')
+first_layer_dim = get_param('first_layer_dim')
 
 # Retrieve PMACS configuration
 queue = config_df.loc['queue']['assign']
@@ -97,7 +99,9 @@ if algorithm == 'tybalt':
                               '--batch_size', bs,
                               '--epochs', e,
                               '--kappa', k,
-                              '--output_filename', f]
+                              '--output_filename', f,
+                              '--depth', depth[0],
+                              '--first_layer', first_layer_dim[0]]
                     final_command = [python_path, script] + params
                     all_commands.append(final_command)
 elif algorithm == 'adage':
