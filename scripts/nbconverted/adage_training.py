@@ -58,7 +58,7 @@ sns.set_context("paper", rc={"font.size":14,"axes.titlesize":15,"axes.labelsize"
 # In[5]:
 
 # Load RNAseq data
-rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv')
+rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv.gz')
 rnaseq_df = pd.read_table(rnaseq_file, index_col=0)
 print(rnaseq_df.shape)
 rnaseq_df.head(2)

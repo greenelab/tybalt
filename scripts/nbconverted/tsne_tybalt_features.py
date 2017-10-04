@@ -25,7 +25,7 @@ encoded_df.head(2)
 # In[3]:
 
 # Load Zero-One transformed (min-max scaled) RNAseq data
-rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv')
+rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv.gz')
 rnaseq_df = pd.read_table(rnaseq_file, index_col=0)
 print(rnaseq_df.shape)
 rnaseq_df.head(2)

@@ -44,7 +44,7 @@ decoder = load_model(decoder_model_file)
 # In[5]:
 
 # Load RNAseq file
-rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv')
+rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv.gz')
 rnaseq_df = pd.read_table(rnaseq_file, index_col=0)
 rnaseq_df.head(2)
 
