@@ -30,16 +30,16 @@ clinical_file = os.path.join('data', 'raw', 'samples.tsv')
 
 # Output Files
 # Processing RNAseq data by z-score and zeroone norm
-rna_out_file = os.path.join('data', 'pancan_scaled_rnaseq.tsv')
-rna_out_zeroone_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv')
+rna_out_file = os.path.join('data', 'pancan_scaled_rnaseq.tsv.gz')
+rna_out_zeroone_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv.gz')
 
 # Mutation Data
-mut_out_file = os.path.join('data', 'pancan_mutation.tsv')
+mut_out_file = os.path.join('data', 'pancan_mutation.tsv.gz')
 mut_burden_file = os.path.join('data', 'pancan_mutation_burden.tsv')
 
 # Two copy number matrices, for thresholded (2) gains and losses
-copy_gain_out_file = os.path.join('data', 'copy_number_gain.tsv')
-copy_loss_out_file = os.path.join('data', 'copy_number_loss.tsv')
+copy_gain_out_file = os.path.join('data', 'copy_number_gain.tsv.gz')
+copy_loss_out_file = os.path.join('data', 'copy_number_loss.tsv.gz')
 
 # Clinical data
 clinical_processed_out_file = os.path.join('data', 'clinical_data.tsv')
@@ -48,7 +48,7 @@ clinical_processed_out_file = os.path.join('data', 'clinical_data.tsv')
 oncokb_out_file = os.path.join('data', 'oncokb_genetypes.tsv')
 
 # Status matirix integrating mutation and copy number events
-known_status_file = os.path.join('data', 'status_matrix.tsv')
+known_status_file = os.path.join('data', 'status_matrix.tsv.gz')
 
 
 # ## Load Data
@@ -92,14 +92,14 @@ rnaseq_scaled_df = preprocessing.StandardScaler().fit_transform(rnaseq_subset_df
 rnaseq_scaled_df = pd.DataFrame(rnaseq_scaled_df,
                                 columns=rnaseq_subset_df.columns,
                                 index=rnaseq_subset_df.index)
-rnaseq_scaled_df.to_csv(rna_out_file, sep='\t')
+rnaseq_scaled_df.to_csv(rna_out_file, sep='\t', compression='gzip')
 
 # Scale RNAseq data using zero-one normalization
 rnaseq_scaled_zeroone_df = preprocessing.MinMaxScaler().fit_transform(rnaseq_subset_df)
 rnaseq_scaled_zeroone_df = pd.DataFrame(rnaseq_scaled_zeroone_df,
                                         columns=rnaseq_subset_df.columns,
                                         index=rnaseq_subset_df.index)
-rnaseq_scaled_zeroone_df.to_csv(rna_out_zeroone_file, sep='\t')
+rnaseq_scaled_zeroone_df.to_csv(rna_out_zeroone_file, sep='\t', compression='gzip')
 
 
 # ### Mutation
@@ -138,7 +138,7 @@ mut_pivot = (mut_pivot.pivot_table(index='#sample',
                       .astype(bool).astype(int))
 mut_pivot.index.name = 'SAMPLE_BARCODE'
 
-mut_pivot.to_csv(mut_out_file, sep='\t')
+mut_pivot.to_csv(mut_out_file, sep='\t', compression='gzip')
 
 
 # In[9]:
@@ -174,12 +174,12 @@ copy_df.index.name = 'Sample'
 # For our purposes, a copy loss status event (1 vs. 0) is conservatively defined only as a deep loss.
 copy_loss_df = copy_df.replace(to_replace=[1, 2, -1], value=0)
 copy_loss_df.replace(to_replace=-2, value=1, inplace=True)
-copy_loss_df.to_csv(copy_loss_out_file, sep='\t')
+copy_loss_df.to_csv(copy_loss_out_file, sep='\t', compression='gzip')
 
 # A copy gain status event (1 vs. 0) is defined only as a high gain.
 copy_gain_df = copy_df.replace(to_replace=[-1, -2, 1], value=0)
 copy_gain_df.replace(to_replace=2, value=1, inplace=True)
-copy_gain_df.to_csv(copy_gain_out_file, sep='\t')
+copy_gain_df.to_csv(copy_gain_out_file, sep='\t', compression='gzip')
 
 
 # ### Clinical Data
@@ -268,5 +268,5 @@ copy_status = copy_status.loc[:, mutation_status.columns].fillna(0).astype(int)
 
 # Combine and write to file
 full_status = copy_status + mutation_status
-full_status.to_csv(known_status_file, sep='\t')
+full_status.to_csv(known_status_file, sep='\t', compression='gzip')
 

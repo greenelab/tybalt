@@ -64,7 +64,7 @@ first_layer = int(args.first_layer)
 output_filename = args.output_filename
 
 # Load Data
-rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv')
+rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv.gz')
 rnaseq_df = pd.read_table(rnaseq_file, index_col=0)
 
 # Set architecture dimensions

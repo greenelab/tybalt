@@ -65,7 +65,7 @@ seed = int(np.random.randint(low=0, high=10000, size=1))
 np.random.seed(seed)
 
 # Load Data
-rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv')
+rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv.gz')
 rnaseq_df = pd.read_table(rnaseq_file, index_col=0)
 
 original_dim = rnaseq_df.shape[1]
