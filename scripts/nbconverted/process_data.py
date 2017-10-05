@@ -256,6 +256,10 @@ copy_status = pd.concat([status_gain, status_loss], axis=1)
 
 # In[17]:
 
+# NOTCH1 and NOTCH2 are both tumor suppressors and oncogenes depending on tissue context
+# drop them from copy number consideration for now
+copy_status = copy_status.drop(['NOTCH1', 'NOTCH2'], axis=1)
+
 # Subset each dataframe
 status_samples = set(mut_pivot.index) & set(copy_status.index)
 
@@ -267,6 +271,7 @@ copy_status = copy_status.loc[:, mutation_status.columns].fillna(0).astype(int)
 # In[18]:
 
 # Combine and write to file
-full_status = copy_status + mutation_status
+full_status = mutation_status.add(copy_status, fill_value=0)
+full_status.replace(to_replace=2, value=1, inplace=True)
 full_status.to_csv(known_status_file, sep='\t', compression='gzip')
 
