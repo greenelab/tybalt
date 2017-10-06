@@ -12,6 +12,7 @@
 # ORA results for:
 # 1) HGSC-specific feature encodings identified by latent space arithmetic
 # 2) SKCM distinguishing encodings
+# 3) Dimensionality reduction algorithm comparison
 
 library(WebGestaltR)
 library(dplyr)
@@ -90,3 +91,24 @@ g <- RunWebGestalt(node_53_pos_df$genes, "node53_pos", skcm_out_dir, bg_file)
 g <- RunWebGestalt(node_53_neg_df$genes, "node53_neg", skcm_out_dir, bg_file)
 g <- RunWebGestalt(node_66_pos_df$genes, "node66_pos", skcm_out_dir, bg_file)
 g <- RunWebGestalt(node_66_neg_df$genes, "node66_neg", skcm_out_dir, bg_file)
+
+# 3) Dimensionality Reduction Analysis
+
+# Specify filenames
+dimred_out_dir <- file.path("results", "pathway", "dim_reduction")
+dimred_files <- list.files(file.path("results", "feature_comparison"),
+                           pattern = "mesenchymal_genes.tsv", full.names = TRUE)
+
+# Perform pathway analysis for each dimensionality reduction algorithm
+for (dimred_file in dimred_files) {
+  # Process the base name for the algorithm being processed
+  dimred_info <- unlist(strsplit(basename(dimred_file), "_"))
+  algorithm <- dimred_info[1]
+
+  # Read in hgsc genes file
+  dimred_node_df <- readr::read_tsv(dimred_file)
+  dimred_genes <- dimred_node_df$genes
+  
+  # Perform pathway analysis with WebGestaltR
+  g <- RunWebGestalt(dimred_genes, algorithm, dimred_out_dir, bg_file)
+}

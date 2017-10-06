@@ -1,0 +1,22 @@
+userid	genesymbol	genename	entrezgene
+CDH2	CDH2	cadherin 2	1000
+FAM47E	FAM47E	family with sequence similarity 47 member E	100129583
+KLHL32	KLHL32	kelch like family member 32	114792
+WDR17	WDR17	WD repeat domain 17	116966
+ADHFE1	ADHFE1	alcohol dehydrogenase, iron containing 1	137872
+ZNF610	ZNF610	zinc finger protein 610	162963
+DTNA	DTNA	dystrobrevin alpha	1837
+SHC2	SHC2	SHC adaptor protein 2	25759
+NR3C2	NR3C2	nuclear receptor subfamily 3 group C member 2	4306
+PARK2	PARK2	parkin RBR E3 ubiquitin protein ligase	5071
+PRKD1	PRKD1	protein kinase D1	5587
+RPS4Y1	RPS4Y1	ribosomal protein S4, Y-linked 1	6192
+TMOD1	TMOD1	tropomodulin 1	7111
+DMRTC1B	DMRTC1B	DMRT like family C1B	728656
+PHYHIPL	PHYHIPL	phytanoyl-CoA 2-hydroxylase interacting protein like	84457
+BEX2	BEX2	brain expressed X-linked 2	84707
+PNMA6A	PNMA6A	paraneoplastic Ma antigen family member 6A	84968
+CBS	CBS	cystathionine-beta-synthase	875
+SNURF	SNURF	SNRPN upstream reading frame	8926
+DLGAP1	DLGAP1	DLG associated protein 1	9229
+SNAP91	SNAP91	synaptosome associated protein 91	9892

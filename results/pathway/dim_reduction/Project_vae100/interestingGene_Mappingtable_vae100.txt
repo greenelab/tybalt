@@ -1,0 +1,207 @@
+userid	genesymbol	genename	entrezgene
+HOTAIR	HOTAIR	HOX transcript antisense RNA	100124700
+CLEC3A	CLEC3A	C-type lectin domain family 3 member A	10143
+CSAG2	CSAG2	CSAG family member 2	102723547
+CRISP3	CRISP3	cysteine rich secretory protein 3	10321
+CEACAM5	CEACAM5	carcinoembryonic antigen related cell adhesion molecule 5	1048
+CAPN9	CAPN9	calpain 9	10753
+CEACAM7	CEACAM7	carcinoembryonic antigen related cell adhesion molecule 7	1087
+ANXA10	ANXA10	annexin A10	11199
+KLK8	KLK8	kallikrein related peptidase 8	11202
+SLC6A14	SLC6A14	solute carrier family 6 member 14	11254
+CYP4F8	CYP4F8	cytochrome P450 family 4 subfamily F member 8	11283
+CHRNA1	CHRNA1	cholinergic receptor nicotinic alpha 1 subunit	1134
+PGLYRP3	PGLYRP3	peptidoglycan recognition protein 3	114771
+IL22RA2	IL22RA2	interleukin 22 receptor subunit alpha 2	116379
+SCGB3A2	SCGB3A2	secretoglobin family 3A member 2	117156
+MUCL1	MUCL1	mucin like 1	118430
+PLA2G4E	PLA2G4E	phospholipase A2 group IVE	123745
+GGT6	GGT6	gamma-glutamyltransferase 6	124975
+WFDC12	WFDC12	WAP four-disulfide core domain 12	128488
+C20orf85	C20orf85	chromosome 20 open reading frame 85	128602
+COL10A1	COL10A1	collagen type X alpha 1 chain	1300
+COL11A1	COL11A1	collagen type XI alpha 1 chain	1301
+COMP	COMP	cartilage oligomeric matrix protein	1311
+LRRC15	LRRC15	leucine rich repeat containing 15	131578
+SNTN	SNTN	sentan, cilia apical structure protein	132203
+CAPSL	CAPSL	calcyphosine like	133690
+MUC17	MUC17	mucin 17, cell surface associated	140453
+CSF2	CSF2	colony stimulating factor 2	1437
+CST1	CST1	cystatin SN	1469
+CST4	CST4	cystatin S	1472
+IGFL2	IGFL2	IGF like family member 2	147920
+NKX2-5	NKX2-5	NK2 homeobox 5	1482
+WFDC5	WFDC5	WAP four-disulfide core domain 5	149708
+SMYD1	SMYD1	SET and MYND domain containing 1	150572
+RAET1L	RAET1L	retinoic acid early transcript 1L	154064
+AGR3	AGR3	anterior gradient 3, protein disulphide isomerase family member	155465
+CSAG1	CSAG1	chondrosarcoma associated gene 1	158511
+DSC1	DSC1	desmocollin 1	1823
+DSG3	DSG3	desmoglein 3	1830
+EPYC	EPYC	epiphycan	1833
+B3GNT6	B3GNT6	UDP-GlcNAc:betaGal beta-1,3-N-acetylglucosaminyltransferase 6	192134
+SDR16C5	SDR16C5	short chain dehydrogenase/reductase family 16C member 5	195814
+EN1	EN1	engrailed homeobox 1	2019
+SFTA1P	SFTA1P	surfactant associated 1, pseudogene	207107
+FABP6	FABP6	fatty acid binding protein 6	2172
+FAP	FAP	fibroblast activation protein alpha	2191
+MS4A15	MS4A15	membrane spanning 4-domains A15	219995
+SPERT	SPERT	spermatid associated	220082
+CASP14	CASP14	caspase 14	23581
+CBLC	CBLC	Cbl proto-oncogene C	23624
+ALPP	ALPP	alkaline phosphatase, placental	250
+ALPPL2	ALPPL2	alkaline phosphatase, placental like 2	251
+SFTA3	SFTA3	surfactant associated 3	253970
+C11orf86	C11orf86	chromosome 11 open reading frame 86	254439
+SLC24A2	SLC24A2	solute carrier family 24 member 2	25769
+KLK5	KLK5	kallikrein related peptidase 5	25818
+PRSS33	PRSS33	protease, serine 33	260429
+GREM1	GREM1	gremlin 1, DAN family BMP antagonist	26585
+TINAG	TINAG	tubulointerstitial nephritis antigen	27283
+SPINK4	SPINK4	serine peptidase inhibitor, Kazal type 4	27290
+GP2	GP2	glycoprotein 2	2813
+SLCO1B3	SLCO1B3	solute carrier organic anion transporter family member 1B3	28234
+GPR1	GPR1	G protein-coupled receptor 1	2825
+LGALS9B	LGALS9B	galectin 9B	284194
+KLK9	KLK9	kallikrein related peptidase 9	284366
+KRT6C	KRT6C	keratin 6C	286887
+C6orf15	C6orf15	chromosome 6 open reading frame 15	29113
+GRP	GRP	gastrin releasing peptide	2922
+ANXA13	ANXA13	annexin A13	312
+HOXC11	HOXC11	homeobox C11	3227
+HOXC13	HOXC13	homeobox C13	3229
+APCS	APCS	amyloid P component, serum	325
+IBSP	IBSP	integrin binding sialoprotein	3381
+S100A7A	S100A7A	S100 calcium binding protein A7A	338324
+C2orf70	C2orf70	chromosome 2 open reading frame 70	339778
+C11orf53	C11orf53	chromosome 11 open reading frame 53	341032
+MOGAT3	MOGAT3	monoacylglycerol O-acyltransferase 3	346606
+INHBA	INHBA	inhibin beta A subunit	3624
+PDX1	PDX1	pancreatic and duodenal homeobox 1	3651
+ITGB6	ITGB6	integrin subunit beta 6	3694
+KCNA1	KCNA1	potassium voltage-gated channel subfamily A member 1	3736
+IGFL1	IGFL1	IGF like family member 1	374918
+KRT6A	KRT6A	keratin 6A	3853
+KRT6B	KRT6B	keratin 6B	3854
+KRT9	KRT9	keratin 9	3857
+KRT16	KRT16	keratin 16	3868
+C10orf99	C10orf99	chromosome 10 open reading frame 99	387695
+KRT31	KRT31	keratin 31	3881
+KRTDAP	KRTDAP	keratinocyte differentiation associated protein	388533
+LDLRAD1	LDLRAD1	low density lipoprotein receptor class A domain containing 1	388633
+CAPN8	CAPN8	calpain 8	388743
+C5orf46	C5orf46	chromosome 5 open reading frame 46	389336
+SFTA2	SFTA2	surfactant associated 2	389376
+CSAG3	CSAG3	CSAG family member 3	389903
+LGALS7	LGALS7	galectin 7	3963
+LHX1	LHX1	LIM homeobox 1	3975
+KPNA7	KPNA7	karyopherin subunit alpha 7	402569
+MAGEA1	MAGEA1	MAGE family member A1	4100
+MAGEA2	MAGEA2	MAGE family member A2	4101
+MAGEA3	MAGEA3	MAGE family member A3	4102
+MAGEA4	MAGEA4	MAGE family member A4	4103
+MAGEA6	MAGEA6	MAGE family member A6	4105
+MAGEA11	MAGEA11	MAGE family member A11	4110
+MAGEA12	MAGEA12	MAGE family member A12	4111
+SCGB2A1	SCGB2A1	secretoglobin family 2A member 1	4246
+SCGB2A2	SCGB2A2	secretoglobin family 2A member 2	4250
+MMP1	MMP1	matrix metallopeptidase 1	4312
+MMP3	MMP3	matrix metallopeptidase 3	4314
+MMP8	MMP8	matrix metallopeptidase 8	4317
+MMP10	MMP10	matrix metallopeptidase 10	4319
+MMP12	MMP12	matrix metallopeptidase 12	4321
+MMP13	MMP13	matrix metallopeptidase 13	4322
+KLK12	KLK12	kallikrein related peptidase 12	43849
+AKR1B15	AKR1B15	aldo-keto reductase family 1 member B15	441282
+MUC2	MUC2	mucin 2, oligomeric mucus/gel-forming	4583
+MYBPC1	MYBPC1	myosin binding protein C, slow type	4604
+NKX6-1	NKX6-1	NK6 homeobox 1	4825
+NTF4	NTF4	neurotrophin 4	4909
+PAEP	PAEP	progestagen associated endometrial protein	5047
+NOX4	NOX4	NADPH oxidase 4	50507
+IL20	IL20	interleukin 20	50604
+REG3A	REG3A	regenerating family member 3 alpha	5068
+PAX1	PAX1	paired box 1	5075
+IRX4	IRX4	iroquois homeobox 4	50805
+PAX7	PAX7	paired box 7	5081
+MAGEC2	MAGEC2	MAGE family member C2	51438
+VGLL1	VGLL1	vestigial like family member 1	51442
+PADI3	PADI3	peptidyl arginine deiminase 3	51702
+CALML5	CALML5	calmodulin like 5	51806
+SERPINB5	SERPINB5	serpin family B member 5	5268
+PIP	PIP	prolactin induced protein	5304
+FXYD4	FXYD4	FXYD domain containing ion transport regulator 4	53828
+KRT20	KRT20	keratin 20	54474
+CRCT1	CRCT1	cysteine rich C-terminal 1	54544
+UGT1A10	UGT1A10	UDP glucuronosyltransferase family 1 member A10	54575
+UGT1A8	UGT1A8	UDP glucuronosyltransferase family 1 member A8	54576
+UGT1A7	UGT1A7	UDP glucuronosyltransferase family 1 member A7	54577
+UGT1A1	UGT1A1	UDP glucuronosyltransferase family 1 member A1	54658
+UGT1A3	UGT1A3	UDP glucuronosyltransferase family 1 member A3	54659
+ARHGEF38	ARHGEF38	Rho guanine nucleotide exchange factor 38	54848
+BARX1	BARX1	BARX homeobox 1	56033
+GSDMC	GSDMC	gasdermin C	56169
+KLK7	KLK7	kallikrein related peptidase 7	5650
+KLK6	KLK6	kallikrein related peptidase 6	5653
+AKR1B10	AKR1B10	aldo-keto reductase family 1 member B10	57016
+PGLYRP4	PGLYRP4	peptidoglycan recognition protein 4	57115
+SLURP1	SLURP1	secreted LY6/PLAUR domain containing 1	57152
+NKX3-2	NKX3-2	NK3 homeobox 2	579
+PTPRN	PTPRN	protein tyrosine phosphatase, receptor type N	5798
+OVOL2	OVOL2	ovo like zinc finger 2	58495
+CACNG7	CACNG7	calcium voltage-gated channel auxiliary subunit gamma 7	59284
+CACNG6	CACNG6	calcium voltage-gated channel auxiliary subunit gamma 6	59285
+ROS1	ROS1	ROS proto-oncogene 1, receptor tyrosine kinase	6098
+S100A7	S100A7	S100 calcium binding protein A7	6278
+SERPINB3	SERPINB3	serpin family B member 3	6317
+SERPINB4	SERPINB4	serpin family B member 4	6318
+CCL7	CCL7	C-C motif chemokine ligand 7	6354
+CCL11	CCL11	C-C motif chemokine ligand 11	6356
+FAM25A	FAM25A	family with sequence similarity 25 member A	643161
+PHGR1	PHGR1	proline, histidine and glycine rich 1	644844
+PLA2G2F	PLA2G2F	phospholipase A2 group IIF	64600
+SHOX2	SHOX2	short stature homeobox 2	6474
+SI	SI	sucrase-isomaltase	6476
+SIM1	SIM1	single-minded family bHLH transcription factor 1	6492
+UCA1	UCA1	urothelial cancer associated 1 (non-protein coding)	652995
+LGALS7B	LGALS7B	galectin 7B	653499
+SFTPA1	SFTPA1	surfactant protein A1	653509
+SLN	SLN	sarcolipin	6588
+SOX11	SOX11	SRY-box 11	6664
+SPRR1A	SPRR1A	small proline rich protein 1A	6698
+SPRR1B	SPRR1B	small proline rich protein 1B	6699
+SPRR2G	SPRR2G	small proline rich protein 2G	6706
+SRMS	SRMS	src-related kinase lacking C-terminal regulatory tyrosine and N-terminal myristylation sites	6725
+SST	SST	somatostatin	6750
+TFF1	TFF1	trefoil factor 1	7031
+MAGEA9B	MAGEA9B	MAGE family member A9B	728269
+SCGB1A1	SCGB1A1	secretoglobin family 1A member 1	7356
+UGT2B4	UGT2B4	UDP glucuronosyltransferase family 2 member B4	7363
+UGT2B15	UGT2B15	UDP glucuronosyltransferase family 2 member B15	7366
+ZIC2	ZIC2	Zic family member 2	7546
+PSAPL1	PSAPL1	prosaposin-like 1 (gene/pseudogene)	768239
+CACNG1	CACNG1	calcium voltage-gated channel auxiliary subunit gamma 1	786
+ARL14	ARL14	ADP ribosylation factor like GTPase 14	80117
+MOGAT2	MOGAT2	monoacylglycerol O-acyltransferase 2	80168
+ADAMTS12	ADAMTS12	ADAM metallopeptidase with thrombospondin type 1 motif 12	81792
+NETO1	NETO1	neuropilin and tolloid like 1	81832
+TEKT1	TEKT1	tektin 1	83659
+LCE3D	LCE3D	late cornified envelope 3D	84648
+BARX2	BARX2	BARX homeobox 2	8538
+ZIC5	ZIC5	Zic family member 5	85416
+LY6D	LY6D	lymphocyte antigen 6 family member D	8581
+TNFSF11	TNFSF11	tumor necrosis factor superfamily member 11	8600
+SERPINB7	SERPINB7	serpin family B member 7	8710
+SCEL	SCEL	sciellin	8796
+CDK5R2	CDK5R2	cyclin dependent kinase 5 regulatory subunit 2	8941
+SYT8	SYT8	synaptotagmin 8	90019
+FAM181A	FAM181A	family with sequence similarity 181 member A	90050
+ANKRD30A	ANKRD30A	ankyrin repeat domain 30A	91074
+KRT75	KRT75	keratin 75	9119
+ISX	ISX	intestine specific homeobox	91464
+CAPN13	CAPN13	calpain 13	92291
+LEMD1	LEMD1	LEM domain containing 1	93273
+SLC22A6	SLC22A6	solute carrier family 22 member 6	9356
+ADIPOQ	ADIPOQ	adiponectin, C1Q and collagen domain containing	9370
+MAGEC1	MAGEC1	MAGE family member C1	9947
+FGFBP1	FGFBP1	fibroblast growth factor binding protein 1	9982

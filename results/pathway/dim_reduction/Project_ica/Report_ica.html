@@ -1,0 +1,370 @@
+<html>
+<head>
+<title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery-ui.js"></script>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42098540-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/changeColor.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/tableExport.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.base64.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/html2canvas.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jspdf/libs/sprintf.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jspdf.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jspdf/libs/base64.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/search.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/d3/d3.v3.min.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.tipsy.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.contextMenu.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.floatThead.min.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/dagre/dagre.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/Minimap.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/MinimapZoom.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/DirectedAcyclicGraph.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/List.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/Selectable_svv.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/Graph.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/History.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/Tooltip.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/FileSaver.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/download.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/ContextMenu.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/searchView.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/canvg/rgbcolor.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/canvg/StackBlur.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/canvg/canvg.js"></script>
+<script type="text/javascript" src="js/xtrace_utils.js"></script>
+<script type="text/javascript" src="js/xtrace_graph.js"></script>
+<script type="text/javascript" src="js/plotDAG.js"></script>
+<script type="text/javascript" src="http://www.webgestalt.org//js/tooltipster.bundle.min.js"></script>
+<script>$(document).ready(function(){$('.tooltip-container').tooltipster({functionInit: function (instance, helper) {var content = $(helper.origin).find('.tooltip_content').detach();instance.content(content);}});});</script>
+<link href="http://www.webgestalt.org//css/jquery-ui.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/xtrace.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/tipsy.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/jquery.contextMenu.css" rel="stylesheet" type="text/css">
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/graph.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/report.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/zebra.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/search.css" rel="stylesheet" type="text/css">
+<link href="http://www.webgestalt.org//css/tooltipster.bundle.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<p align="center">
+<iframe src="http://www.webgestalt.org//html/head.html" style="border:0px;height:180px;width:100%"></iframe>
+<div id ="tabs"> <ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#interestGene">User ID Mapping Table</a></li>
+<li><a href="#referenceGene">GOSlim Summary</a></li>
+</ul>
+<div id="summary">
+<h3>Summary&nbsp&nbsp&nbsp(<a href="Project_ica.tar.gz" target="_blank" style="color:red"><u>Result Download</u></a>)</h3>
+<b>Enrich method:</b> ORA<br/>
+<b>Organism:</b>hsapiens<br/>
+<b>Enrichment Categories: </b>geneontology_Biological_Process<br/>
+<b>Interesting gene list: </b> a R object. <b> ID type: </b>genesymbol<br/>
+The interesting gene list contains <b>44</b> user IDs in which <b>41</b> user IDs are unambiguously mapped to the unique Entrez Gene IDs and <b>3</b> user IDs are mapped to multiple Entrez Gene IDs or could not be mapped to any Entrez Gene ID. The GO Slim summary are based upon the <b>41</b> unique Entrez Gene IDs.<br/>
+Among the <b>41</b> unique Entrez Gene IDs, <b>34</b> IDs are annotated to the selected functional categories and also in the reference gene list, which are used for the enrichment analysis.<br/>
+<b>Reference gene list: </b>data/background_genes.txt <b>ID type: </b>genesymbol<br/>
+The reference gene list contains <b>5000</b> IDs in which <b>4627</b> IDs are unambiguously mapped to the unique Entrez Gene IDs and <b>373</b> IDs are mapped to multiple Entrez Gene IDs or could not be mapped to any Entrez Gene ID.<br/>
+Among the <b>4627</b> unique Entrez Gene IDs, <b>4020</b> IDs are annotated to the selected functional categories, which are used as the reference for the enrichment analysis.<br/>
+<b>Parameters for the enrichment analysis:</b>
+<ul><li><b>Minimum number of Entrez Gene IDs in the category:</b>4</li>
+<li><b>Maximum number of Entrez Gene IDs in the category:</b>500</li>
+<li><b>FDR Method:</b>BH</li>
+<li><b>Significance Level:</b> FDR<0.05</li>
+</ul>
+Based on the above parameters, <b>No</b> category is identified as enriched category.<br/>
+</div>
+<div id="interestGene">
+<div id="mappedGene">
+<h4>Mapped User IDs</h4>
+<table class="zebra"><thead><tr>
+<th>userid</th>
+<th>Gene Symbol</th>
+<th>Gene Name</th>
+<th>Entrez Gene</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>HOTAIR</td>
+<td>HOTAIR</td>
+<td>HOX transcript antisense RNA</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=100124700">100124700</a></td>
+</tr>
+<tr>
+<td>DHRS2</td>
+<td>DHRS2</td>
+<td>dehydrogenase/reductase 2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=10202">10202</a></td>
+</tr>
+<tr>
+<td>EDARADD</td>
+<td>EDARADD</td>
+<td>EDAR associated death domain</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=128178">128178</a></td>
+</tr>
+<tr>
+<td>C10orf82</td>
+<td>C10orf82</td>
+<td>chromosome 10 open reading frame 82</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=143379">143379</a></td>
+</tr>
+<tr>
+<td>SAMD11</td>
+<td>SAMD11</td>
+<td>sterile alpha motif domain containing 11</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=148398">148398</a></td>
+</tr>
+<tr>
+<td>CTNND2</td>
+<td>CTNND2</td>
+<td>catenin delta 2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=1501">1501</a></td>
+</tr>
+<tr>
+<td>CTSG</td>
+<td>CTSG</td>
+<td>cathepsin G</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=1511">1511</a></td>
+</tr>
+<tr>
+<td>ADRA2C</td>
+<td>ADRA2C</td>
+<td>adrenoceptor alpha 2C</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=152">152</a></td>
+</tr>
+<tr>
+<td>ARX</td>
+<td>ARX</td>
+<td>aristaless related homeobox</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=170302">170302</a></td>
+</tr>
+<tr>
+<td>MS4A15</td>
+<td>MS4A15</td>
+<td>membrane spanning 4-domains A15</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=219995">219995</a></td>
+</tr>
+<tr>
+<td>MS4A2</td>
+<td>MS4A2</td>
+<td>membrane spanning 4-domains A2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=2206">2206</a></td>
+</tr>
+<tr>
+<td>BEND7</td>
+<td>BEND7</td>
+<td>BEN domain containing 7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=222389">222389</a></td>
+</tr>
+<tr>
+<td>HSPA4L</td>
+<td>HSPA4L</td>
+<td>heat shock protein family A (Hsp70) member 4 like</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=22824">22824</a></td>
+</tr>
+<tr>
+<td>HS6ST3</td>
+<td>HS6ST3</td>
+<td>heparan sulfate 6-O-sulfotransferase 3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=266722">266722</a></td>
+</tr>
+<tr>
+<td>HOXC10</td>
+<td>HOXC10</td>
+<td>homeobox C10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3226">3226</a></td>
+</tr>
+<tr>
+<td>HOXC11</td>
+<td>HOXC11</td>
+<td>homeobox C11</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3227">3227</a></td>
+</tr>
+<tr>
+<td>KCNK1</td>
+<td>KCNK1</td>
+<td>potassium two pore domain channel subfamily K member 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=3775">3775</a></td>
+</tr>
+<tr>
+<td>TMEM150C</td>
+<td>TMEM150C</td>
+<td>transmembrane protein 150C</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=441027">441027</a></td>
+</tr>
+<tr>
+<td>MSI1</td>
+<td>MSI1</td>
+<td>musashi RNA binding protein 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=4440">4440</a></td>
+</tr>
+<tr>
+<td>MT1E</td>
+<td>MT1E</td>
+<td>metallothionein 1E</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=4493">4493</a></td>
+</tr>
+<tr>
+<td>MT1X</td>
+<td>MT1X</td>
+<td>metallothionein 1X</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=4501">4501</a></td>
+</tr>
+<tr>
+<td>PAX7</td>
+<td>PAX7</td>
+<td>paired box 7</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=5081">5081</a></td>
+</tr>
+<tr>
+<td>PIK3C2G</td>
+<td>PIK3C2G</td>
+<td>phosphatidylinositol-4-phosphate 3-kinase catalytic subunit type 2 gamma</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=5288">5288</a></td>
+</tr>
+<tr>
+<td>PNMT</td>
+<td>PNMT</td>
+<td>phenylethanolamine N-methyltransferase</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=5409">5409</a></td>
+</tr>
+<tr>
+<td>FAM3B</td>
+<td>FAM3B</td>
+<td>family with sequence similarity 3 member B</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54097">54097</a></td>
+</tr>
+<tr>
+<td>TMEM132A</td>
+<td>TMEM132A</td>
+<td>transmembrane protein 132A</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=54972">54972</a></td>
+</tr>
+<tr>
+<td>ETNK2</td>
+<td>ETNK2</td>
+<td>ethanolamine kinase 2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=55224">55224</a></td>
+</tr>
+<tr>
+<td>TRIM36</td>
+<td>TRIM36</td>
+<td>tripartite motif containing 36</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=55521">55521</a></td>
+</tr>
+<tr>
+<td>SMAGP</td>
+<td>SMAGP</td>
+<td>small cell adhesion glycoprotein</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=57228">57228</a></td>
+</tr>
+<tr>
+<td>SLC4A10</td>
+<td>SLC4A10</td>
+<td>solute carrier family 4 member 10</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=57282">57282</a></td>
+</tr>
+<tr>
+<td>CACNG6</td>
+<td>CACNG6</td>
+<td>calcium voltage-gated channel auxiliary subunit gamma 6</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=59285">59285</a></td>
+</tr>
+<tr>
+<td>SIX1</td>
+<td>SIX1</td>
+<td>SIX homeobox 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=6495">6495</a></td>
+</tr>
+<tr>
+<td>CAPN5</td>
+<td>CAPN5</td>
+<td>calpain 5</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=726">726</a></td>
+</tr>
+<tr>
+<td>SHISA9</td>
+<td>SHISA9</td>
+<td>shisa family member 9</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=729993">729993</a></td>
+</tr>
+<tr>
+<td>XK</td>
+<td>XK</td>
+<td>X-linked Kx blood group</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=7504">7504</a></td>
+</tr>
+<tr>
+<td>CACNG1</td>
+<td>CACNG1</td>
+<td>calcium voltage-gated channel auxiliary subunit gamma 1</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=786">786</a></td>
+</tr>
+<tr>
+<td>GDPD3</td>
+<td>GDPD3</td>
+<td>glycerophosphodiester phosphodiesterase domain containing 3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=79153">79153</a></td>
+</tr>
+<tr>
+<td>NETO2</td>
+<td>NETO2</td>
+<td>neuropilin and tolloid like 2</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=81831">81831</a></td>
+</tr>
+<tr>
+<td>CAMP</td>
+<td>CAMP</td>
+<td>cathelicidin antimicrobial peptide</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=820">820</a></td>
+</tr>
+<tr>
+<td>CAPS</td>
+<td>CAPS</td>
+<td>calcyphosine</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=828">828</a></td>
+</tr>
+<tr>
+<td>IGDCC3</td>
+<td>IGDCC3</td>
+<td>immunoglobulin superfamily DCC subclass member 3</td>
+<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=9543">9543</a></td>
+</tr>
+</tbody></table>
+</div>
+<div id="empty">&nbsp&nbsp&nbsp&nbsp</div>
+<div id="unmappedGene">
+<h4>User IDs mapped to multiple Entrtez IDs or not mapped</h4>
+<table class="zebra"><thead><tr>
+<th>userid</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>C11orf92</td>
+</tr>
+<tr>
+<td>GPR126</td>
+</tr>
+<tr>
+<td>C11orf93</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div id="referenceGene">
+<h4>GOSlim summary for the user list genes</h4>
+Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.<br/>
+The height of the bar represents the number of user list genes observed in the category.
+<img src="goslim_summary_ica.png" width="100%" height="100%"/></div>
+</div>
+<script>$( "#tabs" ).tabs();</script><iframe src="http://www.webgestalt.org//html/foot.html" style="border:0px;height:130px;width:100%"></iframe>
+</body></html>
