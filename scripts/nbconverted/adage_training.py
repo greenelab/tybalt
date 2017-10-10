@@ -178,8 +178,11 @@ encoded_rnaseq_df.to_csv(encoded_file, sep='\t')
 # In[17]:
 
 # Output weight matrix of gene contributions per node
-weight_matrix = pd.DataFrame(autoencoder.get_weights()[0], index=rnaseq_df.columns)
-weight_file = os.path.join('data', 'adage_gene_weights.tsv')
+weight_file = os.path.join('results', 'adage_gene_weights.tsv')
+
+weight_matrix = pd.DataFrame(autoencoder.get_weights()[0], index=rnaseq_df.columns,
+                             columns=range(1, 101)).T
+weight_matrix.index.name = 'encodings'
 weight_matrix.to_csv(weight_file, sep='\t')
 
 

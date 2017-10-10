@@ -5,7 +5,6 @@ data/clinical_data.tsv filter=lfs diff=lfs merge=lfs -text
 data/encoded_rnaseq_onehidden_warmup_batchnorm.tsv filter=lfs diff=lfs merge=lfs -text
 data/onehidden_warmup_batchnorm_tsne_out.tsv filter=lfs diff=lfs merge=lfs -text
 data/encoded_adage_features.tsv filter=lfs diff=lfs merge=lfs -text
-data/adage_gene_weights.tsv filter=lfs diff=lfs merge=lfs -text
 data/tybalt_features_with_clinical.tsv filter=lfs diff=lfs merge=lfs -text
 data/encoded_rnaseq_twohidden_100model.tsv.gz filter=lfs diff=lfs merge=lfs -text
 data/encoded_rnaseq_twohidden_300model.tsv.gz filter=lfs diff=lfs merge=lfs -text
@@ -17,6 +16,7 @@ results/rnaseq_tsne_features.tsv filter=lfs diff=lfs merge=lfs -text
 results/tybalt_tsne_features.tsv filter=lfs diff=lfs merge=lfs -text
 results/parameter_sweep_adage_results.tsv filter=lfs diff=lfs merge=lfs -text
 results/tybalt_gene_weights.tsv filter=lfs diff=lfs merge=lfs -text
+results/adage_gene_weights.tsv filter=lfs diff=lfs merge=lfs -text
 results/parameter_sweep_twohidden_full_results.tsv filter=lfs diff=lfs merge=lfs -text
 results/parameter_sweep_twohidden300_full_results.tsv filter=lfs diff=lfs merge=lfs -text
 data/status_matrix.tsv.gz filter=lfs diff=lfs merge=lfs -text
