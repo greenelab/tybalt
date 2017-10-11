@@ -311,7 +311,7 @@ def get_high_weight_genes(weight_matrix, node, algorithm, high_std=2.5, directio
 pca_feature_file = '../pancan_viz/data/pca_feature_rnaseq.tsv.gz'
 ica_feature_file = '../pancan_viz/data/ica_feature_rnaseq.tsv.gz'
 nmf_feature_file = '../pancan_viz/data/nmf_feature_rnaseq.tsv.gz'
-adage_feature_file = 'https://github.com/greenelab/tybalt/raw/928804ffd3bb3f9d5559796b2221500c303ed92c/data/adage_gene_weights.tsv'
+adage_feature_file = 'https://github.com/greenelab/tybalt/raw/4bb7c5c5eb6b9dfe843269f8c3059e1168542b55/results/adage_gene_weights.tsv'
 tybalt_feature_file = 'https://github.com/greenelab/tybalt/raw/928804ffd3bb3f9d5559796b2221500c303ed92c/results/tybalt_gene_weights.tsv'
 vae_feature_twolayer_file = 'https://github.com/greenelab/tybalt/raw/7d2854172b57efc4b92ca80d3ec86dfbbc3e4325/data/tybalt_gene_weights_twohidden100.tsv'
 vae_feature_twolayer300_file = 'https://github.com/greenelab/tybalt/raw/7d2854172b57efc4b92ca80d3ec86dfbbc3e4325/data/tybalt_gene_weights_twohidden300.tsv'
@@ -319,8 +319,7 @@ vae_feature_twolayer300_file = 'https://github.com/greenelab/tybalt/raw/7d285417
 pca_feature_df = pd.read_table(pca_feature_file, index_col=0)
 ica_feature_df = pd.read_table(ica_feature_file, index_col=0)
 nmf_feature_df = pd.read_table(nmf_feature_file, index_col=0)
-adage_feature_df = pd.read_table(adage_feature_file, index_col=0).T
-adage_feature_df.index = range(1, 101)
+adage_feature_df = pd.read_table(adage_feature_file, index_col=0)
 tybalt_feature_df = pd.read_table(tybalt_feature_file, index_col=0)
 vae_tl_feature_df = pd.read_table(vae_feature_twolayer_file, index_col=0)
 vae_tl300_feature_df = pd.read_table(vae_feature_twolayer300_file, index_col=0)
