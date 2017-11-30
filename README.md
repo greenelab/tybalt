@@ -20,6 +20,12 @@ We discuss the training and evaluation of Tybalt in our bioRxiv preprint:
 
 [_Extracting a Biologically Relevant Latent Space from Cancer Transcriptomes with Variational Autoencoders_](http://www.biorxiv.org/content/early/2017/08/11/174474).
 
+**NOTE:** As discovered by @enricoferrero, the preprint text (`section 2.2`) states
+that the top _median_ absolute deviation (MAD) genes were selected for subsetting,
+when the data processing code
+([`process_data.ipynb`](https://github.com/greenelab/tybalt/blob/master/process_data.ipynb))
+actually outputs the top _mean_ absolute deviation genes. We discuss this discrepancy
+and its potential impact in [issue #99](https://github.com/greenelab/tybalt/issues/99).
 
 ## The Data
 
