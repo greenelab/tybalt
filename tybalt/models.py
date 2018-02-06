@@ -24,7 +24,8 @@ class Tybalt():
     Training and evaluation of a tybalt model
     """
     def __init__(self, original_dim, latent_dim, batch_size, epochs,
-                 learning_rate, kappa, epsilon_std, beta):
+                 learning_rate, kappa, epsilon_std, beta,
+                 loss='binary_crossentropy'):
         self.original_dim = original_dim
         self.latent_dim = latent_dim
         self.batch_size = batch_size
@@ -33,6 +34,7 @@ class Tybalt():
         self.kappa = kappa
         self.epsilon_std = epsilon_std
         self.beta = beta
+        self.loss = loss
 
     def _sampling(self, args):
         """
@@ -108,7 +110,7 @@ class Tybalt():
         vae_layer = VariationalLayer(var_layer=self.z_var_encoded,
                                      mean_layer=self.z_mean_encoded,
                                      original_dim=self.original_dim,
-                                     beta=self.beta)(
+                                     beta=self.beta, loss=self.loss)(
                                 [self.rnaseq_input, self.rnaseq_reconstruct])
         self.vae = Model(self.rnaseq_input, vae_layer)
         self.vae.compile(optimizer=adam, loss=None, loss_weights=[self.beta])

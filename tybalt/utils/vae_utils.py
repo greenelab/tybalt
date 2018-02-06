@@ -8,21 +8,29 @@ class VariationalLayer(Layer):
     """
     Define a custom layer that learns and performs the training
     """
-    def __init__(self, var_layer, mean_layer, original_dim, beta, **kwargs):
+    def __init__(self, var_layer, mean_layer, original_dim, beta, loss,
+                 **kwargs):
         # https://keras.io/layers/writing-your-own-keras-layers/
         self.is_placeholder = True
         self.var_layer = var_layer
         self.mean_layer = mean_layer
         self.original_dim = original_dim
         self.beta = beta
+        self.loss = loss
         super(VariationalLayer, self).__init__(**kwargs)
 
     def vae_loss(self, x_input, x_decoded):
-        recon_loss = self.original_dim * metrics.binary_crossentropy(x_input,
-                                                                     x_decoded)
+        if self.loss == 'binary_crossentropy':
+            recon_loss = self.original_dim * \
+                         metrics.binary_crossentropy(x_input, x_decoded)
+        elif self.loss == 'mean_squared_error':
+            recon_loss = self.original_dim * \
+                         metrics.mean_squared_error(x_input, x_decoded)
+
         kl_loss = - 0.5 * K.sum(1 + self.var_layer -
                                 K.square(self.mean_layer) -
                                 K.exp(self.var_layer), axis=-1)
+
         return K.mean(recon_loss + (K.get_value(self.beta) * kl_loss))
 
     def call(self, inputs):
