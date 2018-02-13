@@ -35,14 +35,14 @@ sampleGroupMatrix <- function(num_samples, mean_matrix, sd_matrix) {
   #  
   # The 2nd element is a vector of group labels ("a", "b", "c", etc.)
 
-  group_params <- c()
+  group_df <- c()
   group_name <- letters[1:nrow(mean_matrix)]
   for (param_idx in 1:ncol(mean_matrix)) {
     mean_vector <- mean_matrix[, param_idx]
     sd_vector <- sd_matrix[, param_idx]
 
     group_vector <- rnorm(num_samples, mean = mean_vector, sd = sd_vector)
-    group_params <- cbind(group_params, group_vector)
+    group_df <- cbind(group_df, group_vector)
   }
 
   num_repeat <- num_samples %/% length(group_name)
@@ -54,8 +54,10 @@ sampleGroupMatrix <- function(num_samples, mean_matrix, sd_matrix) {
     labels <- c(labels, group_name[1:num_remainder])
   }
   
+  colnames(group_df) <- paste('group', seq(1, ncol(group_df)), sep = "_")
+  group_df <- tibble::as_data_frame(group_df)
 
-  return_list <- list(group_params, labels)
+  return_list <- list(group_df, labels)
   return(return_list)
 }
 
@@ -113,15 +115,21 @@ sampleCellMatrix <- function(num_samples, cell_mean_matrix, cell_sd_matrix) {
   }
 
   # Add mixing proportions of cell-type together
-  cell_type_data <- cell_type_params[[1]] + cell_type_params[[2]]
-  return_list <- list(cell_type_data, rand_cell_type_1)
+  cell_type_df <- cell_type_params[[1]] + cell_type_params[[2]]
+
+  colnames(cell_type_df) <- paste('cell_type',
+                                  seq(1, ncol(cell_type_df)), sep = "_")
+  cell_type_df <- tibble::as_data_frame(cell_type_df)
+
+  return_list <- list(cell_type_df, rand_cell_type_1)
   return(return_list)
 }
 
 
 getSimulatedExpression <- function(n, mean_df, sd_df, r, func_list, b,
                                    cell_type_mean_df, cell_type_sd_df,
-                                   seed, zero_one_normalize = TRUE) {
+                                   seed, zero_one_normalize = TRUE,
+                                   concat = FALSE) {
   # Obtain a matrix with simulated parameters. The matrix dimensions will be:
   # n by p, where p = ncol(mean_df) + r + length(func_list) + b +
   #                   ncol(cell_type_mean_df)
@@ -148,12 +156,16 @@ getSimulatedExpression <- function(n, mean_df, sd_df, r, func_list, b,
   #       Each column represents features describing the cell types
   # seed - add random seed as required argument
   # zero_one_normalize - boolean to zero one normalize simulated features
+  # concat - boolean to return combined output if TRUE, defaults to list output
   #
   # Return:
   # List of length 2: The first element is the simulated data matrix
   #                   The second element is important metadata including group
   #                       membership, cell type proportion, and the domain of
   #                       the input functions.
+  
+  require(tibble)
+  require(dplyr)
 
   set.seed(seed)
 
@@ -163,47 +175,56 @@ getSimulatedExpression <- function(n, mean_df, sd_df, r, func_list, b,
       stop("provide the same number of mean and standard deviation parameters")
     } else {
       group_params <- sampleGroupMatrix(n, mean_df, sd_df)
-      group_data <- group_params[[1]]
+      group_df <- group_params[[1]]
       group_info <- group_params[[2]]
     } 
   } else {
-      group_data <- c()
+      group_df <- c()
       group_info <- c()
   }
 
-
   # Get Random Noise Features
-  rand_params <- c()
+  rand_df <- c()
   if (r > 0) {
     for (rand_idx in 1:r) {
       rand_vector <- runif(n, min = 0, max = 1)
-      rand_params <- cbind(rand_params, rand_vector)
+      rand_df <- cbind(rand_df, rand_vector)
     }
+    colnames(rand_df) <- paste('random', seq(1, ncol(rand_df)), sep = "_")
+    rand_df <- tibble::as_data_frame(rand_df)
   }
 
   # Get Continuous Function Features
-  cont_params <- c()
-  cont_other_params <- c()
+  cont_df <- c()
+  cont_other_df <- c()
   if (length(func_list) > 0) {
     for (cont_idx in 1:length(func_list)) {
       continuous_rand_x <- runif(n, min = -1, max = 1)
       continuous_rand_y <- func_list[[cont_idx]](continuous_rand_x)
       
-      cont_params <- cbind(cont_params, continuous_rand_y)
-      cont_other_params <- cbind(cont_other_params, continuous_rand_x)
+      cont_df <- cbind(cont_df, continuous_rand_y)
+      cont_other_df <- cbind(cont_other_df, continuous_rand_x)
     }
-  } 
+    colnames(cont_df) <- paste('continuous', seq(1, ncol(cont_df)), sep = "_")
+    cont_df <- tibble::as_data_frame(cont_df)
+    
+    colnames(cont_other_df) <- paste('continuous_domain',
+                                     seq(1, ncol(cont_other_df)), sep = "_")
+    cont_other_df <- tibble::as_data_frame(cont_other_df)
+  }
 
   # Get Presence/Absence of a Features
-  pres_params <- c()
+  pres_df <- c()
   if (b > 0) {
     for (pres_idx in 1:b) {
-      rand_presence <- rnorm(n, mean = 1, sd = 0.5)
+      rand_presence <- rnorm(n, mean = 3, sd = 0.5)
       rand_zeroone <- sample(c(0, 1), n, replace = TRUE)
       
       rand_presence <- rand_presence * rand_zeroone
-      pres_params <- cbind(pres_params, rand_presence)
+      pres_df <- cbind(pres_df, rand_presence)
     }
+    colnames(pres_df) <- paste('presence', seq(1, ncol(pres_df)), sep = "_")
+    pres_df <- tibble::as_data_frame(pres_df)
   }
 
   # Get cell-type Features
@@ -214,25 +235,33 @@ getSimulatedExpression <- function(n, mean_df, sd_df, r, func_list, b,
       # This will generate cell-types and then automatically simulate
       # differential cell-type proportion
       cell_type_info <- sampleCellMatrix(n, cell_type_mean_df, cell_type_sd_df)
-      cell_type_data <- cell_type_info[[1]]
-      cell_type_other <- cell_type_info[[2]]
+      cell_type_df <- cell_type_info[[1]]
+      cell_type_proportion <- cell_type_info[[2]]
     }
   } else {
-    cell_type_data <- c()
-    cell_type_other <- c()
+    cell_type_df <- c()
+    cell_type_proportion <- c()
   }
 
   # Merge Features
-  all_features <- cbind(group_data, rand_params, cont_params, pres_params,
-                        cell_type_data)
-  other_features <- cbind(group_info, cont_other_params, cell_type_other)
-  
+  feature_df <- dplyr::bind_cols(group_df, rand_df, cont_df, pres_df,
+                                 cell_type_df)
+  other_df <- dplyr::tibble("groups" = group_info,
+                            "cell_type_prop" = cell_type_proportion)
+  other_df <- dplyr::bind_cols(other_df, cont_other_df)
+
   # Normalize data by zero-one-normalization
   if (zero_one_normalize) {
     zeroonenorm <- function(x){(x - min(x)) / (max(x) - min(x))}
-    all_features <- apply(all_features, MARGIN = 2, FUN = zeroonenorm)
+    feature_df <- apply(feature_df, MARGIN = 2, FUN = zeroonenorm)
+    feature_df <- tibble::as_data_frame(feature_df)
   }
 
-  return_list <- list(features = all_features, other = other_features)
-  return(return_list)
+  if (concat) {
+    return_obj <- dplyr::bind_cols(feature_df, other_df)
+  } else {
+    return_obj <- list(features = feature_df, other = other_df)
+  }
+  
+  return(return_obj)
 }
