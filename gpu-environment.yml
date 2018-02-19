@@ -1,0 +1,35 @@
+name: tybalt-gpu
+channels:
+- conda-forge
+- defaults
+dependencies:
+- conda-forge::python=3.5
+- anaconda::keras-gpu=2.1.3
+- anaconda::tensorflow-gpu=1.4.1
+- conda-forge::scikit-learn=0.19.1
+- conda-forge::pandas=0.22.0
+- conda-forge::numpy=1.14.0
+- conda-forge::statsmodels=0.8.0
+- conda-forge::numexpr=2.6.4
+- conda-forge::pyparsing=2.2.0
+- conda-forge::hdf5=1.10.1
+- conda-forge::six=1.11.0
+- conda-forge::matplotlib=2.1.2
+- conda-forge::seaborn=0.8.1
+- conda-forge::plotnine=0.3.0
+- conda-forge::jupyter=1.0.0
+- conda-forge::ipykernel=4.8.1
+- conda-forge::ipywidgets=6.0.0
+- conda-forge::widgetsnbextension=2.0.0
+- conda-forge::nb_conda_kernels=2.1.0
+- anaconda::pydot=1.2.3
+- conda-forge::graphviz=2.38.0
+- conda-forge::python-graphviz=0.8
+- conda-forge::libiconv=1.15
+- conda-forge::ca-certificates=2017.08.26
+- conda-forge::certifi=2018.1.18
+- conda-forge::openssl=1.0.2n 
+- pip
+- pip:
+  - keras-tqdm==2.0.1
+

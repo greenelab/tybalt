@@ -18,6 +18,7 @@
 
 # In[1]:
 
+
 import os
 import numpy as np
 import pandas as pd
@@ -36,11 +37,13 @@ import keras
 import pydot
 import graphviz
 from keras.utils import plot_model
+from keras_tqdm import TQDMNotebookCallback
 from IPython.display import SVG
 from keras.utils.vis_utils import model_to_dot
 
 
 # In[2]:
+
 
 print(keras.__version__)
 tf.__version__
@@ -48,11 +51,13 @@ tf.__version__
 
 # In[3]:
 
-get_ipython().magic('matplotlib inline')
+
+get_ipython().run_line_magic('matplotlib', 'inline')
 plt.style.use('seaborn-notebook')
 
 
 # In[4]:
+
 
 sns.set(style="white", color_codes=True)
 sns.set_context("paper", rc={"font.size":14,"axes.titlesize":15,"axes.labelsize":20,
@@ -64,6 +69,7 @@ sns.set_context("paper", rc={"font.size":14,"axes.titlesize":15,"axes.labelsize"
 # This will facilitate connections between layers and also custom hyperparameters
 
 # In[5]:
+
 
 # Function for reparameterization trick to make model differentiable
 def sampling(args):
@@ -114,6 +120,7 @@ class CustomVariationalLayer(Layer):
 
 # In[6]:
 
+
 class WarmUpCallback(Callback):
     def __init__(self, beta, kappa):
         self.beta = beta
@@ -126,12 +133,14 @@ class WarmUpCallback(Callback):
 
 # In[7]:
 
+
 np.random.seed(123)
 
 
 # ## Load Gene Expression Data
 
 # In[8]:
+
 
 rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv.gz')
 rnaseq_df = pd.read_table(rnaseq_file, index_col=0)
@@ -140,6 +149,7 @@ rnaseq_df.head(2)
 
 
 # In[9]:
+
 
 # Split 10% test set randomly
 test_set_percent = 0.1
@@ -150,6 +160,7 @@ rnaseq_train_df = rnaseq_df.drop(rnaseq_test_df.index)
 # ## Initialize variables and hyperparameters
 
 # In[10]:
+
 
 # Set hyper parameters
 original_dim = rnaseq_df.shape[1]
@@ -167,6 +178,7 @@ kappa = 1
 # ## Encoder
 
 # In[11]:
+
 
 # Input place holder for RNAseq data with specific input size
 rnaseq_input = Input(shape=(original_dim, ))
@@ -192,6 +204,7 @@ z = Lambda(sampling, output_shape=(latent_dim, ))([z_mean_encoded, z_log_var_enc
 
 # In[12]:
 
+
 # The decoding layer is much simpler with a single layer and sigmoid activation
 decoder_to_reconstruct = Dense(original_dim, kernel_initializer='glorot_uniform', activation='sigmoid')
 rnaseq_reconstruct = decoder_to_reconstruct(z)
@@ -205,6 +218,7 @@ rnaseq_reconstruct = decoder_to_reconstruct(z)
 
 # In[13]:
 
+
 adam = optimizers.Adam(lr=learning_rate)
 vae_layer = CustomVariationalLayer()([rnaseq_input, rnaseq_reconstruct])
 vae = Model(rnaseq_input, vae_layer)
@@ -214,6 +228,7 @@ vae.summary()
 
 
 # In[14]:
+
 
 # Visualize the connections of the custom VAE model
 output_model_file = os.path.join('figures', 'onehidden_vae_architecture.png')
@@ -228,10 +243,12 @@ SVG(model_to_dot(vae).create(prog='dot', format='svg'))
 
 # In[15]:
 
-get_ipython().run_cell_magic('time', '', 'hist = vae.fit(np.array(rnaseq_train_df),\n               shuffle=True,\n               epochs=epochs,\n               batch_size=batch_size,\n               validation_data=(np.array(rnaseq_test_df), np.array(rnaseq_test_df)),\n               callbacks=[WarmUpCallback(beta, kappa)])')
+
+get_ipython().run_cell_magic('time', '', 'hist = vae.fit(np.array(rnaseq_train_df),\n               shuffle=True,\n               epochs=epochs,\n               verbose=0,\n               batch_size=batch_size,\n               validation_data=(np.array(rnaseq_test_df), None),\n               callbacks=[WarmUpCallback(beta, kappa),\n                          TQDMNotebookCallback(leave_inner=True, leave_outer=True)])')
 
 
 # In[16]:
+
 
 # Visualize training performance
 history_df = pd.DataFrame(hist.history)
@@ -262,11 +279,13 @@ fig.savefig(hist_plot_file)
 
 # In[17]:
 
+
 # Model to compress input
 encoder = Model(rnaseq_input, z_mean_encoded)
 
 
 # In[18]:
+
 
 # Encode rnaseq into the hidden/latent representation - and save output
 encoded_rnaseq_df = encoder.predict_on_batch(rnaseq_df)
@@ -282,6 +301,7 @@ encoded_rnaseq_df.to_csv(encoded_file, sep='\t')
 
 # In[19]:
 
+
 # build a generator that can sample from the learned distribution
 decoder_input = Input(shape=(latent_dim, ))  # can generate from any sampled z vector
 _x_decoded_mean = decoder_to_reconstruct(decoder_input)
@@ -291,6 +311,7 @@ decoder = Model(decoder_input, _x_decoded_mean)
 # ## Save the encoder/decoder models for future investigation
 
 # In[20]:
+
 
 encoder_model_file = os.path.join('models', 'encoder_onehidden_vae.hdf5')
 decoder_model_file = os.path.join('models', 'decoder_onehidden_vae.hdf5')
@@ -308,6 +329,7 @@ decoder.save(decoder_model_file)
 
 # In[21]:
 
+
 # What are the most and least activated nodes
 sum_node_activity = encoded_rnaseq_df.sum(axis=0).sort_values(ascending=False)
 
@@ -320,6 +342,7 @@ sum_node_activity.tail(10)
 
 # In[22]:
 
+
 # Histogram of node activity for all 100 latent features
 sum_node_activity.hist()
 plt.xlabel('Activation Sum')
@@ -329,6 +352,7 @@ plt.ylabel('Count');
 # What does an example distribution of two latent features look like?
 
 # In[23]:
+
 
 # Example of node activation distribution for the first two latent features
 plt.figure(figsize=(6, 6))
@@ -341,6 +365,7 @@ plt.xlabel('Latent Feature 2');
 
 # In[24]:
 
+
 # How well does the model reconstruct the input RNAseq data
 input_rnaseq_reconstruct = decoder.predict(np.array(encoded_rnaseq_df))
 input_rnaseq_reconstruct = pd.DataFrame(input_rnaseq_reconstruct, index=rnaseq_df.index,
@@ -349,6 +374,7 @@ input_rnaseq_reconstruct.head(2)
 
 
 # In[25]:
+
 
 reconstruction_fidelity = rnaseq_df - input_rnaseq_reconstruct
 
@@ -359,6 +385,7 @@ gene_summary.sort_values(by='gene abs(sum)', ascending=False).head()
 
 
 # In[26]:
+
 
 # Mean of gene reconstruction vs. absolute reconstructed difference per sample
 g = sns.jointplot('gene mean', 'gene abs(sum)', data=gene_summary, stat_func=None);

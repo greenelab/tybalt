@@ -66,8 +66,29 @@ tumors.
 
 ### Training
 
-The current model training is explained in
-[this notebook](tybalt_vae.ipynb)
+The current model training is explained in [this notebook](tybalt_vae.ipynb).
+
+Tybalt dependencies are listed in [`environment.yml`](environment.yml). To download
+and activate this environment run:
+
+```sh
+# conda version 4.4.10
+conda env create --force --file environment.yml
+
+# activate environment
+conda activate tybalt
+```
+
+Tybalt is also configured to train on GPUs using
+[`gpu-environment.yml`](gpu-environment.yml). To activate this environment run:
+
+```sh
+# conda version 4.4.10
+conda env create --force --file gpu-environment.yml
+
+# activate environment
+conda activate tybalt-gpu
+```
 
 For a complete pipeline with reproducibility instructions, refer to
 [run_pipeline.sh](run_pipeline.sh). Note that scripts originally written in
@@ -117,3 +138,4 @@ In this scenario, each node activation pattern contributes uniquely to each
 tumor and may represent specific gene expression signatures of biological
 significance. The distribution is heavily right skewed, with some nodes
 capturing slightly bimodal attributes.
+
