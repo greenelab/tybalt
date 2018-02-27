@@ -76,6 +76,7 @@ class VAE(BaseModel):
         self._build_encoder_layer()
         self._build_decoder_layer()
         self._compile_vae()
+        self._connect_layers()
 
     def compress(self, df):
         # Encode rnaseq into the hidden/latent representation - and save output

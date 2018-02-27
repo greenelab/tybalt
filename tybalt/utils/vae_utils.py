@@ -23,7 +23,7 @@ class VariationalLayer(Layer):
         if self.loss == 'binary_crossentropy':
             recon_loss = self.original_dim * \
                          metrics.binary_crossentropy(x_input, x_decoded)
-        elif self.loss == 'mean_squared_error':
+        elif self.loss == 'mse':
             recon_loss = self.original_dim * \
                          metrics.mean_squared_error(x_input, x_decoded)
 
