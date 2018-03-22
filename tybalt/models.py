@@ -17,6 +17,7 @@ from keras.models import Model, Sequential
 from keras.regularizers import l1
 
 from tybalt.utils.vae_utils import VariationalLayer, WarmUpCallback
+from tybalt.utils.vae_utils import LossCallback
 from tybalt.utils.base import VAE, BaseModel
 
 
@@ -28,7 +29,8 @@ class Tybalt(VAE):
     """
     def __init__(self, original_dim, latent_dim, batch_size=50, epochs=50,
                  learning_rate=0.0005, kappa=1, epsilon_std=1.0,
-                 beta=K.variable(0), loss='binary_crossentropy'):
+                 beta=K.variable(0), loss='binary_crossentropy',
+                 verbose=True):
         VAE.__init__(self)
         self.model_name = 'Tybalt'
         self.original_dim = original_dim
@@ -40,6 +42,7 @@ class Tybalt(VAE):
         self.epsilon_std = epsilon_std
         self.beta = beta
         self.loss = loss
+        self.verbose = verbose
 
     def _build_encoder_layer(self):
         """
@@ -98,22 +101,49 @@ class Tybalt(VAE):
                                 loss_weights=[self.beta])
 
     def _connect_layers(self):
-        # Make connections between layers to build separate encoder and decoder
+        """
+        Make connections between layers to build separate encoder and decoder
+        """
         self.encoder = Model(self.rnaseq_input, self.z_mean_encoded)
 
         decoder_input = Input(shape=(self.latent_dim, ))
         _x_decoded_mean = self.decoder_model(decoder_input)
         self.decoder = Model(decoder_input, _x_decoded_mean)
 
-    def train_vae(self, train_df, test_df):
+    def train_vae(self, train_df, test_df, separate_loss=False):
+        """
+        Method to train model.
+
+        `separate_loss` instantiates a custom Keras callback that tracks the
+        separate contribution of reconstruction and KL divergence loss. Because
+        VAEs try to minimize both, it may be informative to track each across
+        training separately. The callback processes the training data through
+        the current encoder and decoder and therefore requires additional time
+        - which is why this is not done by default.
+        """
+        cbks = [WarmUpCallback(self.beta, self.kappa)]
+        if separate_loss:
+            tybalt_loss_cbk = LossCallback(training_data=np.array(train_df),
+                                           encoder_cbk=self.encoder,
+                                           decoder_cbk=self.decoder,
+                                           original_dim=self.original_dim)
+            cbks += [tybalt_loss_cbk]
+
         self.hist = self.full_model.fit(np.array(train_df),
                                         shuffle=True,
                                         epochs=self.epochs,
                                         batch_size=self.batch_size,
+                                        verbose=self.verbose,
                                         validation_data=(np.array(test_df),
                                                          None),
-                                        callbacks=[WarmUpCallback(self.beta,
-                                                                  self.kappa)])
+                                        callbacks=cbks)
+        self.history_df = pd.DataFrame(self.hist.history)
+
+        if separate_loss:
+            self.history_df = self.history_df.assign(
+                                recon=tybalt_loss_cbk.xent_loss)
+            self.history_df = self.history_df.assign(
+                                kl=tybalt_loss_cbk.kl_loss)
 
 
 class cTybalt(VAE):
@@ -141,7 +171,7 @@ class cTybalt(VAE):
     def __init__(self, original_dim, latent_dim, label_dim,
                  batch_size=50, epochs=50, learning_rate=0.0005, kappa=1,
                  epsilon_std=1.0, beta=K.variable(0),
-                 loss='binary_crossentropy'):
+                 loss='binary_crossentropy', verbose=True):
         VAE.__init__(self)
         self.model_name = 'cTybalt'
         self.original_dim = original_dim
@@ -154,6 +184,7 @@ class cTybalt(VAE):
         self.epsilon_std = epsilon_std
         self.beta = beta
         self.loss = loss
+        self.verbose = verbose
 
     def _build_encoder_layer(self):
         """
@@ -241,10 +272,12 @@ class cTybalt(VAE):
         self.hist = self.full_model.fit(train_input,
                                         shuffle=True,
                                         epochs=self.epochs,
+                                        verbose=self.verbose,
                                         batch_size=self.batch_size,
                                         validation_data=val_input,
                                         callbacks=[WarmUpCallback(self.beta,
                                                                   self.kappa)])
+        self.history_df = pd.DataFrame(self.hist.history)
 
 
 class Adage(BaseModel):
@@ -254,8 +287,8 @@ class Adage(BaseModel):
     Usage: from tybalt.models import Adage
     """
     def __init__(self, original_dim, latent_dim, noise=0.05, batch_size=50,
-                 epochs=100, sparsity=0, learning_rate=1.1,
-                 loss='mse'):
+                 epochs=100, sparsity=0, learning_rate=0.0005,
+                 loss='mse', optimizer='adam', verbose=True):
         BaseModel.__init__(self)
         self.model_name = 'ADAGE'
         self.original_dim = original_dim
@@ -266,6 +299,8 @@ class Adage(BaseModel):
         self.sparsity = sparsity
         self.learning_rate = learning_rate
         self.loss = loss
+        self.optimizer = optimizer
+        self.verbose = verbose
 
     def _build_graph(self):
         # Build the Keras graph for an ADAGE model
@@ -281,8 +316,11 @@ class Adage(BaseModel):
 
     def _compile_adage(self):
         # Compile the autoencoder to prepare for training
-        adadelta = optimizers.Adadelta(lr=self.learning_rate)
-        self.full_model.compile(optimizer=adadelta, loss=self.loss)
+        if self.optimizer == 'adadelta':
+            optim = optimizers.Adadelta(lr=self.learning_rate)
+        elif self.optimizer == 'adam':
+            optim = optimizers.Adam(lr=self.learning_rate)
+        self.full_model.compile(optimizer=optim, loss=self.loss)
 
     def _connect_layers(self):
         # Separate out the encoder and decoder model
@@ -300,13 +338,20 @@ class Adage(BaseModel):
         self._compile_adage()
         self._connect_layers()
 
-    def train_adage(self, train_df, test_df):
+    def train_adage(self, train_df, test_df, adage_comparable_loss=False):
         self.hist = self.full_model.fit(np.array(train_df), np.array(train_df),
                                         shuffle=True,
                                         epochs=self.epochs,
+                                        verbose=self.verbose,
                                         batch_size=self.batch_size,
                                         validation_data=(np.array(test_df),
                                                          np.array(test_df)))
+        self.history_df = pd.DataFrame(self.hist.history)
+
+        # ADAGE loss is a mean over all features - to make this value more
+        # comparable to the VAE reconstruciton loss, multiply by num genes
+        if adage_comparable_loss:
+            self.history_df = self.history_df * self.original_dim
 
     def compress(self, df):
         # Encode rnaseq into the hidden/latent representation - and save output

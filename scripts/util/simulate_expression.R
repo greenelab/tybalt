@@ -4,264 +4,206 @@
 #
 # Functions to facilitate gene expression data simulation
 #
-# Usage: import only 
-# source("scripts/util/simulate_expression.R")
+# Usage: run once to simulate 25 datasets with different noise and sample size
+#   Rscript scripts/util/simulate_expression.R
 
-sampleGroupMatrix <- function(num_samples, mean_matrix, sd_matrix) {
-  # Sample different "groups" based on mean and standard deviation matrices
-  #
-  # Usage:
-  # Called within the function `getSimulatedExpression()` but can also be used
-  # to sample a given number of data points with the given mean and sd matrices
+library(WGCNA)
+library(ggcorrplot)
+library(gplots)
+
+allowWGCNAThreads()
+
+set.seed(1234)
+
+simulateExpression <- function(n, num_sets, num_genes, num_modules,
+                               background_noise, min_cor, max_cor,
+                               sample_set_A, sample_set_B, mod_prop,
+                               leave_out_A, leave_out_B, return_eigen=FALSE) {
+  # Output a simulated gene expression matrix using WGCNA
   #
   # Arguments:
-  # num_samples - the number of samples to simulate
-  # mean_matrix - a matrix of different group means
-  # sd_matrix - a matrix of different group standard deviations
+  # n - The number of samples to simulate
+  # num_sets - The number of simulated "groups" of samples
+  # num_genes - The number of genes to simulate
+  # num_modules - The number of distinct simulated "groups" of genes
+  # background_noise - N(0, sd = background_noise) added to all values
+  # min_cor - The minimum correlation of genes in modules to core eigengene
+  # max_cor - The maximum correlation of genes in modules to core eigengene
+  # sample_set_A - character vector of sample group A centroids
+  # sample_set_B - character vector of sample group B centroids
+  # mod_prop - character vector (must sum to 1) of gene module proportions
+  # leave_out_A - character vector of booleans indicating gene module presence
+  # leave_out_B - adds option to leave out modules for different group
   #
-  # The rows of each matrix indicate group specific data (group mean or group
-  # standard deviation) and the columns represent different group features.
-  # (nrow = num groups) (ncol = num features that describe each group)
-  #
-  # Return:
-  # list of length 2:
-  #
-  # The 1st element is the group specific feature matrix storing
-  # length(num_samples) rows and ncol(mean_matrix) columns. Each column
-  # represents a feature sampled from a normal distribution with the mean
-  # provided by the columns of `mean_matrix` and standard deviation provided
-  # by the columns of `sd_matrix` The number of rows in mean and sd matrices
-  # represent the number of groups.
-  #  
-  # The 2nd element is a vector of group labels ("a", "b", "c", etc.)
+  # Output:
+  # An n x num_genes simulated gene expression matrix with predefined groups
+  # of samples and gene modules
 
-  group_df <- c()
-  group_name <- letters[1:nrow(mean_matrix)]
-  for (param_idx in 1:ncol(mean_matrix)) {
-    mean_vector <- mean_matrix[, param_idx]
-    sd_vector <- sd_matrix[, param_idx]
-
-    group_vector <- rnorm(num_samples, mean = mean_vector, sd = sd_vector)
-    group_df <- cbind(group_df, group_vector)
-  }
-
-  num_repeat <- num_samples %/% length(group_name)
-  num_remainder <- num_samples %% length(group_name)
-
-  labels <- rep(group_name, num_repeat)
+  # Sample eigen gene matrix
+  eigen_gene_samples <- rbind(
+    matrix(rnorm(num_modules * n / 2, mean = sample_set_A, sd = 1),
+           n / 2, num_modules, byrow = TRUE),
+    matrix(rnorm(num_modules * n / 2, mean = sample_set_B, sd = 1),
+           n / 2, num_modules, byrow = TRUE)
+  )
   
+  # Simulate Expression
+  # the two matrices differ based on the leave out argument. This is to enable
+  # an assessment of latent space arithmetic to test if an algorithm can isolate
+  # the "essence" of the left out gene module through subtraction.
+  x_1 <- WGCNA::simulateDatExpr(eigengenes = eigen_gene_samples,
+                                nGenes = num_genes,
+                                modProportions = mod_prop,
+                                minCor = min_cor,
+                                maxCor = max_cor,
+                                leaveOut = leave_out_A,
+                                propNegativeCor = 0.1,
+                                backgroundNoise = background_noise)
+
+  x_2 <- WGCNA::simulateDatExpr(eigengenes = eigen_gene_samples,
+                                nGenes = num_genes,
+                                modProportions = mod_prop,
+                                minCor = min_cor,
+                                maxCor = max_cor,
+                                leaveOut = leave_out_B,
+                                propNegativeCor = 0.1,
+                                backgroundNoise = background_noise)
+
+  # Group labels
+  sample_labels <- sort(rep(rep(LETTERS[1:num_sets], n / num_sets), 2))
+  num_remainder <- (n * 2) - length(sample_labels)
+
   if (num_remainder > 0) {
-    labels <- c(labels, group_name[1:num_remainder])
+    sample_labels <- sort(c(sample_labels, LETTERS[1:num_remainder]))
+  }
+
+  gene_labels <- x_1$allLabels
+
+  # Combine Matrix
+  x_matrix <- tibble::as_data_frame(rbind(x_1$datExpr,
+                                          x_2$datExpr))
+  colnames(x_matrix) <- gsub('[.]', '_', colnames(x_matrix))
+  x_matrix$groups <- sample_labels
+  x_matrix <- rbind(gene_labels, x_matrix)
+  
+  if (return_eigen) {
+    return(list(x_matrix, eigen_gene_samples))
   }
   
-  colnames(group_df) <- paste('group', seq(1, ncol(group_df)), sep = "_")
-  group_df <- tibble::as_data_frame(group_df)
-
-  return_list <- list(group_df, labels)
-  return(return_list)
+  return(x_matrix)
 }
 
+# Vary sample size and amount of background noise
+ns <- c(250, 500, 1000, 2000, 4000)
+background_noises <- c(0, 0.1, 0.5, 1, 3)
+genes <- c(500, 1000)
 
-sampleCellMatrix <- function(num_samples, cell_mean_matrix, cell_sd_matrix) {
-  # Sample "cell-types" and then add together with different proportions
-  #
-  # Usage:
-  # Called within the function `getSimulatedExpression()` but can also be used
-  # to sample a given number of data points with the given mean and sd matrices
-  #
-  # Arguments:
-  # num_samples - the number of samples to simulate
-  # cell_mean_matrix - a matrix of cell-type means
-  # cell_sd_matrix - a matrix of cell-type standard deviations
-  #
-  # Each matrix represents features (columns) describing cell-types (rows)
-  # (Currently supports only two cell-types)
-  #
-  # Return:
-  # list of length 2 - 1st element is the cell-type mixing data
-  #                  - 2nd element is the ground truth cell-type proportion
+# Other constants
+num_sets <- 4
+num_modules <- 5
 
-  # Loop through specific input artificial "cell-types"
-  cell_type_params <- list()
-  for (cell_type_idx in 1:nrow(cell_mean_matrix)) {
+min_cor <- 0.4
+max_cor <- 0.9
 
-    # loop through specific input cell-type features
-    cell_type_feature <- c()
-    for (cell_feature_idx in 1:ncol(cell_mean_matrix)) {
+sample_set_A <- c(1, -1, 3, 0, -3)
+sample_set_B <- c(0, 6, 3, -3, 1)
 
-      # Obtain and sample from input parameters specific to cell-type feature
-      mean_cell <- cell_mean_matrix[cell_type_idx, cell_feature_idx]
-      sd_cell <- cell_sd_matrix[cell_type_idx, cell_feature_idx]
+mod_prop <- c(0.25, 0.2, 0.15, 0.1, 0.05, 0.25)
 
-      cell_type_vector <- rnorm(num_samples, mean = mean_cell, sd = sd_cell)
-      cell_type_feature <- cbind(cell_type_feature, cell_type_vector)
+leave_out_A <- rep(FALSE, num_modules)
+leave_out_B <- c(rep(FALSE, num_modules / 2), TRUE,
+                 rep(FALSE, (num_modules / 2)))
+
+for (n in ns) {
+  for (noise in background_noises) {
+    for (g in genes) {
+      out_file <- paste0("sim_data_samplesize_", n * 2, "_noise_", noise,
+                         "_genes_", g, ".tsv")
+      out_file <- file.path("data", "simulation", out_file)
+      x <- simulateExpression(n = n,
+                              num_genes = g,
+                              background_noise = noise,
+                              num_sets = num_sets,
+                              num_modules = num_modules,
+                              min_cor = min_cor,
+                              max_cor = max_cor,
+                              sample_set_A = sample_set_A,
+                              sample_set_B = sample_set_B,
+                              mod_prop = mod_prop,
+                              leave_out_A = leave_out_A,
+                              leave_out_B = leave_out_B)
+
+      readr::write_tsv(x, out_file)
     }
-
-    # Save each feature in internal list
-    cell_type_params[[cell_type_idx]] <- cell_type_feature
   }
-
-  # Uniform sampling between 0 and 1 represents random mixing proportions
-  rand_cell_type_1 <- runif(num_samples, min = 0, max = 1)
-  rand_cell_type_2 <- 1 - rand_cell_type_1
-  cell_type_prop_list <- list(rand_cell_type_1, rand_cell_type_2)
-
-  # Loop over sampled cell-type parameters (columns, or features, of input)
-  for (cell_idx in 1:length(cell_type_params)) {
-
-    # Perform element-wise multiplication 
-    cell_type_params[[cell_idx]] <- cell_type_prop_list[[cell_idx]] * 
-      cell_type_params[[cell_idx]]
-  }
-
-  # Add mixing proportions of cell-type together
-  cell_type_df <- cell_type_params[[1]] + cell_type_params[[2]]
-
-  colnames(cell_type_df) <- paste('cell_type',
-                                  seq(1, ncol(cell_type_df)), sep = "_")
-  cell_type_df <- tibble::as_data_frame(cell_type_df)
-
-  return_list <- list(cell_type_df, rand_cell_type_1)
-  return(return_list)
 }
 
+# Plot an example of simulated data
+example_sim <- simulateExpression(n = 500,
+                                  num_genes = 1000,
+                                  background_noise = 0.1,
+                                  num_sets = num_sets,
+                                  num_modules = num_modules,
+                                  min_cor = min_cor,
+                                  max_cor = max_cor,
+                                  sample_set_A = sample_set_A,
+                                  sample_set_B = sample_set_B,
+                                  mod_prop = mod_prop,
+                                  leave_out_A = leave_out_A,
+                                  leave_out_B = leave_out_B,
+                                  return_eigen = TRUE)
 
-getSimulatedExpression <- function(n, mean_df, sd_df, r, func_list, b,
-                                   cell_type_mean_df, cell_type_sd_df,
-                                   seed, zero_one_normalize = TRUE,
-                                   concat = FALSE) {
-  # Obtain a matrix with simulated parameters. The matrix dimensions will be:
-  # n by p, where p = ncol(mean_df) + r + length(func_list) + b +
-  #                   ncol(cell_type_mean_df)
-  #
-  # Usage:
-  #             simulated_data <- getSimulatedExpression(<args>)
-  #
-  # This will output a matrix of samples by features that can be used to
-  # evaluate compression algorithms in a variety of tasks
-  #
-  # Arguments:
-  # n - integer indicating the total number of samples
-  # mean_df - matrix of means describing groups
-  # sd_df - matrix of standard deviations describing groups
-  #         for mean and sd, ncol = number of features, nrow = number of groups
-  # r - the number of random noise parameters
-  # func_list - each element in the list stores a function to apply to a
-  #             random noise sampling (each element indicates a single param)
-  # b - the number of presence/absence features (independent from group)
-  #     (value is either 0, or is sampled from a standard normal)
-  # cell_type_mean_df - matrix of means describing artificial cell-types
-  # cell_type_sd_df - matrix of standard deviations describing cell-types
-  #       Each row represents different cell types (only 2 currently supported)
-  #       Each column represents features describing the cell types
-  # seed - add random seed as required argument
-  # zero_one_normalize - boolean to zero one normalize simulated features
-  # concat - boolean to return combined output if TRUE, defaults to list output
-  #
-  # Return:
-  # List of length 2: The first element is the simulated data matrix
-  #                   The second element is important metadata including group
-  #                       membership, cell type proportion, and the domain of
-  #                       the input functions.
-  
-  require(tibble)
-  require(dplyr)
+# The eigen samples matrix forms the basis of the simulated patterns. It
+# contains both sample group and gene module information
+eigen_samples <- example_sim[[2]] 
 
-  set.seed(seed)
+# Plot the module correlations (there are 5 modules) Module 3 is made
+# uncoupled from other modules, since it will be the focus of the latent space
+# arithmetic test. Some modules are correlated to mimic real data.
+eigen_module_file <- file.path("figures", "example_eigen_module_plot.png")
+module_corr <- ggcorrplot::ggcorrplot(cor(eigen_samples), hc.order = FALSE,
+                            outline.color = 'white') +
+  ggtitle("Correlation across artificial gene modules \n(n = 5)")
+ggsave(eigen_module_file, module_corr, height = 5, width = 6)
 
-  # Extract Group Features
-  if (sum(mean_df + sd_df) != 0) {
-    if (all(dim(mean_df) != dim(sd_df))) {
-      stop("provide the same number of mean and standard deviation parameters")
-    } else {
-      group_params <- sampleGroupMatrix(n, mean_df, sd_df)
-      group_df <- group_params[[1]]
-      group_info <- group_params[[2]]
-    } 
-  } else {
-      group_df <- c()
-      group_info <- c()
-  }
+# Plot the sample correlations for this example. There are 1000 simulated
+# samples. Each block of samples are distinct units - but it is important
+# to note that this is before adding noise and dropping out module 3.
+eigen_sample_file <- file.path("figures", "example_eigen_sample_plot.png")
+sample_corr <- ggcorrplot::ggcorrplot(cor(t(eigen_samples)), hc.order = FALSE,
+                                      outline.color = 'white') +
+  ggtitle("Correlation across artificial sample groups\n(n = 500)")
+ggsave(eigen_sample_file, sample_corr, height = 5, width = 6)
 
-  # Get Random Noise Features
-  rand_df <- c()
-  if (r > 0) {
-    for (rand_idx in 1:r) {
-      rand_vector <- runif(n, min = 0, max = 1)
-      rand_df <- cbind(rand_df, rand_vector)
-    }
-    colnames(rand_df) <- paste('random', seq(1, ncol(rand_df)), sep = "_")
-    rand_df <- tibble::as_data_frame(rand_df)
-  }
+# Now, extract the actual sampled data and visualize a sample by gene heatmap.
+# The red and orange samples are sampled from the same sample set module origin
+# as are the blue and green. The green and orange samples have random noise
+# expression of module 3.
+simulated_example_file <- file.path("figures", "example_simulated_data.pdf")
+sampled_data <- example_sim[[1]][2:nrow(example_sim[[1]]),
+                                 1:ncol(example_sim[[1]]) - 1]
 
-  # Get Continuous Function Features
-  cont_df <- c()
-  cont_other_df <- c()
-  if (length(func_list) > 0) {
-    for (cont_idx in 1:length(func_list)) {
-      continuous_rand_x <- runif(n, min = -1, max = 1)
-      continuous_rand_y <- func_list[[cont_idx]](continuous_rand_x)
-      
-      cont_df <- cbind(cont_df, continuous_rand_y)
-      cont_other_df <- cbind(cont_other_df, continuous_rand_x)
-    }
-    colnames(cont_df) <- paste('continuous', seq(1, ncol(cont_df)), sep = "_")
-    cont_df <- tibble::as_data_frame(cont_df)
-    
-    colnames(cont_other_df) <- paste('continuous_domain',
-                                     seq(1, ncol(cont_other_df)), sep = "_")
-    cont_other_df <- tibble::as_data_frame(cont_other_df)
-  }
+pdf(simulated_example_file)
+heatmap.2(as.matrix(sampled_data), trace = "none",
+          RowSideColors =  c(rep('blue', 250),
+                            rep('red', 250),
+                            rep('green', 250),
+                            rep('orange', 250)),
+          labRow = "", labCol = "", scale = 'none',
+          hclustfun = function(x) hclust(x, method = 'average'),
+          distfun = function(x) dist(x, method = 'euclidean'),
+          dendrogram = "row", Rowv = TRUE, Colv = FALSE)
+dev.off()
 
-  # Get Presence/Absence of a Features
-  pres_df <- c()
-  if (b > 0) {
-    for (pres_idx in 1:b) {
-      rand_presence <- rnorm(n, mean = 3, sd = 0.5)
-      rand_zeroone <- sample(c(0, 1), n, replace = TRUE)
-      
-      rand_presence <- rand_presence * rand_zeroone
-      pres_df <- cbind(pres_df, rand_presence)
-    }
-    colnames(pres_df) <- paste('presence', seq(1, ncol(pres_df)), sep = "_")
-    pres_df <- tibble::as_data_frame(pres_df)
-  }
-
-  # Get cell-type Features
-  if (sum(cell_type_mean_df + cell_type_sd_df) != 0) {
-    if (all(dim(cell_type_mean_df) != dim(cell_type_sd_df))) {
-      stop("provide the same cell-type parameter dimensions")
-    } else {
-      # This will generate cell-types and then automatically simulate
-      # differential cell-type proportion
-      cell_type_info <- sampleCellMatrix(n, cell_type_mean_df, cell_type_sd_df)
-      cell_type_df <- cell_type_info[[1]]
-      cell_type_proportion <- cell_type_info[[2]]
-    }
-  } else {
-    cell_type_df <- c()
-    cell_type_proportion <- c()
-  }
-
-  # Merge Features
-  feature_df <- dplyr::bind_cols(group_df, rand_df, cont_df, pres_df,
-                                 cell_type_df)
-  other_df <- dplyr::tibble("groups" = group_info,
-                            "cell_type_prop" = cell_type_proportion)
-  other_df <- dplyr::bind_cols(other_df, cont_other_df)
-
-  # Normalize data by zero-one-normalization
-  if (zero_one_normalize) {
-    zeroonenorm <- function(x){(x - min(x)) / (max(x) - min(x))}
-    feature_df <- apply(feature_df, MARGIN = 2, FUN = zeroonenorm)
-    feature_df <- tibble::as_data_frame(feature_df)
-  }
-
-  if (concat) {
-    return_obj <- dplyr::bind_cols(feature_df, other_df)
-  } else {
-    return_obj <- list(features = feature_df, other = other_df)
-  }
-  
-  return(return_obj)
-}
+simulated_example_png <- file.path("figures", "example_simulated_data.png")
+png(simulated_example_png, height = 600, width = 800)
+heatmap.2(as.matrix(sampled_data), trace = "none",
+          RowSideColors =  c(rep('blue', 250),
+                             rep('red', 250),
+                             rep('green', 250),
+                             rep('orange', 250)),
+          labRow = "", labCol = "", scale = 'none',
+          hclustfun = function(x) hclust(x, method = 'average'),
+          distfun = function(x) dist(x, method = 'euclidean'),
+          dendrogram = "row", Rowv = TRUE, Colv = FALSE)
+dev.off()

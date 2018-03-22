@@ -31,9 +31,11 @@ Usage:
 """
 
 import pandas as pd
+from scipy.stats.mstats import zscore
 
 from sklearn import decomposition
 from sklearn.preprocessing import LabelEncoder, StandardScaler, MinMaxScaler
+from sklearn.metrics.pairwise import euclidean_distances
 from keras import backend as K
 from keras.utils import to_categorical
 
@@ -49,18 +51,35 @@ class DataModel():
 
     data = DataModel(filename)
     """
-    def __init__(self, filename=None, df=False, select_columns=False):
+    def __init__(self, filename=None, df=False, select_columns=False,
+                 gene_modules=None):
+        """
+        DataModel can be initialized with either a filename or a pandas
+        dataframe and processes gene modules and sample labels if provided.
+
+        Arguments:
+
+        filename - if provided, load gene expression data into object
+        df - dataframe of preloaded gene expression data
+        select_columns - the columns of the dataframe to use
+        gene_modules - a list of gene module assignments for each gene (for use
+        with the simulated data or when ground truth gene modules are known)
+        """
         self.filename = filename
         if filename is None:
             self.df = df
         else:
-            self.df = pd.read_table(self.filename)
+            self.df = pd.read_table(self.filename, index_col=0)
 
         if select_columns:
             subset_df = self.df.iloc[:, select_columns]
             other_columns = range(max(select_columns) + 1, self.df.shape[1])
             self.other_df = self.df.iloc[:, other_columns]
             self.df = subset_df
+
+        if gene_modules is not None:
+            self.gene_modules = pd.DataFrame(gene_modules).T
+            self.gene_modules.index = ['modules']
 
     def transform(self, how):
         self.transformation = how
@@ -81,6 +100,9 @@ class DataModel():
         colnames = ['pca_{}'.format(x) for x in range(0, n_components)]
         self.pca_df = pd.DataFrame(self.pca_df, index=self.df.index,
                                    columns=colnames)
+        self.pca_weights = pd.DataFrame(self.pca_fit.components_,
+                                        columns=self.df.columns,
+                                        index=colnames)
         if transform_df:
             out_df = self.pca_fit.transform(transform_df)
             return out_df
@@ -91,6 +113,10 @@ class DataModel():
         colnames = ['ica_{}'.format(x) for x in range(0, n_components)]
         self.ica_df = pd.DataFrame(self.ica_df, index=self.df.index,
                                    columns=colnames)
+        self.ica_weights = pd.DataFrame(self.ica_fit.components_,
+                                        columns=self.df.columns,
+                                        index=colnames)
+
         if transform_df:
             out_df = self.ica_fit.transform(transform_df)
             return out_df
@@ -99,9 +125,13 @@ class DataModel():
         self.nmf_fit = decomposition.NMF(n_components=n_components, init=init,
                                          tol=tol)
         self.nmf_df = self.nmf_fit.fit_transform(self.df)
-        colnames = ['nmf_{}'.format(x) for x in range(0, n_components)]
+        colnames = ['nmf_{}'.format(x) for x in range(n_components)]
+
         self.nmf_df = pd.DataFrame(self.nmf_df, index=self.df.index,
                                    columns=colnames)
+        self.nmf_weights = pd.DataFrame(self.nmf_fit.components_,
+                                        columns=self.df.columns,
+                                        index=colnames)
         if transform_df:
             out_df = self.nmf_fit.transform(transform_df)
             return out_df
@@ -121,6 +151,10 @@ class DataModel():
         beta = K.variable(beta)
         loss = kwargs.pop('loss', 'binary_crossentropy')
         validation_ratio = kwargs.pop('validation_ratio', 0.1)
+        verbose = kwargs.pop('verbose', True)
+        tybalt_separate_loss = kwargs.pop('separate_loss', False)
+        adage_comp_loss = kwargs.pop('multiply_adage_loss', False)
+        adage_optimizer = kwargs.pop('adage_optimizer', 'adam')
 
         # Extra processing for conditional vae
         if hasattr(self, 'other_df') and model == 'ctybalt':
@@ -155,16 +189,21 @@ class DataModel():
                                      kappa=kappa,
                                      epsilon_std=epsilon_std,
                                      beta=beta,
-                                     loss=loss)
+                                     loss=loss,
+                                     verbose=verbose)
             self.tybalt_fit.initialize_model()
             self.tybalt_fit.train_vae(train_df=self.nn_train_df,
-                                      test_df=self.nn_test_df)
-            self.tybalt_weights = self.tybalt_fit.get_decoder_weights()
+                                      test_df=self.nn_test_df,
+                                      separate_loss=tybalt_separate_loss)
+            self.tybalt_decoder_w = self.tybalt_fit.get_decoder_weights()
+
+            features = ['vae_{}'.format(x) for x in range(0, latent_dim)]
+            self.tybalt_weights = pd.DataFrame(self.tybalt_decoder_w[1][0],
+                                               columns=self.df.columns,
+                                               index=features)
 
             self.tybalt_df = self.tybalt_fit.compress(self.df)
-            colnames = ['vae_{}'.format(x) for x in range(0, latent_dim)]
-            self.tybalt_df.columns = colnames
-
+            self.tybalt_df.columns = features
             if transform_df:
                 out_df = self.tybalt_fit.compress(transform_df)
                 return out_df
@@ -179,19 +218,31 @@ class DataModel():
                                        kappa=kappa,
                                        epsilon_std=epsilon_std,
                                        beta=beta,
-                                       loss=loss)
+                                       loss=loss,
+                                       verbose=verbose)
             self.ctybalt_fit.initialize_model()
             self.ctybalt_fit.train_cvae(train_df=self.nn_train_df,
                                         train_labels_df=self.nn_train_y,
                                         test_df=self.nn_test_df,
                                         test_labels_df=self.nn_test_y)
-            self.ctybalt_weights = self.ctybalt_fit.get_decoder_weights()
+            self.ctybalt_decoder_w = self.ctybalt_fit.get_decoder_weights()
+
+            features = ['cvae_{}'.format(x) for x in range(0, latent_dim)]
+            features_with_groups = features + ['group_{}'.format(x) for x in
+                                               range(latent_dim,
+                                                     latent_dim + label_dim)]
+
+            w = pd.DataFrame(self.ctybalt_decoder_w[1][0])
+            self.ctybalt_group_w = pd.DataFrame(w.iloc[:, -label_dim:])
+
+            gene_range = range(0, w.shape[1] - label_dim)
+            self.ctybalt_weights = pd.DataFrame(w.iloc[:, gene_range])
+            self.ctybalt_weights.columns = self.df.columns
+            self.ctybalt_weights.index = features_with_groups
 
             self.ctybalt_df = self.ctybalt_fit.compress([self.df,
                                                          self.other_onehot])
-            colnames = ['cvae_{}'.format(x) for x in range(0, latent_dim)]
-            self.ctybalt_df.columns = colnames
-
+            self.ctybalt_df.columns = features
             if transform_df:
                 # Note: transform_df must be a list of two dfs [x_df, y_df]
                 out_df = self.ctybalt_fit.compress(transform_df)
@@ -205,15 +256,22 @@ class DataModel():
                                    epochs=epochs,
                                    sparsity=sparsity,
                                    learning_rate=learning_rate,
-                                   loss=loss)
+                                   loss=loss,
+                                   verbose=verbose,
+                                   optimizer=adage_optimizer)
             self.adage_fit.initialize_model()
             self.adage_fit.train_adage(train_df=self.nn_train_df,
-                                       test_df=self.nn_test_df)
-            self.adage_weights = self.adage_fit.get_decoder_weights()
+                                       test_df=self.nn_test_df,
+                                       adage_comparable_loss=adage_comp_loss)
+            self.adage_decoder_w = self.adage_fit.get_decoder_weights()
+
+            features = ['dae_{}'.format(x) for x in range(0, latent_dim)]
+            self.adage_weights = pd.DataFrame(self.adage_decoder_w[1][0],
+                                              columns=self.df.columns,
+                                              index=features)
 
             self.adage_df = self.adage_fit.compress(self.df)
-            colnames = ['dae_{}'.format(x) for x in range(0, latent_dim)]
-            self.adage_df.columns = colnames
+            self.adage_df.columns = features
             if transform_df:
                 out_df = self.adage_fit.compress(transform_df)
                 return out_df
@@ -241,3 +299,208 @@ class DataModel():
 
         all_df = pd.concat(all_models, axis=1)
         return all_df
+
+    def get_modules_ranks(self, weight_df, num_components, noise_column=0):
+        """
+        Takes a compression algorithm's weight matrix (gene by latent feature),
+        and reports two performance metrics:
+            1) mean rank sum across modules:
+               measures how well modules are separated into features
+            2) min average rank across modules:
+               measures how well modules of decreasing proportion are captured
+        """
+        # Rank absolute value compressed features for each gene
+        weight_rank_df = weight_df.abs().rank(axis=0, ascending=False)
+
+        # Add gene module membership to ranks
+        module_w_df = pd.concat([weight_rank_df, self.gene_modules], axis=0)
+        module_w_df = module_w_df.astype(int)
+
+        # Get the total module by compressed feature mean rank
+        module_meanrank_df = (module_w_df.T.groupby('modules').mean()).T
+
+        # Drop the noise column and get the sum of the minimum mean rank.
+        # This heuristic measures, on average, how well individual compressed
+        # features capture ground truth gene modules. A lower number indicates
+        # better separation performance for the algorithm of interest
+        if noise_column:
+            module_meanrank_minsum = (
+                module_meanrank_df.drop(noise_column, axis=1).min(axis=0).sum()
+                )
+            denom = num_components - 1
+        else:
+            module_meanrank_minsum = module_meanrank_df.min(axis=0).sum()
+            denom = num_components
+
+        # Process output data
+        # Divide this by the total number of features in the model. Subtract by
+        # one to account for the dropped noise column, if applicable
+        module_meanrank_minavg = module_meanrank_minsum / denom
+
+        # We are interested if the features encapsulate gene modules
+        # A lower number across modules indicates a stronger ability to
+        # aggregate genes into features
+        module_min_rank = pd.DataFrame(module_meanrank_df.min(),
+                                       columns=['min_rank'])
+
+        return module_meanrank_df, module_min_rank, module_meanrank_minavg
+
+    def get_group_means(self, df):
+        """
+        Get the mean latent space vector representation of input groups
+        """
+        return df.assign(groups=self.other_df).groupby('groups').mean()
+
+    def get_subtraction(self, group_means, group_list):
+        """
+        Subtract two group means given by group list
+        """
+        a, b = group_list
+
+        a_df = group_means.loc[a, :]
+        b_df = group_means.loc[b, :]
+
+        subtraction = pd.DataFrame(a_df - b_df).T
+
+        return subtraction
+
+    def subtraction_essense(self, group_subtract, mean_rank, node):
+        """
+        Obtain the difference between the subtraction and node of interest
+        """
+        # subset mean rank to node of the "dropped" feature in the simulation
+        feature_essense = mean_rank.loc[:, node]
+
+        # The node essense is the compressed feature with the lowest mean rank
+        node_essense = feature_essense.idxmin()
+        node_idx = int(node_essense.split('_')[1])
+
+        # Ask how different this specific feature is from all others
+        group_z = zscore(group_subtract.iloc[0, :].tolist())
+        node_essense_zscore = group_z[node_idx]
+
+        return node_essense_zscore
+
+    def get_addition(self, group_means, subtraction, group):
+        """
+        Add node to subtraction
+        """
+        mean_feature = group_means.loc[group, :]
+        return subtraction + mean_feature
+
+    def reconstruct_group(self, lsa_result, algorithm=False):
+        """
+        Reconstruct the latent space arithmetic result back to input dim
+        """
+        if algorithm == 'tybalt':
+            return self.tybalt_fit.decoder.predict_on_batch(lsa_result)
+        elif algorithm == 'ctybalt':
+            return self.ctybalt_fit.decoder.predict_on_batch(lsa_result)
+        elif algorithm == 'adage':
+            return self.adage_fit.decoder.predict_on_batch(lsa_result)
+        elif algorithm == 'pca':
+            return self.pca_fit.inverse_transform(lsa_result)
+        elif algorithm == 'ica':
+            return self.ica_fit.inverse_transform(lsa_result)
+        elif algorithm == 'nmf':
+            return self.nmf_fit.inverse_transform(lsa_result)
+        else:
+            raise ValueError('algorithm must be one of: "pca", "ica", "nmf",' +
+                             ' "adage", "tybalt", or "ctybalt"')
+
+    def get_average_distance(self, transform_df, real_df):
+        """
+        Obtain the average euclidean distance between the transformed vector
+        and all samples as part of the real dataframe
+        """
+        return euclidean_distances(transform_df, real_df).mean()
+
+    def _wrap_sub_eval(self, weight_df, compress_df, num_components,
+                       noise_column, subtraction_groups, addition_group, node,
+                       real_df, algorithm):
+        """
+        Helper function that wraps all evals
+        """
+        # Get the module mean rank and the min rank sum
+        mean_rank_mod, mean_rank_min, min_rank_avg = (
+            self.get_modules_ranks(weight_df, num_components, noise_column)
+        )
+
+        # Begin subtraction analysis - first, get group means
+        group_means = self.get_group_means(compress_df)
+
+        # Next, get the subtraction result
+        sub_result = self.get_subtraction(group_means, subtraction_groups)
+
+        # Then, get the relative minimum difference to determine if the
+        # subtraction isolates the feature we expect is should - and how much
+        relative_min_diff = self.subtraction_essense(sub_result,
+                                                     mean_rank_mod, node)
+
+        # Now reconstruct the subtraction back into original space
+        lsa_result = self.get_addition(group_means, sub_result, addition_group)
+        recon_lsa = self.reconstruct_group(lsa_result, algorithm)
+        avg_dist = self.get_average_distance(recon_lsa, real_df)
+
+        out_results = mean_rank_min.T
+        out_results.index = algorithm.split()
+        out_results = out_results.assign(minimum_rank_avg=min_rank_avg)
+        out_results = out_results.assign(min_node_zscore=relative_min_diff)
+        out_results = out_results.assign(avg_recon_dist=avg_dist)
+
+        return out_results
+
+    def subtraction_eval(self, num_components, noise_column, group_list,
+                         add_groups, expect_node, real_df):
+        tybalt_results = self._wrap_sub_eval(weight_df=self.tybalt_weights,
+                                             compress_df=self.tybalt_df,
+                                             num_components=num_components,
+                                             noise_column=noise_column,
+                                             subtraction_groups=group_list,
+                                             addition_group=add_groups,
+                                             node=expect_node,
+                                             real_df=real_df,
+                                             algorithm='tybalt')
+
+        adage_results = self._wrap_sub_eval(weight_df=self.adage_weights,
+                                            compress_df=self.adage_df,
+                                            num_components=num_components,
+                                            noise_column=noise_column,
+                                            subtraction_groups=group_list,
+                                            addition_group=add_groups,
+                                            node=expect_node,
+                                            real_df=real_df,
+                                            algorithm='adage')
+
+        pca_results = self._wrap_sub_eval(weight_df=self.pca_weights,
+                                          compress_df=self.pca_df,
+                                          num_components=num_components,
+                                          noise_column=noise_column,
+                                          subtraction_groups=group_list,
+                                          addition_group=add_groups,
+                                          node=expect_node,
+                                          real_df=real_df,
+                                          algorithm='pca')
+
+        ica_results = self._wrap_sub_eval(weight_df=self.ica_weights,
+                                          compress_df=self.ica_df,
+                                          num_components=num_components,
+                                          noise_column=noise_column,
+                                          subtraction_groups=group_list,
+                                          addition_group=add_groups,
+                                          node=expect_node,
+                                          real_df=real_df,
+                                          algorithm='ica')
+
+        nmf_results = self._wrap_sub_eval(weight_df=self.nmf_weights,
+                                          compress_df=self.nmf_df,
+                                          num_components=num_components,
+                                          noise_column=noise_column,
+                                          subtraction_groups=group_list,
+                                          addition_group=add_groups,
+                                          node=expect_node,
+                                          real_df=real_df,
+                                          algorithm='nmf')
+
+        return pd.concat([tybalt_results, adage_results, pca_results,
+                          ica_results, nmf_results])
