@@ -323,19 +323,14 @@ class DataModel():
         # This heuristic measures, on average, how well individual compressed
         # features capture ground truth gene modules. A lower number indicates
         # better separation performance for the algorithm of interest
-        if noise_column:
-            module_meanrank_minsum = (
-                module_meanrank_df.drop(noise_column, axis=1).min(axis=0).sum()
-                )
-            denom = num_components - 1
-        else:
-            module_meanrank_minsum = module_meanrank_df.min(axis=0).sum()
-            denom = num_components
+        module_meanrank_minsum = (
+            module_meanrank_df.drop(noise_column, axis=1).min(axis=0).sum()
+            )
 
         # Process output data
         # Divide this by the total number of features in the model. Subtract by
         # one to account for the dropped noise column, if applicable
-        module_meanrank_minavg = module_meanrank_minsum / denom
+        module_meanrank_minavg = module_meanrank_minsum / (num_components - 1)
 
         # We are interested if the features encapsulate gene modules
         # A lower number across modules indicates a stronger ability to

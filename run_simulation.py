@@ -52,7 +52,7 @@ parser.add_argument('-c', '--num_components', default=6,
                     help='length of the latent space features')
 parser.add_argument('-ve', '--vae_epochs', default=60,
                     help='how many epochs for VAE models')
-parser.add_argument('-ae', '--adage_epochs', default=60,
+parser.add_argument('-ae', '--adage_epochs', default=100,
                     help='how many epochs for ADAGE models')
 parser.add_argument('-b', '--batch_size', default=30,
                     help='How many samples to use to update weights')
@@ -60,6 +60,8 @@ parser.add_argument('-r', '--vae_learning_rate', default=0.0005,
                     help='learning rate for the VAE models')
 parser.add_argument('-a', '--adage_learning_rate', default=0.0005,
                     help='learning Rate for the ADAGE models')
+parser.add_argument('-i', '--adage_noise', default=0.1,
+                    help='noise corruption for model')
 parser.add_argument('-l', '--loss', default='mse',
                     help='What loss function to optimize for the NN models',
                     choices=['mse', 'binary_crossentropy'])
@@ -81,6 +83,7 @@ adage_epochs = int(args.adage_epochs)
 batch_size = int(args.batch_size)
 vae_learning_rate = float(args.vae_learning_rate)
 adage_learning_rate = float(args.adage_learning_rate)
+adage_noise = float(args.adage_noise)
 loss = args.loss
 verbose = args.verbose
 
@@ -97,9 +100,10 @@ data_model = DataModel(df=sim_sub_df, select_columns=select_columns,
 data_model.transform(how=how_transform)
 
 # Real target output
-real_group_data = (
+real_group_data = np.array(
     pd.concat([data_model.df, data_model.other_df], axis=1)
-    .query('groups == "C"').drop('groups', axis=1)
+    .query('groups == "B"')
+    .drop('groups', axis=1)
 )
 
 # Get random seeds
@@ -115,14 +119,15 @@ for seed in random_seeds:
                   learning_rate=vae_learning_rate, verbose=verbose)
     data_model.nn(n_components=n_components, model='adage', loss=loss,
                   epochs=adage_epochs, batch_size=batch_size,
-                  learning_rate=adage_learning_rate, verbose=verbose)
+                  noise=adage_noise, learning_rate=adage_learning_rate,
+                  verbose=verbose)
 
     # Get eval results
     eval_results = data_model.subtraction_eval(noise_column=0,
                                                num_components=n_components,
-                                               group_list=['A', 'B'],
+                                               group_list=['A', 'C'],
                                                add_groups='D',
-                                               expect_node=2,
+                                               expect_node=3,
                                                real_df=real_group_data)
     # Append seed and noise info to results
     eval_results = eval_results.assign(seed=seed)
