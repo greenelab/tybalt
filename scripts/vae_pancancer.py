@@ -13,6 +13,7 @@ Usage:
                                         --kappa
                                         --depth
                                         --output_filename
+                                        --num_components
 
     Typically, arguments to this script are compiled automatically by:
 
@@ -45,13 +46,15 @@ parser.add_argument('-e', '--epochs',
                     help='How many times to cycle through the full dataset')
 parser.add_argument('-k', '--kappa',
                     help='How fast to linearly ramp up KL loss')
-parser.add_argument('-d', '--depth',
+parser.add_argument('-d', '--depth', default=1,
                     help='Number of layers between input and latent layer')
 parser.add_argument('-c', '--first_layer',
                     help='Dimensionality of the first hidden layer',
                     default=100)
 parser.add_argument('-f', '--output_filename',
                     help='The name of the file to store results')
+parser.add_argument('-n', '--num_components', default=100,
+                    help='The latent space dimensionality to test')
 args = parser.parse_args()
 
 # Set hyper parameters
@@ -62,6 +65,7 @@ kappa = float(args.kappa)
 depth = int(args.depth)
 first_layer = int(args.first_layer)
 output_filename = args.output_filename
+latent_dim = int(args.num_components)
 
 # Load Data
 rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv.gz')
@@ -69,7 +73,6 @@ rnaseq_df = pd.read_table(rnaseq_file, index_col=0)
 
 # Set architecture dimensions
 original_dim = rnaseq_df.shape[1]
-latent_dim = 100
 epsilon_std = 1.0
 beta = K.variable(0)
 if depth == 2:
@@ -156,22 +159,26 @@ rnaseq_input = Input(shape=(original_dim, ))
 
 if depth == 1:
     z_shape = latent_dim
-    z_mean_dense_linear = Dense(latent_dim, kernel_initializer='glorot_uniform')(rnaseq_input)
-    z_log_var_dense_linear = Dense(latent_dim, kernel_initializer='glorot_uniform')(rnaseq_input)
-
+    z_mean_dense = Dense(latent_dim,
+                         kernel_initializer='glorot_uniform')(rnaseq_input)
+    z_log_var_dense = Dense(latent_dim,
+                            kernel_initializer='glorot_uniform')(rnaseq_input)
 elif depth == 2:
     z_shape = latent_dim2
-    hidden_dense_linear = Dense(latent_dim, kernel_initializer='glorot_uniform')(rnaseq_input)
-    hidden_dense_batchnorm = BatchNormalization()(hidden_dense_linear)
-    hidden_encoded = Activation('relu')(hidden_dense_batchnorm)
+    hidden_dense = Dense(latent_dim,
+                         kernel_initializer='glorot_uniform')(rnaseq_input)
+    hidden_dense_batchnorm = BatchNormalization()(hidden_dense)
+    hidden_enc = Activation('relu')(hidden_dense_batchnorm)
 
-    z_mean_dense_linear = Dense(latent_dim2, kernel_initializer='glorot_uniform')(hidden_encoded)
-    z_log_var_dense_linear = Dense(latent_dim2, kernel_initializer='glorot_uniform')(hidden_encoded)
+    z_mean_dense = Dense(latent_dim2,
+                         kernel_initializer='glorot_uniform')(hidden_enc)
+    z_log_var_dense = Dense(latent_dim2,
+                            kernel_initializer='glorot_uniform')(hidden_enc)
 
-z_mean_dense_batchnorm = BatchNormalization()(z_mean_dense_linear)
+z_mean_dense_batchnorm = BatchNormalization()(z_mean_dense)
 z_mean_encoded = Activation('relu')(z_mean_dense_batchnorm)
 
-z_log_var_dense_batchnorm = BatchNormalization()(z_log_var_dense_linear)
+z_log_var_dense_batchnorm = BatchNormalization()(z_log_var_dense)
 z_log_var_encoded = Activation('relu')(z_log_var_dense_batchnorm)
 
 # return the encoded and randomly sampled z vector
@@ -216,12 +223,12 @@ hist = vae.fit(np.array(rnaseq_train_df),
                shuffle=True,
                epochs=epochs,
                batch_size=batch_size,
-               validation_data=(np.array(rnaseq_test_df),
-                                np.array(rnaseq_test_df)),
+               validation_data=(np.array(rnaseq_test_df), None),
                callbacks=[WarmUpCallback(beta, kappa)])
 
 # Save training performance
 history_df = pd.DataFrame(hist.history)
+history_df = history_df.assign(num_components=latent_dim)
 history_df = history_df.assign(learning_rate=learning_rate)
 history_df = history_df.assign(batch_size=batch_size)
 history_df = history_df.assign(epochs=epochs)

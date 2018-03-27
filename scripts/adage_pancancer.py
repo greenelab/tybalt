@@ -17,6 +17,7 @@ Usage:
                                           --sparsity
                                           --noise
                                           --output_filename
+                                          --num_components
 
     Typically, arguments to this script are compiled automatically by:
 
@@ -50,6 +51,10 @@ parser.add_argument('-n', '--noise',
                     help='How much Gaussian noise to add during training')
 parser.add_argument('-f', '--output_filename',
                     help='The name of the file to store results')
+parser.add_argument('-c', '--num_components', default=100,
+                    help='The latent space dimensionality to test')
+parser.add_argument('-o', '--optimizer', default='adam',
+                    help='optimizer to use', choices=['adam', 'adadelta'])
 args = parser.parse_args()
 
 # Set hyper parameters
@@ -59,6 +64,8 @@ epochs = int(args.epochs)
 sparsity = float(args.sparsity)
 noise = float(args.noise)
 output_filename = args.output_filename
+latent_dim = int(args.num_components)
+use_optimizer = args.optimizer
 
 # Random seed
 seed = int(np.random.randint(low=0, high=10000, size=1))
@@ -69,7 +76,6 @@ rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv.gz')
 rnaseq_df = pd.read_table(rnaseq_file, index_col=0)
 
 original_dim = rnaseq_df.shape[1]
-latent_dim = 100
 
 # Split 10% test set randomly
 test_set_percent = 0.1
@@ -86,8 +92,12 @@ decoded_rnaseq = Dense(original_dim, activation='sigmoid')(activation)
 
 autoencoder = Model(input_rnaseq, decoded_rnaseq)
 
-adadelta = optimizers.Adadelta(lr=learning_rate)
-autoencoder.compile(optimizer=adadelta, loss='mse')
+if use_optimizer == 'adadelta':
+    optim = optimizers.Adadelta(lr=learning_rate)
+elif use_optimizer == 'adam':
+    optim = optimizers.Adam(lr=learning_rate)
+
+autoencoder.compile(optimizer=optim, loss='mse')
 
 hist = autoencoder.fit(np.array(rnaseq_train_df), np.array(rnaseq_train_df),
                        shuffle=True,
@@ -98,6 +108,7 @@ hist = autoencoder.fit(np.array(rnaseq_train_df), np.array(rnaseq_train_df),
 
 # Save training performance
 history_df = pd.DataFrame(hist.history)
+history_df = history_df.assign(num_components=latent_dim)
 history_df = history_df.assign(learning_rate=learning_rate)
 history_df = history_df.assign(batch_size=batch_size)
 history_df = history_df.assign(epochs=epochs)

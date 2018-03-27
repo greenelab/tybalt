@@ -1,0 +1,6 @@
+parameter	sweep_values
+learning_rate	0.0005,0.001,0.0015,0.002,0.0025
+batch_size	50,100,150
+epochs	50,100
+kappa	0,0.5,1
+num_components	5,25,50,75,100,125
