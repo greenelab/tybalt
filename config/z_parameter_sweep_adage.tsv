@@ -4,4 +4,4 @@ batch_size	50,100
 epochs	50,100
 sparsity	0,0.000001,0.001
 noise	0,0.1,0.5
-num_components	5,25,50,75100,125
+num_components	5,25,50,75,100,125

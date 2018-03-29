@@ -1,0 +1,7 @@
+learning_rate	batch_size	epochs	kappa	num_components	end_loss
+Learning: 0.002	Batch: 50	50	1.0	5	2805.3781939008722
+Learning: 0.0015	Batch: 50	50	0.0	25	2693.8986447627867
+Learning: 0.002	Batch: 100	100	0.0	50	2670.531782628017
+Learning: 0.002	Batch: 150	100	0.0	75	2656.745719836729
+Learning: 0.001	Batch: 100	100	0.0	100	2651.666355928089
+Learning: 0.0005	Batch: 150	100	0.0	125	2650.3323019986856
