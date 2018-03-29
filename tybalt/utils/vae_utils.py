@@ -5,22 +5,36 @@ from keras.layers import Layer
 from keras import metrics
 
 
-def approx_keras_binary_cross_entropy(x, z, p):
+def approx_keras_binary_cross_entropy(x, z, p, epsilon=1e-07):
     """
-    Function to approximate Keras `binary_crossentropy()``
+    Function to approximate Keras `binary_crossentropy()`
     https://github.com/keras-team/keras/blob/e6c3f77b0b10b0d76778109a40d6d3282f1cadd0/keras/losses.py#L76
 
     Which is a wrapper for TensorFlow `sigmoid_cross_entropy_with_logits()`
     https://www.tensorflow.org/api_docs/python/tf/nn/sigmoid_cross_entropy_with_logits
 
+    An important step is to clip values of reconstruction
+    https://github.com/keras-team/keras/blob/a3d160b9467c99cbb27f9aa0382c759f45c8ee66/keras/backend/tensorflow_backend.py#L3071
+
     Arguments:
     x - Reconstructed input RNAseq data
     z - Input RNAseq data
     p - number of features
+    epsilon - the clipping value to stabilize results (same Keras default)
     """
+    # Ensure numpy arrays
+    x = np.array(x)
+    z = np.array(z)
+
+    # Add clip to value
+    x[x < epsilon] = epsilon
+    x[x > (1 - epsilon)] = (1 - epsilon)
+
+    # Perform logit
     x = np.log(x / (1 - x))
-    return np.mean(p * np.mean(- x * z + np.log(1 + np.exp(x)),
-                   axis=-1))
+
+    # Return approximate binary cross entropy
+    return np.mean(p * np.mean(- x * z + np.log(1 + np.exp(x)), axis=-1))
 
 
 class VariationalLayer(Layer):

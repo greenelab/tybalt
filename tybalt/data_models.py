@@ -40,6 +40,7 @@ from keras import backend as K
 from keras.utils import to_categorical
 
 from tybalt.models import Tybalt, Adage, cTybalt
+from tybalt.utils.vae_utils import approx_keras_binary_cross_entropy
 
 
 class DataModel():
@@ -80,6 +81,8 @@ class DataModel():
         if gene_modules is not None:
             self.gene_modules = pd.DataFrame(gene_modules).T
             self.gene_modules.index = ['modules']
+
+        self.num_samples, self.num_genes = self.df.shape
 
     def transform(self, how):
         self.transformation = how
@@ -299,6 +302,63 @@ class DataModel():
 
         all_df = pd.concat(all_models, axis=1)
         return all_df
+
+    def combine_weight_matrix(self):
+        all_weight = []
+        if hasattr(self, 'pca_df'):
+            all_weight += [self.pca_weights]
+        if hasattr(self, 'ica_df'):
+            all_weight += [self.ica_weights]
+        if hasattr(self, 'nmf_df'):
+            all_weight += [self.nmf_weights]
+        if hasattr(self, 'tybalt_df'):
+            all_weight += [self.tybalt_weights]
+        if hasattr(self, 'ctybalt_df'):
+            all_weight += [self.ctybalt_weights]
+        if hasattr(self, 'adage_df'):
+            all_weight += [self.adage_weights]
+
+        all_weight_df = pd.concat(all_weight, axis=0).T
+        return all_weight_df
+
+    def compile_reconstruction(self):
+        all_reconstruction = {}
+        if hasattr(self, 'pca_df'):
+            pca_reconstruct = self.pca_fit.inverse_transform(self.pca_df)
+            pca_recon = approx_keras_binary_cross_entropy(pca_reconstruct,
+                                                          self.df,
+                                                          self.num_genes)
+            all_reconstruction['pca'] = [pca_recon]
+        if hasattr(self, 'ica_df'):
+            ica_reconstruct = self.ica_fit.inverse_transform(self.ica_df)
+            ica_recon = approx_keras_binary_cross_entropy(ica_reconstruct,
+                                                          self.df,
+                                                          self.num_genes)
+            all_reconstruction['ica'] = [ica_recon]
+        if hasattr(self, 'nmf_df'):
+            nmf_reconstruct = self.nmf_fit.inverse_transform(self.nmf_df)
+            nmf_recon = approx_keras_binary_cross_entropy(nmf_reconstruct,
+                                                          self.df,
+                                                          self.num_genes)
+            all_reconstruction['nmf'] = [nmf_recon]
+        if hasattr(self, 'tybalt_df'):
+            vae_reconstruct = self.tybalt_fit.decoder.predict_on_batch(
+                self.tybalt_fit.encoder.predict_on_batch(self.df)
+                )
+            vae_recon = approx_keras_binary_cross_entropy(vae_reconstruct,
+                                                          self.df,
+                                                          self.num_genes)
+            all_reconstruction['vae'] = [vae_recon]
+        if hasattr(self, 'adage_df'):
+            dae_reconstruct = self.adage_fit.decoder.predict_on_batch(
+                self.adage_fit.encoder.predict_on_batch(self.df)
+                )
+            dae_recon = approx_keras_binary_cross_entropy(dae_reconstruct,
+                                                          self.df,
+                                                          self.num_genes)
+            all_reconstruction['dae'] = [dae_recon]
+
+        return pd.DataFrame(all_reconstruction)
 
     def get_modules_ranks(self, weight_df, num_components, noise_column=0):
         """
