@@ -151,7 +151,7 @@ w_det = os.path.join(out_dir,
 z_det = os.path.join(out_dir,
                      '{}z_matrix_corr_determinant.tsv'.format(file_pre))
 across_alg_det = os.path.join(out_dir,
-                              'alg_corr_determinant.tsv'.format(file_pre))
+                              '{}alg_corr_determinant.tsv'.format(file_pre))
 tybalt_hist_file = os.path.join(out_dir,
                                 '{}tybalt_training_hist.tsv'.format(file_pre))
 adage_hist_file = os.path.join(out_dir,
