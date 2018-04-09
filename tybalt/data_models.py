@@ -154,6 +154,11 @@ class DataModel():
         beta = K.variable(beta)
         loss = kwargs.pop('loss', 'binary_crossentropy')
         validation_ratio = kwargs.pop('validation_ratio', 0.1)
+        tied_weights = kwargs.pop('tied_weights', True)
+        if tied_weights and model == 'adage':
+            use_decoder_weights = False
+        else:
+            use_decoder_weights = True
         verbose = kwargs.pop('verbose', True)
         tybalt_separate_loss = kwargs.pop('separate_loss', False)
         adage_comp_loss = kwargs.pop('multiply_adage_loss', False)
@@ -198,10 +203,12 @@ class DataModel():
             self.tybalt_fit.train_vae(train_df=self.nn_train_df,
                                       test_df=self.nn_test_df,
                                       separate_loss=tybalt_separate_loss)
-            self.tybalt_decoder_w = self.tybalt_fit.get_decoder_weights()
 
             features = ['vae_{}'.format(x) for x in range(0, latent_dim)]
-            self.tybalt_weights = pd.DataFrame(self.tybalt_decoder_w[1][0],
+            self.tybalt_weights = (
+                self.tybalt_fit.get_weights(decoder=use_decoder_weights)
+                )
+            self.tybalt_weights = pd.DataFrame(self.tybalt_weights[1][0],
                                                columns=self.df.columns,
                                                index=features)
 
@@ -228,7 +235,9 @@ class DataModel():
                                         train_labels_df=self.nn_train_y,
                                         test_df=self.nn_test_df,
                                         test_labels_df=self.nn_test_y)
-            self.ctybalt_decoder_w = self.ctybalt_fit.get_decoder_weights()
+            self.ctybalt_decoder_w = (
+                self.ctybalt_fit.get_weights(decoder=use_decoder_weights)
+                )
 
             features = ['cvae_{}'.format(x) for x in range(0, latent_dim)]
             features_with_groups = features + ['group_{}'.format(x) for x in
@@ -261,15 +270,18 @@ class DataModel():
                                    learning_rate=learning_rate,
                                    loss=loss,
                                    verbose=verbose,
+                                   tied_weights=tied_weights,
                                    optimizer=adage_optimizer)
             self.adage_fit.initialize_model()
             self.adage_fit.train_adage(train_df=self.nn_train_df,
                                        test_df=self.nn_test_df,
                                        adage_comparable_loss=adage_comp_loss)
-            self.adage_decoder_w = self.adage_fit.get_decoder_weights()
 
             features = ['dae_{}'.format(x) for x in range(0, latent_dim)]
-            self.adage_weights = pd.DataFrame(self.adage_decoder_w[1][0],
+            self.adage_weights = (
+                self.adage_fit.get_weights(decoder=use_decoder_weights)
+                )
+            self.adage_weights = pd.DataFrame(self.adage_weights[1][0],
                                               columns=self.df.columns,
                                               index=features)
 

@@ -36,12 +36,18 @@ class BaseModel():
         else:
             fig.show()
 
-    def get_decoder_weights(self):
-        # build a generator that can sample from the learned distribution
-        # can generate from any sampled z vector
+    def get_weights(self, decoder=True):
+        # Extract weight matrices from encoder or decoder
         weights = []
-        for layer in self.decoder.layers:
-            weights.append(layer.get_weights())
+        if decoder:
+            for layer in self.decoder.layers:
+                weights.append(layer.get_weights())
+        else:
+            for layer in self.encoder.layers:
+                # Encoder weights must be transposed
+                encoder_weights = layer.get_weights()
+                encoder_weights = [np.transpose(x) for x in encoder_weights]
+                weights.append(encoder_weights)
         return weights
 
     def save_models(self, encoder_file, decoder_file):
