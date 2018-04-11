@@ -24,6 +24,8 @@ Usage: Run on the command line with required arguments:
                             update in neural network training
         --vae_learning_rate         Variational Autoencoder learing rate
         --adage_learning_rate       ADAGE learning rate
+        --adage_noise       percentage of dropout noise added to features
+        --adage_untied_weights      if encoder and decoder weights are separate
         --loss              the loss function to minimize (str)
         --verbose           Whether or not to print training progress in neural
                             network models
@@ -52,16 +54,18 @@ parser.add_argument('-c', '--num_components', default=6,
                     help='length of the latent space features')
 parser.add_argument('-ve', '--vae_epochs', default=60,
                     help='how many epochs for VAE models')
-parser.add_argument('-ae', '--adage_epochs', default=100,
+parser.add_argument('-ae', '--adage_epochs', default=60,
                     help='how many epochs for ADAGE models')
 parser.add_argument('-b', '--batch_size', default=30,
                     help='How many samples to use to update weights')
 parser.add_argument('-r', '--vae_learning_rate', default=0.0005,
                     help='learning rate for the VAE models')
-parser.add_argument('-a', '--adage_learning_rate', default=0.0005,
+parser.add_argument('-a', '--adage_learning_rate', default=0.0004,
                     help='learning Rate for the ADAGE models')
 parser.add_argument('-i', '--adage_noise', default=0.1,
                     help='noise corruption for model')
+parser.add_argument('-w', '--adage_untied_weights', action='store_false',
+                    help='use tied weights in training ADAGE model')
 parser.add_argument('-l', '--loss', default='mse',
                     help='What loss function to optimize for the NN models',
                     choices=['mse', 'binary_crossentropy'])
@@ -84,6 +88,7 @@ batch_size = int(args.batch_size)
 vae_learning_rate = float(args.vae_learning_rate)
 adage_learning_rate = float(args.adage_learning_rate)
 adage_noise = float(args.adage_noise)
+tied_weights = args.adage_untied_weights
 loss = args.loss
 verbose = args.verbose
 
@@ -120,7 +125,7 @@ for seed in random_seeds:
     data_model.nn(n_components=n_components, model='adage', loss=loss,
                   epochs=adage_epochs, batch_size=batch_size,
                   noise=adage_noise, learning_rate=adage_learning_rate,
-                  verbose=verbose)
+                  tied_weights=tied_weights, verbose=verbose)
 
     # Get eval results
     eval_results = data_model.subtraction_eval(noise_column=0,

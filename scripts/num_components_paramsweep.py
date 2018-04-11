@@ -122,6 +122,7 @@ epochs = get_param('epochs')
 kappas = get_param('kappa')
 sparsities = get_param('sparsity')
 noises = get_param('noise')
+adage_weights = get_param('weights')[0]
 
 # Retrieve PMACS configuration
 queue = config_df.loc['queue']['assign']
@@ -164,6 +165,8 @@ elif algorithm == 'adage':
                                       '--noise', n,
                                       '--output_filename', f]
                             final_command = [python_path, script] + params
+                            if adage_weights == 'untied':
+                                final_command += ['--untied_weights']
                             all_commands.append(final_command)
 
 # Submit commands

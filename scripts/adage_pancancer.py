@@ -33,10 +33,39 @@ import argparse
 import numpy as np
 import pandas as pd
 
+from keras.engine.topology import Layer
 from keras.layers import Input, Dense, Dropout, Activation
-from keras.models import Model
-from keras import optimizers
+from keras.models import Sequential, Model
+import keras.backend as K
 from keras.regularizers import l1
+from keras import optimizers, activations
+
+
+class TiedWeightsDecoder(Layer):
+    """
+    Transpose the encoder weights to apply decoding of compressed latent space
+    """
+    def __init__(self, output_dim, encoder, activation=None, **kwargs):
+        self.output_dim = output_dim
+        self.encoder = encoder
+        self.activation = activations.get(activation)
+        super(TiedWeightsDecoder, self).__init__(**kwargs)
+
+    def build(self, input_shape):
+        self.kernel = self.encoder.weights
+        super(TiedWeightsDecoder, self).build(input_shape)
+
+    def call(self, x):
+        # Encoder weights: [weight_matrix, bias_term]
+        output = K.dot(x - self.encoder.weights[1],
+                       K.transpose(self.encoder.weights[0]))
+        if self.activation is not None:
+            output = self.activation(output)
+        return output
+
+    def compute_output_shape(self, input_shape):
+        return (input_shape[0], self.output_dim)
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-l', '--learning_rate',
@@ -55,6 +84,8 @@ parser.add_argument('-c', '--num_components', default=100,
                     help='The latent space dimensionality to test')
 parser.add_argument('-o', '--optimizer', default='adam',
                     help='optimizer to use', choices=['adam', 'adadelta'])
+parser.add_argument('-w', '--untied_weights', action='store_false',
+                    help='use tied weights in training ADAGE model')
 args = parser.parse_args()
 
 # Set hyper parameters
@@ -66,6 +97,7 @@ noise = float(args.noise)
 output_filename = args.output_filename
 latent_dim = int(args.num_components)
 use_optimizer = args.optimizer
+tied_weights = args.untied_weights
 
 # Random seed
 seed = int(np.random.randint(low=0, high=10000, size=1))
@@ -82,15 +114,31 @@ test_set_percent = 0.1
 rnaseq_test_df = rnaseq_df.sample(frac=test_set_percent)
 rnaseq_train_df = rnaseq_df.drop(rnaseq_test_df.index)
 
-# Input place holder for RNAseq data with specific input size
-input_rnaseq = Input(shape=(original_dim, ))
-encoded_rnaseq = Dropout(noise)(input_rnaseq)
-encoded_rnaseq_2 = Dense(latent_dim,
-                         activity_regularizer=l1(sparsity))(encoded_rnaseq)
-activation = Activation('relu')(encoded_rnaseq_2)
-decoded_rnaseq = Dense(original_dim, activation='sigmoid')(activation)
+if tied_weights:
+    # Input place holder for RNAseq data with specific input size
+    encoded_rnaseq = Dense(latent_dim,
+                           input_shape=(original_dim, ),
+                           activity_regularizer=l1(sparsity),
+                           activation='relu')
+    dropout_layer = Dropout(noise)
+    tied_decoder = TiedWeightsDecoder(input_shape=(latent_dim, ),
+                                      output_dim=original_dim,
+                                      activation='sigmoid',
+                                      encoder=encoded_rnaseq)
 
-autoencoder = Model(input_rnaseq, decoded_rnaseq)
+    autoencoder = Sequential()
+    autoencoder.add(encoded_rnaseq)
+    autoencoder.add(dropout_layer)
+    autoencoder.add(tied_decoder)
+
+else:
+    input_rnaseq = Input(shape=(original_dim, ))
+    encoded_rnaseq = Dropout(noise)(input_rnaseq)
+    encoded_rnaseq_2 = Dense(latent_dim,
+                             activity_regularizer=l1(sparsity))(encoded_rnaseq)
+    activation = Activation('relu')(encoded_rnaseq_2)
+    decoded_rnaseq = Dense(original_dim, activation='sigmoid')(activation)
+    autoencoder = Model(input_rnaseq, decoded_rnaseq)
 
 if use_optimizer == 'adadelta':
     optim = optimizers.Adadelta(lr=learning_rate)

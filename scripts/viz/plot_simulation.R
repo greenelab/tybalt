@@ -4,6 +4,15 @@
 #
 # Visualize the results of the simulation analyses
 #
+# Note that all simulation results were compiled by running:
+#
+#     python scripts/util/aggregate_simulation_results.py
+#
+# With the following flags set:
+#
+#     --simulation_directory 'results/simulation_tiedweights'
+#     --output_filename 'results/all_simulation_results_tiedweights.tsv'
+#
 # Usage: run once output all simulated results
 #
 #         Rscript scripts/viz/plot_simulation.R
@@ -16,10 +25,8 @@ library(ggbeeswarm)
 # Base location where all figures are to be saved
 fig_base <- file.path("figures", "simulation")
 
-# Note that all simulation results were compiled by running:
-# `python scripts/util/aggregate_simulation_results.py`
-simulation_results_file <- "results/all_simulation_results.tsv"
-sim_df <- readr::read_tsv(simulation_results_file)
+sim_file <- file.path("results", "all_simulation_results_tiedweights.tsv")
+sim_df <- readr::read_tsv(sim_file)
 
 sim_df$sample_size <-
   dplyr::recode_factor(sim_df$sample_size, 
@@ -88,7 +95,7 @@ ggsave(module_z_pdf, plot = p, height = 3, width = 6)
 # These are kind of tough to see, plot a representative example:
 # sample_size = 8000, genes = 500
 z_essence_df <- sim_df %>% dplyr::filter(sample_size == "Samples: 8000",
-                                          num_genes == "Genes: 500")
+                                         num_genes == "Genes: 500")
 
 # Recode variables for plotting
 z_essence_df$noise <-
@@ -141,6 +148,7 @@ for (sep_noise in unique(module_rank_df$noise)) {
     fig_png <-  paste0("mod_rank_noise_", sep_noise, "_n_", samp_size, ".png")
     module_rank_pdf <- file.path(fig_base, "module_rank", fig)
     module_rank_png <- file.path(fig_base, "module_rank", fig_png)
+
     p <- ggplot(module_rank_sub_df, aes(x = as.numeric(paste(variable)),
                                         y = avg_rank,
                                         color = algorithm)) +

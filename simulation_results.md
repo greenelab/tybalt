@@ -117,8 +117,7 @@ All algorithms tend to perform worse with increasing noise and better with incre
 PCA (light blue) performed the best in nearly all scenarios with the exception to situations with high noise.
 In high noise cases, NMF (green) performed the best.
 Tybalt (VAE; purple) performed better than ADAGE, NMF, and ICA in almost all cases.
-ADAGE (DAE, red) solutions tended to be unstable, particularly in simulations with a higher number of genes.
-Many ADAGE solutions did not converge indicating a stronger need for finer hyperparameter tuning.
+ADAGE (DAE, red) solutions generally did not capture modules well and were unstable in simulations with a higher number of genes.
 
 We also visualized results without taking the mean rank.
 This visualization demonstrates how gene modules with decreasing size were captured by the algorithms.
@@ -132,8 +131,8 @@ Note that in the `mean rank` procedure, we did not include the noise module.
 Based on this example, it is clear that PCA captures all modules uniquely quite well.
 NMF also captures modules well, with stable solutions.
 Both ICA and PCA capture the smaller gene modules (`module 4` and `module 5`) better than larger modules (`module 1` and `module 2`).
-Both Tybalt and ADAGE did not capture the noise module (`module 0`).
-ADAGE was also not able to capture modules for most initializations with high number of genes.
+Tybalt was unable to capture the noise module (`module 0`).
+ADAGE and Tybalt solutions were less stable than other algorithms.
 `module 3`, which is the module simulated to be absent in 1/2 of samples, was captured by all algorithms except for ADAGE.
 
 ### 2) Are the algorithms' reconstruction of `B_hat` near `B`?
@@ -143,7 +142,8 @@ We next asked if the LSA experiment resulted in reconstructions of `B_hat` that 
 ![](figures/simulation/lsa_reconstruction_distance.png?raw=true)
 
 All algorithms performed worse with increasing noise injection.
-ADAGE reconstructions were largely unstable.
+Strangely, ADAGE reconstructions for `noise = 0.1` were unstable for all datasets except n = 8000.
+ADAGE was comparable with other datasets and all other algorithms were able to reconstruct `noise = 0.1`. 
 
 ### 3) Does the latent space arithmetic capture the feature most representative of module 3?
 
@@ -155,9 +155,9 @@ Essentially, [did the LSA subtraction capture the essence of module 3](https://a
 Here, the y axis is the z-score of the subtraction operation (`A - C`) (mean vector representations of both groups) of the compression feature with the lowest rank of module 3 genes (see evaluation 1 above).
 Therefore, high and low scores indicate the subtraction was isolating the feature most representative of `module 3`.
 This is a busy plot, but in most cases, Tybalt and PCA lead the pack.
-Tybalt performed consistently strong, even in cases with high noise.
-The solutions for Tybalt are also generally consistent.
-The subtraction for PCA sometimes results in high or low z scores, but is always high for tybalt.
+Tybalt and ADAGE performed consistently strong, even in cases with high noise.
+The solutions for Tybalt and ADAGE are also generally consistent.
+The subtraction for PCA sometimes results in high or low z scores, but is always high for neural network models.
 
 We show one representative combination of sample size (`n = 8000`) and genes (`p = 500`) to provide a clearer picture.
 
@@ -170,6 +170,4 @@ PCA and ICA perform well in all tasks (particularly PCA).
 This is likely because the simulation procedure assumes linear relationships among samples, and relatively low cross correlational structure across genes.
 Therefore, this simulation may not adequately represent the complexity of real data.
 NMF also performs well, particularly in solutions with high noise injection.
-ADAGE solutions are generally unstable and may require additional hyperparameter tuning than other algorithms.
-This instability may actually benefit biological knowledge identification when applied in an [ensemble approach](https://doi.org/10.1016/j.cels.2017.06.003).
-Other algorithms can perform LSA, but Tybalt shines when asked to find the "essence" of the difference between sample groups.
+Other algorithms can perform LSA, but Tybalt and ADAGE shine when asked to find the "essence" of the difference between sample groups.
