@@ -16,10 +16,10 @@ from keras.layers.merge import concatenate
 from keras.models import Model, Sequential
 from keras.regularizers import l1
 
-from tybalt.utils.vae_utils import VariationalLayer, WarmUpCallback
-from tybalt.utils.vae_utils import LossCallback
-from tybalt.utils.adage_utils import TiedWeightsDecoder
-from tybalt.utils.base import VAE, BaseModel
+from ..utils.vae_utils import VariationalLayer, WarmUpCallback
+from ..utils.vae_utils import LossCallback
+from ..utils.adage_utils import TiedWeightsDecoder
+from ..utils.base import VAE, BaseModel
 
 
 class Tybalt(VAE):

@@ -39,8 +39,8 @@ from sklearn.metrics.pairwise import euclidean_distances
 from keras import backend as K
 from keras.utils import to_categorical
 
-from tybalt.models import Tybalt, Adage, cTybalt
-from tybalt.utils.vae_utils import approx_keras_binary_cross_entropy
+from .models import Tybalt, Adage, cTybalt
+from ..utils.vae_utils import approx_keras_binary_cross_entropy
 
 
 class DataModel():
