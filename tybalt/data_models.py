@@ -335,24 +335,34 @@ class DataModel():
 
     def compile_reconstruction(self):
         all_reconstruction = {}
+        reconstruct_matrices = {}
         if hasattr(self, 'pca_df'):
             pca_reconstruct = self.pca_fit.inverse_transform(self.pca_df)
             pca_recon = approx_keras_binary_cross_entropy(pca_reconstruct,
                                                           self.df,
                                                           self.num_genes)
             all_reconstruction['pca'] = [pca_recon]
+            reconstruct_matrices['pca'] = pd.DataFrame(pca_reconstruct,
+                                                       index=self.df.index,
+                                                       columns=self.df.columns)
         if hasattr(self, 'ica_df'):
             ica_reconstruct = self.ica_fit.inverse_transform(self.ica_df)
             ica_recon = approx_keras_binary_cross_entropy(ica_reconstruct,
                                                           self.df,
                                                           self.num_genes)
             all_reconstruction['ica'] = [ica_recon]
+            reconstruct_matrices['ica'] = pd.DataFrame(ica_reconstruct,
+                                                       index=self.df.index,
+                                                       columns=self.df.columns)
         if hasattr(self, 'nmf_df'):
             nmf_reconstruct = self.nmf_fit.inverse_transform(self.nmf_df)
             nmf_recon = approx_keras_binary_cross_entropy(nmf_reconstruct,
                                                           self.df,
                                                           self.num_genes)
             all_reconstruction['nmf'] = [nmf_recon]
+            reconstruct_matrices['nmf'] = pd.DataFrame(nmf_reconstruct,
+                                                       index=self.df.index,
+                                                       columns=self.df.columns)
         if hasattr(self, 'tybalt_df'):
             vae_reconstruct = self.tybalt_fit.decoder.predict_on_batch(
                 self.tybalt_fit.encoder.predict_on_batch(self.df)
@@ -361,6 +371,9 @@ class DataModel():
                                                           self.df,
                                                           self.num_genes)
             all_reconstruction['vae'] = [vae_recon]
+            reconstruct_matrices['vae'] = pd.DataFrame(vae_reconstruct,
+                                                       index=self.df.index,
+                                                       columns=self.df.columns)
         if hasattr(self, 'adage_df'):
             dae_reconstruct = self.adage_fit.decoder.predict_on_batch(
                 self.adage_fit.encoder.predict_on_batch(self.df)
@@ -369,8 +382,11 @@ class DataModel():
                                                           self.df,
                                                           self.num_genes)
             all_reconstruction['dae'] = [dae_recon]
+            reconstruct_matrices['dae'] = pd.DataFrame(dae_reconstruct,
+                                                       index=self.df.index,
+                                                       columns=self.df.columns)
 
-        return pd.DataFrame(all_reconstruction)
+        return pd.DataFrame(all_reconstruction), reconstruct_matrices
 
     def get_modules_ranks(self, weight_df, num_components, noise_column=0):
         """
