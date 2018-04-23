@@ -53,7 +53,7 @@ class DataModel():
     data = DataModel(filename)
     """
     def __init__(self, filename=None, df=False, select_columns=False,
-                 gene_modules=None):
+                 gene_modules=None, test_filename=None, test_df=None):
         """
         DataModel can be initialized with either a filename or a pandas
         dataframe and processes gene modules and sample labels if provided.
@@ -65,24 +65,39 @@ class DataModel():
         select_columns - the columns of the dataframe to use
         gene_modules - a list of gene module assignments for each gene (for use
         with the simulated data or when ground truth gene modules are known)
+        test_filename - if provided, loads testing dataset into object
+        test_df - dataframe of prelaoded gene expression testing set data
         """
+        # Load gene expression data
         self.filename = filename
         if filename is None:
             self.df = df
         else:
             self.df = pd.read_table(self.filename, index_col=0)
 
+        # Load test set gene expression data if applicable
+        self.test_filename = test_filename
+        self.test_df = test_df
+        if test_filename is not None and test_df is None:
+            self.test_df = pd.read_table(self.test_filename, index_col=0)
+
         if select_columns:
             subset_df = self.df.iloc[:, select_columns]
             other_columns = range(max(select_columns) + 1, self.df.shape[1])
             self.other_df = self.df.iloc[:, other_columns]
             self.df = subset_df
+            if self.test_df is not None:
+                self.test_df = self.test_df.iloc[:, select_columns]
 
         if gene_modules is not None:
             self.gene_modules = pd.DataFrame(gene_modules).T
             self.gene_modules.index = ['modules']
 
         self.num_samples, self.num_genes = self.df.shape
+        self.num_test_samples, self.num_test_genes = self.test_df.shape
+
+        assert_notice = 'train and test sets must have same number of genes'
+        assert self.num_genes == self.num_test_genes, assert_notice
 
     def transform(self, how):
         self.transformation = how
@@ -97,7 +112,18 @@ class DataModel():
                                index=self.df.index,
                                columns=self.df.columns)
 
-    def pca(self, n_components, transform_df=False):
+        if self.test_df is not None:
+            if how == 'zscore':
+                self.transform_test_fit = StandardScaler().fit(self.test_df)
+            elif how == 'zeroone':
+                self.transform_test_fit = MinMaxScaler().fit(self.test_df)
+
+            test_transform = self.transform_test_fit.transform(self.test_df)
+            self.test_df = pd.DataFrame(test_transform,
+                                        index=self.test_df.index,
+                                        columns=self.test_df.columns)
+
+    def pca(self, n_components, transform_df=False, transform_test_df=False):
         self.pca_fit = decomposition.PCA(n_components=n_components)
         self.pca_df = self.pca_fit.fit_transform(self.df)
         colnames = ['pca_{}'.format(x) for x in range(0, n_components)]
@@ -110,7 +136,10 @@ class DataModel():
             out_df = self.pca_fit.transform(transform_df)
             return out_df
 
-    def ica(self, n_components, transform_df=False):
+        if transform_test_df:
+            self.pca_test_df = self.pca_fit.transform(self.test_df)
+
+    def ica(self, n_components, transform_df=False, transform_test_df=False):
         self.ica_fit = decomposition.FastICA(n_components=n_components)
         self.ica_df = self.ica_fit.fit_transform(self.df)
         colnames = ['ica_{}'.format(x) for x in range(0, n_components)]
@@ -124,7 +153,11 @@ class DataModel():
             out_df = self.ica_fit.transform(transform_df)
             return out_df
 
-    def nmf(self, n_components, transform_df=False, init='nndsvdar', tol=5e-3):
+        if transform_test_df:
+            self.ica_test_df = self.ica_fit.transform(self.test_df)
+
+    def nmf(self, n_components, transform_df=False, transform_test_df=False,
+            init='nndsvdar', tol=5e-3,):
         self.nmf_fit = decomposition.NMF(n_components=n_components, init=init,
                                          tol=tol)
         self.nmf_df = self.nmf_fit.fit_transform(self.df)
@@ -139,7 +172,11 @@ class DataModel():
             out_df = self.nmf_fit.transform(transform_df)
             return out_df
 
-    def nn(self, n_components, model='tybalt', transform_df=False, **kwargs):
+        if transform_test_df:
+            self.nmf_test_df = self.nmf_fit.transform(self.test_df)
+
+    def nn(self, n_components, model='tybalt', transform_df=False,
+           transform_test_df=False, **kwargs):
         # unpack kwargs
         original_dim = kwargs.pop('original_dim', self.df.shape[1])
         latent_dim = kwargs.pop('latent_dim', n_components)
@@ -217,6 +254,8 @@ class DataModel():
             if transform_df:
                 out_df = self.tybalt_fit.compress(transform_df)
                 return out_df
+            if transform_test_df:
+                self.tybalt_test_df = self.tybalt_fit.compress(df.test_df)
 
         if model == 'ctybalt':
             self.ctybalt_fit = cTybalt(original_dim=original_dim,
@@ -290,6 +329,8 @@ class DataModel():
             if transform_df:
                 out_df = self.adage_fit.compress(transform_df)
                 return out_df
+            if transform_test_df:
+                self.adage_test_df = self.adage_fit.compress(self.test_df)
 
     def combine_models(self, include_labels=False, include_raw=False):
         all_models = []
@@ -387,6 +428,66 @@ class DataModel():
                                                        columns=self.df.columns)
 
         return pd.DataFrame(all_reconstruction), reconstruct_matrices
+
+    def compile_reconstruction_testset(self):
+        all_reconstruction = {}
+        reconstruct_mat = {}
+        if hasattr(self, 'pca_test_df'):
+            key = 'pca_test'
+            pca_reconstruct = self.pca_fit.inverse_transform(self.pca_test_df)
+            pca_recon = approx_keras_binary_cross_entropy(pca_reconstruct,
+                                                          self.test_df,
+                                                          self.num_genes)
+            all_reconstruction[key] = [pca_recon]
+            reconstruct_mat[key] = pd.DataFrame(pca_reconstruct,
+                                                index=self.test_df.index,
+                                                columns=self.test_df.columns)
+        if hasattr(self, 'ica_test_df'):
+            key = 'ica_test'
+            ica_reconstruct = self.ica_fit.inverse_transform(self.ica_test_df)
+            ica_recon = approx_keras_binary_cross_entropy(ica_reconstruct,
+                                                          self.test_df,
+                                                          self.num_genes)
+            all_reconstruction[key] = [ica_recon]
+            reconstruct_mat[key] = pd.DataFrame(ica_reconstruct,
+                                                index=self.test_df.index,
+                                                columns=self.test_df.columns)
+        if hasattr(self, 'nmf_test_df'):
+            key = 'nmf_test'
+            nmf_reconstruct = self.nmf_fit.inverse_transform(self.nmf_test_df)
+            nmf_recon = approx_keras_binary_cross_entropy(nmf_reconstruct,
+                                                          self.test_df,
+                                                          self.num_genes)
+            all_reconstruction[key] = [nmf_recon]
+            reconstruct_mat[key] = pd.DataFrame(nmf_reconstruct,
+                                                index=self.test_df.index,
+                                                columns=self.test_df.columns)
+        if hasattr(self, 'tybalt_test_df'):
+            key = 'vae'
+            vae_reconstruct = self.tybalt_fit.decoder.predict_on_batch(
+                self.tybalt_fit.encoder.predict_on_batch(self.test_df)
+                )
+            vae_recon = approx_keras_binary_cross_entropy(vae_reconstruct,
+                                                          self.test_df,
+                                                          self.num_genes)
+            all_reconstruction[key] = [vae_recon]
+            reconstruct_mat[key] = pd.DataFrame(vae_reconstruct,
+                                                index=self.test_df.index,
+                                                columns=self.test_df.columns)
+        if hasattr(self, 'adage_test_df'):
+            key = 'dae'
+            dae_reconstruct = self.adage_fit.decoder.predict_on_batch(
+                self.adage_fit.encoder.predict_on_batch(self.test_df)
+                )
+            dae_recon = approx_keras_binary_cross_entropy(dae_reconstruct,
+                                                          self.test_df,
+                                                          self.num_genes)
+            all_reconstruction[key] = [dae_recon]
+            reconstruct_mat[key] = pd.DataFrame(dae_reconstruct,
+                                                index=self.test_df.index,
+                                                columns=self.test_df.columns)
+
+        return pd.DataFrame(all_reconstruction), reconstruct_mat
 
     def get_modules_ranks(self, weight_df, num_components, noise_column=0):
         """
