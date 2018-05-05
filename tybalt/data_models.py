@@ -332,20 +332,54 @@ class DataModel():
             if transform_test_df:
                 self.adage_test_df = self.adage_fit.compress(self.test_df)
 
-    def combine_models(self, include_labels=False, include_raw=False):
+    def combine_models(self, include_labels=False, include_raw=False,
+                       test_set=False):
+        """
+        Merge z matrices together across algorithms
+
+        Arguments:
+        test_set - if True, output z matrix predictions for test set
+
+        Output:
+        pandas dataframe of all model z matrices
+        """
         all_models = []
         if hasattr(self, 'pca_df'):
-            all_models += [self.pca_df]
+            if test_set:
+                pca_df = self.pca_test_df
+            else:
+                pca_df = self.pca_df
+            all_models += [pca_df]
         if hasattr(self, 'ica_df'):
-            all_models += [self.ica_df]
+            if test_set:
+                ica_df = self.ica_test_df
+            else:
+                ica_df = self.ica_df
+            all_models += [ica_df]
         if hasattr(self, 'nmf_df'):
-            all_models += [self.nmf_df]
+            if test_set:
+                nmf_df = self.nmf_test_df
+            else:
+                nmf_df = self.nmf_df
+            all_models += [nmf_df]
         if hasattr(self, 'tybalt_df'):
-            all_models += [self.tybalt_df]
+            if test_set:
+                tybalt_df = self.tybalt_test_df
+            else:
+                tybalt_df = self.tybalt_df
+            all_models += [tybalt_df]
         if hasattr(self, 'ctybalt_df'):
-            all_models += [self.ctybalt_df]
+            if test_set:
+                ctybalt_df = self.ctybalt_test_df
+            else:
+                ctybalt_df = self.ctybalt_df
+            all_models += [ctybalt_df]
         if hasattr(self, 'adage_df'):
-            all_models += [self.adage_df]
+            if test_set:
+                adage_df = self.adage_test_df
+            else:
+                adage_df = self.adage_df
+            all_models += [adage_df]
 
         if include_raw:
             all_models += [self.df]
