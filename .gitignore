@@ -1,5 +1,7 @@
 .ipynb_checkpoints/
 *__pycache__
+*.egg-info/
+*.pyc
 .Rhistory
 Rplots.pdf
 data/raw/
