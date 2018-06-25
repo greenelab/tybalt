@@ -370,9 +370,8 @@ class DataModel():
             all_models += [nmf_df]
         if hasattr(self, 'tybalt_df'):
             if test_set:
-                tybalt_df = pd.DataFrame(self.tybalt_test_df,
-                                         index=self.test_df.index,
-                                         columns=self.tybalt_df.columns)
+                tybalt_df = self.tybalt_test_df
+                tybalt_df.columns = columns=self.tybalt_df.columns
             else:
                 tybalt_df = self.tybalt_df
             all_models += [tybalt_df]
@@ -386,9 +385,8 @@ class DataModel():
             all_models += [ctybalt_df]
         if hasattr(self, 'adage_df'):
             if test_set:
-                adage_df = pd.DataFrame(self.adage_test_df,
-                                        index=self.test_df.index,
-                                        columns=self.adage_df.columns)
+                adage_df = self.adage_test_df
+                adage_df.columns = columns=self.adage_df.columns
             else:
                 adage_df = self.adage_df
             all_models += [adage_df]
@@ -418,6 +416,8 @@ class DataModel():
             all_weight += [self.adage_weights]
 
         all_weight_df = pd.concat(all_weight, axis=0).T
+        all_weight_df = all_weight_df.rename({'Unnamed: 0': 'entrez_gene'},
+                                             axis='columns')
         return all_weight_df
 
     def compile_reconstruction(self, test_set=False):
