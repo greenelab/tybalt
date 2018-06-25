@@ -371,7 +371,7 @@ class DataModel():
         if hasattr(self, 'tybalt_df'):
             if test_set:
                 tybalt_df = self.tybalt_test_df
-                tybalt_df.columns = columns=self.tybalt_df.columns)
+                tybalt_df.columns = columns=self.tybalt_df.columns
             else:
                 tybalt_df = self.tybalt_df
             all_models += [tybalt_df]
@@ -386,7 +386,7 @@ class DataModel():
         if hasattr(self, 'adage_df'):
             if test_set:
                 adage_df = self.adage_test_df
-                adage_df.columns = columns=self.adage_df.columns)
+                adage_df.columns = columns=self.adage_df.columns
             else:
                 adage_df = self.adage_df
             all_models += [adage_df]
