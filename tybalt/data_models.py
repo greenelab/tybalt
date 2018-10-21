@@ -75,12 +75,6 @@ class DataModel():
         else:
             self.df = pd.read_table(self.filename, index_col=0)
 
-        # Load test set gene expression data if applicable
-        self.test_filename = test_filename
-        self.test_df = test_df
-        if test_filename is not None and test_df is None:
-            self.test_df = pd.read_table(self.test_filename, index_col=0)
-
         if select_columns:
             subset_df = self.df.iloc[:, select_columns]
             other_columns = range(max(select_columns) + 1, self.df.shape[1])
@@ -94,10 +88,17 @@ class DataModel():
             self.gene_modules.index = ['modules']
 
         self.num_samples, self.num_genes = self.df.shape
-        self.num_test_samples, self.num_test_genes = self.test_df.shape
 
-        assert_notice = 'train and test sets must have same number of genes'
-        assert self.num_genes == self.num_test_genes, assert_notice
+        # Load test set gene expression data if applicable
+        self.test_filename = test_filename
+        self.test_df = test_df
+
+        if test_filename is not None and test_df is None:
+            self.test_df = pd.read_table(self.test_filename, index_col=0)
+            self.num_test_samples, self.num_test_genes = self.test_df.shape
+
+            assert_ = 'train and test sets must have same number of genes'
+            assert self.num_genes == self.num_test_genes, assert_
 
     def transform(self, how):
         self.transformation = how
