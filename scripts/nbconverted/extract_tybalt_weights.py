@@ -12,6 +12,7 @@
 
 # In[1]:
 
+
 import os
 import pandas as pd
 from keras.models import load_model
@@ -22,19 +23,22 @@ import seaborn as sns
 
 # In[2]:
 
+
 sns.set(style='white', color_codes=True)
 sns.set_context('paper', rc={'font.size':8, 'axes.titlesize':10, 'axes.labelsize':15})   
 
 
 # In[3]:
 
-get_ipython().magic('matplotlib inline')
+
+get_ipython().run_line_magic('matplotlib', 'inline')
 plt.style.use('seaborn-notebook')
 
 
 # Because of the complex architecture involved in encoding the data, we will use the `decoded` weights to describe feature encoding specific activation patterns
 
 # In[4]:
+
 
 # Load the decoder model
 decoder_model_file = os.path.join('models', 'decoder_onehidden_vae.hdf5')
@@ -43,6 +47,7 @@ decoder = load_model(decoder_model_file)
 
 # In[5]:
 
+
 # Load RNAseq file
 rnaseq_file = os.path.join('data', 'pancan_scaled_zeroone_rnaseq.tsv.gz')
 rnaseq_df = pd.read_table(rnaseq_file, index_col=0)
@@ -50,6 +55,7 @@ rnaseq_df.head(2)
 
 
 # In[6]:
+
 
 # For a future pathway analysis, the background genes are important
 # Also needed to set column names on weights
@@ -61,6 +67,7 @@ background_genes.to_csv(background_file, index=False, header=False, sep='\t')
 # ## Extract Tybalt weight matrix and write to file
 
 # In[7]:
+
 
 # Extract the weights from the decoder model
 weights = []
@@ -74,6 +81,7 @@ weight_layer_df.head(2)
 
 # In[8]:
 
+
 # Write the genes to file
 weight_file = os.path.join('results', 'tybalt_gene_weights.tsv')
 weight_layer_df.to_csv(weight_file, sep='\t')
@@ -86,6 +94,7 @@ weight_layer_df.to_csv(weight_file, sep='\t')
 # ### Sex specific activation by node 82
 
 # In[9]:
+
 
 # We previously identified node 82 as robustly separating sex in the data set:
 # Visualize the distribution of gene weights here
@@ -108,6 +117,7 @@ g.savefig(sex_node_plot_file)
 
 # In[10]:
 
+
 # There are 17 genes with high activation in node 82
 # All genes are located on sex chromosomes
 sex_node_plot.head(17)
@@ -118,6 +128,7 @@ sex_node_plot.head(17)
 # ### Node separating melanoma samples
 
 # In[11]:
+
 
 # We previously observed metastasis samples being robustly separated by two features
 # Visualize the feature scores here
@@ -142,6 +153,7 @@ g.savefig(met_node_plot_file)
 
 # In[12]:
 
+
 def output_high_weight_genes(weight_df, encoding, filename, thresh=2.5):
     """
     Function to process and output high weight genes given specific feature encodings
@@ -154,11 +166,14 @@ def output_high_weight_genes(weight_df, encoding, filename, thresh=2.5):
                  .sort_values(ascending=False).index)[encoding]
     )
     
-    hw_pos_df = pd.DataFrame(encoding_df[encoding_df > encoding_df.std() * thresh])
+    hw_pos_cutoff = encoding_df.mean() + (encoding_df.std() * thresh)
+    hw_pos_df = pd.DataFrame(encoding_df[encoding_df > hw_pos_cutoff])
     hw_pos_df = hw_pos_df.assign(direction='positive')
-    hw_neg_df = pd.DataFrame(encoding_df[encoding_df < -encoding_df.std() * thresh])
-    hw_neg_df = hw_neg_df.assign(direction='negative')
     
+    hw_neg_cutoff = encoding_df.mean() - (encoding_df.std() * thresh)
+    hw_neg_df = pd.DataFrame(encoding_df[encoding_df < hw_neg_cutoff])
+    hw_neg_df = hw_neg_df.assign(direction='negative')
+
     hw_df = pd.concat([hw_pos_df, hw_neg_df])
     hw_df.index.name = 'genes'
     hw_df.to_csv(filename, sep='\t')
@@ -167,6 +182,7 @@ def output_high_weight_genes(weight_df, encoding, filename, thresh=2.5):
 
 # In[13]:
 
+
 # Encoding 66
 hw_node66_file = os.path.join('results', 'high_weight_genes_node66_skcm.tsv')
 node66_df = output_high_weight_genes(met_node_plot, 'encoding 66', hw_node66_file)
@@ -174,6 +190,7 @@ node66_df.head(5)
 
 
 # In[14]:
+
 
 # Encoding 53
 hw_node53_file = os.path.join('results', 'high_weight_genes_node53_skcm.tsv')
