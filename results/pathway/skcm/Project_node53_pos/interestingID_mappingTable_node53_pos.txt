@@ -1,0 +1,12 @@
+userId	geneSymbol	geneName	entrezgene	gLink
+HCG22	HCG22	HLA complex group 22 (gene/pseudogene)	285834	https://www.ncbi.nlm.nih.gov/gene/?term=285834
+RXRG	RXRG	retinoid X receptor gamma	6258	https://www.ncbi.nlm.nih.gov/gene/?term=6258
+MGAT4C	MGAT4C	MGAT4 family member C	25834	https://www.ncbi.nlm.nih.gov/gene/?term=25834
+PLP1	PLP1	proteolipid protein 1	5354	https://www.ncbi.nlm.nih.gov/gene/?term=5354
+C10orf90	C10orf90	chromosome 10 open reading frame 90	118611	https://www.ncbi.nlm.nih.gov/gene/?term=118611
+PMP2	PMP2	peripheral myelin protein 2	5375	https://www.ncbi.nlm.nih.gov/gene/?term=5375
+MOG	MOG	myelin oligodendrocyte glycoprotein	4340	https://www.ncbi.nlm.nih.gov/gene/?term=4340
+CMTM5	CMTM5	CKLF like MARVEL transmembrane domain containing 5	116173	https://www.ncbi.nlm.nih.gov/gene/?term=116173
+MAG	MAG	myelin associated glycoprotein	4099	https://www.ncbi.nlm.nih.gov/gene/?term=4099
+FAM181A	FAM181A	family with sequence similarity 181 member A	90050	https://www.ncbi.nlm.nih.gov/gene/?term=90050
+STK32A	STK32A	serine/threonine kinase 32A	202374	https://www.ncbi.nlm.nih.gov/gene/?term=202374

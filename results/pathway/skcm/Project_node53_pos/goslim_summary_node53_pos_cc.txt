@@ -1,0 +1,10 @@
+GO:0016020	membrane	7
+GO:0005634	nucleus	2
+GO:0031974	membrane-enclosed lumen	2
+GO:0005615	extracellular space	2
+GO:0005794	Golgi apparatus	1
+GO:0012505	endomembrane system	1
+GO:0005829	cytosol	1
+GO:0005856	cytoskeleton	1
+GO:0031982	vesicle	1
+GO:0042995	cell projection	1

@@ -1,0 +1,11 @@
+geneSet	description	link	C	O	E	R	pValue	FDR	overlapId	userId
+GO:0072298	regulation of metanephric glomerulus development	http://amigo.geneontology.org/amigo/term/GO:0072298	4	1	0.009900990099009901	101	0.009867940606021475	1	7490	WT1
+GO:1905940	negative regulation of gonad development	http://amigo.geneontology.org/amigo/term/GO:1905940	4	1	0.009900990099009901	101	0.009867940606021475	1	7490	WT1
+GO:0001562	response to protozoan	http://amigo.geneontology.org/amigo/term/GO:0001562	4	1	0.009900990099009901	101	0.009867940606021475	1	79679	VTCN1
+GO:0044341	sodium-dependent phosphate transport	http://amigo.geneontology.org/amigo/term/GO:0044341	4	1	0.009900990099009901	101	0.009867940606021475	1	10568	SLC34A2
+GO:1901723	negative regulation of cell proliferation involved in kidney development	http://amigo.geneontology.org/amigo/term/GO:1901723	4	1	0.009900990099009901	101	0.009867940606021475	1	7490	WT1
+GO:0072284	metanephric S-shaped body morphogenesis	http://amigo.geneontology.org/amigo/term/GO:0072284	4	1	0.009900990099009901	101	0.009867940606021475	1	7490	WT1
+GO:0072239	metanephric glomerulus vasculature development	http://amigo.geneontology.org/amigo/term/GO:0072239	4	1	0.009900990099009901	101	0.009867940606021475	1	7490	WT1
+GO:1905941	positive regulation of gonad development	http://amigo.geneontology.org/amigo/term/GO:1905941	4	1	0.009900990099009901	101	0.009867940606021475	1	7490	WT1
+GO:2000020	positive regulation of male gonad development	http://amigo.geneontology.org/amigo/term/GO:2000020	4	1	0.009900990099009901	101	0.009867940606021475	1	7490	WT1
+GO:0007354	zygotic determination of anterior/posterior axis, embryo	http://amigo.geneontology.org/amigo/term/GO:0007354	4	1	0.009900990099009901	101	0.009867940606021475	1	7490	WT1

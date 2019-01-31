@@ -1,0 +1,11 @@
+geneSet	description	link	C	O	E	R	pValue	FDR	overlapId	userId
+GO:0000956	nuclear-transcribed mRNA catabolic process	http://amigo.geneontology.org/amigo/term/GO:0000956	4	1	0.005940594059405941	168.33333333333334	0.0059295702818708	1	6192	RPS4Y1
+GO:0031063	regulation of histone deacetylation	http://amigo.geneontology.org/amigo/term/GO:0031063	4	1	0.005940594059405941	168.33333333333334	0.0059295702818708	1	5587	PRKD1
+GO:0090312	positive regulation of protein deacetylation	http://amigo.geneontology.org/amigo/term/GO:0090312	4	1	0.005940594059405941	168.33333333333334	0.0059295702818708	1	5587	PRKD1
+GO:0000184	nuclear-transcribed mRNA catabolic process, nonsense-mediated decay	http://amigo.geneontology.org/amigo/term/GO:0000184	4	1	0.005940594059405941	168.33333333333334	0.0059295702818708	1	6192	RPS4Y1
+GO:0045047	protein targeting to ER	http://amigo.geneontology.org/amigo/term/GO:0045047	5	1	0.007425742574257425	134.66666666666669	0.007407375677884187	1	6192	RPS4Y1
+GO:0016575	histone deacetylation	http://amigo.geneontology.org/amigo/term/GO:0016575	5	1	0.007425742574257425	134.66666666666669	0.007407375677884187	1	5587	PRKD1
+GO:0006613	cotranslational protein targeting to membrane	http://amigo.geneontology.org/amigo/term/GO:0006613	5	1	0.007425742574257425	134.66666666666669	0.007407375677884187	1	6192	RPS4Y1
+GO:0006614	SRP-dependent cotranslational protein targeting to membrane	http://amigo.geneontology.org/amigo/term/GO:0006614	5	1	0.007425742574257425	134.66666666666669	0.007407375677884187	1	6192	RPS4Y1
+GO:0032793	positive regulation of CREB transcription factor activity	http://amigo.geneontology.org/amigo/term/GO:0032793	6	1	0.008910891089108912	112.22222222222221	0.008883349840444366	1	5587	PRKD1
+GO:0033194	response to hydroperoxide	http://amigo.geneontology.org/amigo/term/GO:0033194	6	1	0.008910891089108912	112.22222222222221	0.008883349840444366	1	5587	PRKD1

@@ -1,0 +1,11 @@
+userId	geneSymbol	geneName	entrezgene	gLink
+CBS	CBS	cystathionine-beta-synthase	875	https://www.ncbi.nlm.nih.gov/gene/?term=875
+PRKD1	PRKD1	protein kinase D1	5587	https://www.ncbi.nlm.nih.gov/gene/?term=5587
+PHYHIPL	PHYHIPL	phytanoyl-CoA 2-hydroxylase interacting protein like	84457	https://www.ncbi.nlm.nih.gov/gene/?term=84457
+DLGAP1	DLGAP1	DLG associated protein 1	9229	https://www.ncbi.nlm.nih.gov/gene/?term=9229
+BEX2	BEX2	brain expressed X-linked 2	84707	https://www.ncbi.nlm.nih.gov/gene/?term=84707
+SNURF	SNURF	SNRPN upstream reading frame	8926	https://www.ncbi.nlm.nih.gov/gene/?term=8926
+ADHFE1	ADHFE1	alcohol dehydrogenase, iron containing 1	137872	https://www.ncbi.nlm.nih.gov/gene/?term=137872
+RPS4Y1	RPS4Y1	ribosomal protein S4 Y-linked 1	6192	https://www.ncbi.nlm.nih.gov/gene/?term=6192
+WDR17	WDR17	WD repeat domain 17	116966	https://www.ncbi.nlm.nih.gov/gene/?term=116966
+TMOD1	TMOD1	tropomodulin 1	7111	https://www.ncbi.nlm.nih.gov/gene/?term=7111

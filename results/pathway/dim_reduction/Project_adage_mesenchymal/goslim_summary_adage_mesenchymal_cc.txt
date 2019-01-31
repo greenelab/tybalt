@@ -1,0 +1,11 @@
+GO:0016020	membrane	4
+GO:0005634	nucleus	4
+GO:0005829	cytosol	3
+GO:0031974	membrane-enclosed lumen	3
+GO:0032991	protein-containing complex	2
+GO:0005773	vacuole	1
+GO:0005794	Golgi apparatus	1
+GO:0012505	endomembrane system	1
+GO:0005739	mitochondrion	1
+GO:0005840	ribosome	1
+GO:0005856	cytoskeleton	1

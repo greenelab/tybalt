@@ -1,184 +1,238 @@
+<!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
 <title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
-<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/jquery-ui.js"></script>
+<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
 <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-42098540-1', 'auto');
-  ga('send', 'pageview');
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42098540-1', 'auto');
+ga('send', 'pageview');
 </script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/changeColor.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/tableExport.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.base64.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/html2canvas.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/jspdf/libs/sprintf.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/jspdf.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/jspdf/libs/base64.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/search.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/d3/d3.v3.min.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.tipsy.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.contextMenu.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/jquery.floatThead.min.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/dagre/dagre.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/Minimap.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/MinimapZoom.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/DirectedAcyclicGraph.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/List.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/Selectable_svv.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/Graph.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/History.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/Tooltip.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/FileSaver.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/download.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/ContextMenu.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/searchView.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/canvg/rgbcolor.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/canvg/StackBlur.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/canvg/canvg.js"></script>
-<script type="text/javascript" src="js/xtrace_utils.js"></script>
-<script type="text/javascript" src="js/xtrace_graph.js"></script>
-<script type="text/javascript" src="js/plotDAG.js"></script>
-<script type="text/javascript" src="http://www.webgestalt.org//js/tooltipster.bundle.min.js"></script>
-<script>$(document).ready(function(){$('.tooltip-container').tooltipster({functionInit: function (instance, helper) {var content = $(helper.origin).find('.tooltip_content').detach();instance.content(content);}});});</script>
-<link href="http://www.webgestalt.org//css/jquery-ui.css" rel="stylesheet" type="text/css">
-<link href="http://www.webgestalt.org//css/xtrace.css" rel="stylesheet" type="text/css">
-<link href="http://www.webgestalt.org//css/tipsy.css" rel="stylesheet" type="text/css">
-<link href="http://www.webgestalt.org//css/jquery.contextMenu.css" rel="stylesheet" type="text/css">
-<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="http://www.webgestalt.org//css/graph.css" rel="stylesheet" type="text/css">
-<link href="http://www.webgestalt.org//css/report.css" rel="stylesheet" type="text/css">
-<link href="http://www.webgestalt.org//css/zebra.css" rel="stylesheet" type="text/css">
-<link href="http://www.webgestalt.org//css/search.css" rel="stylesheet" type="text/css">
-<link href="http://www.webgestalt.org//css/tooltipster.bundle.min.css" rel="stylesheet" type="text/css">
+	
+	<script src="http://www.webgestalt.org//assets/0.3/build/cytoscape.min.js"></script>
+		<link rel="stylesheet" href="http://www.webgestalt.org//assets/0.3/build/wg.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 </head>
 <body>
-<p align="center">
-<iframe src="http://www.webgestalt.org//html/head.html" style="border:0px;height:180px;width:100%"></iframe>
-<div id ="tabs"> <ul>
-<li><a href="#summary">Summary</a></li>
-<li><a href="#interestGene">User ID Mapping Table</a></li>
-<li><a href="#referenceGene">GOSlim Summary</a></li>
+<header>
+	<div id="header-img"><a href="http://www.webgestalt.org/"><img border="0" src="http://www.webgestalt.org//images/gsa.png"></a></div>
+	<div id="header-title">
+		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
+		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
+	</div>
+</header>
+<hr><main>
+<div id="app">
+<div class="loading-preinit" v-cloak><div class="loading-icon"></div></div>
+<div class="wrapper" v-cloak>
+<div class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<h4 class="title is-4 has-text-primary">Summary</h4>
+		</div>
+	</div>
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button is-text" href="Project_node53_pos.zip" target="_blank">Result Download</a>
+		</div>
+	</div>
+</div>
+
+<section id="summary" class="summary">
+<div class="card" v-bind:class="{active: summaryShown}" >
+	<div class="card-header" v-on:click="summaryShown=!summaryShown">
+		<p class="card-header-title">Job summary</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="summaryShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div class="card-content content" v-show="summaryShown">
+		<ul id="summary-list"> 
+		<li><b>Enrich method:</b> ORA</li>
+		<li><b>Organism: </b>hsapiens</li>
+		<li>
+			
+			<b>Enrichment Categories: </b>geneontology_Biological_Process
+			<a class="has-text-info" href="http://www.webgestalt.org//api/geneset?organism=hsapiens&database=geneontology_Biological_Process&fileType=gmt">
+				<b-icon icon="download" size="is-small"></b-icon>
+			</a>
+		
+		</li>
+
+			
+			<li><b>Interesting list: </b> a R object. <b> ID type: </b>genesymbol</li>
+			<li>The interesting list contains <b>12</b> user IDs in which <b>11</b> user IDs are unambiguously mapped to <b>11</b> unique entrezgene IDs and <b>1</b> user IDs can not be mapped to any entrezgene ID.</li>
+			<li>The GO Slim summary are based upon the <b>11</b> unique entrezgene IDs.</li>
+		
+
+		<li>Among <b>11</b> unique entrezgene IDs, <b>9</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
+	<li><b>Reference list: </b>data/background_genes.txt <b>ID type: </b>genesymbol</li>
+		
+	<li>The reference list can be mapped to <b>4556</b> entrezgene IDs and <b> 4040</b> IDs are annotated to the selected functional categories that are used as the reference for the enrichment analysis.</li>
+</ul> 
+
+<p><b>Parameters for the enrichment analysis:</b></p>
+<ul><li><b>Minimum number of IDs in the category: </b>4</li>
+<li><b>Maximum number of IDs in the category: </b>500</li>
+<li><b>FDR Method: </b>BH</li>
+
+<li><b>Significance Level:</b> Top 10</li>
 </ul>
-<div id="summary">
-<h3>Summary&nbsp&nbsp&nbsp(<a href="Project_node53_pos.tar.gz" target="_blank" style="color:red"><u>Result Download</u></a>)</h3>
-<b>Enrich method:</b> ORA<br/>
-<b>Organism:</b>hsapiens<br/>
-<b>Enrichment Categories: </b>geneontology_Biological_Process<br/>
-<b>Interesting gene list: </b> a R object. <b> ID type: </b>genesymbol<br/>
-The interesting gene list contains <b>12</b> user IDs in which <b>11</b> user IDs are unambiguously mapped to the unique Entrez Gene IDs and <b>1</b> user IDs are mapped to multiple Entrez Gene IDs or could not be mapped to any Entrez Gene ID. The GO Slim summary are based upon the <b>11</b> unique Entrez Gene IDs.<br/>
-Among the <b>11</b> unique Entrez Gene IDs, <b>8</b> IDs are annotated to the selected functional categories and also in the reference gene list, which are used for the enrichment analysis.<br/>
-<b>Reference gene list: </b>data/background_genes.txt <b>ID type: </b>genesymbol<br/>
-The reference gene list contains <b>5000</b> IDs in which <b>4627</b> IDs are unambiguously mapped to the unique Entrez Gene IDs and <b>373</b> IDs are mapped to multiple Entrez Gene IDs or could not be mapped to any Entrez Gene ID.<br/>
-Among the <b>4627</b> unique Entrez Gene IDs, <b>4020</b> IDs are annotated to the selected functional categories, which are used as the reference for the enrichment analysis.<br/>
-<b>Parameters for the enrichment analysis:</b>
-<ul><li><b>Minimum number of Entrez Gene IDs in the category:</b>4</li>
-<li><b>Maximum number of Entrez Gene IDs in the category:</b>500</li>
-<li><b>FDR Method:</b>BH</li>
-<li><b>Significance Level:</b> FDR<0.05</li>
-</ul>
-Based on the above parameters, <b>No</b> category is identified as enriched category.<br/>
+	
+	<p>Based on the above parameters, <b>10</b> categories are identified as enriched categories and all are shown in this report.</p>
+	
+
+	</div>
 </div>
-<div id="interestGene">
-<div id="mappedGene">
-<h4>Mapped User IDs</h4>
-<table class="zebra"><thead><tr>
-<th>userid</th>
-<th>Gene Symbol</th>
-<th>Gene Name</th>
-<th>Entrez Gene</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>CMTM5</td>
-<td>CMTM5</td>
-<td>CKLF like MARVEL transmembrane domain containing 5</td>
-<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=116173">116173</a></td>
-</tr>
-<tr>
-<td>C10orf90</td>
-<td>C10orf90</td>
-<td>chromosome 10 open reading frame 90</td>
-<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=118611">118611</a></td>
-</tr>
-<tr>
-<td>STK32A</td>
-<td>STK32A</td>
-<td>serine/threonine kinase 32A</td>
-<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=202374">202374</a></td>
-</tr>
-<tr>
-<td>MGAT4C</td>
-<td>MGAT4C</td>
-<td>MGAT4 family member C</td>
-<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=25834">25834</a></td>
-</tr>
-<tr>
-<td>HCG22</td>
-<td>HCG22</td>
-<td>HLA complex group 22</td>
-<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=285834">285834</a></td>
-</tr>
-<tr>
-<td>MAG</td>
-<td>MAG</td>
-<td>myelin associated glycoprotein</td>
-<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=4099">4099</a></td>
-</tr>
-<tr>
-<td>MOG</td>
-<td>MOG</td>
-<td>myelin oligodendrocyte glycoprotein</td>
-<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=4340">4340</a></td>
-</tr>
-<tr>
-<td>PLP1</td>
-<td>PLP1</td>
-<td>proteolipid protein 1</td>
-<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=5354">5354</a></td>
-</tr>
-<tr>
-<td>PMP2</td>
-<td>PMP2</td>
-<td>peripheral myelin protein 2</td>
-<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=5375">5375</a></td>
-</tr>
-<tr>
-<td>RXRG</td>
-<td>RXRG</td>
-<td>retinoid X receptor gamma</td>
-<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=6258">6258</a></td>
-</tr>
-<tr>
-<td>FAM181A</td>
-<td>FAM181A</td>
-<td>family with sequence similarity 181 member A</td>
-<td><a target="entrez" href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=gene&cmd=Retrieve&dopt=Graphics&list_uids=90050">90050</a></td>
-</tr>
-</tbody></table>
+</section>
+<section id="go-summary" class="summary">
+<div class="card" v-bind:class="{active: goShown}" >
+	<div class="card-header" v-on:click="goShown=!goShown">
+		<p class="card-header-title">GO Slim summary for the user uploaded IDs</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="goShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div v-show="goShown">
+		<div class="card-content">
+			<p>Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.</p>
+			<p>The height of the bar represents the number of IDs in the user list and also in the category.</p>
+		</div>
+		<div class="card-image">
+			<img src="goslim_summary_node53_pos.png" width="100%" height="100%" alt="Bar charts of enriched GO Slim terms"/>
+		</div>
+	</div>
 </div>
-<div id="empty">&nbsp&nbsp&nbsp&nbsp</div>
-<div id="unmappedGene">
-<h4>User IDs mapped to multiple Entrtez IDs or not mapped</h4>
-<table class="zebra"><thead><tr>
-<th>userid</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>C18orf16</td>
-</tr>
-</tbody></table>
+</section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
+<section id="enrich-result">
+	<p class="select-redundancy">
+		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+			Redundancy reduction:
+		</b-tooltip>
+		<b-radio v-model="redundancy" native-value="all">All</b-radio>
+		<b-radio v-model="redundancy" native-value="ap">
+			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
+				Affinity propagation
+			</b-tooltip>
+		</b-radio>
+		
+		<b-radio v-model="redundancy" native-value="wsc">
+			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
+				Weighted set cover
+			</b-tooltip>
+		</b-radio>
+	</p>
+	<b-tabs v-model="activeTab" type="is-toggle">
+		<b-tab-item label="Table">
+			<wg-result-table
+				:data="enrichmentData"
+				:method="enrichMethod"
+			></wg-resutl-table>
+		</b-tab-item>
+		<b-tab-item label="Bar chart">
+		<div class="vertical-center-container">
+			<wg-bar-plot
+				:dimensions="bar.dimensions"
+				:data="enrichmentData"
+				:value-key="bar.valueKey"
+				name-key="description"
+								:x-label="bar.xLabel">
+			</wg-bar-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="Volcano plot">
+		<div class="vertical-center-container">
+			<wg-volcano-plot
+				:data="volcanoData"
+				:x="volcano.x"
+				:y="volcano.y"
+				:x-label="volcano.xLabel"
+				:label-types="volcano.labelTypes"
+				:x-transform="volcano.xTransform"
+				:radius="volcano.radius"
+				:color="volcano.color"
+				:tooltip-content="volcano.tooltipContent"
+				:show-all-labels="false"
+				:auto-place-labels="true"
+			></wg-volcano-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="DAG">
+			<div style="width: 100%; height: 600px">
+			<wg-dag
+				container-id="wg_dag"
+				:data="dagData"
+			></wg-dag>
+			</div>
+		</b-tab-item>
+	</b-tabs>
+	<wg-gene-table
+		:data="geneTables"
+		:info="enrichment"
+		:standard-id="standardId"
+		:method="enrichMethod"
+		:mapped-input-size="mappedInputSize"
+		:enrich-database="enrichDatabase"
+		:organism="organism"
+		:host-name="hostName"
+	></wg-gene-table>
+</section> 
+
 </div>
 </div>
-<div id="referenceGene">
-<h4>GOSlim summary for the user list genes</h4>
-Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.<br/>
-The height of the bar represents the number of user list genes observed in the category.
-<img src="goslim_summary_node53_pos.png" width="100%" height="100%"/></div>
-</div>
-<script>$( "#tabs" ).tabs();</script><iframe src="http://www.webgestalt.org//html/foot.html" style="border:0px;height:130px;width:100%"></iframe>
-</body></html>
+</main>
+	<script type="text/javascript" src="http://www.webgestalt.org//assets/0.3/build/wg.min.js"></script>
+<script type="text/javascript">
+var enrichment = [{"geneSet":"GO:0022010","description":"central nervous system myelination","link":"http://amigo.geneontology.org/amigo/term/GO:0022010","C":10,"O":2,"E":0.0222772277227723,"R":89.7777777777778,"pValue":0.000196730467885931,"FDR":0.601601770795176,"overlapId":"4099;5354"},{"geneSet":"GO:0032291","description":"axon ensheathment in central nervous system","link":"http://amigo.geneontology.org/amigo/term/GO:0032291","C":10,"O":2,"E":0.0222772277227723,"R":89.7777777777778,"pValue":0.000196730467885931,"FDR":0.601601770795176,"overlapId":"4099;5354"},{"geneSet":"GO:0014003","description":"oligodendrocyte development","link":"http://amigo.geneontology.org/amigo/term/GO:0014003","C":17,"O":2,"E":0.0378712871287129,"R":52.8104575163399,"pValue":0.000589767798316321,"FDR":1,"overlapId":"4099;5354"},{"geneSet":"GO:0048708","description":"astrocyte differentiation","link":"http://amigo.geneontology.org/amigo/term/GO:0048708","C":39,"O":2,"E":0.0868811881188119,"R":23.019943019943,"pValue":0.00313256965741848,"FDR":1,"overlapId":"4099;5354"},{"geneSet":"GO:0048709","description":"oligodendrocyte differentiation","link":"http://amigo.geneontology.org/amigo/term/GO:0048709","C":40,"O":2,"E":0.0891089108910891,"R":22.4444444444444,"pValue":0.00329362537325495,"FDR":1,"overlapId":"4099;5354"},{"geneSet":"GO:0021782","description":"glial cell development","link":"http://amigo.geneontology.org/amigo/term/GO:0021782","C":44,"O":2,"E":0.098019801980198,"R":20.4040404040404,"pValue":0.00397611389856911,"FDR":1,"overlapId":"4099;5354"},{"geneSet":"GO:0007272","description":"ensheathment of neurons","link":"http://amigo.geneontology.org/amigo/term/GO:0007272","C":47,"O":2,"E":0.10470297029703,"R":19.1016548463357,"pValue":0.00452776876815553,"FDR":1,"overlapId":"4099;5354"},{"geneSet":"GO:0008366","description":"axon ensheathment","link":"http://amigo.geneontology.org/amigo/term/GO:0008366","C":47,"O":2,"E":0.10470297029703,"R":19.1016548463357,"pValue":0.00452776876815553,"FDR":1,"overlapId":"4099;5354"},{"geneSet":"GO:0042552","description":"myelination","link":"http://amigo.geneontology.org/amigo/term/GO:0042552","C":47,"O":2,"E":0.10470297029703,"R":19.1016548463357,"pValue":0.00452776876815553,"FDR":1,"overlapId":"4099;5354"},{"geneSet":"GO:0031643","description":"positive regulation of myelination","link":"http://amigo.geneontology.org/amigo/term/GO:0031643","C":5,"O":1,"E":0.0111386138613861,"R":89.7777777777778,"pValue":0.0110945660512571,"FDR":1,"overlapId":"4099"}];
+var background = [{"geneSet":"GO:0048711","R":64.1269841269841,"FDR":1,"O":1},{"geneSet":"GO:0010001","R":9.97530864197531,"FDR":1,"O":2},{"geneSet":"GO:0048384","R":44.8888888888889,"FDR":1,"O":1},{"geneSet":"GO:0021762","R":40.8080808080808,"FDR":1,"O":1},{"geneSet":"GO:0031641","R":40.8080808080808,"FDR":1,"O":1},{"geneSet":"GO:0042063","R":7.60828625235405,"FDR":1,"O":2},{"geneSet":"GO:0045662","R":32.0634920634921,"FDR":1,"O":1},{"geneSet":"GO:0007417","R":3.8366571699905,"FDR":1,"O":3},{"geneSet":"GO:0045687","R":26.4052287581699,"FDR":1,"O":1},{"geneSet":"GO:0042759","R":26.4052287581699,"FDR":1,"O":1},{"geneSet":"GO:0031103","R":26.4052287581699,"FDR":1,"O":1},{"geneSet":"GO:0014002","R":24.9382716049383,"FDR":1,"O":1},{"geneSet":"GO:0048710","R":23.6257309941521,"FDR":1,"O":1},{"geneSet":"GO:0071260","R":23.6257309941521,"FDR":1,"O":1},{"geneSet":"GO:0030517","R":23.6257309941521,"FDR":1,"O":1},{"geneSet":"GO:0000209","R":20.4040404040404,"FDR":1,"O":1},{"geneSet":"GO:0030901","R":19.5169082125604,"FDR":1,"O":1},{"geneSet":"GO:0031102","R":19.5169082125604,"FDR":1,"O":1},{"geneSet":"GO:0050821","R":19.5169082125604,"FDR":1,"O":1},{"geneSet":"GO:0045661","R":19.5169082125604,"FDR":1,"O":1},{"geneSet":"GO:0048857","R":18.7037037037037,"FDR":1,"O":1},{"geneSet":"GO:0048678","R":17.9555555555556,"FDR":1,"O":1},{"geneSet":"GO:0007229","R":16.6255144032922,"FDR":1,"O":1},{"geneSet":"GO:0014015","R":16.031746031746,"FDR":1,"O":1},{"geneSet":"GO:0031646","R":14.4802867383513,"FDR":1,"O":1},{"geneSet":"GO:0006367","R":14.4802867383513,"FDR":1,"O":1},{"geneSet":"GO:0045445","R":13.6026936026936,"FDR":1,"O":1},{"geneSet":"GO:0006352","R":13.6026936026936,"FDR":1,"O":1},{"geneSet":"GO:0045685","R":13.202614379085,"FDR":1,"O":1},{"geneSet":"GO:0050771","R":13.202614379085,"FDR":1,"O":1},{"geneSet":"GO:0061564","R":4.31623931623932,"FDR":1,"O":2},{"geneSet":"GO:0030516","R":12.8253968253968,"FDR":1,"O":1},{"geneSet":"GO:0050852","R":12.8253968253968,"FDR":1,"O":1},{"geneSet":"GO:0031647","R":11.812865497076,"FDR":1,"O":1},{"geneSet":"GO:0043401","R":11.5099715099715,"FDR":1,"O":1},{"geneSet":"GO:0046718","R":10.9485094850949,"FDR":1,"O":1},{"geneSet":"GO:0048675","R":10.6878306878307,"FDR":1,"O":1},{"geneSet":"GO:0010771","R":10.4392764857881,"FDR":1,"O":1},{"geneSet":"GO:0019226","R":10.4392764857881,"FDR":1,"O":1},{"geneSet":"GO:0030260","R":10.2020202020202,"FDR":1,"O":1},{"geneSet":"GO:0044409","R":10.2020202020202,"FDR":1,"O":1},{"geneSet":"GO:0051806","R":10.2020202020202,"FDR":1,"O":1},{"geneSet":"GO:0051828","R":10.2020202020202,"FDR":1,"O":1},{"geneSet":"GO:0061387","R":9.75845410628019,"FDR":1,"O":1},{"geneSet":"GO:0043524","R":9.35185185185185,"FDR":1,"O":1},{"geneSet":"GO:0048640","R":9.35185185185185,"FDR":1,"O":1},{"geneSet":"GO:0051701","R":9.1609977324263,"FDR":1,"O":1},{"geneSet":"GO:0001676","R":8.97777777777778,"FDR":1,"O":1},{"geneSet":"GO:0050851","R":8.80174291938998,"FDR":1,"O":1},{"geneSet":"GO:0045596","R":3.46632346632347,"FDR":1,"O":2},{"geneSet":"GO:0009755","R":8.46960167714885,"FDR":1,"O":1},{"geneSet":"GO:1901215","R":8.16161616161616,"FDR":1,"O":1},{"geneSet":"GO:0014013","R":8.01587301587302,"FDR":1,"O":1},{"geneSet":"GO:0030522","R":7.87524366471735,"FDR":1,"O":1},{"geneSet":"GO:0006633","R":7.60828625235405,"FDR":1,"O":1},{"geneSet":"GO:0010977","R":7.48148148148148,"FDR":1,"O":1},{"geneSet":"GO:0030308","R":7.35883424408015,"FDR":1,"O":1},{"geneSet":"GO:0031644","R":7.24014336917563,"FDR":1,"O":1},{"geneSet":"GO:0008361","R":7.24014336917563,"FDR":1,"O":1},{"geneSet":"GO:0071383","R":7.24014336917563,"FDR":1,"O":1},{"geneSet":"GO:1990138","R":7.12522045855379,"FDR":1,"O":1},{"geneSet":"GO:0071214","R":7.12522045855379,"FDR":1,"O":1},{"geneSet":"GO:0104004","R":7.12522045855379,"FDR":1,"O":1},{"geneSet":"GO:0019058","R":7.12522045855379,"FDR":1,"O":1},{"geneSet":"GO:0043523","R":7.01388888888889,"FDR":1,"O":1},{"geneSet":"GO:0018105","R":7.01388888888889,"FDR":1,"O":1},{"geneSet":"GO:0031345","R":6.69983416252073,"FDR":1,"O":1},{"geneSet":"GO:0031099","R":6.69983416252073,"FDR":1,"O":1},{"geneSet":"GO:0006486","R":6.60130718954248,"FDR":1,"O":1},{"geneSet":"GO:0043413","R":6.60130718954248,"FDR":1,"O":1},{"geneSet":"GO:0051402","R":6.50563607085346,"FDR":1,"O":1},{"geneSet":"GO:0070085","R":6.50563607085346,"FDR":1,"O":1},{"geneSet":"GO:0009612","R":6.50563607085346,"FDR":1,"O":1},{"geneSet":"GO:0018209","R":6.32237871674491,"FDR":1,"O":1},{"geneSet":"GO:0016567","R":6.23456790123457,"FDR":1,"O":1},{"geneSet":"GO:0032446","R":5.82972582972583,"FDR":1,"O":1},{"geneSet":"GO:0002429","R":5.61111111111111,"FDR":1,"O":1},{"geneSet":"GO:0050770","R":5.54183813443073,"FDR":1,"O":1},{"geneSet":"GO:0051093","R":2.67993366500829,"FDR":1,"O":2},{"geneSet":"GO:0071496","R":5.47425474254743,"FDR":1,"O":1},{"geneSet":"GO:0031175","R":2.64052287581699,"FDR":1,"O":2},{"geneSet":"GO:1901214","R":5.34391534391535,"FDR":1,"O":1},{"geneSet":"GO:0048588","R":5.15964240102171,"FDR":1,"O":1},{"geneSet":"GO:0002768","R":4.98765432098766,"FDR":1,"O":1},{"geneSet":"GO:0070997","R":4.93284493284493,"FDR":1,"O":1},{"geneSet":"GO:0070647","R":4.93284493284493,"FDR":1,"O":1},{"geneSet":"GO:0045665","R":4.93284493284493,"FDR":1,"O":1},{"geneSet":"GO:0035637","R":4.67592592592593,"FDR":1,"O":1},{"geneSet":"GO:0045926","R":4.62772050400916,"FDR":1,"O":1},{"geneSet":"GO:0009101","R":4.58049886621315,"FDR":1,"O":1},{"geneSet":"GO:0060560","R":4.48888888888889,"FDR":1,"O":1},{"geneSet":"GO:0032535","R":4.31623931623932,"FDR":1,"O":1},{"geneSet":"GO:0048666","R":2.31983921906403,"FDR":1,"O":2},{"geneSet":"GO:0016032","R":4.08080808080808,"FDR":1,"O":1},{"geneSet":"GO:0072330","R":3.93762183235867,"FDR":1,"O":1},{"geneSet":"GO:0010769","R":3.93762183235867,"FDR":1,"O":1},{"geneSet":"GO:0009100","R":3.93762183235867,"FDR":1,"O":1},{"geneSet":"GO:0006631","R":3.77217553688142,"FDR":1,"O":1},{"geneSet":"GO:0002757","R":3.74074074074074,"FDR":1,"O":1},{"geneSet":"GO:0050768","R":3.70982552800735,"FDR":1,"O":1},{"geneSet":"GO:0048545","R":3.59111111111111,"FDR":1,"O":1},{"geneSet":"GO:0120036","R":2.08785529715762,"FDR":1,"O":2},{"geneSet":"GO:0051961","R":3.5626102292769,"FDR":1,"O":1},{"geneSet":"GO:0048638","R":3.47975882859604,"FDR":1,"O":1},{"geneSet":"GO:0044403","R":3.47975882859604,"FDR":1,"O":1},{"geneSet":"GO:0002764","R":3.45299145299145,"FDR":1,"O":1},{"geneSet":"GO:0030030","R":2.03117144293615,"FDR":1,"O":2},{"geneSet":"GO:0010721","R":3.30065359477124,"FDR":1,"O":1},{"geneSet":"GO:0001558","R":3.27656123276561,"FDR":1,"O":1},{"geneSet":"GO:0044419","R":3.05366591080877,"FDR":1,"O":1},{"geneSet":"GO:0030182","R":1.87819618781962,"FDR":1,"O":2},{"geneSet":"GO:0016053","R":2.91486291486292,"FDR":1,"O":1},{"geneSet":"GO:0046394","R":2.91486291486292,"FDR":1,"O":1},{"geneSet":"GO:0002253","R":2.89605734767025,"FDR":1,"O":1},{"geneSet":"GO:0016049","R":2.89605734767025,"FDR":1,"O":1},{"geneSet":"GO:0050769","R":2.87749287749288,"FDR":1,"O":1},{"geneSet":"GO:0010628","R":1.81369248035915,"FDR":1,"O":2},{"geneSet":"GO:0071407","R":2.80555555555556,"FDR":1,"O":1},{"geneSet":"GO:0022604","R":2.77091906721536,"FDR":1,"O":1},{"geneSet":"GO:0098742","R":2.68795741849634,"FDR":1,"O":1},{"geneSet":"GO:0051129","R":2.60981912144703,"FDR":1,"O":1},{"geneSet":"GO:0090066","R":2.59473346178549,"FDR":1,"O":1},{"geneSet":"GO:0050900","R":2.57982120051086,"FDR":1,"O":1},{"geneSet":"GO:0010975","R":2.56507936507937,"FDR":1,"O":1},{"geneSet":"GO:0061024","R":2.53609541745135,"FDR":1,"O":1},{"geneSet":"GO:1901137","R":2.53609541745135,"FDR":1,"O":1},{"geneSet":"GO:0010720","R":2.52184769038702,"FDR":1,"O":1},{"geneSet":"GO:0071396","R":2.45294474802672,"FDR":1,"O":1},{"geneSet":"GO:0032870","R":2.41338112305854,"FDR":1,"O":1},{"geneSet":"GO:0007409","R":2.3258491652274,"FDR":1,"O":1},{"geneSet":"GO:0051962","R":2.31386025200458,"FDR":1,"O":1},{"geneSet":"GO:0032787","R":2.18970189701897,"FDR":1,"O":1},{"geneSet":"GO:0008610","R":2.1274354923644,"FDR":1,"O":1},{"geneSet":"GO:0050778","R":2.11740041928721,"FDR":1,"O":1},{"geneSet":"GO:0044283","R":2.03117144293615,"FDR":1,"O":1},{"geneSet":"GO:0120035","R":2.03117144293615,"FDR":1,"O":1},{"geneSet":"GO:0048667","R":2.00396825396825,"FDR":1,"O":1},{"geneSet":"GO:0031344","R":1.98623402163225,"FDR":1,"O":1},{"geneSet":"GO:0040008","R":1.97748409202154,"FDR":1,"O":1},{"geneSet":"GO:0061061","R":1.96021348859777,"FDR":1,"O":1},{"geneSet":"GO:0045664","R":1.91832858499525,"FDR":1,"O":1},{"geneSet":"GO:0009611","R":1.91016548463357,"FDR":1,"O":1},{"geneSet":"GO:0048589","R":1.86260949746427,"FDR":1,"O":1},{"geneSet":"GO:0010469","R":1.82475158084914,"FDR":1,"O":1},{"geneSet":"GO:0044057","R":1.79555555555556,"FDR":1,"O":1},{"geneSet":"GO:0007420","R":1.76727909011374,"FDR":1,"O":1},{"geneSet":"GO:0048812","R":1.74664937310852,"FDR":1,"O":1},{"geneSet":"GO:0048858","R":1.72649572649573,"FDR":1,"O":1},{"geneSet":"GO:0120039","R":1.72649572649573,"FDR":1,"O":1},{"geneSet":"GO:0032990","R":1.71331636980492,"FDR":1,"O":1},{"geneSet":"GO:0006935","R":1.70680185889311,"FDR":1,"O":1},{"geneSet":"GO:0042330","R":1.7003367003367,"FDR":1,"O":1},{"geneSet":"GO:0060322","R":1.66873192895498,"FDR":1,"O":1},{"geneSet":"GO:0043066","R":1.65032679738562,"FDR":1,"O":1},{"geneSet":"GO:0018193","R":1.64428164428164,"FDR":1,"O":1},{"geneSet":"GO:0050776","R":1.63828061638281,"FDR":1,"O":1},{"geneSet":"GO:0043069","R":1.63828061638281,"FDR":1,"O":1},{"geneSet":"GO:0000904","R":1.63828061638281,"FDR":1,"O":1},{"geneSet":"GO:1901135","R":1.60892074870569,"FDR":1,"O":1},{"geneSet":"GO:0060548","R":1.53204398938187,"FDR":1,"O":1},{"geneSet":"GO:0050767","R":1.53204398938187,"FDR":1,"O":1},{"geneSet":"GO:0014070","R":1.51651651651652,"FDR":1,"O":1},{"geneSet":"GO:0009725","R":1.51141040029929,"FDR":1,"O":1},{"geneSet":"GO:0006954","R":1.50633855331842,"FDR":1,"O":1},{"geneSet":"GO:0009628","R":1.50130063173541,"FDR":1,"O":1},{"geneSet":"GO:0033993","R":1.45743145743146,"FDR":1,"O":1},{"geneSet":"GO:0019752","R":1.44337263308324,"FDR":1,"O":1},{"geneSet":"GO:0002684","R":1.43874643874644,"FDR":1,"O":1},{"geneSet":"GO:0045944","R":1.40717520027865,"FDR":1,"O":1},{"geneSet":"GO:0044255","R":1.40277777777778,"FDR":1,"O":1},{"geneSet":"GO:0007268","R":1.40277777777778,"FDR":1,"O":1},{"geneSet":"GO:0098916","R":1.40277777777778,"FDR":1,"O":1},{"geneSet":"GO:0099537","R":1.38974888200894,"FDR":1,"O":1},{"geneSet":"GO:0099536","R":1.38545953360768,"FDR":1,"O":1},{"geneSet":"GO:0060284","R":1.35615978516281,"FDR":1,"O":1},{"geneSet":"GO:0033554","R":1.3520749665328,"FDR":1,"O":1},{"geneSet":"GO:0045597","R":1.3520749665328,"FDR":1,"O":1},{"geneSet":"GO:0040007","R":1.34801468134801,"FDR":1,"O":1},{"geneSet":"GO:0043436","R":1.3202614379085,"FDR":1,"O":1},{"geneSet":"GO:0051960","R":1.30871396177519,"FDR":1,"O":1},{"geneSet":"GO:0006082","R":1.27888572333017,"FDR":1,"O":1},{"geneSet":"GO:1901566","R":1.27163991186654,"FDR":1,"O":1},{"geneSet":"GO:0000902","R":1.27163991186654,"FDR":1,"O":1},{"geneSet":"GO:0022603","R":1.23321123321123,"FDR":1,"O":1},{"geneSet":"GO:0098609","R":1.20994309673555,"FDR":1,"O":1},{"geneSet":"GO:0045893","R":1.1812865497076,"FDR":1,"O":1},{"geneSet":"GO:0050877","R":1.16898148148148,"FDR":1,"O":1},{"geneSet":"GO:1902680","R":1.15693012600229,"FDR":1,"O":1},{"geneSet":"GO:1903508","R":1.15693012600229,"FDR":1,"O":1},{"geneSet":"GO:0032989","R":1.14805342426826,"FDR":1,"O":1},{"geneSet":"GO:0051254","R":1.13642756680731,"FDR":1,"O":1},{"geneSet":"GO:0042981","R":1.07389686337055,"FDR":1,"O":1},{"geneSet":"GO:0071495","R":1.07133386369663,"FDR":1,"O":1},{"geneSet":"GO:0043067","R":1.06878306878307,"FDR":1,"O":1},{"geneSet":"GO:0045935","R":1.0637177461822,"FDR":1,"O":1},{"geneSet":"GO:0006629","R":1.04636104636105,"FDR":1,"O":1},{"geneSet":"GO:0002682","R":1.04392764857881,"FDR":1,"O":1},{"geneSet":"GO:0010557","R":1.03909465020576,"FDR":1,"O":1},{"geneSet":"GO:0051241","R":1.02486047691527,"FDR":1,"O":1},{"geneSet":"GO:0010941","R":0.993117010816126,"FDR":1,"O":1},{"geneSet":"GO:0031328","R":0.955082742316785,"FDR":1,"O":1},{"geneSet":"GO:0051094","R":0.943043884220355,"FDR":1,"O":1},{"geneSet":"GO:0009891","R":0.937137555091626,"FDR":1,"O":1},{"geneSet":"GO:0006952","R":0.903196959534988,"FDR":1,"O":1},{"geneSet":"GO:0016477","R":0.897777777777778,"FDR":1,"O":1}];
+var geneTables = {"GO:0022010":[{"userId":"PLP1","geneSymbol":"PLP1","geneName":"proteolipid protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5354","entrezgene":"5354"},{"userId":"MAG","geneSymbol":"MAG","geneName":"myelin associated glycoprotein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=4099","entrezgene":"4099"}],"GO:0032291":[{"userId":"PLP1","geneSymbol":"PLP1","geneName":"proteolipid protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5354","entrezgene":"5354"},{"userId":"MAG","geneSymbol":"MAG","geneName":"myelin associated glycoprotein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=4099","entrezgene":"4099"}],"GO:0014003":[{"userId":"PLP1","geneSymbol":"PLP1","geneName":"proteolipid protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5354","entrezgene":"5354"},{"userId":"MAG","geneSymbol":"MAG","geneName":"myelin associated glycoprotein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=4099","entrezgene":"4099"}],"GO:0048708":[{"userId":"PLP1","geneSymbol":"PLP1","geneName":"proteolipid protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5354","entrezgene":"5354"},{"userId":"MAG","geneSymbol":"MAG","geneName":"myelin associated glycoprotein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=4099","entrezgene":"4099"}],"GO:0048709":[{"userId":"PLP1","geneSymbol":"PLP1","geneName":"proteolipid protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5354","entrezgene":"5354"},{"userId":"MAG","geneSymbol":"MAG","geneName":"myelin associated glycoprotein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=4099","entrezgene":"4099"}],"GO:0021782":[{"userId":"PLP1","geneSymbol":"PLP1","geneName":"proteolipid protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5354","entrezgene":"5354"},{"userId":"MAG","geneSymbol":"MAG","geneName":"myelin associated glycoprotein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=4099","entrezgene":"4099"}],"GO:0007272":[{"userId":"PLP1","geneSymbol":"PLP1","geneName":"proteolipid protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5354","entrezgene":"5354"},{"userId":"MAG","geneSymbol":"MAG","geneName":"myelin associated glycoprotein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=4099","entrezgene":"4099"}],"GO:0008366":[{"userId":"PLP1","geneSymbol":"PLP1","geneName":"proteolipid protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5354","entrezgene":"5354"},{"userId":"MAG","geneSymbol":"MAG","geneName":"myelin associated glycoprotein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=4099","entrezgene":"4099"}],"GO:0042552":[{"userId":"PLP1","geneSymbol":"PLP1","geneName":"proteolipid protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5354","entrezgene":"5354"},{"userId":"MAG","geneSymbol":"MAG","geneName":"myelin associated glycoprotein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=4099","entrezgene":"4099"}],"GO:0031643":[{"userId":"MAG","geneSymbol":"MAG","geneName":"myelin associated glycoprotein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=4099","entrezgene":"4099"}]};
+var clusters = {"ap":{"clusters":["GO:0022010","GO:0048708","GO:0021782","GO:0008366","GO:0031643","GO:0032291","GO:0014003","GO:0048709","GO:0007272","GO:0042552"],"representatives":["GO:0022010","GO:0032291"]},"wsc":{"representatives":"GO:0022010","coverage":1}};
+
+var dag = [{"data":{"source":"GO:0014003","target":"GO:0022010"}},{"data":{"source":"GO:0032291","target":"GO:0022010"}},{"data":{"source":"GO:0042552","target":"GO:0022010"}},{"data":{"source":"GO:0008366","target":"GO:0032291"}},{"data":{"source":"GO:0021782","target":"GO:0014003"}},{"data":{"source":"GO:0048709","target":"GO:0014003"}},{"data":{"source":"GO:0007417","target":"GO:0048708"}},{"data":{"source":"GO:0010001","target":"GO:0048708"}},{"data":{"source":"GO:0007417","target":"GO:0048709"}},{"data":{"source":"GO:0010001","target":"GO:0048709"}},{"data":{"source":"GO:0010001","target":"GO:0021782"}},{"data":{"source":"GO:0048468","target":"GO:0021782"}},{"data":{"source":"GO:0007399","target":"GO:0007272"}},{"data":{"source":"GO:0009987","target":"GO:0007272"}},{"data":{"source":"GO:0007272","target":"GO:0008366"}},{"data":{"source":"GO:0008366","target":"GO:0042552"}},{"data":{"source":"GO:0031641","target":"GO:0031643"}},{"data":{"source":"GO:0031646","target":"GO:0031643"}},{"data":{"source":"GO:0042552","target":"GO:0031643"}},{"data":{"source":"GO:0048522","target":"GO:0031643"}},{"data":{"source":"GO:0051962","target":"GO:0031643"}},{"data":{"source":"GO:0007399","target":"GO:0007417"}},{"data":{"source":"GO:0048731","target":"GO:0007417"}},{"data":{"source":"GO:0030154","target":"GO:0010001"}},{"data":{"source":"GO:0042063","target":"GO:0010001"}},{"data":{"source":"GO:0030154","target":"GO:0048468"}},{"data":{"source":"GO:0048856","target":"GO:0048468"}},{"data":{"source":"GO:0048869","target":"GO:0048468"}},{"data":{"source":"GO:0048731","target":"GO:0007399"}},{"data":{"source":"GO:0008150","target":"GO:0009987"}},{"data":{"source":"GO:0042552","target":"GO:0031641"}},{"data":{"source":"GO:0050794","target":"GO:0031641"}},{"data":{"source":"GO:0051960","target":"GO:0031641"}},{"data":{"source":"GO:0031644","target":"GO:0031646"}},{"data":{"source":"GO:0050877","target":"GO:0031646"}},{"data":{"source":"GO:0051240","target":"GO:0031646"}},{"data":{"source":"GO:0009987","target":"GO:0048522"}},{"data":{"source":"GO:0048518","target":"GO:0048522"}},{"data":{"source":"GO:0050794","target":"GO:0048522"}},{"data":{"source":"GO:0007399","target":"GO:0051962"}},{"data":{"source":"GO:0051094","target":"GO:0051962"}},{"data":{"source":"GO:0051240","target":"GO:0051962"}},{"data":{"source":"GO:0051960","target":"GO:0051962"}},{"data":{"source":"GO:0007275","target":"GO:0048731"}},{"data":{"source":"GO:0048856","target":"GO:0048731"}},{"data":{"source":"GO:0048869","target":"GO:0030154"}},{"data":{"source":"GO:0022008","target":"GO:0042063"}},{"data":{"source":"GO:0032502","target":"GO:0048856"}},{"data":{"source":"GO:0009987","target":"GO:0048869"}},{"data":{"source":"GO:0032502","target":"GO:0048869"}},{"data":{"source":"GO:0009987","target":"GO:0050794"}},{"data":{"source":"GO:0050789","target":"GO:0050794"}},{"data":{"source":"GO:0007399","target":"GO:0051960"}},{"data":{"source":"GO:2000026","target":"GO:0051960"}},{"data":{"source":"GO:0044057","target":"GO:0031644"}},{"data":{"source":"GO:0050877","target":"GO:0031644"}},{"data":{"source":"GO:0003008","target":"GO:0050877"}},{"data":{"source":"GO:0032501","target":"GO:0051240"}},{"data":{"source":"GO:0048518","target":"GO:0051240"}},{"data":{"source":"GO:0051239","target":"GO:0051240"}},{"data":{"source":"GO:0008150","target":"GO:0048518"}},{"data":{"source":"GO:0050789","target":"GO:0048518"}},{"data":{"source":"GO:0032502","target":"GO:0051094"}},{"data":{"source":"GO:0048518","target":"GO:0051094"}},{"data":{"source":"GO:0050793","target":"GO:0051094"}},{"data":{"source":"GO:0032501","target":"GO:0007275"}},{"data":{"source":"GO:0048856","target":"GO:0007275"}},{"data":{"source":"GO:0007399","target":"GO:0022008"}},{"data":{"source":"GO:0030154","target":"GO:0022008"}},{"data":{"source":"GO:0008150","target":"GO:0032502"}},{"data":{"source":"GO:0008150","target":"GO:0050789"}},{"data":{"source":"GO:0065007","target":"GO:0050789"}},{"data":{"source":"GO:0007275","target":"GO:2000026"}},{"data":{"source":"GO:0050793","target":"GO:2000026"}},{"data":{"source":"GO:0051239","target":"GO:2000026"}},{"data":{"source":"GO:0003008","target":"GO:0044057"}},{"data":{"source":"GO:0051239","target":"GO:0044057"}},{"data":{"source":"GO:0032501","target":"GO:0003008"}},{"data":{"source":"GO:0008150","target":"GO:0032501"}},{"data":{"source":"GO:0032501","target":"GO:0051239"}},{"data":{"source":"GO:0050789","target":"GO:0051239"}},{"data":{"source":"GO:0032502","target":"GO:0050793"}},{"data":{"source":"GO:0050789","target":"GO:0050793"}},{"data":{"source":"GO:0008150","target":"GO:0065007"}},{"data":{"id":"GO:0022010","name":"central nervous system myelination","color":"#4D86B6"}},{"data":{"id":"GO:0032291","name":"axon ensheathment in central nervous system","color":"#4D86B6"}},{"data":{"id":"GO:0014003","name":"oligodendrocyte development","color":"#FFFFFF"}},{"data":{"id":"GO:0048708","name":"astrocyte differentiation","color":"#FFFFFF"}},{"data":{"id":"GO:0048709","name":"oligodendrocyte differentiation","color":"#FFFFFF"}},{"data":{"id":"GO:0021782","name":"glial cell development","color":"#FFFFFF"}},{"data":{"id":"GO:0007272","name":"ensheathment of neurons","color":"#FFFFFF"}},{"data":{"id":"GO:0008366","name":"axon ensheathment","color":"#FFFFFF"}},{"data":{"id":"GO:0042552","name":"myelination","color":"#FFFFFF"}},{"data":{"id":"GO:0031643","name":"positive regulation of myelination","color":"#FFFFFF"}},{"data":{"id":"GO:0007417","name":"central nervous system development","color":"white"}},{"data":{"id":"GO:0010001","name":"glial cell differentiation","color":"white"}},{"data":{"id":"GO:0048468","name":"cell development","color":"white"}},{"data":{"id":"GO:0007399","name":"nervous system development","color":"white"}},{"data":{"id":"GO:0009987","name":"cellular process","color":"white"}},{"data":{"id":"GO:0031641","name":"regulation of myelination","color":"white"}},{"data":{"id":"GO:0031646","name":"positive regulation of neurological system process","color":"white"}},{"data":{"id":"GO:0048522","name":"positive regulation of cellular process","color":"white"}},{"data":{"id":"GO:0051962","name":"positive regulation of nervous system development","color":"white"}},{"data":{"id":"GO:0048731","name":"system development","color":"white"}},{"data":{"id":"GO:0030154","name":"cell differentiation","color":"white"}},{"data":{"id":"GO:0042063","name":"gliogenesis","color":"white"}},{"data":{"id":"GO:0048856","name":"anatomical structure development","color":"white"}},{"data":{"id":"GO:0048869","name":"cellular developmental process","color":"white"}},{"data":{"id":"GO:0008150","name":"biological_process","color":"white"}},{"data":{"id":"GO:0050794","name":"regulation of cellular process","color":"white"}},{"data":{"id":"GO:0051960","name":"regulation of nervous system development","color":"white"}},{"data":{"id":"GO:0031644","name":"regulation of neurological system process","color":"white"}},{"data":{"id":"GO:0050877","name":"nervous system process","color":"white"}},{"data":{"id":"GO:0051240","name":"positive regulation of multicellular organismal process","color":"white"}},{"data":{"id":"GO:0048518","name":"positive regulation of biological process","color":"white"}},{"data":{"id":"GO:0051094","name":"positive regulation of developmental process","color":"white"}},{"data":{"id":"GO:0007275","name":"multicellular organism development","color":"white"}},{"data":{"id":"GO:0022008","name":"neurogenesis","color":"white"}},{"data":{"id":"GO:0032502","name":"developmental process","color":"white"}},{"data":{"id":"GO:0050789","name":"regulation of biological process","color":"white"}},{"data":{"id":"GO:2000026","name":"regulation of multicellular organismal development","color":"white"}},{"data":{"id":"GO:0044057","name":"regulation of system process","color":"white"}},{"data":{"id":"GO:0003008","name":"system process","color":"white"}},{"data":{"id":"GO:0032501","name":"multicellular organismal process","color":"white"}},{"data":{"id":"GO:0051239","name":"regulation of multicellular organismal process","color":"white"}},{"data":{"id":"GO:0050793","name":"regulation of developmental process","color":"white"}},{"data":{"id":"GO:0065007","name":"biological regulation","color":"white"}}];
+wgLib({
+	enrichDatabase: "geneontology_Biological_Process",
+	organism: "hsapiens",
+	hostName: "http://www.webgestalt.org/",
+	enrichment: enrichment,
+	background: background,
+	geneTables: geneTables,
+	clusters: clusters,
+	
+	enrichMethod: "ora",
+	mappedInputSize: 9,
+	standardId: "entrezgene",
+	dag: dag,
+	volcano: {
+		labelTypes: ["geneSet", "description"],
+				autoPlaceLabels: true,
+		y: "FDR",
+
+
+		x: "R",
+		xLabel: "log2 of enrichment ratio",
+		radius: "O",
+		color: "O",
+			tooltipContent: ["geneSet", "description", "R", "FDR", "pValue", "O"]
+					
+	},
+	bar: {
+		dimensions: { width: 960, height: 300 },
+		tooltipContent: ["geneSet", "description", "R", "FDR", "pValue", "O"],
+		
+		valueKey: "R",
+		xLabel: "Enrichment ratio"
+	}
+})
+
+
+</script>
+<footer class="footer has-text-centered">
+<p>WebGestalt is currently developed and maintained by Yuxing Liao, Suhas Vasaikar, Zhiao Shi and Bing Zhang at the <a target="_new" href=http://www.zhang-lab.org> Zhang Lab</a>. Other people who have made significant contribution to the project include Jing Wang, Dexter Duncan, Stefan Kirov and Jay Snoddy.</p>
+<p><b>Funding credits:</b> NIH/NCI (U24 CA210954); Leidos (15X038); CPRIT (RR160027); NIH/NIAAA (U01 AA016662, U01 AA013512); NIH/NIDA (P01 DA015027); NIH/NIMH (P50 MH078028, P50 MH096972); NIH/NCI (U24 CA159988); NIH/NIGMS (R01 GM088822).
+</p>
+</footer></body>
+</html>

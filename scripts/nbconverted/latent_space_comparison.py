@@ -28,6 +28,7 @@
 
 # In[1]:
 
+
 import os
 import numpy as np
 import pandas as pd
@@ -37,18 +38,25 @@ import seaborn as sns
 
 # In[2]:
 
-get_ipython().magic('matplotlib inline')
+
+get_ipython().run_line_magic('matplotlib', 'inline')
 plt.style.use('seaborn-notebook')
 
 
 # In[3]:
 
+
 sns.set(style='white', color_codes=True)
-sns.set_context('paper', rc={'font.size': 12, 'axes.titlesize': 15, 'axes.labelsize': 20,
-                             'xtick.labelsize': 14, 'ytick.labelsize': 14})
+sns.set_context('paper',
+                rc={'font.size': 12,
+                    'axes.titlesize': 15,
+                    'axes.labelsize': 20,
+                    'xtick.labelsize': 14,
+                    'ytick.labelsize': 14})
 
 
 # In[4]:
+
 
 # Set seed for plotting
 np.random.seed(123)
@@ -56,12 +64,14 @@ np.random.seed(123)
 
 # In[5]:
 
+
 ov_file = os.path.join('data', 'ov_subtype_info.tsv')
 ov_df = pd.read_table(ov_file, index_col=0)
 ov_df.head(2)
 
 
 # In[6]:
+
 
 def get_encoded_ovsubtype_info(encoded_df, ov_df):
     """
@@ -101,6 +111,7 @@ def get_encoded_ovsubtype_info(encoded_df, ov_df):
 
 # In[7]:
 
+
 def ov_subtraction(ov_mean_df, subtype_tuple, algorithm):
     """
     Determine the ranked difference between ovarian cancer subtypes according to input mean
@@ -131,6 +142,7 @@ def ov_subtraction(ov_mean_df, subtype_tuple, algorithm):
 
 # In[8]:
 
+
 pca_file = 'https://github.com/gwaygenomics/pancan_viz/raw/7725578eaefe3eb3f6caf2e03927349405780ce5/data/pca_rnaseq.tsv.gz'
 ica_file = 'https://github.com/gwaygenomics/pancan_viz/raw/7725578eaefe3eb3f6caf2e03927349405780ce5/data/ica_rnaseq.tsv.gz'
 nmf_file = 'https://github.com/gwaygenomics/pancan_viz/raw/7725578eaefe3eb3f6caf2e03927349405780ce5/data/nmf_rnaseq.tsv.gz'
@@ -151,6 +163,7 @@ vae_twolayer300_encoded_df = pd.read_table(vae_twolayer300_file, index_col=0)
 # ## Process encoded feature data
 
 # In[9]:
+
 
 pca_ov_df, pca_ov_mean_df = get_encoded_ovsubtype_info(pca_encoded_df, ov_df)
 ica_ov_df, ica_ov_mean_df = get_encoded_ovsubtype_info(ica_encoded_df, ov_df)
@@ -173,10 +186,12 @@ vae_tl300_ov_df, vae_tl300_ov_mean_df = get_encoded_ovsubtype_info(vae_twolayer3
 
 # In[10]:
 
+
 mes_immuno = ('Mesenchymal', 'Immunoreactive')
 
 
 # In[11]:
+
 
 algorithms = ['pca', 'ica', 'nmf', 'adage', 'tybalt', 'vae_100', 'vae_300']
 
@@ -191,6 +206,7 @@ vae_tl300_ov_vector = ov_subtraction(vae_tl300_ov_mean_df, mes_immuno, 'vae_300'
 
 # In[12]:
 
+
 latent_space_df = pd.concat([pca_ov_vector, ica_ov_vector,
                              nmf_ov_vector, adage_ov_vector,
                              vae_ov_vector, vae_tl_ov_vector,
@@ -199,6 +215,7 @@ latent_space_df.head(2)
 
 
 # In[13]:
+
 
 # Process latent space dataframe to long format
 long_latent_df = latent_space_df.stack().reset_index()
@@ -221,6 +238,7 @@ long_latent_space_df.head(2)
 
 # In[14]:
 
+
 # Assign color to each algorithm
 long_latent_space_df = long_latent_space_df.assign(algorithm_color =
                                                    long_latent_space_df['algorithm'])
@@ -242,6 +260,7 @@ long_latent_space_df.head(2)
 
 # In[15]:
 
+
 # Output ranking and activation scores per feature per algorithm
 latent_output_file = os.path.join('results',
                                   'hgsc_mesenchymal_immunoreactive_algorithm_subtract.tsv')
@@ -252,14 +271,22 @@ long_latent_space_df.head()
 
 # In[16]:
 
+
 latent_space_figure = os.path.join('figures', 'algorithm_comparison_latent_space.png')
-ax = sns.pointplot(x='rank', y='activation', hue='algorithm', data=long_latent_space_df,
-                   palette=algorithm_color_dict, markers=['x', '3', '4', 'd', '*', 'd','o'],
-                   orient='v', scale=0.6)
+ax = sns.pointplot(x='rank',
+                   y='activation',
+                   hue='algorithm',
+                   data=long_latent_space_df,
+                   palette=algorithm_color_dict,
+                   markers=['x', '3', '4', 'd', '*', 'd','o'],
+                   orient='v',
+                   scale=0.6)
 ax.set_xlabel('Feature Rank')
 ax.set_ylabel('Mesenchymal - Immunoreactive\nFeature Activation')
+
 ax.set(xticklabels=[]);
 plt.tight_layout()
+
 plt.setp(ax.get_legend().get_texts(), fontsize='12')
 plt.setp(ax.get_legend().get_title(), fontsize='16')
 plt.savefig(latent_space_figure, dpi=600, height=6, width=5)
@@ -268,6 +295,13 @@ plt.savefig(latent_space_figure, dpi=600, height=6, width=5)
 # ### Part II. Extract high weight genes from each most explanatory feature
 
 # In[17]:
+
+
+algorithms = ['PCA', 'ICA', 'NMF', 'adage', 'tybalt', 'vae_100', 'vae_300']
+
+
+# In[18]:
+
 
 def get_high_weight_genes(weight_matrix, node, algorithm, high_std=2.5, direction='positive',
                           output_file=''):
@@ -287,9 +321,11 @@ def get_high_weight_genes(weight_matrix, node, algorithm, high_std=2.5, directio
     """
     genes = weight_matrix.loc[int(node), :].sort_values(ascending=False)
     if direction == 'positive':
-        node_df = (genes[genes > genes.std() * high_std])
+        hw_pos_cutoff = genes.mean() + (genes.std() * high_std)
+        node_df = (genes[genes > hw_pos_cutoff])
     elif direction == 'negative':
-        node_df = (genes[genes < -1 * (genes.std() * high_std)])
+        hw_neg_cutoff = genes.mean() - (genes.std() * high_std)
+        node_df = (genes[genes < hw_neg_cutoff])
 
     node_df = pd.DataFrame(node_df).reset_index()
     node_df.columns = ['genes', 'weight']
@@ -305,9 +341,11 @@ def get_high_weight_genes(weight_matrix, node, algorithm, high_std=2.5, directio
     return (node_df, genes_df)
 
 
-# In[18]:
+# In[19]:
+
 
 # Load feature matrices
+feature_matrix = dict()
 pca_feature_file = '../pancan_viz/data/pca_feature_rnaseq.tsv.gz'
 ica_feature_file = '../pancan_viz/data/ica_feature_rnaseq.tsv.gz'
 nmf_feature_file = '../pancan_viz/data/nmf_feature_rnaseq.tsv.gz'
@@ -316,72 +354,92 @@ tybalt_feature_file = 'https://github.com/greenelab/tybalt/raw/928804ffd3bb3f9d5
 vae_feature_twolayer_file = 'https://github.com/greenelab/tybalt/raw/7d2854172b57efc4b92ca80d3ec86dfbbc3e4325/data/tybalt_gene_weights_twohidden100.tsv'
 vae_feature_twolayer300_file = 'https://github.com/greenelab/tybalt/raw/7d2854172b57efc4b92ca80d3ec86dfbbc3e4325/data/tybalt_gene_weights_twohidden300.tsv'
 
-pca_feature_df = pd.read_table(pca_feature_file, index_col=0)
-ica_feature_df = pd.read_table(ica_feature_file, index_col=0)
-nmf_feature_df = pd.read_table(nmf_feature_file, index_col=0)
-adage_feature_df = pd.read_table(adage_feature_file, index_col=0)
-tybalt_feature_df = pd.read_table(tybalt_feature_file, index_col=0)
-vae_tl_feature_df = pd.read_table(vae_feature_twolayer_file, index_col=0)
-vae_tl300_feature_df = pd.read_table(vae_feature_twolayer300_file, index_col=0)
+feature_matrix['PCA'] = pd.read_table(pca_feature_file, index_col=0)
+feature_matrix['ICA'] = pd.read_table(ica_feature_file, index_col=0)
+feature_matrix['NMF'] = pd.read_table(nmf_feature_file, index_col=0)
+feature_matrix['adage'] = pd.read_table(adage_feature_file, index_col=0)
+feature_matrix['tybalt'] = pd.read_table(tybalt_feature_file, index_col=0)
+feature_matrix['vae_100'] = pd.read_table(vae_feature_twolayer_file, index_col=0)
+feature_matrix['vae_300'] = pd.read_table(vae_feature_twolayer300_file, index_col=0)
 
 
-# In[19]:
+# In[20]:
+
 
 # This is the largest difference in the Mesenchymal subtype across various algorithms
 latent_space_df.head(1)
 
 
-# In[20]:
-
-# Define output files
-base_dir = os.path.join('results', 'feature_comparison')
-pca_out_genes = os.path.join(base_dir, 'pca_mesenchymal_genes.tsv')
-ica_out_genes = os.path.join(base_dir, 'ica_mesenchymal_genes.tsv')
-nmf_out_genes = os.path.join(base_dir, 'nmf_mesenchymal_genes.tsv')
-adage_out_genes = os.path.join(base_dir, 'adage_mesenchymal_genes.tsv')
-tybalt_out_genes = os.path.join(base_dir, 'tybalt_mesenchymal_genes.tsv')
-vae_100_out_genes = os.path.join(base_dir, 'vae100_mesenchymal_genes.tsv')
-vae_300_out_genes = os.path.join(base_dir, 'vae300_mesenchymal_genes.tsv')
-
-# Extract the most explanatory feature based on subtraction
-pca_node = latent_space_df.loc[0, 'pca_features']
-ica_node = latent_space_df.loc[0, 'ica_features']
-nmf_node = latent_space_df.loc[0, 'nmf_features']
-adage_node = latent_space_df.loc[0, 'adage_features']
-tybalt_node = latent_space_df.loc[0, 'tybalt_features']
-vae_100_node = latent_space_df.loc[0, 'vae_100_features']
-vae_300_node = latent_space_df.loc[0, 'vae_300_features']
-
-# For this analysis, only output the positive high weight genes
-pca_genes = get_high_weight_genes(pca_feature_df, pca_node, algorithm='PCA',
-                                  output_file=pca_out_genes)
-ica_genes = get_high_weight_genes(ica_feature_df, ica_node, algorithm='ICA',
-                                  output_file=ica_out_genes)
-nmf_genes = get_high_weight_genes(nmf_feature_df, nmf_node, algorithm='NMF',
-                                  output_file=nmf_out_genes)
-adage_genes = get_high_weight_genes(adage_feature_df, adage_node, algorithm='ADAGE',
-                                    output_file=adage_out_genes)
-tybalt_genes = get_high_weight_genes(tybalt_feature_df, tybalt_node, algorithm='Tybalt',
-                                     output_file=tybalt_out_genes)
-vae_100_genes = get_high_weight_genes(vae_tl_feature_df, vae_100_node, algorithm='VAE_100',
-                                      output_file=vae_100_out_genes)
-vae_300_genes = get_high_weight_genes(vae_tl300_feature_df, vae_300_node, algorithm='VAE_300',
-                                      output_file=vae_300_out_genes)
-
-
 # In[21]:
 
-feature_activation_df = pd.concat([pca_genes[1], ica_genes[1],
-                                   nmf_genes[1], adage_genes[1],
-                                   tybalt_genes[1], vae_100_genes[1],
-                                   vae_300_genes[1]], axis=0)
-print(feature_activation_df.shape)
-feature_activation_df.head(5)
+
+base_dir = os.path.join('results', 'feature_comparison')
+algorithm_genes = dict()
+node_genes = dict()
+for alg in algorithms:
+    # Generate output file
+    alg_lower = alg.lower()
+    out_gene_file = '{}_mesenchymal_genes.tsv'.format(alg_lower)
+    out_gene_file = os.path.join(base_dir, out_gene_file)
+
+    # Subset specific node
+    node_label = '{}_features'.format(alg_lower)
+    node = latent_space_df.loc[0, node_label]
+    
+    # Subset feature matrix
+    weight_df = feature_matrix[alg]
+
+    # Relax threshold for PCA since no genes are beyond
+    if alg == "PCA":
+        thresh = 1.5
+    else:
+        thresh = 2.5
+
+    # Identify algorithm genes
+    node_genes[alg], algorithm_genes[alg] = (
+        get_high_weight_genes(weight_matrix=weight_df,
+                              node=node,
+                              algorithm=alg,
+                              high_std=thresh,
+                              direction='positive',
+                              output_file=out_gene_file)
+    )
 
 
 # In[22]:
 
+
+feature_activation_df = pd.concat([algorithm_genes['PCA'],
+                                   algorithm_genes['ICA'],
+                                   algorithm_genes['NMF'],
+                                   algorithm_genes['adage'],
+                                   algorithm_genes['tybalt']], axis=0)
+print(feature_activation_df.shape)
+feature_activation_df.head(5)
+
+
+# In[23]:
+
+
 # Visualize distribution of features to assess normality
-g = sns.FacetGrid(feature_activation_df, col='algorithm', sharex=False, sharey=False, hue='algorithm')
+sns.set_context('paper', rc={'font.size': 12,
+                             'axes.titlesize': 20,
+                             'axes.labelsize': 15,
+                             'xtick.labelsize': 11,
+                             'ytick.labelsize': 11})
+
+g = sns.FacetGrid(feature_activation_df,
+                  col='algorithm',
+                  sharex=False,
+                  sharey=False,
+                  hue='algorithm')
+
 g.map(sns.distplot, 'activation');
+g.set_titles(col_template = '{col_name}')
+
+file = os.path.join('figures', 'example_distributions.png')
+plt.savefig(file,
+            dpi=600,
+            height=3,
+            width=5)
 
